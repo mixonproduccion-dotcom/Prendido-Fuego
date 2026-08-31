@@ -1926,27 +1926,55 @@ function startShowDia(mode = "today") {
   showUserChoices.semaforo = [];
 
   if (mode === "today") {
-    // Curated for Today's Script (31/08) con TODOS los temas del guion
+    // Curated for Today's Script (31/08) con TODO el Lore Multiverso Cruzado
     const bando = (typeof GUERRA_BANDOS_DATA !== "undefined" && GUERRA_BANDOS_DATA.length) ? GUERRA_BANDOS_DATA[0] : null;
     const tribunal = (typeof TRIBUNAL_CASES !== "undefined" && TRIBUNAL_CASES.length > 1) ? TRIBUNAL_CASES[1] : (TRIBUNAL_CASES[0] || null);
-    const semaforo = (typeof SEMAFORO_CASES !== "undefined") ? [
-      SEMAFORO_CASES[0], // ChatGPT y Wanda
-      SEMAFORO_CASES[1], // Juli Poggio PH chirlos
-      SEMAFORO_CASES[2], // Jefe fit anti-harinas
-      SEMAFORO_CASES[5] || SEMAFORO_CASES[3], // Messi renuncia 2016
-      SEMAFORO_CASES[6] || SEMAFORO_CASES[4]  // Tinelli 30s de fama
-    ].filter(Boolean) : [];
     
-    const victim = celebrities.find(c => c.id === "maxi-lopez") || celebrities.find(c => c.id === "juli-poggio") || celebrities[0];
+    // Semáforo con los 5 lores del día cruzados
+    const semaforo = [
+      {
+        id: "sem-lore-wanda-chatgpt",
+        title: "El Historial de Infidelidades con ChatGPT",
+        category: "Farándula / Wanda & Maxi",
+        text: "Le pedís a ChatGPT que liste las 7 infidelidades históricas de tu ex marido (el barco, la empleada y Barcelona) y subís la captura a Instagram firmando como 'Solange'..."
+      },
+      {
+        id: "sem-lore-icardi-tatuaje",
+        title: "La Icardeada Histórica & El Tatuaje",
+        category: "Códigos / Icardi & Maxi",
+        text: "Tu mejor amigo de club te recibe en su casa de Italia y a los 6 meses se pone de novio con tu ex mujer y se tatúa los nombres de tus 3 hijos en el brazo..."
+      },
+      {
+        id: "sem-lore-poggio-ph",
+        title: "El Fetiche de PH & El Ojo de Leuco",
+        category: "Intimidad / Juli Poggio & Edul",
+        text: "En la primera cita te confiesa que le gusta dar chirlos en la cama y el truco del ojo mientras Gastón Edul te mira con cara cómplice..."
+      },
+      {
+        id: "sem-lore-messi-2016",
+        title: "La Carta de Renuncia a las 3 AM",
+        category: "Impulsividad / Momento Messi 2016",
+        text: "Perdés una final o tenés una mala semana en el trabajo y redactás una carta formal diciendo 'lo pensé mucho y la Selección no es para mí'..."
+      },
+      {
+        id: "sem-lore-jefe-harinas",
+        title: "Prohibido Azúcar y Medialunas en la Oficina",
+        category: "Trabajo / El Jefe Sigma Fit",
+        text: "Tu jefe fit te descuenta el sueldo si te encuentra comiendo facturas con grasa de 9 a 18 hs porque 'te da pico de insulina y baja la productividad'..."
+      }
+    ];
+    
+    // Ruleta Multiverso: Víctima Wanda Nara con sus 3 hombres históricos
+    const victim = celebrities.find(c => c.id === "wanda-nara") || celebrities[0];
     const candidates = [
-      celebrities.find(c => c.id === "wanda-nara") || celebrities[1],
-      celebrities.find(c => c.id === "gaston-edul") || celebrities[2],
-      celebrities.find(c => c.id === "marcelo-tinelli") || celebrities[3]
-    ].filter(Boolean);
+      celebrities.find(c => c.id === "maxi-lopez") || { name: "Maxi López", image: "assets/celebrities/maxi-lopez.jpg", lore: "El primer marido, padre de Valentino, Constantino y Benedicto. El bardo de Rusia y ChatGPT." },
+      celebrities.find(c => c.id === "mauro-icardi") || { name: "Mauro Icardi", image: "assets/celebrities/mauro-icardi.jpg", lore: "La icardeada histórica de 2013, 10 años de matrimonio, 2 hijas y el Wandagate en París." },
+      celebrities.find(c => c.id === "l-gante") || { name: "L-Gante", image: "assets/celebrities/l-gante.jpg", lore: "El amor de cumbia 420, la escapada a Río de Janeiro y la guerra en el Chateau Libertador." }
+    ];
 
     currentShowEpisode = {
       title: "PROGRAMA DE HOY • LUNES 31/08",
-      badge: "🔥 GUION OFICIAL • MIX ON STUDIO",
+      badge: "🔥 GUION OFICIAL • MULTIVERSO PRENDIDO FUEGO",
       bando,
       tribunal,
       semaforo,

@@ -2389,47 +2389,120 @@ function voteApertura(host) {
 function renderShowStep2_Bandos(container) {
   const duels = currentShowEpisode?.bandosList || [GUERRA_BANDOS_DATA[0]];
   const duel = duels[showBandosSubIndex] || duels[0];
-  const curVote = showUserChoices.bandos[showBandosSubIndex]?.vote;
-  const votesA = showUserChoices.bandos[showBandosSubIndex]?.votesA || 50;
-  const votesB = showUserChoices.bandos[showBandosSubIndex]?.votesB || 50;
+  
+  if (!showUserChoices.bandos[showBandosSubIndex]) {
+    showUserChoices.bandos[showBandosSubIndex] = {
+      duel,
+      hostVotes: { holder: null, diane: null, luli: null },
+      votesA: 50,
+      votesB: 50
+    };
+  }
+  const hostVotes = showUserChoices.bandos[showBandosSubIndex].hostVotes;
+  const votesA = showUserChoices.bandos[showBandosSubIndex].votesA;
+  const votesB = showUserChoices.bandos[showBandosSubIndex].votesB;
+
+  const countA = Object.values(hostVotes).filter(v => v === "a").length;
+  const countB = Object.values(hostVotes).filter(v => v === "b").length;
+
+  const getBackersHtml = (side) => {
+    const list = [];
+    if (hostVotes.holder === side) list.push('<span class="backer-pill pill-holder">🗿 Tomás Holder</span>');
+    if (hostVotes.diane === side) list.push('<span class="backer-pill pill-diane">🟢 Diane Caracchi</span>');
+    if (hostVotes.luli === side) list.push('<span class="backer-pill pill-luli">💔 Luli Casé</span>');
+    return list.length ? `<div class="backers-chips-box"><span class="bc-lbl">Bancado por:</span> ${list.join(" ")}</div>` : '<div class="backers-chips-box empty"><span>Nadie de la mesa lo votó aún</span></div>';
+  };
 
   container.innerHTML = `
     <div class="show-stage-card bandos-step-arena">
       <div class="step-guide-tag">
-        ⚔️ GUERRA DE BANDOS • DUELO ${showBandosSubIndex + 1} DE ${duels.length} • ${duel.guide || "¿De qué lado se para la mesa?"}
+        ⚔️ GUERRA DE BANDOS • DUELO ${showBandosSubIndex + 1} DE ${duels.length} • ${duel.guide || "¿De qué lado se para cada conductor?"}
       </div>
       
       <div class="bandos-clash-grid">
         <!-- BANDO A -->
-        <div class="bando-fighter-card side-a ${curVote === 'a' ? 'selected-winner' : ''}" id="showCardA">
+        <div class="bando-fighter-card side-a ${countA > countB ? 'selected-winner' : ''}" id="showCardA">
           <div class="fighter-photo-wrap">
             <img src="${duel.sideA.image}" alt="${duel.sideA.name}" class="fighter-img" onerror="this.src='assets/logo-pf.jpg'">
             <div class="fighter-badge">${duel.sideA.badge}</div>
           </div>
           <h3 class="fighter-name">${duel.sideA.name}</h3>
           <p class="fighter-argument">${duel.sideA.argument || duel.sideA.quote}</p>
-          <button class="btn-vote-fighter" onclick="voteShowBandoMulti('a')">
-            ${curVote === 'a' ? '✓ BANCADO POR LA MESA' : 'BANCAR BANDO A [1]'}
+          
+          ${getBackersHtml("a")}
+
+          <button class="btn-vote-fighter" onclick="voteShowBandoAll('a')">
+            VOTO MAYORITARIO A (${getShortDisplayName(duel.sideA.name)}) [1]
           </button>
         </div>
 
         <!-- VS CLASH -->
         <div class="clash-center-piece">
           <div class="vs-flame-circle">VS</div>
-          <div class="vs-clash-glow"></div>
+          <div class="vs-score-indicator">${countA} - ${countB}</div>
         </div>
 
         <!-- BANDO B -->
-        <div class="bando-fighter-card side-b ${curVote === 'b' ? 'selected-winner' : ''}" id="showCardB">
+        <div class="bando-fighter-card side-b ${countB > countA ? 'selected-winner' : ''}" id="showCardB">
           <div class="fighter-photo-wrap">
             <img src="${duel.sideB.image}" alt="${duel.sideB.name}" class="fighter-img" onerror="this.src='assets/logo-pf.jpg'">
             <div class="fighter-badge">${duel.sideB.badge}</div>
           </div>
           <h3 class="fighter-name">${duel.sideB.name}</h3>
           <p class="fighter-argument">${duel.sideB.argument || duel.sideB.quote}</p>
-          <button class="btn-vote-fighter" onclick="voteShowBandoMulti('b')">
-            ${curVote === 'b' ? '✓ BANCADO POR LA MESA' : 'BANCAR BANDO B [2]'}
+          
+          ${getBackersHtml("b")}
+
+          <button class="btn-vote-fighter" onclick="voteShowBandoAll('b')">
+            VOTO MAYORITARIO B (${getShortDisplayName(duel.sideB.name)}) [2]
           </button>
+        </div>
+      </div>
+
+      <!-- PANEL DE VOTACIÓN INDIVIDUAL POR CONDUCTOR -->
+      <div class="hosts-individual-vote-panel">
+        <div class="hiv-title">🗳️ VOTACIÓN INDIVIDUAL DE LA MESA (¿A QUIÉN BANCA CADA UNO?):</div>
+        <div class="hiv-grid">
+          
+          <!-- HOLDER -->
+          <div class="hiv-host-card card-holder">
+            <div class="hiv-host-name">🗿 Tomás Holder</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${hostVotes.holder === 'a' ? 'active-a' : ''}" onclick="voteBandoByHost('holder', 'a')">
+                ${getShortDisplayName(duel.sideA.name)}
+              </button>
+              <button class="btn-hiv ${hostVotes.holder === 'b' ? 'active-b' : ''}" onclick="voteBandoByHost('holder', 'b')">
+                ${getShortDisplayName(duel.sideB.name)}
+              </button>
+            </div>
+          </div>
+
+          <!-- DIANE -->
+          <div class="hiv-host-card card-diane">
+            <div class="hiv-host-name">🟢 Diane Caracchi</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${hostVotes.diane === 'a' ? 'active-a' : ''}" onclick="voteBandoByHost('diane', 'a')">
+                ${getShortDisplayName(duel.sideA.name)}
+              </button>
+              <button class="btn-hiv ${hostVotes.diane === 'b' ? 'active-b' : ''}" onclick="voteBandoByHost('diane', 'b')">
+                ${getShortDisplayName(duel.sideB.name)}
+              </button>
+            </div>
+          </div>
+
+          <!-- LULI -->
+          <div class="hiv-host-card card-luli">
+            <div class="hiv-host-name">💔 Luli Casé</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${hostVotes.luli === 'a' ? 'active-a' : ''}" onclick="voteBandoByHost('luli', 'a')">
+                ${getShortDisplayName(duel.sideA.name)}
+              </button>
+              <button class="btn-hiv ${hostVotes.luli === 'b' ? 'active-b' : ''}" onclick="voteBandoByHost('luli', 'b')">
+                ${getShortDisplayName(duel.sideB.name)}
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -2437,7 +2510,7 @@ function renderShowStep2_Bandos(container) {
       <div class="tug-meter-box">
         <div class="tug-meter-labels">
           <span class="tug-label-a">${duel.sideA.name}: <strong id="showPctA">${votesA}%</strong></span>
-          <span class="tug-meter-title">⚖️ BALANCE DE LA MESA (${showBandosSubIndex + 1}/${duels.length})</span>
+          <span class="tug-meter-title">⚖️ VEREDICTO DE LA MESA: ${countA > countB ? `GANA ${getShortDisplayName(duel.sideA.name).toUpperCase()} (${countA} a ${countB})` : countB > countA ? `GANA ${getShortDisplayName(duel.sideB.name).toUpperCase()} (${countB} a ${countA})` : 'EMPATE EN MESA'}</span>
           <span class="tug-label-b">${duel.sideB.name}: <strong id="showPctB">${votesB}%</strong></span>
         </div>
         <div class="tug-bar-track">
@@ -2448,31 +2521,49 @@ function renderShowStep2_Bandos(container) {
 
       <div class="sub-progress-dots">
         ${duels.map((d, i) => `
-          <div class="sub-dot ${i === showBandosSubIndex ? 'active' : ''} ${showUserChoices.bandos[i]?.vote ? 'voted' : ''}"></div>
+          <div class="sub-dot ${i === showBandosSubIndex ? 'active' : ''} ${showUserChoices.bandos[i]?.hostVotes?.holder ? 'voted' : ''}"></div>
         `).join("")}
       </div>
     </div>
   `;
 }
 
-function voteShowBandoMulti(side) {
+function voteBandoByHost(hostKey, side) {
   if (!showUserChoices.bandos[showBandosSubIndex]) {
-    showUserChoices.bandos[showBandosSubIndex] = { duel: currentShowEpisode?.bandosList[showBandosSubIndex], votesA: 50, votesB: 50 };
+    showUserChoices.bandos[showBandosSubIndex] = {
+      duel: currentShowEpisode?.bandosList[showBandosSubIndex],
+      hostVotes: { holder: null, diane: null, luli: null },
+      votesA: 50,
+      votesB: 50
+    };
   }
-  showUserChoices.bandos[showBandosSubIndex].vote = side;
-  
-  if (side === "a") {
-    showUserChoices.bandos[showBandosSubIndex].votesA = Math.min(95, showUserChoices.bandos[showBandosSubIndex].votesA + 15);
-    showUserChoices.bandos[showBandosSubIndex].votesB = 100 - showUserChoices.bandos[showBandosSubIndex].votesA;
-    audioFX.playFireIgnite();
+  showUserChoices.bandos[showBandosSubIndex].hostVotes[hostKey] = side;
+
+  // Recalculate percentage based on 3 hosts
+  const hv = showUserChoices.bandos[showBandosSubIndex].hostVotes;
+  const countA = Object.values(hv).filter(v => v === "a").length;
+  const countB = Object.values(hv).filter(v => v === "b").length;
+  const total = countA + countB;
+
+  if (total === 0) {
+    showUserChoices.bandos[showBandosSubIndex].votesA = 50;
+    showUserChoices.bandos[showBandosSubIndex].votesB = 50;
   } else {
-    showUserChoices.bandos[showBandosSubIndex].votesB = Math.min(95, showUserChoices.bandos[showBandosSubIndex].votesB + 15);
-    showUserChoices.bandos[showBandosSubIndex].votesA = 100 - showUserChoices.bandos[showBandosSubIndex].votesB;
-    audioFX.playFactosHorn();
+    showUserChoices.bandos[showBandosSubIndex].votesA = Math.round((countA / total) * 100);
+    showUserChoices.bandos[showBandosSubIndex].votesB = 100 - showUserChoices.bandos[showBandosSubIndex].votesA;
   }
+
+  if (side === "a") audioFX.playFireIgnite();
+  else audioFX.playFactosHorn();
 
   const body = document.getElementById("showStageBody");
   if (body) renderShowStep2_Bandos(body);
+}
+
+function voteShowBandoAll(side) {
+  voteBandoByHost("holder", side);
+  voteBandoByHost("diane", side);
+  voteBandoByHost("luli", side);
 }
 
 // ---------------------------------------------------------
@@ -2481,12 +2572,28 @@ function voteShowBandoMulti(side) {
 function renderShowStep3_Tribunal(container) {
   const cases = currentShowEpisode?.tribunalList || TRIBUNAL_CASES.slice(0, 3);
   const caseItem = cases[showTribunalSubIndex] || cases[0];
-  const chosen = showUserChoices.tribunal[showTribunalSubIndex]?.option;
+  
+  if (!showUserChoices.tribunal[showTribunalSubIndex]) {
+    showUserChoices.tribunal[showTribunalSubIndex] = {
+      caseItem,
+      hostVotes: { holder: null, diane: null, luli: null },
+      option: null
+    };
+  }
+  const hostVotes = showUserChoices.tribunal[showTribunalSubIndex].hostVotes;
+
+  const getOptionBackers = (optId) => {
+    const list = [];
+    if (hostVotes.holder === optId) list.push('<span class="backer-pill pill-holder">🗿 Holder</span>');
+    if (hostVotes.diane === optId) list.push('<span class="backer-pill pill-diane">🟢 Diane</span>');
+    if (hostVotes.luli === optId) list.push('<span class="backer-pill pill-luli">💔 Luli</span>');
+    return list.length ? `<div class="backers-chips-box"><span class="bc-lbl">Elegido por:</span> ${list.join(" ")}</div>` : '';
+  };
 
   container.innerHTML = `
     <div class="show-stage-card tribunal-step-stage">
       <div class="step-guide-tag">
-        ⚖️ EL TRIBUNAL • JUICIO ${showTribunalSubIndex + 1} DE ${cases.length} • ¿QUÉ HARÍAS VOS EN SU LUGAR?
+        ⚖️ EL TRIBUNAL • JUICIO ${showTribunalSubIndex + 1} DE ${cases.length} • ¿QUÉ HARÍA CADA CONDUCTOR EN SU LUGAR?
       </div>
 
       <div class="tribunal-hero-case-card">
@@ -2502,17 +2609,49 @@ function renderShowStep3_Tribunal(container) {
         </div>
       </div>
 
+      <!-- PANEL DE ELECCIÓN INDIVIDUAL DE CADA CONDUCTOR -->
+      <div class="hosts-individual-vote-panel">
+        <div class="hiv-title">⚖️ ELECCIÓN INDIVIDUAL DE CADA CONDUCTOR:</div>
+        <div class="hiv-grid">
+          <div class="hiv-host-card card-holder">
+            <div class="hiv-host-name">🗿 Tomás Holder</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${hostVotes.holder === 'A' ? 'active-a' : ''}" onclick="voteTribunalByHost('holder', 'A')">Opción A</button>
+              <button class="btn-hiv ${hostVotes.holder === 'B' ? 'active-a' : ''}" onclick="voteTribunalByHost('holder', 'B')">Opción B</button>
+              <button class="btn-hiv ${hostVotes.holder === 'C' ? 'active-a' : ''}" onclick="voteTribunalByHost('holder', 'C')">Opción C</button>
+            </div>
+          </div>
+          <div class="hiv-host-card card-diane">
+            <div class="hiv-host-name">🟢 Diane Caracchi</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${hostVotes.diane === 'A' ? 'active-a' : ''}" onclick="voteTribunalByHost('diane', 'A')">Opción A</button>
+              <button class="btn-hiv ${hostVotes.diane === 'B' ? 'active-a' : ''}" onclick="voteTribunalByHost('diane', 'B')">Opción B</button>
+              <button class="btn-hiv ${hostVotes.diane === 'C' ? 'active-a' : ''}" onclick="voteTribunalByHost('diane', 'C')">Opción C</button>
+            </div>
+          </div>
+          <div class="hiv-host-card card-luli">
+            <div class="hiv-host-name">💔 Luli Casé</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${hostVotes.luli === 'A' ? 'active-a' : ''}" onclick="voteTribunalByHost('luli', 'A')">Opción A</button>
+              <button class="btn-hiv ${hostVotes.luli === 'B' ? 'active-a' : ''}" onclick="voteTribunalByHost('luli', 'B')">Opción B</button>
+              <button class="btn-hiv ${hostVotes.luli === 'C' ? 'active-a' : ''}" onclick="voteTribunalByHost('luli', 'C')">Opción C</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="tribunal-options-grid">
         ${caseItem.options.map((opt, idx) => {
           const letter = String.fromCharCode(65 + idx);
-          const isSelected = chosen === letter;
+          const backersCount = Object.values(hostVotes).filter(v => v === letter).length;
           return `
-            <div class="tribunal-opt-card style-${opt.style} ${isSelected ? 'option-selected-glow' : ''}" onclick="selectShowTribunalMulti('${letter}')">
+            <div class="tribunal-opt-card style-${opt.style} ${backersCount > 0 ? 'option-selected-glow' : ''}">
               <div class="toc-badge">${opt.style === 'holder' ? '🔥 FACTOS / HOLDER' : opt.style === 'diane' ? '🟢 DIGNIDAD / DIANE' : '💔 MIGAJERA / LULI'}</div>
               <h4 class="toc-title">${opt.title}</h4>
               <p class="toc-text">${opt.text}</p>
-              <button class="btn-vote-option ${isSelected ? 'voted' : ''}">
-                ${isSelected ? '✓ OPCIÓN ELEGIDA POR LA MESA' : `ELEGIR OPCIÓN [${letter}]`}
+              ${getOptionBackers(letter)}
+              <button class="btn-vote-option ${backersCount > 0 ? 'voted' : ''}" onclick="voteTribunalAll('${letter}')">
+                ${backersCount > 0 ? `✓ ELEGIDA POR ${backersCount} CONDUCTOR(ES)` : `VOTO MAYORITARIO [${letter}]`}
               </button>
             </div>
           `;
@@ -2906,6 +3045,16 @@ function renderShowStep8_Dashboard(container) {
   const diagnosis = generatePsychologicalAnalysis(showUserChoices);
   audioFX.playFactosHorn();
 
+  // Compute individual conductor stats
+  const getHostBandoPicks = (hostKey) => {
+    return showUserChoices.bandos.map((b, i) => {
+      const vote = b.hostVotes?.[hostKey];
+      if (!vote) return `Duelo ${i+1}: -`;
+      const name = vote === "a" ? getShortDisplayName(b.duel.sideA.name) : getShortDisplayName(b.duel.sideB.name);
+      return `D${i+1}: <strong>${name}</strong>`;
+    }).join(" • ");
+  };
+
   container.innerHTML = `
     <div class="show-stage-card dashboard-step-stage">
       
@@ -2947,6 +3096,86 @@ function renderShowStep8_Dashboard(container) {
         </div>
       </div>
 
+      <!-- DESGLOSE INDIVIDUAL DE CADA CONDUCTOR -->
+      <div class="dashboard-hosts-section">
+        <h3 class="dhs-title">👥 PERFIL Y VOTACIÓN INDIVIDUAL DE CADA CONDUCTOR:</h3>
+        <div class="dashboard-hosts-grid">
+          
+          <!-- HOLDER -->
+          <div class="dash-host-card dhc-holder">
+            <div class="dhc-header">
+              <span class="dhc-avatar">🗿</span>
+              <div>
+                <h4 class="dhc-name">Tomás Holder</h4>
+                <span class="dhc-role">El Factero / Postura Tradicional</span>
+              </div>
+            </div>
+            <div class="dhc-body">
+              <div class="dhc-stat-row">
+                <span>🔥 Factos & Aura:</span> <strong>92%</strong>
+              </div>
+              <div class="dhc-stat-row">
+                <span>🧪 Veneno en Sangre:</span> <strong>78%</strong>
+              </div>
+              <div class="dhc-picks-box">
+                <span class="dpb-label">⚔️ A quién bancó en Bandos:</span>
+                <p class="dpb-content">${getHostBandoPicks('holder') || 'Bancó la postura de Maxi y Messi'}</p>
+              </div>
+              <div class="dhc-verdict-quote">"El hombre de alto valor no negocia los códigos ni se deja llevar por el conventillo."</div>
+            </div>
+          </div>
+
+          <!-- DIANE -->
+          <div class="dash-host-card dhc-diane">
+            <div class="dhc-header">
+              <span class="dhc-avatar">🟢</span>
+              <div>
+                <h4 class="dhc-name">Diane Caracchi</h4>
+                <span class="dhc-role">La Voz de la Razón / Monogamia</span>
+              </div>
+            </div>
+            <div class="dhc-body">
+              <div class="dhc-stat-row">
+                <span>🛡️ Dignidad & Límites:</span> <strong>95%</strong>
+              </div>
+              <div class="dhc-stat-row">
+                <span>🚫 Cero Chamuyo:</span> <strong>88%</strong>
+              </div>
+              <div class="dhc-picks-box">
+                <span class="dpb-label">⚔️ A quién bancó en Bandos:</span>
+                <p class="dpb-content">${getHostBandoPicks('diane') || 'Bancó límites claros y dignidad'}</p>
+              </div>
+              <div class="dhc-verdict-quote">"Si no hay respeto ni exclusividad, se corta de raíz. Sin drama y sin circo."</div>
+            </div>
+          </div>
+
+          <!-- LULI -->
+          <div class="dash-host-card dhc-luli">
+            <div class="dhc-header">
+              <span class="dhc-avatar">💔</span>
+              <div>
+                <h4 class="dhc-name">Luli Casé</h4>
+                <span class="dhc-role">La Reina del Despecho / Tarot</span>
+              </div>
+            </div>
+            <div class="dhc-body">
+              <div class="dhc-stat-row">
+                <span>💔 Apego Migajero:</span> <strong>96%</strong>
+              </div>
+              <div class="dhc-stat-row">
+                <span>🔮 Justificación Astral:</span> <strong>100%</strong>
+              </div>
+              <div class="dhc-picks-box">
+                <span class="dpb-label">⚔️ A quién bancó en Bandos:</span>
+                <p class="dpb-content">${getHostBandoPicks('luli') || 'Bancó a Wanda y el despecho'}</p>
+              </div>
+              <div class="dhc-verdict-quote">"¡Si te manda un mensaje a las 3 AM con un tema de cumbia, hay que darle otra oportunidad!"</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- RECAP OF ALL 8 BLOCKS -->
       <div class="show-recap-grid">
         <div class="recap-box">
@@ -2959,7 +3188,7 @@ function renderShowStep8_Dashboard(container) {
         <div class="recap-box">
           <div class="rb-title">⚔️ 2. GUERRA DE BANDOS (3 DUELOS)</div>
           <div class="rb-content">
-            ${showUserChoices.bandos.map((b, i) => `Duelo ${i+1}: ${b.vote ? b.vote.toUpperCase() : '-'}`).join(" • ") || '3 Duelos Jugados'}
+            ${showUserChoices.bandos.map((b, i) => `Duelo ${i+1}: ${b.duel?.sideA?.name ? getShortDisplayName(b.duel.sideA.name) : 'A'} vs ${b.duel?.sideB?.name ? getShortDisplayName(b.duel.sideB.name) : 'B'}`).join(" • ") || '3 Duelos Jugados'}
           </div>
         </div>
 

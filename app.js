@@ -401,7 +401,7 @@ function renderRouletteStep1() {
   container.innerHTML = `
     <div class="reveal-card-badge">🎯 PASO 1 • LA VÍCTIMA EN EL BANCO</div>
     <div class="reveal-hero-tag-badge">${currentVictim.tag || currentVictim.categoryLabel}</div>
-    <h2 class="reveal-hero-name">${currentVictim.name}</h2>
+    <h2 class="reveal-hero-name anim-question-reveal">${currentVictim.name}</h2>
     <div class="reveal-hero-quote">"${currentVictim.quote || currentVictim.bio}"</div>
     
     <div class="reveal-hero-lore-box">
@@ -438,7 +438,7 @@ function renderRouletteStep2() {
   container.innerHTML = `
     <div class="reveal-card-badge cand-badge-1">⚡ PASO 2 • PRIMER CANDIDATO EN MESA</div>
     <div class="reveal-hero-tag-badge cand-badge-1">${cand.tag || cand.categoryLabel}</div>
-    <h2 class="reveal-hero-name">${cand.name}</h2>
+    <h2 class="reveal-hero-name anim-question-reveal">${cand.name}</h2>
     <div class="reveal-hero-quote">"${cand.quote || cand.bio}"</div>
     
     <div class="reveal-hero-lore-box">
@@ -475,7 +475,7 @@ function renderRouletteStep3() {
   container.innerHTML = `
     <div class="reveal-card-badge cand-badge-2">⚡ PASO 3 • SEGUNDO CANDIDATO EN MESA</div>
     <div class="reveal-hero-tag-badge cand-badge-2">${cand.tag || cand.categoryLabel}</div>
-    <h2 class="reveal-hero-name">${cand.name}</h2>
+    <h2 class="reveal-hero-name anim-question-reveal">${cand.name}</h2>
     <div class="reveal-hero-quote">"${cand.quote || cand.bio}"</div>
     
     <div class="reveal-hero-lore-box">
@@ -513,7 +513,7 @@ function renderRouletteStep4() {
   container.innerHTML = `
     <div class="reveal-card-badge cand-badge-3">💣 PASO 4 • TERCER Y ÚLTIMO CANDIDATO</div>
     <div class="reveal-hero-tag-badge cand-badge-3">${cand.tag || cand.categoryLabel}</div>
-    <h2 class="reveal-hero-name">${cand.name}</h2>
+    <h2 class="reveal-hero-name anim-question-reveal">${cand.name}</h2>
     <div class="reveal-hero-quote">"${cand.quote || cand.bio}"</div>
     
     <div class="reveal-hero-lore-box">
@@ -539,7 +539,7 @@ function renderRouletteStep5() {
 
   // 1. Tarjeta de la Víctima
   const victimCard = document.createElement("div");
-  victimCard.className = "squad-celeb-card victim-highlight";
+  victimCard.className = "squad-celeb-card victim-highlight anim-card-stagger-1";
   victimCard.innerHTML = `
     <div class="scc-role-badge">🎯 LA VÍCTIMA</div>
     <h3 class="scc-name">${currentVictim.name}</h3>
@@ -559,7 +559,7 @@ function renderRouletteStep5() {
     const assignedRoleKey = Object.keys(assignedRoles).find(k => assignedRoles[k] && assignedRoles[k].id === cand.id);
 
     const candCard = document.createElement("div");
-    candCard.className = `squad-celeb-card candidate-card ${isAssigned ? 'assigned-role-' + assignedRoleKey : ''}`;
+    candCard.className = `squad-celeb-card candidate-card anim-card-stagger-${idx + 2} ${isAssigned ? 'assigned-role-' + assignedRoleKey : ''}`;
     candCard.dataset.candidateId = cand.id;
 
     candCard.innerHTML = `
@@ -585,6 +585,7 @@ function renderRouletteStep5() {
         </button>
       </div>
     `;
+
 
     candCard.querySelectorAll(".btn-assign-action").forEach(btn => {
       btn.addEventListener("click", (e) => {
@@ -838,10 +839,32 @@ function renderSemaforoRoundCurrent() {
   const cat = document.getElementById("semaforoCategory");
   const count = document.getElementById("semaforoCounter");
   const text = document.getElementById("semaforoText");
+  const chain = document.getElementById("semaforoPearlsChain");
 
   if (cat) cat.textContent = (item.category || "RED FLAGS").toUpperCase();
   if (count) count.textContent = `SITUACIÓN ${semaforoRoundIndex + 1} / 10`;
-  if (text) text.textContent = item.text;
+
+  if (text) {
+    text.textContent = item.text;
+    text.classList.remove("anim-question-reveal");
+    void text.offsetWidth;
+    text.classList.add("anim-question-reveal");
+  }
+
+  // Render 10-Pearls Interactive Status Chain
+  if (chain) {
+    chain.innerHTML = semaforoRoundCases.map((c, idx) => {
+      const v = semaforoRoundVotes[idx];
+      let vClass = "";
+      let icon = idx + 1;
+      if (v === "verde") { vClass = "pearl-verde"; icon = "🟢"; }
+      else if (v === "amarillo") { vClass = "pearl-amarillo"; icon = "🟡"; }
+      else if (v === "rojo") { vClass = "pearl-rojo"; icon = "🔴"; }
+      else if (v === "fuego") { vClass = "pearl-fuego"; icon = "🔥"; }
+      const isCur = idx === semaforoRoundIndex;
+      return `<div class="pearl-node ${vClass} ${isCur ? 'active-now' : ''}" title="Situación ${idx + 1}">${icon}</div>`;
+    }).join("");
+  }
 
   document.querySelectorAll(".semaforo-giant-btn").forEach(btn => btn.classList.remove("active"));
   
@@ -866,6 +889,22 @@ function selectSemaforoLevel(level) {
   else if (level === "rojo") audioFX.playBuzzer();
   else if (level === "fuego") audioFX.playFireIgnite();
 
+  // Re-render pearls chain to reflect vote
+  const chain = document.getElementById("semaforoPearlsChain");
+  if (chain) {
+    chain.innerHTML = semaforoRoundCases.map((c, idx) => {
+      const v = semaforoRoundVotes[idx];
+      let vClass = "";
+      let icon = idx + 1;
+      if (v === "verde") { vClass = "pearl-verde"; icon = "🟢"; }
+      else if (v === "amarillo") { vClass = "pearl-amarillo"; icon = "🟡"; }
+      else if (v === "rojo") { vClass = "pearl-rojo"; icon = "🔴"; }
+      else if (v === "fuego") { vClass = "pearl-fuego"; icon = "🔥"; }
+      const isCur = idx === semaforoRoundIndex;
+      return `<div class="pearl-node ${vClass} ${isCur ? 'active-now' : ''}" title="Situación ${idx + 1}">${icon}</div>`;
+    }).join("");
+  }
+
   const item = semaforoRoundCases[semaforoRoundIndex];
   setPresetZocalo(
     `🚦 SEMÁFORO (${semaforoRoundIndex + 1}/10)`,
@@ -879,6 +918,7 @@ function selectSemaforoLevel(level) {
     }, 600);
   }
 }
+
 
 function renderSemaforoResults() {
   const counts = { verde: 0, amarillo: 0, rojo: 0, fuego: 0 };
@@ -1070,8 +1110,13 @@ function loadBandoDuel(index) {
   const duel = GUERRA_BANDOS_DATA[currentBandoIndex];
   bandoVotes = { a: 1, b: 1 };
 
-  document.getElementById("bandoCounter").textContent = `DUELO ${currentBandoIndex + 1} / ${GUERRA_BANDOS_DATA.length}`;
-  document.getElementById("bandoTitle").textContent = duel.title;
+  const bTitle = document.getElementById("bandoTitle");
+  if (bTitle) {
+    bTitle.textContent = duel.title;
+    bTitle.classList.remove("anim-question-reveal");
+    void bTitle.offsetWidth;
+    bTitle.classList.add("anim-question-reveal");
+  }
 
   // Side A
   document.getElementById("bandoSideAName").textContent = duel.sideA.name;
@@ -1180,6 +1225,7 @@ function loadTribunalCase(index) {
   const catEl = document.getElementById("tribunalCategory");
   const titleEl = document.getElementById("tribunalTitle");
   const qNameEl = document.getElementById("tribunalProtagonistName");
+  const bigQEl = document.getElementById("tribunalBigQuestion");
   const ctxEl = document.getElementById("tribunalContext");
   const quoteEl = document.getElementById("tribunalProtagonistQuote");
 
@@ -1189,6 +1235,12 @@ function loadTribunalCase(index) {
   if (qNameEl) qNameEl.textContent = (currentCase.protagonist || "WANDA NARA").toUpperCase();
   if (ctxEl) ctxEl.textContent = currentCase.context;
   if (quoteEl) quoteEl.textContent = `"${currentCase.quote || '¿Qué harías vos en su lugar?'}"`;
+
+  if (bigQEl) {
+    bigQEl.classList.remove("anim-question-reveal");
+    void bigQEl.offsetWidth;
+    bigQEl.classList.add("anim-question-reveal");
+  }
 
   renderTribunalCards(currentCase.options);
   resetTribunalPodiums();
@@ -1201,9 +1253,9 @@ function renderTribunalCards(options) {
   if (!container) return;
   container.innerHTML = "";
 
-  options.forEach((opt) => {
+  options.forEach((opt, idx) => {
     const card = document.createElement("div");
-    card.className = `tribunal-option-card style-${opt.style || 'holder'}`;
+    card.className = `tribunal-option-card style-${opt.style || 'holder'} anim-card-stagger-${idx + 1}`;
     card.innerHTML = `
       <span class="opt-letter-tag">OPCIÓN ${opt.id}</span>
       <h4 class="opt-title">${opt.title}</h4>
@@ -1219,6 +1271,7 @@ function renderTribunalCards(options) {
     container.appendChild(card);
   });
 }
+
 
 function resetTribunalPodiums() {
   ["holder", "diane", "luli"].forEach(cond => {
@@ -2281,131 +2334,115 @@ function nextShowDiaStep() {
       showRuletaSubIndex++;
       const body = document.getElementById("showStageBody");
       if (body) renderShowStep6_Ruleta(body);
-      audioFX.playTick(600, 0.2);
-      setShowDiaStep(6);
-      return;
-    }
-  }
-
-  if (currentShowStep < 8) {
-    setShowDiaStep(currentShowStep + 1);
-  } else {
-    audioFX.playFactosHorn();
-  }
-}
-
-function prevShowDiaStep() {
-  if (currentShowStep === 2 && showBandosSubIndex > 0) {
-    showBandosSubIndex--;
-    setShowDiaStep(2);
-    return;
-  }
-  if (currentShowStep === 3 && showTribunalSubIndex > 0) {
-    showTribunalSubIndex--;
-    setShowDiaStep(3);
-    return;
-  }
-  if (currentShowStep === 4 && showSemaforoSubIndex > 0) {
-    showSemaforoSubIndex--;
-    setShowDiaStep(4);
-    return;
-  }
-  if (currentShowStep === 6 && showRuletaSubIndex > 0) {
-    showRuletaSubIndex--;
-    setShowDiaStep(6);
-    return;
-  }
-
-  if (currentShowStep > 1) {
-    setShowDiaStep(currentShowStep - 1);
-  }
-}
-
-// ---------------------------------------------------------
-// BLOQUE 1: APERTURA & PREGUNTA EDITORIAL DEL DÍA
+      audioFX.playTick(// ---------------------------------------------------------
+// BLOQUE 1: APERTURA & GRAN DUELO DE PORTADA DEL DÍA
 // ---------------------------------------------------------
 function renderShowStep1_Apertura(container) {
-  const ap = currentShowEpisode?.apertura;
-  if (!ap) return;
+  const apDuel = currentShowEpisode?.aperturaDuel || {
+    title: "EL ESCÁNDALO DE RUSIA: WANDA NARA VS. MAXI LÓPEZ",
+    guide: "La gran polémica del día: ¿A quién banca cada conductor de la mesa?",
+    sideA: {
+      name: "Wanda Nara ('Solange')",
+      badge: "La que Consulta a ChatGPT",
+      image: "assets/logo-pf.jpg",
+      argument: "Bancó 3 hijos sola en Moscú mientras Maxi andaba de joda; tiene derecho a exponer las 7 infidelidades que le confirmó ChatGPT y advertir a las mujeres que ser mantenida sale caro."
+    },
+    sideB: {
+      name: "Maxi López",
+      badge: "El que Elige Seguir Adelante",
+      image: "assets/logo-pf.jpg",
+      argument: "Fueron anécdotas de soltero antes del matrimonio; Wanda no puede soltar el pasado y usa cualquier declaración para generar show y prensa para sus programas de cocina."
+    },
+    chatTrigger: "¿De qué lado está el chat? Escribí [1] WANDA o [2] MAXI en vivo."
+  };
 
   if (!showUserChoices.aperturaVotes) {
     showUserChoices.aperturaVotes = { holder: null, diane: null, luli: null };
   }
   const votes = showUserChoices.aperturaVotes;
 
-  const getStanceBackers = (stanceKey) => {
+  const countA = Object.values(votes).filter(v => v === "a").length;
+  const countB = Object.values(votes).filter(v => v === "b").length;
+  const total = countA + countB;
+  const pctA = total === 0 ? 50 : Math.round((countA / total) * 100);
+  const pctB = 100 - pctA;
+
+  const getBackersHtml = (side) => {
     const list = [];
-    if (votes.holder === stanceKey) list.push('<span class="backer-pill pill-holder">🗿 Holder</span>');
-    if (votes.diane === stanceKey) list.push('<span class="backer-pill pill-diane">🟢 Diane</span>');
-    if (votes.luli === stanceKey) list.push('<span class="backer-pill pill-luli">💔 Luli</span>');
-    return list.length ? `<div class="backers-chips-box"><span class="bc-lbl">Elegida por:</span> ${list.join(" ")}</div>` : '<div class="backers-chips-box empty"><span>Sin votos aún</span></div>';
+    if (votes.holder === side) list.push('<span class="backer-pill pill-holder">🗿 Tomás Holder</span>');
+    if (votes.diane === side) list.push('<span class="backer-pill pill-diane">🟢 Diane Caracchi</span>');
+    if (votes.luli === side) list.push('<span class="backer-pill pill-luli">💔 Luli Casé</span>');
+    return list.length ? `<div class="backers-chips-box"><span class="bc-lbl">Bancado por:</span> ${list.join(" ")}</div>` : '<div class="backers-chips-box empty"><span>Nadie de la mesa lo votó aún</span></div>';
   };
 
-  const countA = Object.values(votes).filter(v => v === "A").length;
-  const countB = Object.values(votes).filter(v => v === "B").length;
-  const countC = Object.values(votes).filter(v => v === "C").length;
-
   container.innerHTML = `
-    <div class="show-stage-card apertura-block-card">
+    <div class="show-stage-card apertura-block-card bandos-step-arena">
       
-      <!-- HERO QUESTION BANNER -->
+      <!-- HERO TITLE DISPARADOR -->
       <div class="apertura-hero-question anim-question-reveal">
-        <div class="ahq-tag">🎯 LA GRAN PREGUNTA DISPARADORA DEL PROGRAMA DE HOY</div>
-        <h2 class="ahq-title">"${ap.question}"</h2>
-        <p class="ahq-context">${ap.context}</p>
+        <div class="ahq-tag">🎯 APERTURA DEL PROGRAMA • EL TEMA DE PORTADA DEL DÍA</div>
+        <h2 class="ahq-title">${apDuel.title}</h2>
+        <p class="ahq-context">${apDuel.guide}</p>
       </div>
 
-      <!-- 3 POSTURAS EDITORIALES ANTE EL TEMA -->
-      <div class="apertura-stances-grid">
+      <!-- ENFRENTAMIENTO DE LOS 2 PROTAGONISTAS -->
+      <div class="bandos-clash-grid">
         
-        <!-- POSTURA A -->
-        <div class="stance-card stance-holder anim-card-stagger-1 ${votes.holder === 'A' || votes.diane === 'A' || votes.luli === 'A' ? 'selected' : ''}">
-          <div class="sc-badge">🔥 POSTURA A • FACTOS & EXPONER TODO</div>
-          <h3 class="sc-title">Factos & Cero Hipocresía</h3>
-          <p class="sc-text">"Si el vínculo se rompió y no hubo lealtad, se expone todo sin piedad. Mostrá las pruebas, facturá y no te dejes pisotear jamás."</p>
-          ${getStanceBackers("A")}
-          <button class="btn-stance-vote" onclick="voteAperturaAll('A')">
-            ${countA > 0 ? `✓ ELEGIDA POR ${countA} CONDUCTOR(ES)` : 'VOTO MAYORITARIO [1]'}
+        <!-- LADO A: WANDA -->
+        <div class="bando-fighter-card side-a anim-card-stagger-1 ${countA > countB ? 'selected-winner' : ''}">
+          <div class="fighter-photo-wrap">
+            <img src="${apDuel.sideA.image}" alt="${apDuel.sideA.name}" class="fighter-img" onerror="this.src='assets/logo-pf.jpg'">
+            <div class="fighter-badge">${apDuel.sideA.badge}</div>
+          </div>
+          <h3 class="fighter-name">${apDuel.sideA.name}</h3>
+          <p class="fighter-argument">${apDuel.sideA.argument}</p>
+          
+          ${getBackersHtml("a")}
+
+          <button class="btn-vote-fighter" onclick="voteAperturaAll('a')">
+            VOTO MAYORITARIO A (${getShortDisplayName(apDuel.sideA.name)}) [1]
           </button>
         </div>
 
-        <!-- POSTURA B -->
-        <div class="stance-card stance-diane anim-card-stagger-2 ${votes.holder === 'B' || votes.diane === 'B' || votes.luli === 'B' ? 'selected' : ''}">
-          <div class="sc-badge">🟢 POSTURA B • DIGNIDAD & LÍMITES</div>
-          <h3 class="sc-title">Dignidad, Códigos & Silencio</h3>
-          <p class="sc-text">"Hay un límite ético sagrado. Cuando hay familia o pasado en común, el despecho en redes te degrada a vos misma. Se corta con altura."</p>
-          ${getStanceBackers("B")}
-          <button class="btn-stance-vote" onclick="voteAperturaAll('B')">
-            ${countB > 0 ? `✓ ELEGIDA POR ${countB} CONDUCTOR(ES)` : 'VOTO MAYORITARIO [2]'}
-          </button>
+        <!-- VS SCORE PIECE -->
+        <div class="clash-center-piece">
+          <div class="vs-flame-circle pulse-fire-glow">VS</div>
+          <div class="vs-score-indicator">${countA} - ${countB}</div>
         </div>
 
-        <!-- POSTURA C -->
-        <div class="stance-card stance-luli anim-card-stagger-3 ${votes.holder === 'C' || votes.diane === 'C' || votes.luli === 'C' ? 'selected' : ''}">
-          <div class="sc-badge">💔 POSTURA C • DESPECHO GLAM & MONETIZAR</div>
-          <h3 class="sc-title">Despecho Glam & Venganza Pop</h3>
-          <p class="sc-text">"¡Firmar 'Solange' es arte puro! Si te rompieron el corazón, que arda Troya en prime time y que la culpa la paguen ellos."</p>
-          ${getStanceBackers("C")}
-          <button class="btn-stance-vote" onclick="voteAperturaAll('C')">
-            ${countC > 0 ? `✓ ELEGIDA POR ${countC} CONDUCTOR(ES)` : 'VOTO MAYORITARIO [3]'}
+        <!-- LADO B: MAXI -->
+        <div class="bando-fighter-card side-b anim-card-stagger-2 ${countB > countA ? 'selected-winner' : ''}">
+          <div class="fighter-photo-wrap">
+            <img src="${apDuel.sideB.image}" alt="${apDuel.sideB.name}" class="fighter-img" onerror="this.src='assets/logo-pf.jpg'">
+            <div class="fighter-badge">${apDuel.sideB.badge}</div>
+          </div>
+          <h3 class="fighter-name">${apDuel.sideB.name}</h3>
+          <p class="fighter-argument">${apDuel.sideB.argument}</p>
+          
+          ${getBackersHtml("b")}
+
+          <button class="btn-vote-fighter" onclick="voteAperturaAll('b')">
+            VOTO MAYORITARIO B (${getShortDisplayName(apDuel.sideB.name)}) [2]
           </button>
         </div>
 
       </div>
 
-
-      <!-- PANEL DE ELECCIÓN INDIVIDUAL DE CADA CONDUCTOR -->
+      <!-- PANEL DE VOTACIÓN INDIVIDUAL DE CONDUCTORES -->
       <div class="hosts-individual-vote-panel">
-        <div class="hiv-title">🗳️ ¿QUÉ POSTURA ELIGE CADA CONDUCTOR EN EL PISO?</div>
+        <div class="hiv-title">🗳️ ¿A QUIÉN BANCA CADA CONDUCTOR? (CADA UNO DESARROLLA Y DEFIENDE SU POSTURA):</div>
         <div class="hiv-grid">
           
           <!-- HOLDER -->
           <div class="hiv-host-card card-holder">
             <div class="hiv-host-name">🗿 Tomás Holder</div>
             <div class="hiv-btn-group">
-              <button class="btn-hiv ${votes.holder === 'A' ? 'active-a' : ''}" onclick="voteAperturaByHost('holder', 'A')">Postura A</button>
-              <button class="btn-hiv ${votes.holder === 'B' ? 'active-a' : ''}" onclick="voteAperturaByHost('holder', 'B')">Postura B</button>
-              <button class="btn-hiv ${votes.holder === 'C' ? 'active-a' : ''}" onclick="voteAperturaByHost('holder', 'C')">Postura C</button>
+              <button class="btn-hiv ${votes.holder === 'a' ? 'active-a' : ''}" onclick="voteAperturaByHost('holder', 'a')">
+                ${getShortDisplayName(apDuel.sideA.name)}
+              </button>
+              <button class="btn-hiv ${votes.holder === 'b' ? 'active-b' : ''}" onclick="voteAperturaByHost('holder', 'b')">
+                ${getShortDisplayName(apDuel.sideB.name)}
+              </button>
             </div>
           </div>
 
@@ -2413,9 +2450,12 @@ function renderShowStep1_Apertura(container) {
           <div class="hiv-host-card card-diane">
             <div class="hiv-host-name">🟢 Diane Caracchi</div>
             <div class="hiv-btn-group">
-              <button class="btn-hiv ${votes.diane === 'A' ? 'active-a' : ''}" onclick="voteAperturaByHost('diane', 'A')">Postura A</button>
-              <button class="btn-hiv ${votes.diane === 'B' ? 'active-a' : ''}" onclick="voteAperturaByHost('diane', 'B')">Postura B</button>
-              <button class="btn-hiv ${votes.diane === 'C' ? 'active-a' : ''}" onclick="voteAperturaByHost('diane', 'C')">Postura C</button>
+              <button class="btn-hiv ${votes.diane === 'a' ? 'active-a' : ''}" onclick="voteAperturaByHost('diane', 'a')">
+                ${getShortDisplayName(apDuel.sideA.name)}
+              </button>
+              <button class="btn-hiv ${votes.diane === 'b' ? 'active-b' : ''}" onclick="voteAperturaByHost('diane', 'b')">
+                ${getShortDisplayName(apDuel.sideB.name)}
+              </button>
             </div>
           </div>
 
@@ -2423,12 +2463,28 @@ function renderShowStep1_Apertura(container) {
           <div class="hiv-host-card card-luli">
             <div class="hiv-host-name">💔 Luli Casé</div>
             <div class="hiv-btn-group">
-              <button class="btn-hiv ${votes.luli === 'A' ? 'active-a' : ''}" onclick="voteAperturaByHost('luli', 'A')">Postura A</button>
-              <button class="btn-hiv ${votes.luli === 'B' ? 'active-a' : ''}" onclick="voteAperturaByHost('luli', 'B')">Postura B</button>
-              <button class="btn-hiv ${votes.luli === 'C' ? 'active-a' : ''}" onclick="voteAperturaByHost('luli', 'C')">Postura C</button>
+              <button class="btn-hiv ${votes.luli === 'a' ? 'active-a' : ''}" onclick="voteAperturaByHost('luli', 'a')">
+                ${getShortDisplayName(apDuel.sideA.name)}
+              </button>
+              <button class="btn-hiv ${votes.luli === 'b' ? 'active-b' : ''}" onclick="voteAperturaByHost('luli', 'b')">
+                ${getShortDisplayName(apDuel.sideB.name)}
+              </button>
             </div>
           </div>
 
+        </div>
+      </div>
+
+      <!-- TUG OF WAR BAR -->
+      <div class="tug-meter-box">
+        <div class="tug-meter-labels">
+          <span class="tug-label-a">${apDuel.sideA.name}: <strong>${pctA}%</strong></span>
+          <span class="tug-meter-title">⚖️ VEREDICTO DE LA MESA: ${countA > countB ? `GANA ${getShortDisplayName(apDuel.sideA.name).toUpperCase()} (${countA} a ${countB})` : countB > countA ? `GANA ${getShortDisplayName(apDuel.sideB.name).toUpperCase()} (${countB} a ${countA})` : 'EMPATE EN MESA'}</span>
+          <span class="tug-label-b">${apDuel.sideB.name}: <strong>${pctB}%</strong></span>
+        </div>
+        <div class="tug-bar-track">
+          <div class="tug-fill-a" style="width: ${pctA}%;"></div>
+          <div class="tug-fill-b" style="width: ${pctB}%;"></div>
         </div>
       </div>
 
@@ -2437,7 +2493,7 @@ function renderShowStep1_Apertura(container) {
         <span class="act-icon">💬</span>
         <div class="act-text">
           <strong>DISPARADOR PARA EL CHAT DE LA TRANSMISIÓN:</strong>
-          <span>${ap.chatTrigger}</span>
+          <span>${apDuel.chatTrigger}</span>
         </div>
       </div>
 
@@ -2445,24 +2501,23 @@ function renderShowStep1_Apertura(container) {
   `;
 }
 
-function voteAperturaByHost(hostKey, stanceKey) {
+function voteAperturaByHost(hostKey, side) {
   if (!showUserChoices.aperturaVotes) {
     showUserChoices.aperturaVotes = { holder: null, diane: null, luli: null };
   }
-  showUserChoices.aperturaVotes[hostKey] = stanceKey;
+  showUserChoices.aperturaVotes[hostKey] = side;
 
-  if (stanceKey === "A") audioFX.playFactosHorn();
-  else if (stanceKey === "B") audioFX.playMatchChime();
-  else if (stanceKey === "C") audioFX.playFireIgnite();
+  if (side === "a") audioFX.playFireIgnite();
+  else audioFX.playFactosHorn();
 
   const body = document.getElementById("showStageBody");
   if (body) renderShowStep1_Apertura(body);
 }
 
-function voteAperturaAll(stanceKey) {
-  voteAperturaByHost("holder", stanceKey);
-  voteAperturaByHost("diane", stanceKey);
-  voteAperturaByHost("luli", stanceKey);
+function voteAperturaAll(side) {
+  voteAperturaByHost("holder", side);
+  voteAperturaByHost("diane", side);
+  voteAperturaByHost("luli", side);
 }
 
 // ---------------------------------------------------------
@@ -2503,7 +2558,7 @@ function renderShowStep2_Bandos(container) {
       
       <div class="bandos-clash-grid">
         <!-- BANDO A -->
-        <div class="bando-fighter-card side-a ${countA > countB ? 'selected-winner' : ''}" id="showCardA">
+        <div class="bando-fighter-card side-a anim-card-stagger-1 ${countA > countB ? 'selected-winner' : ''}" id="showCardA">
           <div class="fighter-photo-wrap">
             <img src="${duel.sideA.image}" alt="${duel.sideA.name}" class="fighter-img" onerror="this.src='assets/logo-pf.jpg'">
             <div class="fighter-badge">${duel.sideA.badge}</div>
@@ -2525,7 +2580,7 @@ function renderShowStep2_Bandos(container) {
         </div>
 
         <!-- BANDO B -->
-        <div class="bando-fighter-card side-b ${countB > countA ? 'selected-winner' : ''}" id="showCardB">
+        <div class="bando-fighter-card side-b anim-card-stagger-2 ${countB > countA ? 'selected-winner' : ''}" id="showCardB">
           <div class="fighter-photo-wrap">
             <img src="${duel.sideB.image}" alt="${duel.sideB.name}" class="fighter-img" onerror="this.src='assets/logo-pf.jpg'">
             <div class="fighter-badge">${duel.sideB.badge}</div>
@@ -2678,7 +2733,7 @@ function renderShowStep3_Tribunal(container) {
         ⚖️ EL TRIBUNAL • JUICIO ${showTribunalSubIndex + 1} DE ${cases.length} • ¿QUÉ HARÍA CADA CONDUCTOR EN SU LUGAR?
       </div>
 
-      <div class="tribunal-hero-case-card">
+      <div class="tribunal-hero-case-card anim-question-reveal">
         <div class="thc-image-wrap">
           <img src="${caseItem.image}" alt="${caseItem.protagonist}" class="thc-img" onerror="this.src='assets/logo-pf.jpg'">
           <div class="thc-category-badge">${caseItem.category}</div>
@@ -2727,7 +2782,7 @@ function renderShowStep3_Tribunal(container) {
           const letter = String.fromCharCode(65 + idx);
           const backersCount = Object.values(hostVotes).filter(v => v === letter).length;
           return `
-            <div class="tribunal-opt-card style-${opt.style} ${backersCount > 0 ? 'option-selected-glow' : ''}">
+            <div class="tribunal-opt-card style-${opt.style} anim-card-stagger-${idx + 1} ${backersCount > 0 ? 'option-selected-glow' : ''}">
               <div class="toc-badge">${opt.style === 'holder' ? '🔥 FACTOS / HOLDER' : opt.style === 'diane' ? '🟢 DIGNIDAD / DIANE' : '💔 MIGAJERA / LULI'}</div>
               <h4 class="toc-title">${opt.title}</h4>
               <p class="toc-text">${opt.text}</p>
@@ -2774,39 +2829,39 @@ function renderShowStep4_Semaforo(container) {
         🚦 RÁFAGA DEL SEMÁFORO • RED FLAG ${showSemaforoSubIndex + 1} DE ${cases.length} • ${currentCase.guide || "¿Es normal o es red flag tóxica?"}
       </div>
 
-      <div class="semaforo-play-card show-semaforo-card">
+      <div class="semaforo-play-card show-semaforo-card anim-question-reveal">
         <div class="spc-category-row">
           <span class="spc-category-badge">${currentCase.category}</span>
           <span class="spc-progress-badge">RED FLAG ${showSemaforoSubIndex + 1} / ${cases.length}</span>
         </div>
 
-        <h3 class="spc-case-title">${currentCase.title}</h3>
+        <h3 class="spc-case-title anim-question-reveal">${currentCase.title}</h3>
         <p class="spc-case-text">${currentCase.text}</p>
 
         <!-- TRAFFIC LIGHT CONTROLS -->
         <div class="semaforo-controls-row">
-          <button class="btn-sem-vote btn-sem-green ${savedVote === 'verde' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('verde')">
+          <button class="btn-sem-vote btn-sem-green anim-card-stagger-1 ${savedVote === 'verde' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('verde')">
             <span class="sem-icon">🟢</span>
             <span class="sem-title">VERDE</span>
             <span class="sem-desc">Banco / Normal</span>
             <span class="sem-kbd">[V]</span>
           </button>
 
-          <button class="btn-sem-vote btn-sem-yellow ${savedVote === 'amarillo' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('amarillo')">
+          <button class="btn-sem-vote btn-sem-yellow anim-card-stagger-2 ${savedVote === 'amarillo' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('amarillo')">
             <span class="sem-icon">🟡</span>
             <span class="sem-title">AMARILLO</span>
             <span class="sem-desc">Alerta / Dudo</span>
             <span class="sem-kbd">[A]</span>
           </button>
 
-          <button class="btn-sem-vote btn-sem-red ${savedVote === 'rojo' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('rojo')">
+          <button class="btn-sem-vote btn-sem-red anim-card-stagger-3 ${savedVote === 'rojo' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('rojo')">
             <span class="sem-icon">🔴</span>
             <span class="sem-title">ROJO</span>
             <span class="sem-desc">Red Flag / No</span>
             <span class="sem-kbd">[R]</span>
           </button>
 
-          <button class="btn-sem-vote btn-sem-fire ${savedVote === 'fuego' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('fuego')">
+          <button class="btn-sem-vote btn-sem-fire anim-card-stagger-4 ${savedVote === 'fuego' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('fuego')">
             <span class="sem-icon">🔥</span>
             <span class="sem-title">FUEGO</span>
             <span class="sem-desc">Tóxico / Cancelar</span>
@@ -2817,6 +2872,7 @@ function renderShowStep4_Semaforo(container) {
     </div>
   `;
 }
+
 
 function voteShowSemaforoMulti(level) {
   const cases = currentShowEpisode?.semaforoList || SEMAFORO_CASES.slice(0, 7);
@@ -2868,7 +2924,7 @@ function renderShowStep5_Podio(container) {
 
       <div class="podio-interactive-grid">
         ${showPodioState.map((cand, idx) => `
-          <div class="podio-rank-card rank-pos-${idx + 1}">
+          <div class="podio-rank-card rank-pos-${idx + 1} anim-card-stagger-${idx + 1}">
             <div class="prc-medal-badge">${medals[idx]}</div>
             <div class="prc-photo-wrap">
               <img src="${cand.image}" alt="${cand.name}" class="prc-img" onerror="this.src='assets/logo-pf.jpg'">
@@ -2929,7 +2985,7 @@ function renderShowStep6_Ruleta(container) {
       </div>
 
       <!-- VICTIM CARD -->
-      <div class="ruleta-victim-spotlight">
+      <div class="ruleta-victim-spotlight anim-question-reveal">
         <div class="rvs-avatar-wrap">
           <img src="${victim.image}" alt="${victim.name}" class="rvs-img" onerror="this.src='assets/logo-pf.jpg'">
           <div class="rvs-badge">VÍCTIMA DE LA RONDA</div>
@@ -2949,7 +3005,7 @@ function renderShowStep6_Ruleta(container) {
           else if (assign.funa === cand.name) curThrone = "❌ FUNA";
 
           return `
-            <div class="candidate-throne-card">
+            <div class="candidate-throne-card anim-card-stagger-${idx + 1}">
               <div class="ctc-photo-wrap">
                 <img src="${cand.image}" alt="${cand.name}" class="ctc-img" onerror="this.src='assets/logo-pf.jpg'">
                 <div class="ctc-assigned-badge ${curThrone ? 'active' : ''}">${curThrone || 'SIN ASIGNAR'}</div>
@@ -3009,7 +3065,7 @@ function renderShowStep7_Funa(container) {
         🚨 LA ZONA DE FUNA • JUICIO EN VIVO • DERECHO A RÉPLICA DE 30 SEGUNDOS
       </div>
 
-      <div class="funa-live-arena">
+      <div class="funa-live-arena anim-question-reveal">
         <div class="fla-header">
           <div class="fla-siren">🚨</div>
           <h2 class="fla-title">¡CONDUCTOR EN JAQUE: ${accused.toUpperCase()}!</h2>
@@ -3129,19 +3185,22 @@ function renderShowStep8_Dashboard(container) {
 
   // Compute individual conductor stats
   const getHostBandoPicks = (hostKey) => {
-    return showUserChoices.bandos.map((b, i) => {
+    const apPick = showUserChoices.aperturaVotes?.[hostKey];
+    const apStr = apPick ? `Apertura: <strong>${apPick === 'a' ? 'Wanda' : 'Maxi'}</strong>` : null;
+    const duelsStr = showUserChoices.bandos.map((b, i) => {
       const vote = b.hostVotes?.[hostKey];
       if (!vote) return `Duelo ${i+1}: -`;
       const name = vote === "a" ? getShortDisplayName(b.duel.sideA.name) : getShortDisplayName(b.duel.sideB.name);
       return `D${i+1}: <strong>${name}</strong>`;
     }).join(" • ");
+    return [apStr, duelsStr].filter(Boolean).join(" • ");
   };
 
   container.innerHTML = `
     <div class="show-stage-card dashboard-step-stage">
       
       <!-- HERO DIAGNOSIS BANNER -->
-      <div class="final-diagnosis-hero">
+      <div class="final-diagnosis-hero anim-question-reveal">
         <div class="fdh-tag">🧠 ANÁLISIS PSICOLÓGICO & TOXICOLÓGICO DE LA TRANSMISIÓN</div>
         <h2 class="fdh-title">${diagnosis.title}</h2>
         <p class="fdh-desc">${diagnosis.description}</p>
@@ -3149,34 +3208,35 @@ function renderShowStep8_Dashboard(container) {
 
       <!-- 4 METRIC GAUGES -->
       <div class="show-metrics-grid">
-        <div class="metric-card metric-venom">
+        <div class="metric-card metric-venom anim-card-stagger-1">
           <div class="mc-icon">🧪</div>
           <div class="mc-val">${diagnosis.venom}%</div>
           <div class="mc-lbl">VENENO EN SANGRE</div>
           <div class="mc-bar"><div class="mc-fill" style="width: ${diagnosis.venom}%;"></div></div>
         </div>
 
-        <div class="metric-card metric-aura">
+        <div class="metric-card metric-aura anim-card-stagger-2">
           <div class="mc-icon">🗿</div>
           <div class="mc-val">${diagnosis.aura}%</div>
           <div class="mc-lbl">FACTOS & AURA ALFA</div>
           <div class="mc-bar"><div class="mc-fill" style="width: ${diagnosis.aura}%;"></div></div>
         </div>
 
-        <div class="metric-card metric-migajera">
+        <div class="metric-card metric-migajera anim-card-stagger-3">
           <div class="mc-icon">💔</div>
           <div class="mc-val">${diagnosis.migajera}%</div>
           <div class="mc-lbl">APEGO MIGAJERO</div>
           <div class="mc-bar"><div class="mc-fill" style="width: ${diagnosis.migajera}%;"></div></div>
         </div>
 
-        <div class="metric-card metric-careta">
+        <div class="metric-card metric-careta anim-card-stagger-4">
           <div class="mc-icon">🎭</div>
           <div class="mc-val">${diagnosis.careta}%</div>
           <div class="mc-lbl">CARETÓMETRO MESA</div>
           <div class="mc-bar"><div class="mc-fill" style="width: ${diagnosis.careta}%;"></div></div>
         </div>
       </div>
+
 
       <!-- DESGLOSE INDIVIDUAL DE CADA CONDUCTOR -->
       <div class="dashboard-hosts-section">

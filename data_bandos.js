@@ -26,6 +26,26 @@ const GUERRA_BANDOS_DATA = [
     }
   },
   {
+    "id": "duelo-messi-renuncia-gloria",
+    "title": "La Carta de Renuncia 2016 vs. La Gloria Eterna de Qatar: Messi",
+    "sideA": {
+      "id": "messi-carta-2016",
+      "name": "El Messi de la Carta 2016 ('Ya Está, se Terminó')",
+      "badge": "El Dolor de la Frustración",
+      "quote": "Lo pensé mucho en el vestuario y ya está, la Selección no es para mí.",
+      "argument": "Sufrió el destrato de todo el periodismo argentino que lo tildaba de 'pecho frío'; dar un paso al costado en 2016 fue un grito de auxilio humano tras perder 3 finales seguidas.",
+      "image": "assets/logo-pf.jpg"
+    },
+    "sideB": {
+      "id": "messi-qatar-eterno",
+      "name": "El Messi de Qatar 2022 ('Qué Mirás Bobo')",
+      "badge": "El Rey Intocable de la Historia",
+      "quote": "Mirá que te como, andá pa' allá bobo.",
+      "argument": "Volvió para cerrarles la boca a todos, ganó la Copa América en el Maracaná, el Mundial en Qatar y se convirtió en la persona con más aura de la historia argentina.",
+      "image": "assets/logo-pf.jpg"
+    }
+  },
+  {
     "id": "duelo-tinigate-70m",
     "title": "El #TiniGate ($70M USD): Tini Stoessel vs. Alejandro Stoessel",
     "sideA": {

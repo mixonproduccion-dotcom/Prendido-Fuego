@@ -26,8 +26,9 @@
           <div class="sidebar-brand-sub">STUDIO CONTROL • MIX ON</div>
         </div>
       </div>
-      <button class="btn-sidebar-close" id="btnCloseSidebar" title="Cerrar panel [M]">✕</button>
+      <button class="btn-sidebar-close" id="btnCloseSidebar" title="Cerrar panel">✕</button>
     </div>
+
 
     <!-- CONTADOR GLOBAL DE FUNAS / CANCELACIONES -->
     <div class="sidebar-section">
@@ -143,12 +144,12 @@
     <div class="sidebar-section">
       <div class="sidebar-section-title">🔊 SOUNDBOARD DE ESTUDIO</div>
       <div class="soundboard-grid">
-        <button class="btn-sfx-item" id="sfxFire" title="Tecla 1">🔥 FUEGO [1]</button>
-        <button class="btn-sfx-item" id="sfxFactos" title="Tecla 2">📢 FACTOS [2]</button>
-        <button class="btn-sfx-item" id="sfxBuzzer" title="Tecla 3">❌ CANCELADO [3]</button>
-        <button class="btn-sfx-item" id="sfxMatch" title="Tecla 4">💍 CASORIO [4]</button>
-        <button class="btn-sfx-item" id="sfxCringe" title="Tecla 5">🎻 CRINGE [5]</button>
-        <button class="btn-sfx-item sfx-veto" id="sfxSiren" title="Tecla V">🚨 FUNA [V]</button>
+        <button class="btn-sfx-item" id="sfxFire">🔥 FUEGO</button>
+        <button class="btn-sfx-item" id="sfxFactos">📢 FACTOS</button>
+        <button class="btn-sfx-item" id="sfxBuzzer">❌ CANCELADO</button>
+        <button class="btn-sfx-item" id="sfxMatch">💍 CASORIO</button>
+        <button class="btn-sfx-item" id="sfxCringe">🎻 CRINGE</button>
+        <button class="btn-sfx-item sfx-veto" id="sfxSiren">🚨 FUNA</button>
       </div>
     </div>
 
@@ -161,7 +162,7 @@
           <button class="btn-timer-preset" data-seconds="30">30s</button>
           <button class="btn-timer-preset" data-seconds="45">45s</button>
           <button class="btn-timer-preset" data-seconds="60">60s</button>
-          <button class="btn-timer-action" id="sidebarTimerStart">▶ INICIAR [T]</button>
+          <button class="btn-timer-action" id="sidebarTimerStart">▶ INICIAR</button>
         </div>
       </div>
     </div>
@@ -171,10 +172,10 @@
       <div class="sidebar-section-title">🎬 CONTROL DE TRANSMISIÓN</div>
       <div class="sidebar-toggles-grid">
         <button class="btn-stream-toggle" id="btnToggleOBS">
-          <span>🎬</span> Modo OBS Clean Feed [O]
+          <span>🎬</span> Modo OBS Clean Feed
         </button>
         <button class="btn-stream-toggle" id="btnToggleFullscreen">
-          <span>⛶</span> Pantalla Completa [F]
+          <span>⛶</span> Pantalla Completa
         </button>
         <button class="btn-stream-toggle" id="btnToggleMute">
           <span id="muteIcon">🔊</span> Audio Activado
@@ -191,10 +192,9 @@
     <!-- MASTER TOP BAR -->
     <header class="master-top-bar" id="masterTopBar">
       <div class="topbar-left">
-        <button class="btn-menu-trigger" id="btnOpenSidebar" title="Abrir Menú de Control [M]">
+        <button class="btn-menu-trigger" id="btnOpenSidebar" title="Abrir Menú de Control">
           <span class="menu-icon">☰</span>
           <span class="menu-label">MENÚ</span>
-          <span class="kbd-hint">[M]</span>
         </button>
 
         <div class="brand-pill" id="btnGoHome" role="button" title="Volver al inicio">
@@ -217,16 +217,17 @@
         <div class="floating-timer-suite" id="topbarTimerSuite" title="Cronómetro de Debate">
           <span class="timer-icon">⏱️</span>
           <span class="timer-chip-val" id="topbarTimerVal">30s</span>
-          <button class="btn-timer-top-action btn-play-pause" id="topbarTimerPlay" title="Iniciar / Pausar [T]">▶</button>
-          <button class="btn-timer-top-action btn-reset" id="topbarTimerReset" title="Reiniciar tiempo [R]">🔄</button>
+          <button class="btn-timer-top-action btn-play-pause" id="topbarTimerPlay" title="Iniciar / Pausar">▶</button>
+          <button class="btn-timer-top-action btn-reset" id="topbarTimerReset" title="Reiniciar tiempo">🔄</button>
           <button class="btn-timer-top-action btn-add-time" id="topbarTimerAdd10" title="Sumar 10 segundos">+10s</button>
         </div>
 
-        <button class="btn-topbar-tool" id="btnTopFull" title="Pantalla Completa [F]">
+        <button class="btn-topbar-tool" id="btnTopFull" title="Pantalla Completa">
           ⛶
         </button>
       </div>
     </header>
+
 
     <!-- ========================================================= -->
     <!-- ZÓCALO / GRAPH PRINCIPAL EN CABECERA (SOLO DENTRO DE JUEGOS) -->
@@ -270,12 +271,12 @@
 
         <!-- BOTONES DE ACCIÓN PRINCIPAL PARA EL SHOW -->
         <div class="hero-play-action-wrapper dual-actions">
-          <button class="btn-huge-play btn-primary-show" id="btnStartTodayShow" title="Arrancar el show con el guion de hoy [ESPACIO]">
+          <button class="btn-huge-play btn-primary-show" id="btnStartTodayShow" title="Arrancar el show con el guion de hoy">
             <div class="play-glow-pulse"></div>
             <div class="play-icon-shape">🎬</div>
             <div class="play-content-text">
               <span class="play-main-cta">ARRANCAR EL SHOW DEL DÍA</span>
-              <span class="play-sub-cta">PROGRAMA COMPLETO • GUION DEL LUNES 31/08 [ESPACIO]</span>
+              <span class="play-sub-cta">PROGRAMA COMPLETO • GUION DEL LUNES 31/08</span>
             </div>
           </button>
 
@@ -441,11 +442,11 @@
           <button class="btn-show-nav" id="btnPrevShowStep">◀ Etapa Anterior</button>
           
           <div class="show-footer-hint" id="showFooterHint">
-            🔥 Presioná <strong>[ESPACIO]</strong> o <strong>[SIGUIENTE ETAPA ▶]</strong> para avanzar en el show
+            🔥 Avanzá al siguiente bloque con el botón o la barra espaciadora
           </div>
 
           <button class="btn-show-nav btn-show-next" id="btnNextShowStep">
-            Siguiente Etapa ▶ [ESPACIO]
+            Siguiente Etapa ▶
           </button>
         </div>
 
@@ -476,7 +477,7 @@
           </div>
 
           <div class="stage-nav-right">
-            <button class="btn-stage-nav" id="btnRouletteSpinAgain">🔄 Nuevo Giro [R]</button>
+            <button class="btn-stage-nav" id="btnRouletteSpinAgain">🔄 Nuevo Giro</button>
           </div>
         </div>
 
@@ -494,9 +495,10 @@
                 <div class="wheel-center-flame-btn" id="wheelCenterBtn">🔥</div>
               </div>
               <button class="btn-spin-huge" id="spinBtn">
-                <span>🔥 GIRAR RULETA [ESPACIO]</span>
+                <span>🔥 GIRAR RULETA</span>
               </button>
             </div>
+
 
             <!-- TARJETA PROTAGONISTA DE LA VÍCTIMA -->
             <div class="single-reveal-hero-card" id="step1VictimCard"></div>
@@ -619,7 +621,7 @@
               <span class="veto-banner-title">🚨 BOTÓN DE FUNA • MANDAR AL BANCO (30s)</span>
               <span class="veto-banner-desc">Si algún conductor defiende una postura cancelable, mandalo al banco con derecho a réplica.</span>
             </div>
-            <button class="btn-fire-veto" id="btnTriggerVeto">¡DISPARAR FUNA! [V]</button>
+            <button class="btn-fire-veto" id="btnTriggerVeto">¡DISPARAR FUNA!</button>
           </div>
         </div>
 
@@ -663,7 +665,7 @@
 
           <div class="src-actions-row">
             <button class="btn-advance-huge btn-fire-glow" id="btnPlayAnotherRound">
-              🔄 JUGAR OTRA RONDA DE 10 RED FLAGS [ESPACIO]
+              🔄 JUGAR OTRA RONDA DE 10 RED FLAGS
             </button>
           </div>
         </div>
@@ -738,7 +740,7 @@
               <div class="fighter-badge" id="bandoSideABadge">La que Proyectó Familia</div>
               <h3 class="fighter-name" id="bandoSideAName">La Joaqui</h3>
               <p class="fighter-argument" id="bandoSideAArg"></p>
-              <button class="btn-vote-fighter" id="btnVoteSideA">BANCAR A LA JOAQUI [1]</button>
+              <button class="btn-vote-fighter" id="btnVoteSideA">BANCAR A LA JOAQUI</button>
             </div>
 
             <!-- VS CENTER PIECE -->
@@ -752,9 +754,10 @@
               <div class="fighter-badge" id="bandoSideBBadge">El Soltero del Cuarteto</div>
               <h3 class="fighter-name" id="bandoSideBName">Luck Ra</h3>
               <p class="fighter-argument" id="bandoSideBArg"></p>
-              <button class="btn-vote-fighter" id="btnVoteSideB">BANCAR A LUCK RA [2]</button>
+              <button class="btn-vote-fighter" id="btnVoteSideB">BANCAR A LUCK RA</button>
             </div>
           </div>
+
 
           <!-- TUG OF WAR BAR -->
           <div class="tug-meter-box">
@@ -817,7 +820,7 @@
                 <div class="phase-action-cta">
                   <button class="btn-phase-advance" id="btnRevealTribunalOptions">
                     <span class="btn-advance-icon">⚡</span>
-                    <span>REVELAR LAS 3 POSTURAS EN MESA ▶ [ESPACIO]</span>
+                    <span>REVELAR LAS 3 POSTURAS EN MESA ▶</span>
                   </button>
                 </div>
               </div>
@@ -906,7 +909,7 @@
             <div class="voting-phase-footer">
               <button class="btn-stage-nav" id="btnBackToOptions">◀ Volver a Opciones</button>
               <button class="btn-phase-advance" id="btnNextCaseDirect">
-                <span>SIGUIENTE CASO ▶ [N]</span>
+                <span>SIGUIENTE CASO ▶</span>
               </button>
             </div>
           </div>
@@ -950,7 +953,7 @@
             </div>
 
             <button class="btn-push-air" id="btnPushZocalo">
-              🚀 MANDAR AL AIRE (PUSH TO AIR) [P]
+              🚀 MANDAR AL AIRE (PUSH TO AIR)
             </button>
           </div>
 
@@ -1029,7 +1032,7 @@
           </div>
 
           <button class="btn-analyze-trend" id="btnAnalyzeTrend">
-            ⚡ ANALIZAR TENDENCIA Y PREPARAR SHOW [ESPACIO]
+            ⚡ ANALIZAR TENDENCIA Y PREPARAR SHOW
           </button>
         </div>
 
@@ -1152,40 +1155,34 @@
     </div>
 
     <div class="dock-pads-group">
-      <button class="dock-pad-btn pad-fire" data-sound="fire" title="Fuego / Ignición [1]">
+      <button class="dock-pad-btn pad-fire" data-sound="fire">
         <span class="pad-icon">🔥</span>
         <span class="pad-label">FUEGO</span>
-        <span class="pad-key-hint">1</span>
       </button>
 
-      <button class="dock-pad-btn pad-factos" data-sound="factos" title="Factos / Bocina [2]">
+      <button class="dock-pad-btn pad-factos" data-sound="factos">
         <span class="pad-icon">📢</span>
         <span class="pad-label">FACTOS</span>
-        <span class="pad-key-hint">2</span>
       </button>
 
-      <button class="dock-pad-btn pad-buzzer" data-sound="buzzer" title="Cancelado / Buzzer [3]">
+      <button class="dock-pad-btn pad-buzzer" data-sound="buzzer">
         <span class="pad-icon">❌</span>
         <span class="pad-label">CANCELADO</span>
-        <span class="pad-key-hint">3</span>
       </button>
 
-      <button class="dock-pad-btn pad-match" data-sound="match" title="Match / Casorio [4]">
+      <button class="dock-pad-btn pad-match" data-sound="match">
         <span class="pad-icon">💍</span>
         <span class="pad-label">MATCH</span>
-        <span class="pad-key-hint">4</span>
       </button>
 
-      <button class="dock-pad-btn pad-cringe" data-sound="cringe" title="Cringe / Violín [5]">
+      <button class="dock-pad-btn pad-cringe" data-sound="cringe">
         <span class="pad-icon">🎻</span>
         <span class="pad-label">CRINGE</span>
-        <span class="pad-key-hint">5</span>
       </button>
 
-      <button class="dock-pad-btn pad-funa" data-sound="siren" title="Mandar al Banco / Funa 30s [V]">
+      <button class="dock-pad-btn pad-funa" data-sound="siren">
         <span class="pad-icon">🚨</span>
         <span class="pad-label">FUNA 30s</span>
-        <span class="pad-key-hint">V</span>
       </button>
     </div>
 
@@ -1193,7 +1190,7 @@
       <button class="dock-tool-btn" id="dockBtnMute" title="Silenciar / Activar audio">
         <span id="dockMuteIcon">🔊</span>
       </button>
-      <button class="dock-tool-btn" id="dockBtnTimer" title="Iniciar / Pausar Cronómetro [T]">
+      <button class="dock-tool-btn" id="dockBtnTimer" title="Iniciar / Pausar Cronómetro">
         <span>⏱️</span>
       </button>
     </div>
@@ -1227,16 +1224,17 @@
       <!-- BOTONES DE SENTENCIA DE LA MESA -->
       <div class="funa-verdict-actions">
         <button class="btn-funa-verdict zafo" id="btnFunaZafo">
-          🟢 SE JUSTIFICÓ BIEN (ZAFÓ DE LA FUNA) [Z]
+          🟢 SE JUSTIFICÓ BIEN (ZAFÓ DE LA FUNA)
         </button>
         <button class="btn-funa-verdict funado" id="btnFunaCancelado">
-          🔴 ¡CANCELADO / FUNADO TOTAL! [C]
+          🔴 ¡CANCELADO / FUNADO TOTAL!
         </button>
       </div>
 
-      <button class="btn-close-veto" id="btnCloseVeto">✕ CERRAR [ESC]</button>
+      <button class="btn-close-veto" id="btnCloseVeto">✕ CERRAR</button>
     </div>
   </div>
+
 
   <!-- Data Scripts -->
   <script src="data_celebrities.js?v=2.2"></script>

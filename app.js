@@ -411,7 +411,7 @@ function renderRouletteStep1() {
 
     <div class="reveal-hero-action">
       <button class="btn-advance-huge" id="btnGoToStep2">
-        <span>CONTINUAR ▶ REVELAR CANDIDATO 1 [ESPACIO]</span>
+        <span>CONTINUAR ▶ REVELAR CANDIDATO 1</span>
       </button>
     </div>
   `;
@@ -448,7 +448,7 @@ function renderRouletteStep2() {
 
     <div class="reveal-hero-action">
       <button class="btn-advance-huge" id="btnGoToStep3">
-        <span>CONTINUAR ▶ REVELAR CANDIDATO 2 [ESPACIO]</span>
+        <span>CONTINUAR ▶ REVELAR CANDIDATO 2</span>
       </button>
     </div>
   `;
@@ -485,7 +485,7 @@ function renderRouletteStep3() {
 
     <div class="reveal-hero-action">
       <button class="btn-advance-huge" id="btnGoToStep4">
-        <span>CONTINUAR ▶ REVELAR CANDIDATO 3 [ESPACIO]</span>
+        <span>CONTINUAR ▶ REVELAR CANDIDATO 3</span>
       </button>
     </div>
   `;
@@ -523,7 +523,7 @@ function renderRouletteStep4() {
 
     <div class="reveal-hero-action">
       <button class="btn-advance-huge btn-fire-glow" id="btnGoToStep5">
-        <span>🔥 VER LOS 4 EN PANTALLA & ASIGNAR TRONOS ▶ [ESPACIO]</span>
+        <span>🔥 VER LOS 4 EN PANTALLA & ASIGNAR TRONOS ▶</span>
       </button>
     </div>
   `;
@@ -1128,13 +1128,14 @@ function loadBandoDuel(index) {
   document.getElementById("bandoSideBBadge").textContent = duel.sideB.badge;
   document.getElementById("bandoSideBArg").textContent = `"${duel.sideB.argument}"`;
 
-  // Dynamic Button Labels (e.g. "BANCAR A WANDA [1]", "BANCAR A MAXI [2]")
+  // Dynamic Button Labels (e.g. "BANCAR A WANDA", "BANCAR A MAXI")
   const nameA = getShortDisplayName(duel.sideA.name).toUpperCase();
   const nameB = getShortDisplayName(duel.sideB.name).toUpperCase();
   const btnA = document.getElementById("btnVoteSideA");
   const btnB = document.getElementById("btnVoteSideB");
-  if (btnA) btnA.textContent = `BANCAR A ${nameA} [1]`;
-  if (btnB) btnB.textContent = `BANCAR A ${nameB} [2]`;
+  if (btnA) btnA.textContent = `BANCAR A ${nameA}`;
+  if (btnB) btnB.textContent = `BANCAR A ${nameB}`;
+
 
   updateBandoMeter();
   updateLowerThirdBandos();
@@ -1408,11 +1409,11 @@ function setupTimer() {
       clearInterval(timerInterval);
       timerRunning = false;
       if (topPlay) topPlay.textContent = "▶";
-      if (sidePlay) sidePlay.textContent = "▶ INICIAR [T]";
+      if (sidePlay) sidePlay.textContent = "▶ INICIAR";
     } else {
       timerRunning = true;
       if (topPlay) topPlay.textContent = "⏸";
-      if (sidePlay) sidePlay.textContent = "⏸ PAUSAR [T]";
+      if (sidePlay) sidePlay.textContent = "⏸ PAUSAR";
       audioFX.init();
 
       timerInterval = setInterval(() => {
@@ -1425,7 +1426,7 @@ function setupTimer() {
           timerRunning = false;
           audioFX.playBuzzer();
           if (topPlay) topPlay.textContent = "▶";
-          if (sidePlay) sidePlay.textContent = "▶ INICIAR [T]";
+          if (sidePlay) sidePlay.textContent = "▶ INICIAR";
           timerSeconds = timerInitial;
           updateTimerDisplays();
         }
@@ -1445,10 +1446,11 @@ function setupTimer() {
         clearInterval(timerInterval);
         timerRunning = false;
         if (topPlay) topPlay.textContent = "▶";
-        if (sidePlay) sidePlay.textContent = "▶ INICIAR [T]";
+        if (sidePlay) sidePlay.textContent = "▶ INICIAR";
       }
     });
   });
+
 }
 
 // =========================================================
@@ -2072,8 +2074,9 @@ function startShowDia(mode = "today") {
         diane: { name: "Diane Caracchi", title: "Dignidad & Códigos", text: "Hay un límite ético. Cuando hay hijos o familia de por medio, el despecho en redes te degrada a vos misma." },
         luli: { name: "Luli Casé", title: "Despecho Glam & Tarot", text: "¡Chicas, firmar 'Solange' es arte puro! Si te rompieron el corazón, que arda Troya y que la culpa la paguen ellos." }
       },
-      chatTrigger: "¿De qué lado estás en la mesa? Escribí [1] FACTOS, [2] DIGNIDAD o [3] DESPECHO en el chat."
+      chatTrigger: "¿De qué lado estás en la mesa? Escribí FACTOS, DIGNIDAD o DESPECHO en el chat."
     };
+
 
     // 2. GUERRA DE BANDOS (3 DUELOS AL HILO)
     const bandosList = [
@@ -2366,7 +2369,7 @@ function renderShowStep1_Apertura(container) {
       image: "assets/logo-pf.jpg",
       argument: "Fueron anécdotas de soltero antes del matrimonio; Wanda no puede soltar el pasado y usa cualquier declaración para generar show y prensa para sus programas de cocina."
     },
-    chatTrigger: "¿De qué lado está el chat? Escribí [1] WANDA o [2] MAXI en vivo."
+    chatTrigger: "¿De qué lado está el chat? Escribí WANDA o MAXI en vivo."
   };
 
   if (!showUserChoices.aperturaVotes) {
@@ -2417,7 +2420,7 @@ function renderShowStep1_Apertura(container) {
           ${getBackersHtml("a")}
 
           <button class="btn-vote-fighter" onclick="voteAperturaAll('a')">
-            VOTO MAYORITARIO A (${getShortDisplayName(apDuel.sideA.name)}) [1]
+            VOTO MAYORITARIO A (${getShortDisplayName(apDuel.sideA.name)})
           </button>
         </div>
 
@@ -2439,11 +2442,12 @@ function renderShowStep1_Apertura(container) {
           ${getBackersHtml("b")}
 
           <button class="btn-vote-fighter" onclick="voteAperturaAll('b')">
-            VOTO MAYORITARIO B (${getShortDisplayName(apDuel.sideB.name)}) [2]
+            VOTO MAYORITARIO B (${getShortDisplayName(apDuel.sideB.name)})
           </button>
         </div>
 
       </div>
+
 
       <!-- PANEL DE VOTACIÓN INDIVIDUAL DE CONDUCTORES -->
       <div class="hosts-individual-vote-panel">
@@ -2592,7 +2596,7 @@ function renderShowStep2_Bandos(container) {
           ${getBackersHtml("a")}
 
           <button class="btn-vote-fighter" onclick="voteShowBandoAll('a')">
-            VOTO MAYORITARIO A (${getShortDisplayName(duel.sideA.name)}) [1]
+            VOTO MAYORITARIO A (${getShortDisplayName(duel.sideA.name)})
           </button>
         </div>
 
@@ -2614,9 +2618,10 @@ function renderShowStep2_Bandos(container) {
           ${getBackersHtml("b")}
 
           <button class="btn-vote-fighter" onclick="voteShowBandoAll('b')">
-            VOTO MAYORITARIO B (${getShortDisplayName(duel.sideB.name)}) [2]
+            VOTO MAYORITARIO B (${getShortDisplayName(duel.sideB.name)})
           </button>
         </div>
+
       </div>
 
       <!-- PANEL DE VOTACIÓN INDIVIDUAL POR CONDUCTOR -->
@@ -2811,7 +2816,7 @@ function renderShowStep3_Tribunal(container) {
               <p class="toc-text">${opt.text}</p>
               ${getOptionBackers(letter)}
               <button class="btn-vote-option ${backersCount > 0 ? 'voted' : ''}" onclick="voteTribunalAll('${letter}')">
-                ${backersCount > 0 ? `✓ ELEGIDA POR ${backersCount} CONDUCTOR(ES)` : `VOTO MAYORITARIO [${letter}]`}
+                ${backersCount > 0 ? `✓ ELEGIDA POR ${backersCount} CONDUCTOR(ES)` : `VOTO MAYORITARIO OPCIÓN ${letter}`}
               </button>
             </div>
           `;
@@ -2894,34 +2899,31 @@ function renderShowStep4_Semaforo(container) {
             <span class="sem-icon">🟢</span>
             <span class="sem-title">VERDE</span>
             <span class="sem-desc">Banco / Normal</span>
-            <span class="sem-kbd">[V]</span>
           </button>
 
           <button class="btn-sem-vote btn-sem-yellow anim-card-stagger-2 ${savedVote === 'amarillo' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('amarillo')">
             <span class="sem-icon">🟡</span>
             <span class="sem-title">AMARILLO</span>
             <span class="sem-desc">Alerta / Dudo</span>
-            <span class="sem-kbd">[A]</span>
           </button>
 
           <button class="btn-sem-vote btn-sem-red anim-card-stagger-3 ${savedVote === 'rojo' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('rojo')">
             <span class="sem-icon">🔴</span>
             <span class="sem-title">ROJO</span>
             <span class="sem-desc">Red Flag / No</span>
-            <span class="sem-kbd">[R]</span>
           </button>
 
           <button class="btn-sem-vote btn-sem-fire anim-card-stagger-4 ${savedVote === 'fuego' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('fuego')">
             <span class="sem-icon">🔥</span>
             <span class="sem-title">FUEGO</span>
             <span class="sem-desc">Tóxico / Cancelar</span>
-            <span class="sem-kbd">[F]</span>
           </button>
         </div>
       </div>
     </div>
   `;
 }
+
 
 
 function voteShowSemaforoMulti(level) {
@@ -3153,12 +3155,13 @@ function renderShowStep7_Funa(container) {
         <!-- VEREDICT BUTTONS -->
         <div class="funa-verdict-decision-row">
           <button class="btn-funa-verdict btn-fv-zafo ${result === 'zafo' ? 'active' : ''}" onclick="resolveShowFuna('zafo')">
-            🟢 ZAFÓ CON FACTOS (NO HAY FUNA) [Z]
+            🟢 ZAFÓ CON FACTOS (NO HAY FUNA)
           </button>
           <button class="btn-funa-verdict btn-fv-cancelado ${result === 'cancelado' ? 'active' : ''}" onclick="resolveShowFuna('cancelado')">
-            💀 CANCELADO / AL BANCO (+1 FUNA) [C]
+            💀 CANCELADO / AL BANCO (+1 FUNA)
           </button>
         </div>
+
 
         ${result ? `
           <div class="funa-result-banner ${result}">

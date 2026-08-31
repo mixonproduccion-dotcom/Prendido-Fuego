@@ -1936,7 +1936,9 @@ function analyzeDailyTrend(rawText) {
   if (rec.bando) {
     document.getElementById("genBandoTitle").textContent = rec.bando.title;
     document.getElementById("genBandoSummary").textContent = `${rec.bando.sideA.name} (${rec.bando.sideA.badge}) vs. ${rec.bando.sideB.name} (${rec.bando.sideB.badge})`;
+  }
   if (rec.tribunal) {
+
     document.getElementById("genTribunalTitle").textContent = rec.tribunal.title;
     document.getElementById("genTribunalSummary").textContent = `Protagonista: ${rec.tribunal.protagonist} • "${rec.tribunal.quote}"`;
   }

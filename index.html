@@ -379,9 +379,9 @@
     <main class="game-view" id="section-show-dia">
       <div class="show-dia-broadcast-stage">
         
-        <!-- CABECERA DE ETAPAS DEL SHOW -->
-        <div class="show-stepper-strip">
-          <div class="show-stepper-info">
+        <!-- CABECERA DE ETAPAS DEL SHOW CON PIPELINE DE PROGRESO -->
+        <div class="progress-pipeline-strip">
+          <div class="pipeline-header-row">
             <div class="ssh-badge-row">
               <span class="ssh-badge" id="showModeBadge">🔥 PROGRAMA DE HOY • LUNES 31/08</span>
               <span class="ssh-counter" id="showStepCounter">BLOQUE 1 / 8</span>
@@ -389,15 +389,45 @@
             <h2 class="ssh-title" id="showStageTitle">🎙️ BLOQUE 1: APERTURA & PREGUNTA EDITORIAL DEL DÍA</h2>
           </div>
 
-          <div class="show-step-indicators" id="showStepIndicators">
-            <button class="step-pill active" data-show-step="1" id="pillShow1">1. APERTURA</button>
-            <button class="step-pill" data-show-step="2" id="pillShow2">2. BANDOS</button>
-            <button class="step-pill" data-show-step="3" id="pillShow3">3. TRIBUNAL</button>
-            <button class="step-pill" data-show-step="4" id="pillShow4">4. SEMÁFORO</button>
-            <button class="step-pill" data-show-step="5" id="pillShow5">5. PODIO TOP</button>
-            <button class="step-pill" data-show-step="6" id="pillShow6">6. RULETA</button>
-            <button class="step-pill" data-show-step="7" id="pillShow7">7. FUNA</button>
-            <button class="step-pill" data-show-step="8" id="pillShow8">8. DASHBOARD</button>
+          <!-- LÍNEA DE PROGRESO CONTINUA -->
+          <div class="pipeline-track-container">
+            <div class="pipeline-track-fill" id="showPipelineFill" style="width: 12.5%;"></div>
+          </div>
+
+          <!-- NODOS DE LAS 8 ETAPAS -->
+          <div class="pipeline-nodes-deck" id="showStepIndicators">
+            <button class="pipeline-node-btn active" data-show-step="1" id="pillShow1">
+              <span>🎙️ 1</span>
+              <small>APERTURA</small>
+            </button>
+            <button class="pipeline-node-btn" data-show-step="2" id="pillShow2">
+              <span>⚔️ 2</span>
+              <small>BANDOS</small>
+            </button>
+            <button class="pipeline-node-btn" data-show-step="3" id="pillShow3">
+              <span>⚖️ 3</span>
+              <small>TRIBUNAL</small>
+            </button>
+            <button class="pipeline-node-btn" data-show-step="4" id="pillShow4">
+              <span>🚦 4</span>
+              <small>SEMÁFORO</small>
+            </button>
+            <button class="pipeline-node-btn" data-show-step="5" id="pillShow5">
+              <span>🏆 5</span>
+              <small>PODIO</small>
+            </button>
+            <button class="pipeline-node-btn" data-show-step="6" id="pillShow6">
+              <span>🎡 6</span>
+              <small>RULETA</small>
+            </button>
+            <button class="pipeline-node-btn" data-show-step="7" id="pillShow7">
+              <span>🚨 7</span>
+              <small>FUNA</small>
+            </button>
+            <button class="pipeline-node-btn" data-show-step="8" id="pillShow8">
+              <span>📊 8</span>
+              <small>FINAL</small>
+            </button>
           </div>
         </div>
 
@@ -421,6 +451,7 @@
 
       </div>
     </main>
+
 
     <!-- ========================================================= -->
     <!-- PANTALLA 1: LA RULETA & TINDER BIZARRO (PASO A PASO SHOW) -->
@@ -545,11 +576,15 @@
 
         <!-- TARJETA PRINCIPAL DE JUEGO -->
         <div class="semaforo-hero-card" id="semaforoPlayCard">
+          <!-- CADENA DE 10 LUCES INTERACTIVAS -->
+          <div class="semaforo-pearls-chain" id="semaforoPearlsChain"></div>
+
           <div class="semaforo-situation-badge">TEST DE RED FLAGS & PSICOPATÍA • RONDA DE 10</div>
           
-          <h2 class="semaforo-big-text" id="semaforoText">
+          <h2 class="semaforo-big-text anim-question-reveal" id="semaforoText">
             Tu pareja le da like a una foto en bikini de su ex a las 3:45 AM...
           </h2>
+
 
           <!-- BOTONES DE LUCES MONUMENTALES -->
           <div class="semaforo-lights-deck">

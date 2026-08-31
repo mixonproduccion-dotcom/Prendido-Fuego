@@ -5634,4 +5634,247 @@ body::before {
   margin-top: 4px;
 }
 
+/* =========================================================
+   PROGRESS PIPELINE TRACKER & TIMELINE SYSTEM
+   ========================================================= */
+.progress-pipeline-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: linear-gradient(180deg, rgba(14, 18, 30, 0.96) 0%, rgba(8, 10, 18, 0.98) 100%);
+  border: 1.5px solid rgba(255, 75, 43, 0.35);
+  border-radius: 20px;
+  padding: 18px 24px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 69, 0, 0.15);
+  margin-bottom: 20px;
+}
+
+.pipeline-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.pipeline-track-container {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.pipeline-track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 12.5%;
+  background: linear-gradient(90deg, #ff0055 0%, #ff4500 45%, #ffbb00 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 16px #ff4500, 0 0 30px rgba(255, 122, 0, 0.6);
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pipeline-nodes-deck {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.pipeline-node-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 8px 6px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.25s var(--ease-cinematic);
+  position: relative;
+  text-align: center;
+}
+
+.pipeline-node-btn:hover {
+  border-color: rgba(255, 122, 0, 0.5);
+  color: white;
+  background: rgba(255, 122, 0, 0.12);
+}
+
+.pipeline-node-btn.active {
+  background: linear-gradient(135deg, #ff4500 0%, #ff7a00 100%);
+  border-color: var(--fire-yellow);
+  color: #050609;
+  font-weight: 900;
+  box-shadow: 0 0 20px rgba(255, 100, 0, 0.6);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.pipeline-node-btn.completed {
+  border-color: rgba(0, 230, 118, 0.4);
+  color: #00e676;
+  background: rgba(0, 230, 118, 0.08);
+}
+
+/* =========================================================
+   CINEMATIC ENTRANCE ANIMATIONS (STREAMING BROADCAST GRADE)
+   ========================================================= */
+
+@keyframes questionPunchHero {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(18px);
+    filter: blur(10px) brightness(1.8);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.025) translateY(-2px);
+    filter: blur(0px) brightness(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: brightness(1);
+  }
+}
+
+@keyframes staggerCardUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.95);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes flameAuraPulse {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3), inset 0 0 10px rgba(255, 69, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(255, 122, 0, 0.6), inset 0 0 20px rgba(255, 170, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3), inset 0 0 10px rgba(255, 69, 0, 0.2);
+  }
+}
+
+.anim-question-reveal {
+  animation: questionPunchHero 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.anim-card-stagger-1 {
+  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.05s;
+}
+
+.anim-card-stagger-2 {
+  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.15s;
+}
+
+.anim-card-stagger-3 {
+  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.25s;
+}
+
+.anim-card-stagger-4 {
+  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.35s;
+}
+
+.anim-card-stagger-5 {
+  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.45s;
+}
+
+.pulse-fire-glow {
+  animation: flameAuraPulse 2.5s infinite ease-in-out;
+}
+
+/* =========================================================
+   CADENA DE 10 LUCES / PERLAS DEL SEMÁFORO
+   ========================================================= */
+.semaforo-pearls-chain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 18px;
+  border-radius: 999px;
+  width: fit-content;
+  margin: 0 auto 16px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.pearl-node {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #94a3b8;
+  transition: all 0.3s ease;
+}
+
+.pearl-node.active-now {
+  border-color: white;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.pearl-node.pearl-verde {
+  background: #00e676;
+  border-color: #b9f6ca;
+  color: #050609;
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.7);
+}
+
+.pearl-node.pearl-amarillo {
+  background: #ffd700;
+  border-color: #fff9c4;
+  color: #050609;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.pearl-node.pearl-rojo {
+  background: #ff2a42;
+  border-color: #ffcdd2;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 42, 66, 0.7);
+}
+
+.pearl-node.pearl-fuego {
+  background: #ff4500;
+  border-color: #ffe0b2;
+  color: white;
+  box-shadow: 0 0 18px rgba(255, 69, 0, 0.8);
+}
+
+
 

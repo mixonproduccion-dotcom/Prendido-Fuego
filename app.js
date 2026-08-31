@@ -1723,8 +1723,9 @@ function setupKeyboardShortcuts() {
       if (currentTab === "show-dia" && currentShowStep === 4) {
         voteShowSemaforoMulti("rojo");
       } else if (currentTab === "roulette") spinRoulette();
-      else if (currentTab === "semaforo") startSemaforoRound();
-    } else if (key === "N") {
+    } else if (key === "P" || e.code === "ArrowLeft") {
+      if (currentTab === "show-dia") prevShowDiaStep();
+    } else if (key === "N" || e.code === "ArrowRight") {
       if (currentTab === "show-dia") nextShowDiaStep();
       else if (currentTab === "semaforo") {
         if (semaforoRoundIndex < 9) {
@@ -2136,13 +2137,14 @@ function setupShowDiaEvents() {
   document.getElementById("btnPrevShowStep")?.addEventListener("click", prevShowDiaStep);
   document.getElementById("btnNextShowStep")?.addEventListener("click", nextShowDiaStep);
 
-  document.querySelectorAll("[data-show-step]").forEach(pill => {
-    pill.addEventListener("click", () => {
-      const targetStep = parseInt(pill.dataset.showStep, 10);
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-show-step]");
+    if (btn) {
+      const targetStep = parseInt(btn.dataset.showStep, 10);
       if (targetStep >= 1 && targetStep <= 8) {
-        setShowDiaStep(targetStep);
+        setShowDiaStep(targetStep, true);
       }
-    });
+    }
   });
 }
 
@@ -2337,11 +2339,16 @@ function startShowDia(mode = "today") {
 
   switchTab("show-dia");
   setShowDiaStep(1);
-}
-
-function setShowDiaStep(step) {
+function setShowDiaStep(step, resetSubIndex = false) {
   currentShowStep = Math.max(1, Math.min(8, step));
   audioFX.playReveal();
+
+  if (resetSubIndex) {
+    if (step === 2) showBandosSubIndex = 0;
+    if (step === 3) showTribunalSubIndex = 0;
+    if (step === 4) showSemaforoSubIndex = 0;
+    if (step === 6) showRuletaSubIndex = 0;
+  }
 
   // Actualizar Barra y Nodos del Pipeline de Progreso
   const fill = document.getElementById("showPipelineFill");
@@ -2349,12 +2356,11 @@ function setShowDiaStep(step) {
     fill.style.width = `${(currentShowStep / 8) * 100}%`;
   }
 
-  document.querySelectorAll("#showStepIndicators .pipeline-node-btn, #showStepIndicators .step-pill").forEach(pill => {
+  document.querySelectorAll("#showStepIndicators .pipeline-node-btn, #showStepIndicators .step-pill, [data-show-step]").forEach(pill => {
     const s = parseInt(pill.dataset.showStep, 10);
     pill.classList.toggle("active", s === currentShowStep);
     pill.classList.toggle("completed", s < currentShowStep);
   });
-
 
   const modeBadge = document.getElementById("showModeBadge");
   const stepCounter = document.getElementById("showStepCounter");
@@ -2365,7 +2371,7 @@ function setShowDiaStep(step) {
 
   const titles = [
     "",
-    "🎙️ BLOQUE 1: APERTURA & PREGUNTA EDITORIAL DEL DÍA",
+    "🎯 BLOQUE 1: APERTURA & GRAN PORTADA DEL DÍA",
     `⚔️ BLOQUE 2: GUERRA DE BANDOS (DUELO ${showBandosSubIndex + 1} DE ${currentShowEpisode?.bandosList?.length || 3})`,
     `⚖️ BLOQUE 3: EL TRIBUNAL DE FARÁNDULA (JUICIO ${showTribunalSubIndex + 1} DE ${currentShowEpisode?.tribunalList?.length || 3})`,
     `🚦 BLOQUE 4: LA RÁFAGA DEL SEMÁFORO (RED FLAG ${showSemaforoSubIndex + 1} DE ${currentShowEpisode?.semaforoList?.length || 7})`,
@@ -2399,7 +2405,7 @@ function nextShowDiaStep() {
       const body = document.getElementById("showStageBody");
       if (body) renderShowStep2_Bandos(body);
       audioFX.playTick(600, 0.2);
-      setShowDiaStep(2);
+      setShowDiaStep(2, false);
       return;
     }
   } else if (currentShowStep === 3) {
@@ -2409,7 +2415,7 @@ function nextShowDiaStep() {
       const body = document.getElementById("showStageBody");
       if (body) renderShowStep3_Tribunal(body);
       audioFX.playTick(600, 0.2);
-      setShowDiaStep(3);
+      setShowDiaStep(3, false);
       return;
     }
   } else if (currentShowStep === 4) {
@@ -2419,7 +2425,7 @@ function nextShowDiaStep() {
       const body = document.getElementById("showStageBody");
       if (body) renderShowStep4_Semaforo(body);
       audioFX.playTick(600, 0.2);
-      setShowDiaStep(4);
+      setShowDiaStep(4, false);
       return;
     }
   } else if (currentShowStep === 6) {
@@ -2429,13 +2435,54 @@ function nextShowDiaStep() {
       const body = document.getElementById("showStageBody");
       if (body) renderShowStep6_Ruleta(body);
       audioFX.playTick(600, 0.2);
-      setShowDiaStep(6);
+      setShowDiaStep(6, false);
       return;
     }
   }
 
   if (currentShowStep < 8) {
-    setShowDiaStep(currentShowStep + 1);
+    setShowDiaStep(currentShowStep + 1, true);
+  }
+}
+
+function prevShowDiaStep() {
+  audioFX.playTick(500, 0.2);
+  if (currentShowStep === 2 && showBandosSubIndex > 0) {
+    showBandosSubIndex--;
+    const body = document.getElementById("showStageBody");
+    if (body) renderShowStep2_Bandos(body);
+    setShowDiaStep(2, false);
+    return;
+  }
+  if (currentShowStep === 3 && showTribunalSubIndex > 0) {
+    showTribunalSubIndex--;
+    const body = document.getElementById("showStageBody");
+    if (body) renderShowStep3_Tribunal(body);
+    setShowDiaStep(3, false);
+    return;
+  }
+  if (currentShowStep === 4 && showSemaforoSubIndex > 0) {
+    showSemaforoSubIndex--;
+    const body = document.getElementById("showStageBody");
+    if (body) renderShowStep4_Semaforo(body);
+    setShowDiaStep(4, false);
+    return;
+  }
+  if (currentShowStep === 6 && showRuletaSubIndex > 0) {
+    showRuletaSubIndex--;
+    const body = document.getElementById("showStageBody");
+    if (body) renderShowStep6_Ruleta(body);
+    setShowDiaStep(6, false);
+    return;
+  }
+
+  if (currentShowStep > 1) {
+    const prevStep = currentShowStep - 1;
+    if (prevStep === 2) showBandosSubIndex = (currentShowEpisode?.bandosList?.length || 3) - 1;
+    if (prevStep === 3) showTribunalSubIndex = (currentShowEpisode?.tribunalList?.length || 3) - 1;
+    if (prevStep === 4) showSemaforoSubIndex = (currentShowEpisode?.semaforoList?.length || 7) - 1;
+    if (prevStep === 6) showRuletaSubIndex = (currentShowEpisode?.ruletaList?.length || 2) - 1;
+    setShowDiaStep(prevStep, false);
   }
 }
 

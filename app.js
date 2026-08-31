@@ -65,6 +65,7 @@ window.addEventListener("DOMContentLoaded", () => {
   initParticles();
   initRouletteCanvas();
   setupSidebar();
+  setupSoundboard();
   setupKeyboardShortcuts();
   setupTimer();
   setupFunaModal();
@@ -79,7 +80,13 @@ window.addEventListener("DOMContentLoaded", () => {
   loadTribunalCase(0);
   setupZocaloEvents();
   setupPlannerEvents();
+  setupShowDiaEvents();
+
+  // Set initial home screen state (explicitly hide zocalo on home)
+  switchTab("home");
 });
+
+
 
 // =========================================================
 // 1. CONTADOR GLOBAL DE FUNAS / CANCELACIONES
@@ -174,15 +181,59 @@ function setupSidebar() {
 
   // Brand pill back to home
   document.getElementById("btnGoHome")?.addEventListener("click", () => switchTab("home"));
-
-  // Soundboard Buttons
-  document.getElementById("sfxFire")?.addEventListener("click", () => audioFX.playFireIgnite());
-  document.getElementById("sfxFactos")?.addEventListener("click", () => audioFX.playFactosHorn());
-  document.getElementById("sfxBuzzer")?.addEventListener("click", () => audioFX.playBuzzer());
-  document.getElementById("sfxMatch")?.addEventListener("click", () => audioFX.playMatchChime());
-  document.getElementById("sfxCringe")?.addEventListener("click", () => audioFX.playCringe());
-  document.getElementById("sfxSiren")?.addEventListener("click", () => triggerFunaModal());
 }
+
+// =========================================================
+// 2.1 BOTONERA DE SONIDOS (PERSISTENTE FLOTANTE & SIDEBAR)
+// =========================================================
+function setupSoundboard() {
+  document.querySelectorAll("[data-sound]").forEach(pad => {
+    pad.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const soundKey = pad.dataset.sound;
+      triggerSoundEffect(soundKey);
+    });
+  });
+
+  // Dock Mute Tool
+  document.getElementById("dockBtnMute")?.addEventListener("click", () => {
+    audioFX.setMuted(!audioFX.muted);
+    const dockIcon = document.getElementById("dockMuteIcon");
+    const sideIcon = document.getElementById("muteIcon");
+    const isM = audioFX.muted;
+    if (dockIcon) dockIcon.textContent = isM ? "🔇" : "🔊";
+    if (sideIcon) sideIcon.textContent = isM ? "🔇" : "🔊";
+    const sideBtn = document.getElementById("btnToggleMute");
+    if (sideBtn) sideBtn.innerHTML = `<span id="muteIcon">${isM ? "🔇" : "🔊"}</span> Audio ${isM ? "Silenciado" : "Activado"}`;
+  });
+
+  // Dock Timer Tool
+  document.getElementById("dockBtnTimer")?.addEventListener("click", () => {
+    if (window.pfToggleTimer) window.pfToggleTimer();
+    else document.getElementById("topbarTimerPlay")?.click();
+  });
+}
+
+function triggerSoundEffect(type) {
+  audioFX.init();
+  if (type === "fire") audioFX.playFireIgnite();
+  else if (type === "factos") audioFX.playFactosHorn();
+  else if (type === "buzzer") audioFX.playBuzzer();
+  else if (type === "match") audioFX.playMatchChime();
+  else if (type === "cringe") audioFX.playCringe();
+  else if (type === "siren") {
+    if (typeof triggerFunaModal === "function") triggerFunaModal();
+    else if (typeof triggerVetoModal === "function") triggerVetoModal();
+    else audioFX.playSiren();
+  }
+
+  // Visual active flash animation on all pads with that sound type
+  document.querySelectorAll(`.dock-pad-btn[data-sound="${type}"]`).forEach(pad => {
+    pad.classList.add("pad-active-flash");
+    setTimeout(() => pad.classList.remove("pad-active-flash"), 250);
+  });
+}
+
 
 function toggleOBSMode() {
   isOBSMode = !isOBSMode;
@@ -209,9 +260,17 @@ function setupTabs() {
     });
   });
 
+  // Botones de Inicio del Show del Día
+  document.getElementById("btnStartTodayShow")?.addEventListener("click", () => {
+    startShowDia("today");
+  });
+
+  document.getElementById("btnStartRngShow")?.addEventListener("click", () => {
+    startShowDia("rng");
+  });
+
   document.getElementById("btnHugePlay")?.addEventListener("click", () => {
-    audioFX.playFireIgnite();
-    switchTab("roulette");
+    startShowDia("today");
   });
 }
 
@@ -226,9 +285,20 @@ function switchTab(tabId) {
     card.classList.toggle("active", card.dataset.tab === tabId);
   });
 
+  // ZÓCALO / GRAPH VISIBILITY: Hide on home, show inside active games
+  const zocaloBanner = document.getElementById("lowerThirdBanner");
+  if (zocaloBanner) {
+    if (tabId === "home") {
+      zocaloBanner.style.display = "none";
+    } else {
+      zocaloBanner.style.display = "flex";
+    }
+  }
+
   const indicator = document.getElementById("stageIndicatorText");
   const stageIcons = {
-    home: "🔥 STUDIO LIVE HUB",
+    home: "EN VIVO",
+    "show-dia": "🎬 EL SHOW DEL DÍA (COMPLETO)",
     roulette: "🎡 1. LA RULETA & TINDER BIZARRO",
     semaforo: "🚦 2. EL SEMÁFORO DE TOXICIDAD",
     ranking: "📊 3. EL RANKING DE TRAICIÓN",
@@ -239,18 +309,18 @@ function switchTab(tabId) {
   };
   if (indicator) indicator.textContent = stageIcons[tabId] || "PRENDIDO FUEGO 🔥";
 
-  // Automatic Chyron/Zócalo Update on tab switch
-  if (tabId === "roulette") updateLowerThirdRoulette();
+  // Automatic Chyron/Zócalo Update on tab switch (only when in active games)
+  if (tabId === "show-dia") updateLowerThirdShowDia();
+  else if (tabId === "roulette") updateLowerThirdRoulette();
   else if (tabId === "semaforo") updateLowerThirdSemaforo();
   else if (tabId === "ranking") updateLowerThirdRanking();
   else if (tabId === "bandos") updateLowerThirdBandos();
   else if (tabId === "tribunal") updateLowerThirdTribunal();
   else if (tabId === "planner") {
     setPresetZocalo("🧠 SHOW PLANNER", "ANALIZADOR DE TENDENCIAS Y ARMADO DE JUEGO EN VIVO");
-  } else if (tabId === "home") {
-    setPresetZocalo("🔥 EN VIVO", "PRENDIDO FUEGO • EL SHOW DE FARÁNDULA & CANCELACIÓN DE MIX ON");
   }
 }
+
 
 // =========================================================
 // 4. MÓDULO 1: LA RULETA & TINDER BIZARRO (PASO A PASO SHOW)
@@ -313,10 +383,7 @@ function renderRouletteStep1() {
 
   container.innerHTML = `
     <div class="reveal-card-badge">🎯 PASO 1 • LA VÍCTIMA EN EL BANCO</div>
-    <div class="reveal-hero-portrait-wrap">
-      <img src="${currentVictim.image}" alt="${currentVictim.name}" class="reveal-hero-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80'">
-      <div class="reveal-hero-tag">${currentVictim.tag || currentVictim.categoryLabel}</div>
-    </div>
+    <div class="reveal-hero-tag-badge">${currentVictim.tag || currentVictim.categoryLabel}</div>
     <h2 class="reveal-hero-name">${currentVictim.name}</h2>
     <div class="reveal-hero-quote">"${currentVictim.quote || currentVictim.bio}"</div>
     
@@ -353,10 +420,7 @@ function renderRouletteStep2() {
   const cand = currentCandidates[0];
   container.innerHTML = `
     <div class="reveal-card-badge cand-badge-1">⚡ PASO 2 • PRIMER CANDIDATO EN MESA</div>
-    <div class="reveal-hero-portrait-wrap">
-      <img src="${cand.image}" alt="${cand.name}" class="reveal-hero-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80'">
-      <div class="reveal-hero-tag">${cand.tag || cand.categoryLabel}</div>
-    </div>
+    <div class="reveal-hero-tag-badge cand-badge-1">${cand.tag || cand.categoryLabel}</div>
     <h2 class="reveal-hero-name">${cand.name}</h2>
     <div class="reveal-hero-quote">"${cand.quote || cand.bio}"</div>
     
@@ -393,10 +457,7 @@ function renderRouletteStep3() {
   const cand = currentCandidates[1];
   container.innerHTML = `
     <div class="reveal-card-badge cand-badge-2">⚡ PASO 3 • SEGUNDO CANDIDATO EN MESA</div>
-    <div class="reveal-hero-portrait-wrap">
-      <img src="${cand.image}" alt="${cand.name}" class="reveal-hero-img" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80'">
-      <div class="reveal-hero-tag">${cand.tag || cand.categoryLabel}</div>
-    </div>
+    <div class="reveal-hero-tag-badge cand-badge-2">${cand.tag || cand.categoryLabel}</div>
     <h2 class="reveal-hero-name">${cand.name}</h2>
     <div class="reveal-hero-quote">"${cand.quote || cand.bio}"</div>
     
@@ -434,10 +495,7 @@ function renderRouletteStep4() {
   const cand = currentCandidates[2];
   container.innerHTML = `
     <div class="reveal-card-badge cand-badge-3">💣 PASO 4 • TERCER Y ÚLTIMO CANDIDATO</div>
-    <div class="reveal-hero-portrait-wrap">
-      <img src="${cand.image}" alt="${cand.name}" class="reveal-hero-img" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80'">
-      <div class="reveal-hero-tag">${cand.tag || cand.categoryLabel}</div>
-    </div>
+    <div class="reveal-hero-tag-badge cand-badge-3">${cand.tag || cand.categoryLabel}</div>
     <h2 class="reveal-hero-name">${cand.name}</h2>
     <div class="reveal-hero-quote">"${cand.quote || cand.bio}"</div>
     
@@ -467,9 +525,6 @@ function renderRouletteStep5() {
   victimCard.className = "squad-celeb-card victim-highlight";
   victimCard.innerHTML = `
     <div class="scc-role-badge">🎯 LA VÍCTIMA</div>
-    <div class="scc-avatar-wrap">
-      <img src="${currentVictim.image}" alt="${currentVictim.name}" class="scc-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80'">
-    </div>
     <h3 class="scc-name">${currentVictim.name}</h3>
     <span class="scc-tag">${currentVictim.tag || currentVictim.categoryLabel}</span>
     <p class="scc-quote">"${currentVictim.quote || currentVictim.bio}"</p>
@@ -492,9 +547,6 @@ function renderRouletteStep5() {
 
     candCard.innerHTML = `
       <div class="scc-role-badge cand-num-badge">⚡ CANDIDATO ${idx + 1}</div>
-      <div class="scc-avatar-wrap">
-        <img src="${cand.image}" alt="${cand.name}" class="scc-avatar" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80'">
-      </div>
       <h3 class="scc-name">${cand.name}</h3>
       <span class="scc-tag">${cand.tag || cand.categoryLabel}</span>
       <p class="scc-quote">"${cand.quote || cand.bio}"</p>
@@ -547,7 +599,6 @@ function renderRoleThrones() {
       slot.innerHTML = `
         <div class="throne-header-tag">${r.title}</div>
         <div class="throne-assigned-content">
-          <img src="${assigned.image}" alt="${assigned.name}" class="throne-avatar">
           <div class="throne-assigned-info">
             <h4 class="throne-assigned-name">${assigned.name}</h4>
             <span class="throne-assigned-tag">${assigned.tag || ''}</span>
@@ -917,7 +968,6 @@ function renderRankingStack() {
     card.className = "ranking-item-card";
     card.innerHTML = `
       <div class="rank-position-pill">#${idx + 1}</div>
-      <img src="${cand.image}" alt="${cand.name}" class="rank-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80'">
       
       <div class="rank-info">
         <div class="rank-name">${cand.name}</div>
@@ -1010,13 +1060,11 @@ function loadBandoDuel(index) {
   document.getElementById("bandoSideAName").textContent = duel.sideA.name;
   document.getElementById("bandoSideABadge").textContent = duel.sideA.badge;
   document.getElementById("bandoSideAArg").textContent = `"${duel.sideA.argument}"`;
-  document.getElementById("bandoSideAImg").src = duel.sideA.image;
 
   // Side B
   document.getElementById("bandoSideBName").textContent = duel.sideB.name;
   document.getElementById("bandoSideBBadge").textContent = duel.sideB.badge;
   document.getElementById("bandoSideBArg").textContent = `"${duel.sideB.argument}"`;
-  document.getElementById("bandoSideBImg").src = duel.sideB.image;
 
   updateBandoMeter();
   updateLowerThirdBandos();
@@ -1088,7 +1136,6 @@ function loadTribunalCase(index) {
   const catEl = document.getElementById("tribunalCategory");
   const titleEl = document.getElementById("tribunalTitle");
   const qNameEl = document.getElementById("tribunalProtagonistName");
-  const imgEl = document.getElementById("tribunalProtagonistImg");
   const ctxEl = document.getElementById("tribunalContext");
   const quoteEl = document.getElementById("tribunalProtagonistQuote");
 
@@ -1096,7 +1143,6 @@ function loadTribunalCase(index) {
   if (catEl) catEl.textContent = (currentCase.category || "FARÁNDULA").toUpperCase();
   if (titleEl) titleEl.textContent = currentCase.title;
   if (qNameEl) qNameEl.textContent = (currentCase.protagonist || "WANDA NARA").toUpperCase();
-  if (imgEl) imgEl.src = currentCase.image;
   if (ctxEl) ctxEl.textContent = currentCase.context;
   if (quoteEl) quoteEl.textContent = `"${currentCase.quote || '¿Qué harías vos en su lugar?'}"`;
 
@@ -1436,7 +1482,9 @@ function setupKeyboardShortcuts() {
 
     if (e.code === "Space") {
       e.preventDefault();
-      if (currentTab === "roulette") {
+      if (currentTab === "show-dia") {
+        nextShowDiaStep();
+      } else if (currentTab === "roulette") {
         if (rouletteCurrentStep < 5) setRouletteStep(rouletteCurrentStep + 1);
         else spinRoulette();
       } else if (currentTab === "semaforo") {
@@ -1452,7 +1500,7 @@ function setupKeyboardShortcuts() {
         if (tribunalCurrentPhase < 3) setTribunalPhase(tribunalCurrentPhase + 1);
         else loadTribunalCase(currentTribunalIndex + 1);
       } else if (currentTab === "home") {
-        switchTab("roulette");
+        startShowDia("today");
       }
     } else if (key === "M") {
       const sidebar = document.getElementById("studioSidebar");
@@ -1462,16 +1510,40 @@ function setupKeyboardShortcuts() {
     } else if (key === "O") {
       toggleOBSMode();
     } else if (key === "F") {
-      toggleFullscreen();
+      if (currentTab === "show-dia" && currentShowStep === 3) {
+        voteShowSemaforo("fuego");
+      } else {
+        toggleFullscreen();
+      }
     } else if (key === "T") {
       document.getElementById("topbarTimerPlay")?.click();
     } else if (key === "V") {
-      triggerFunaModal();
+      if (currentTab === "show-dia" && currentShowStep === 3) {
+        voteShowSemaforo("verde");
+      } else {
+        triggerSoundEffect("siren");
+      }
+    } else if (key === "A") {
+      if (currentTab === "show-dia") {
+        if (currentShowStep === 2) selectShowTribunal("A");
+        else if (currentShowStep === 3) voteShowSemaforo("amarillo");
+      }
+    } else if (key === "B") {
+      if (currentTab === "show-dia" && currentShowStep === 2) {
+        selectShowTribunal("B");
+      }
+    } else if (key === "C") {
+      if (currentTab === "show-dia" && currentShowStep === 2) {
+        selectShowTribunal("C");
+      }
     } else if (key === "R") {
-      if (currentTab === "roulette") spinRoulette();
+      if (currentTab === "show-dia" && currentShowStep === 3) {
+        voteShowSemaforo("rojo");
+      } else if (currentTab === "roulette") spinRoulette();
       else if (currentTab === "semaforo") startSemaforoRound();
     } else if (key === "N") {
-      if (currentTab === "semaforo") {
+      if (currentTab === "show-dia") nextShowDiaStep();
+      else if (currentTab === "semaforo") {
         if (semaforoRoundIndex < 9) {
           semaforoRoundIndex++;
           renderSemaforoRoundCurrent();
@@ -1482,20 +1554,33 @@ function setupKeyboardShortcuts() {
       else if (currentTab === "bandos") loadBandoDuel(currentBandoIndex + 1);
       else if (currentTab === "tribunal") loadTribunalCase(currentTribunalIndex + 1);
     } else if (key === "1") {
-      if (currentTab === "bandos") voteBando("a");
-      else audioFX.playFireIgnite();
+      if (currentTab === "show-dia") {
+        if (currentShowStep === 1) voteShowBando("a");
+        else if (currentShowStep === 2) selectShowTribunal("A");
+        else if (currentShowStep === 4) assignShowThrone("casorio");
+      } else if (currentTab === "bandos") voteBando("a");
+      triggerSoundEffect("fire");
     } else if (key === "2") {
-      if (currentTab === "bandos") voteBando("b");
-      else audioFX.playFactosHorn();
+      if (currentTab === "show-dia") {
+        if (currentShowStep === 1) voteShowBando("b");
+        else if (currentShowStep === 2) selectShowTribunal("B");
+        else if (currentShowStep === 4) assignShowThrone("chongo");
+      } else if (currentTab === "bandos") voteBando("b");
+      triggerSoundEffect("factos");
     } else if (key === "3") {
-      audioFX.playBuzzer();
+      if (currentTab === "show-dia") {
+        if (currentShowStep === 2) selectShowTribunal("C");
+        else if (currentShowStep === 4) assignShowThrone("funa");
+      }
+      triggerSoundEffect("buzzer");
     } else if (key === "4") {
-      audioFX.playMatchChime();
+      triggerSoundEffect("match");
     } else if (key === "5") {
-      audioFX.playCringe();
+      triggerSoundEffect("cringe");
     } else if (key === "ESCAPE") {
       closeFunaModal();
     }
+
   });
 }
 
@@ -1658,8 +1743,8 @@ function analyzeDailyTrend(rawText) {
     rec.bando = {
       id: "gen-chino-marisol",
       title: "El Escándalo del Telo: Martín 'El Chino' Ku vs. Marisol",
-      sideA: { id: "chino", name: "El Chino Ku", badge: "El Estratega", argument: "Dijo que fue todo una opereta armada de los medios para ensuciar su imagen.", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80" },
-      sideB: { id: "marisol", name: "Marisol & Gisela", badge: "Las que Expusieron", argument: "Mostraron los chats reales donde el Chino juraba estar soltero mientras convivía.", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80" }
+      sideA: { id: "chino", name: "El Chino Ku", badge: "El Estratega", argument: "Dijo que fue todo una opereta armada de los medios para ensuciar su imagen.", image: "assets/celebrities/martin-ku.jpg" },
+      sideB: { id: "marisol", name: "Marisol & Gisela", badge: "Las que Expusieron", argument: "Mostraron los chats reales donde el Chino juraba estar soltero mientras convivía.", image: "assets/celebrities/gisela-holder.jpg" }
     };
     rec.tribunal = {
       id: "gen-tribunal-chino",
@@ -1667,7 +1752,7 @@ function analyzeDailyTrend(rawText) {
       protagonist: "Marisol (Novia del Chino)",
       category: "Gran Hermano / Traición",
       context: "Tu novio de la tele es descubierto en un telo en Rosario con la mamá de su compañero de reality y ella muestra los chats en vivo.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+      image: "assets/celebrities/gisela-holder.jpg",
       quote: "El pibe virgo de la televisión era un personaje para la cámara.",
       options: [
         { id: "A", title: "1. Valija a la Calle y Show en LAM (Factos)", text: "Le hacés las valijas, lo dejás en la calle y te sentás en LAM a contar todo.", style: "holder" },
@@ -1688,8 +1773,8 @@ function analyzeDailyTrend(rawText) {
     rec.bando = {
       id: "gen-spreen-riestra",
       title: "El Minuto de Fama: Spreen en Riestra vs. El Fútbol Tradicional",
-      sideA: { id: "spreen", name: "Iván 'Spreen'", badge: "Rey del Marketing", argument: "Le dio al club y al torneo la mayor visibilidad mundial de su historia.", image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=80" },
-      sideB: { id: "potrero", name: "Fútbol Tradicional", badge: "Respeto al Potrero", argument: "Una falta de respeto a los chicos que entrenan 10 años en inferiores.", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" }
+      sideA: { id: "spreen", name: "Iván 'Spreen'", badge: "Rey del Marketing", argument: "Le dio al club y al torneo la mayor visibilidad mundial de su historia.", image: "assets/celebrities/spreen.jpg" },
+      sideB: { id: "potrero", name: "Fútbol Tradicional", badge: "Respeto al Potrero", argument: "Una falta de respeto a los chicos que entrenan 10 años en inferiores.", image: "assets/celebrities/futbol-tradicional.jpg" }
     };
     rec.tribunal = {
       id: "gen-tribunal-spreen",
@@ -1697,7 +1782,7 @@ function analyzeDailyTrend(rawText) {
       protagonist: "Iván 'Spreen'",
       category: "Streaming / Fútbol",
       context: "Te ofrecen debutar como titular en Primera 59 segundos sin tocar la pelota por un acuerdo de marketing viral.",
-      image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=80",
+      image: "assets/celebrities/spreen.jpg",
       quote: "Le di a Riestra la mayor visibilidad de su historia.",
       options: [
         { id: "A", title: "1. Aceptar y Facturar Millones (Factos)", text: "Aceptás de una, batís récords de viewers y que los periodistas sigan ladrando.", style: "holder" },
@@ -1718,8 +1803,8 @@ function analyzeDailyTrend(rawText) {
     rec.bando = {
       id: "gen-enzo-valen",
       title: "La Soltería Post-Qatar: Enzo Fernández vs. Valentina Cervantes",
-      sideA: { id: "enzo", name: "Enzo Fernández", badge: "El que Fue de Frente", argument: "Fue papá a los 19 y eligió ser sincero para no engañarla en secreto.", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" },
-      sideB: { id: "valen", name: "Valentina Cervantes", badge: "La Dama con Aura", argument: "Lo bancó comiendo fideos en San Martín y volvió con dignidad total a Argentina.", image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80" }
+      sideA: { id: "enzo", name: "Enzo Fernández", badge: "El que Fue de Frente", argument: "Fue papá a los 19 y eligió ser sincero para no engañarla en secreto.", image: "assets/celebrities/enzo-fernandez.jpg" },
+      sideB: { id: "valen", name: "Valentina Cervantes", badge: "La Dama con Aura", argument: "Lo bancó comiendo fideos en San Martín y volvió con dignidad total a Argentina.", image: "assets/celebrities/valentina-cervantes.jpg" }
     };
     rec.tribunal = {
       id: "gen-tribunal-enzo",
@@ -1727,7 +1812,7 @@ function analyzeDailyTrend(rawText) {
       protagonist: "Valentina Cervantes",
       category: "Fútbol / Parejas",
       context: "Acompañaste a tu novio hasta ser Campeón del Mundo y en Londres te dice que quiere vivir la soltería que se salteó.",
-      image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+      image: "assets/celebrities/valentina-cervantes.jpg",
       quote: "Lo banqué en las malas y cuando llegó a la gloria me pidió soltería.",
       options: [
         { id: "A", title: "1. Buenos Aires, Agencia Top y Facturar (Factos)", text: "Te mudás a Buenos Aires, firmás como modelo y brillás sin depender de él.", style: "holder" },
@@ -1749,8 +1834,8 @@ function analyzeDailyTrend(rawText) {
     rec.bando = {
       id: "gen-joaqui-luck",
       title: "El Amor Cuartetero & La Ruptura: La Joaqui vs. Luck Ra",
-      sideA: { id: "joaqui", name: "La Joaqui", badge: "La que Proyectó Familia", argument: "Se la jugó por amor, compró la casa al lado y fue traicionada con la ex amiga.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" },
-      sideB: { id: "luck", name: "Luck Ra", badge: "El Soltero de 25 Años", argument: "Está en el pico de su carrera; convivir por presión familiar arruina a cualquiera.", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80" }
+      sideA: { id: "joaqui", name: "La Joaqui", badge: "La que Proyectó Familia", argument: "Se la jugó por amor, compró la casa al lado y fue traicionada con la ex amiga.", image: "assets/celebrities/la-joaqui.jpg" },
+      sideB: { id: "luck", name: "Luck Ra", badge: "El Soltero de 25 Años", argument: "Está en el pico de su carrera; convivir por presión familiar arruina a cualquiera.", image: "assets/celebrities/luck-ra.jpg" }
     };
     rec.tribunal = {
       id: "gen-tribunal-joaqui",
@@ -1758,7 +1843,7 @@ function analyzeDailyTrend(rawText) {
       protagonist: "La Joaqui",
       category: "Música Urbana / Convivencia",
       context: "Comprás una casa al lado de tu novio para armar familia, él se asusta y vuelve a hablar con su ex que era tu amiga.",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+      image: "assets/celebrities/la-joaqui.jpg",
       quote: "Me la jugué entera por amor y me quedé con la casa vacía.",
       options: [
         { id: "A", title: "1. Vender la Casa y Sacar RKT (Factos)", text: "Vendés la casa al toque y sacás 3 temas de RKT liquidándolos.", style: "holder" },
@@ -1803,4 +1888,663 @@ function analyzeDailyTrend(rawText) {
   const results = document.getElementById("plannerResultsWrapper");
   results.style.display = "block";
   results.scrollIntoView({ behavior: "smooth" });
+}
+
+// =========================================================
+// 15. MÓDULO MASTER: EL SHOW DEL DÍA (CIRCUITO UNIFICADO)
+// =========================================================
+let currentShowEpisode = null;
+let currentShowStep = 1;
+let showSemaforoSubIndex = 0;
+let showUserChoices = {
+  mode: "today",
+  bandos: { duel: null, vote: null, votesA: 50, votesB: 50 },
+  tribunal: { caseItem: null, option: null },
+  semaforo: [],
+  ruleta: { victim: null, candidates: [], assignments: { casorio: null, chongo: null, funa: null } },
+  metrics: { venom: 88, aura: 85, migajera: 75, careta: 35 }
+};
+
+function setupShowDiaEvents() {
+  document.getElementById("btnPrevShowStep")?.addEventListener("click", prevShowDiaStep);
+  document.getElementById("btnNextShowStep")?.addEventListener("click", nextShowDiaStep);
+
+  document.querySelectorAll("[data-show-step]").forEach(pill => {
+    pill.addEventListener("click", () => {
+      const targetStep = parseInt(pill.dataset.showStep, 10);
+      if (targetStep >= 1 && targetStep <= 5) {
+        setShowDiaStep(targetStep);
+      }
+    });
+  });
+}
+
+function startShowDia(mode = "today") {
+  audioFX.playFireIgnite();
+  showUserChoices.mode = mode;
+  showSemaforoSubIndex = 0;
+  showUserChoices.semaforo = [];
+
+  if (mode === "today") {
+    // Curated for Today's Script (31/08)
+    const bando = (typeof GUERRA_BANDOS_DATA !== "undefined" && GUERRA_BANDOS_DATA.length) ? GUERRA_BANDOS_DATA[0] : null;
+    const tribunal = (typeof TRIBUNAL_CASES !== "undefined" && TRIBUNAL_CASES.length > 1) ? TRIBUNAL_CASES[1] : (TRIBUNAL_CASES[0] || null);
+    const semaforo = (typeof SEMAFORO_CASES !== "undefined" && SEMAFORO_CASES.length >= 3) ? [SEMAFORO_CASES[0], SEMAFORO_CASES[1], SEMAFORO_CASES[2]] : [];
+    
+    const victim = celebrities.find(c => c.id === "maxi-lopez") || celebrities.find(c => c.id === "juli-poggio") || celebrities[0];
+    const candidates = [
+      celebrities.find(c => c.id === "wanda-nara") || celebrities[1],
+      celebrities.find(c => c.id === "gaston-edul") || celebrities[2],
+      celebrities.find(c => c.id === "mauro-icardi") || celebrities[3]
+    ].filter(Boolean);
+
+    currentShowEpisode = {
+      title: "PROGRAMA DE HOY • LUNES 31/08",
+      badge: "🔥 GUION OFICIAL • MIX ON STUDIO",
+      bando,
+      tribunal,
+      semaforo,
+      ruleta: { victim, candidates }
+    };
+  } else {
+    // Randomized Episode with RNG from all databases
+    const bando = GUERRA_BANDOS_DATA[Math.floor(Math.random() * GUERRA_BANDOS_DATA.length)];
+    const tribunal = TRIBUNAL_CASES[Math.floor(Math.random() * TRIBUNAL_CASES.length)];
+    const shuffledSem = [...SEMAFORO_CASES].sort(() => 0.5 - Math.random());
+    const semaforo = shuffledSem.slice(0, 3);
+    
+    const shuffledCelebs = [...celebrities].sort(() => 0.5 - Math.random());
+    const victim = shuffledCelebs[0];
+    const candidates = shuffledCelebs.slice(1, 4);
+
+    currentShowEpisode = {
+      title: "SHOW ALEATORIO (MODO RNG)",
+      badge: "🎲 GENERADOR DE BARDOS & LORES",
+      bando,
+      tribunal,
+      semaforo,
+      ruleta: { victim, candidates }
+    };
+  }
+
+  showUserChoices.bandos.duel = currentShowEpisode.bando;
+  showUserChoices.bandos.vote = null;
+  showUserChoices.bandos.votesA = 50;
+  showUserChoices.bandos.votesB = 50;
+
+  showUserChoices.tribunal.caseItem = currentShowEpisode.tribunal;
+  showUserChoices.tribunal.option = null;
+
+  showUserChoices.ruleta.victim = currentShowEpisode.ruleta.victim;
+  showUserChoices.ruleta.candidates = currentShowEpisode.ruleta.candidates;
+  showUserChoices.ruleta.assignments = { casorio: null, chongo: null, funa: null };
+
+  switchTab("show-dia");
+  setShowDiaStep(1);
+}
+
+function setShowDiaStep(step) {
+  currentShowStep = Math.max(1, Math.min(5, step));
+  audioFX.playReveal();
+
+  // Update Stepper Indicators
+  document.querySelectorAll(".show-step-indicators .step-pill").forEach(pill => {
+    const s = parseInt(pill.dataset.showStep, 10);
+    pill.classList.toggle("active", s === currentShowStep);
+    pill.classList.toggle("completed", s < currentShowStep);
+  });
+
+  const modeBadge = document.getElementById("showModeBadge");
+  const stepCounter = document.getElementById("showStepCounter");
+  const stageTitle = document.getElementById("showStageTitle");
+
+  if (modeBadge && currentShowEpisode) modeBadge.textContent = currentShowEpisode.badge;
+  if (stepCounter) stepCounter.textContent = `ETAPA ${currentShowStep} / 5`;
+
+  const titles = [
+    "",
+    `⚔️ ETAPA 1: ${currentShowEpisode?.bando?.title || "GUERRA DE BANDOS"}`,
+    `⚖️ ETAPA 2: ${currentShowEpisode?.tribunal?.title || "EL TRIBUNAL DE FARÁNDULA"}`,
+    `🚦 ETAPA 3: RÁFAGA DEL SEMÁFORO (3 RED FLAGS VIRALES)`,
+    `🎡 ETAPA 4: LA RULETA BIZARRA & 3 TRONOS`,
+    `📊 ETAPA 5: DASHBOARD FINAL & ANÁLISIS PSICOLÓGICO DE LA MESA`
+  ];
+  if (stageTitle) stageTitle.textContent = titles[currentShowStep];
+
+  const body = document.getElementById("showStageBody");
+  if (!body) return;
+
+  if (currentShowStep === 1) renderShowStep1_Bandos(body);
+  else if (currentShowStep === 2) renderShowStep2_Tribunal(body);
+  else if (currentShowStep === 3) renderShowStep3_Semaforo(body);
+  else if (currentShowStep === 4) renderShowStep4_Ruleta(body);
+  else if (currentShowStep === 5) renderShowStep5_Dashboard(body);
+
+  updateLowerThirdShowDia();
+}
+
+function nextShowDiaStep() {
+  if (currentShowStep === 3) {
+    if (showSemaforoSubIndex < 2) {
+      showSemaforoSubIndex++;
+      const body = document.getElementById("showStageBody");
+      if (body) renderShowStep3_Semaforo(body);
+      audioFX.playTick(600, 0.2);
+      return;
+    }
+  }
+
+  if (currentShowStep < 5) {
+    setShowDiaStep(currentShowStep + 1);
+  } else {
+    audioFX.playFactosHorn();
+  }
+}
+
+function prevShowDiaStep() {
+  if (currentShowStep === 3 && showSemaforoSubIndex > 0) {
+    showSemaforoSubIndex--;
+    const body = document.getElementById("showStageBody");
+    if (body) renderShowStep3_Semaforo(body);
+    return;
+  }
+
+  if (currentShowStep > 1) {
+    setShowDiaStep(currentShowStep - 1);
+  }
+}
+
+// ---------------------------------------------------------
+// STEP 1: GUERRA DE BANDOS
+// ---------------------------------------------------------
+function renderShowStep1_Bandos(container) {
+  const duel = currentShowEpisode?.bando || GUERRA_BANDOS_DATA[0];
+  if (!duel) return;
+
+  container.innerHTML = `
+    <div class="show-stage-card bandos-step-arena">
+      <div class="step-guide-tag">
+        ⚔️ DUELO EN VIVO • ¿De qué lado se para la mesa en este bardo? Votá con los botones o teclas [1] y [2]
+      </div>
+      
+      <div class="bandos-clash-grid">
+        <!-- BANDO A -->
+        <div class="bando-fighter-card side-a ${showUserChoices.bandos.vote === 'a' ? 'selected-winner' : ''}" id="showCardA">
+          <div class="fighter-badge">${duel.sideA.badge}</div>
+          <h3 class="fighter-name">${duel.sideA.name}</h3>
+          <p class="fighter-argument">${duel.sideA.argument || duel.sideA.quote}</p>
+          <button class="btn-vote-fighter" onclick="voteShowBando('a')">
+            ${showUserChoices.bandos.vote === 'a' ? '✓ BANCADO POR LA MESA' : 'BANCAR BANDO A [1]'}
+          </button>
+        </div>
+
+        <!-- VS CLASH -->
+        <div class="clash-center-piece">
+          <div class="vs-flame-circle">VS</div>
+          <div class="vs-clash-glow"></div>
+        </div>
+
+        <!-- BANDO B -->
+        <div class="bando-fighter-card side-b ${showUserChoices.bandos.vote === 'b' ? 'selected-winner' : ''}" id="showCardB">
+          <div class="fighter-badge">${duel.sideB.badge}</div>
+          <h3 class="fighter-name">${duel.sideB.name}</h3>
+          <p class="fighter-argument">${duel.sideB.argument || duel.sideB.quote}</p>
+          <button class="btn-vote-fighter" onclick="voteShowBando('b')">
+            ${showUserChoices.bandos.vote === 'b' ? '✓ BANCADO POR LA MESA' : 'BANCAR BANDO B [2]'}
+          </button>
+        </div>
+      </div>
+
+      <!-- TUG OF WAR BAR -->
+      <div class="tug-meter-box">
+        <div class="tug-meter-labels">
+          <span class="tug-label-a">${duel.sideA.name}: <strong id="showPctA">${showUserChoices.bandos.votesA}%</strong></span>
+          <span class="tug-meter-title">⚖️ BALANCE DE LA MESA</span>
+          <span class="tug-label-b">${duel.sideB.name}: <strong id="showPctB">${showUserChoices.bandos.votesB}%</strong></span>
+        </div>
+        <div class="tug-bar-track">
+          <div class="tug-fill-a" id="showFillA" style="width: ${showUserChoices.bandos.votesA}%;"></div>
+          <div class="tug-fill-b" id="showFillB" style="width: ${showUserChoices.bandos.votesB}%;"></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function voteShowBando(side) {
+  showUserChoices.bandos.vote = side;
+  if (side === "a") {
+    showUserChoices.bandos.votesA = Math.min(95, showUserChoices.bandos.votesA + 15);
+    showUserChoices.bandos.votesB = 100 - showUserChoices.bandos.votesA;
+    audioFX.playFireIgnite();
+  } else {
+    showUserChoices.bandos.votesB = Math.min(95, showUserChoices.bandos.votesB + 15);
+    showUserChoices.bandos.votesA = 100 - showUserChoices.bandos.votesB;
+    audioFX.playFactosHorn();
+  }
+
+  const fillA = document.getElementById("showFillA");
+  const fillB = document.getElementById("showFillB");
+  const pctA = document.getElementById("showPctA");
+  const pctB = document.getElementById("showPctB");
+
+  if (fillA) fillA.style.width = `${showUserChoices.bandos.votesA}%`;
+  if (fillB) fillB.style.width = `${showUserChoices.bandos.votesB}%`;
+  if (pctA) pctA.textContent = `${showUserChoices.bandos.votesA}%`;
+  if (pctB) pctB.textContent = `${showUserChoices.bandos.votesB}%`;
+
+  document.getElementById("showCardA")?.classList.toggle("selected-winner", side === "a");
+  document.getElementById("showCardB")?.classList.toggle("selected-winner", side === "b");
+}
+
+// ---------------------------------------------------------
+// STEP 2: EL TRIBUNAL DE FARÁNDULA
+// ---------------------------------------------------------
+function renderShowStep2_Tribunal(container) {
+  const caseItem = currentShowEpisode?.tribunal || TRIBUNAL_CASES[0];
+  if (!caseItem) return;
+
+  const chosen = showUserChoices.tribunal.option;
+
+  container.innerHTML = `
+    <div class="show-stage-card tribunal-step-stage">
+      <div class="step-guide-tag">
+        ⚖️ ¿QUÉ HARÍAS VOS EN SU LUGAR? • Elegí una de las 3 opciones de la mesa [A], [B] o [C]
+      </div>
+
+      <div class="tribunal-hero-case-card text-only">
+        <div class="thc-details">
+          <div class="thc-category-badge">${caseItem.category}</div>
+          <div class="thc-protagonist-pill">PROTAGONISTA: ${caseItem.protagonist}</div>
+          <h3 class="thc-title">${caseItem.title}</h3>
+          <p class="thc-context">${caseItem.context}</p>
+          <div class="thc-quote-box">"${caseItem.quote}"</div>
+        </div>
+      </div>
+
+      <div class="tribunal-options-grid">
+        ${caseItem.options.map((opt, idx) => {
+          const letter = String.fromCharCode(65 + idx);
+          const isSelected = chosen === letter;
+          return `
+            <div class="tribunal-opt-card style-${opt.style} ${isSelected ? 'option-selected-glow' : ''}" onclick="selectShowTribunal('${letter}')">
+              <div class="toc-badge">${opt.style === 'holder' ? '🔥 FACTOS / HOLDER' : opt.style === 'diane' ? '🟢 DIGNIDAD / DIANE' : '💔 MIGAJERA / LULI'}</div>
+              <h4 class="toc-title">${opt.title}</h4>
+              <p class="toc-text">${opt.text}</p>
+              <button class="btn-vote-option ${isSelected ? 'voted' : ''}">
+                ${isSelected ? '✓ OPCIÓN ELEGIDA POR LA MESA' : `ELEGIR OPCIÓN [${letter}]`}
+              </button>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function selectShowTribunal(optionId) {
+  showUserChoices.tribunal.option = optionId;
+  audioFX.playReveal();
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep2_Tribunal(body);
+}
+
+// ---------------------------------------------------------
+// STEP 3: LA RÁFAGA DEL SEMÁFORO (3 RED FLAGS)
+// ---------------------------------------------------------
+function renderShowStep3_Semaforo(container) {
+  const cases = currentShowEpisode?.semaforo || SEMAFORO_CASES.slice(0, 3);
+  const currentCase = cases[showSemaforoSubIndex] || cases[0];
+  const savedVote = showUserChoices.semaforo[showSemaforoSubIndex]?.vote;
+
+  container.innerHTML = `
+    <div class="show-stage-card semaforo-step-stage">
+      <div class="step-guide-tag">
+        🚦 RÁFAGA DEL SEMÁFORO • CASO ${showSemaforoSubIndex + 1} DE 3 • Votá con [V] Verde, [A] Amarillo, [R] Rojo o [F] Fuego
+      </div>
+
+      <div class="semaforo-play-card show-semaforo-card">
+        <div class="spc-category-row">
+          <span class="spc-category-badge">${currentCase.category}</span>
+          <span class="spc-progress-badge">RED FLAG ${showSemaforoSubIndex + 1} / 3</span>
+        </div>
+
+        <h3 class="spc-case-title">${currentCase.title}</h3>
+        <p class="spc-case-text">${currentCase.text}</p>
+
+        <!-- TRAFFIC LIGHT CONTROLS -->
+        <div class="semaforo-controls-row">
+          <button class="btn-sem-vote btn-sem-green ${savedVote === 'verde' ? 'selected' : ''}" onclick="voteShowSemaforo('verde')">
+            <span class="sem-icon">🟢</span>
+            <span class="sem-title">VERDE</span>
+            <span class="sem-desc">Banco / Normal</span>
+            <span class="sem-kbd">[V]</span>
+          </button>
+
+          <button class="btn-sem-vote btn-sem-yellow ${savedVote === 'amarillo' ? 'selected' : ''}" onclick="voteShowSemaforo('amarillo')">
+            <span class="sem-icon">🟡</span>
+            <span class="sem-title">AMARILLO</span>
+            <span class="sem-desc">Alerta / Dudo</span>
+            <span class="sem-kbd">[A]</span>
+          </button>
+
+          <button class="btn-sem-vote btn-sem-red ${savedVote === 'rojo' ? 'selected' : ''}" onclick="voteShowSemaforo('rojo')">
+            <span class="sem-icon">🔴</span>
+            <span class="sem-title">ROJO</span>
+            <span class="sem-desc">Red Flag / No</span>
+            <span class="sem-kbd">[R]</span>
+          </button>
+
+          <button class="btn-sem-vote btn-sem-fire ${savedVote === 'fuego' ? 'selected' : ''}" onclick="voteShowSemaforo('fuego')">
+            <span class="sem-icon">🔥</span>
+            <span class="sem-title">FUEGO</span>
+            <span class="sem-desc">Tóxico / Cancelar</span>
+            <span class="sem-kbd">[F]</span>
+          </button>
+        </div>
+
+        <div class="semaforo-sub-dots">
+          ${cases.map((c, i) => `
+            <div class="sub-dot ${i === showSemaforoSubIndex ? 'active' : ''} ${showUserChoices.semaforo[i] ? 'voted' : ''}"></div>
+          `).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function voteShowSemaforo(level) {
+  const cases = currentShowEpisode?.semaforo || SEMAFORO_CASES.slice(0, 3);
+  const cur = cases[showSemaforoSubIndex] || cases[0];
+
+  showUserChoices.semaforo[showSemaforoSubIndex] = {
+    title: cur.title,
+    text: cur.text,
+    vote: level
+  };
+
+  if (level === "verde") audioFX.playMatchChime();
+  else if (level === "amarillo") audioFX.playTick(500, 0.3);
+  else if (level === "rojo") audioFX.playBuzzer();
+  else if (level === "fuego") audioFX.playFireIgnite();
+
+  // Auto-advance to next sub-case or step 4
+  setTimeout(() => {
+    if (showSemaforoSubIndex < 2) {
+      showSemaforoSubIndex++;
+      const body = document.getElementById("showStageBody");
+      if (body) renderShowStep3_Semaforo(body);
+    } else {
+      setShowDiaStep(4);
+    }
+  }, 400);
+}
+
+// ---------------------------------------------------------
+// STEP 4: LA RULETA & 3 TRONOS
+// ---------------------------------------------------------
+function renderShowStep4_Ruleta(container) {
+  const victim = currentShowEpisode?.ruleta?.victim || celebrities[0];
+  const candidates = currentShowEpisode?.ruleta?.candidates || celebrities.slice(1, 4);
+  const assign = showUserChoices.ruleta.assignments;
+
+  container.innerHTML = `
+    <div class="show-stage-card ruleta-step-stage">
+      <div class="step-guide-tag">
+        🎡 TINDER BIZARRO EN MESA • ${victim.name} en el banquillo. Asigná a los 3 candidatos a los 3 Tronos
+      </div>
+
+      <!-- VICTIM CARD -->
+      <div class="ruleta-victim-spotlight text-only">
+        <div class="rvs-info">
+          <div class="rvs-badge">VÍCTIMA DEL DÍA</div>
+          <h3 class="rvs-name">${victim.name}</h3>
+          <div class="rvs-tag">${victim.tag || victim.categoryLabel}</div>
+          <p class="rvs-lore">${victim.lore || victim.bio}</p>
+        </div>
+      </div>
+
+      <!-- 3 CANDIDATES & 3 THRONES -->
+      <div class="ruleta-thrones-clash-grid">
+        ${candidates.map((cand, idx) => {
+          let curThrone = "";
+          if (assign.casorio === cand.name) curThrone = "💍 CASORIO";
+          else if (assign.chongo === cand.name) curThrone = "🔥 CHONGO";
+          else if (assign.funa === cand.name) curThrone = "❌ FUNA";
+
+          return `
+            <div class="candidate-throne-card text-only">
+              <div class="ctc-assigned-badge ${curThrone ? 'active' : ''}">${curThrone || 'SIN ASIGNAR'}</div>
+              <h4 class="ctc-name">${cand.name}</h4>
+              <p class="ctc-lore">${cand.lore || cand.bio}</p>
+              
+              <div class="ctc-actions-row">
+                <button class="btn-throne-pick btn-tp-casorio ${assign.casorio === cand.name ? 'active' : ''}" onclick="assignShowThroneDirect('casorio', '${cand.name}')">
+                  💍 Casorio
+                </button>
+                <button class="btn-throne-pick btn-tp-chongo ${assign.chongo === cand.name ? 'active' : ''}" onclick="assignShowThroneDirect('chongo', '${cand.name}')">
+                  🔥 Chongo
+                </button>
+                <button class="btn-throne-pick btn-tp-funa ${assign.funa === cand.name ? 'active' : ''}" onclick="assignShowThroneDirect('funa', '${cand.name}')">
+                  ❌ Funa
+                </button>
+              </div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function assignShowThroneDirect(throne, candName) {
+  showUserChoices.ruleta.assignments[throne] = candName;
+  if (throne === "casorio") audioFX.playMatchChime();
+  else if (throne === "chongo") audioFX.playFireIgnite();
+  else if (throne === "funa") audioFX.playBuzzer();
+
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep4_Ruleta(body);
+}
+
+function assignShowThrone(throne) {
+  const candidates = currentShowEpisode?.ruleta?.candidates || [];
+  const unassigned = candidates.find(c => !Object.values(showUserChoices.ruleta.assignments).includes(c.name));
+  if (unassigned) {
+    assignShowThroneDirect(throne, unassigned.name);
+  }
+}
+
+// ---------------------------------------------------------
+// STEP 5: MASTER DASHBOARD & ANÁLISIS PSICOLÓGICO
+// ---------------------------------------------------------
+function renderShowStep5_Dashboard(container) {
+  const diagnosis = generatePsychologicalAnalysis(showUserChoices);
+  audioFX.playFactosHorn();
+
+  container.innerHTML = `
+    <div class="show-stage-card dashboard-step-stage">
+      
+      <!-- HERO DIAGNOSIS BANNER -->
+      <div class="final-diagnosis-hero">
+        <div class="fdh-tag">🧠 ANÁLISIS PSICOLÓGICO & TOXICOLÓGICO DEL SHOW DE HOY</div>
+        <h2 class="fdh-title">${diagnosis.title}</h2>
+        <p class="fdh-desc">${diagnosis.description}</p>
+      </div>
+
+      <!-- 4 METRIC GAUGES -->
+      <div class="show-metrics-grid">
+        <div class="metric-card metric-venom">
+          <div class="mc-icon">🧪</div>
+          <div class="mc-val">${diagnosis.venom}%</div>
+          <div class="mc-lbl">VENENO EN SANGRE</div>
+          <div class="mc-bar"><div class="mc-fill" style="width: ${diagnosis.venom}%;"></div></div>
+        </div>
+
+        <div class="metric-card metric-aura">
+          <div class="mc-icon">🗿</div>
+          <div class="mc-val">${diagnosis.aura}%</div>
+          <div class="mc-lbl">FACTOS & AURA ALFA</div>
+          <div class="mc-bar"><div class="mc-fill" style="width: ${diagnosis.aura}%;"></div></div>
+        </div>
+
+        <div class="metric-card metric-migajera">
+          <div class="mc-icon">💔</div>
+          <div class="mc-val">${diagnosis.migajera}%</div>
+          <div class="mc-lbl">APEGO MIGAJERO</div>
+          <div class="mc-bar"><div class="mc-fill" style="width: ${diagnosis.migajera}%;"></div></div>
+        </div>
+
+        <div class="metric-card metric-careta">
+          <div class="mc-icon">🎭</div>
+          <div class="mc-val">${diagnosis.careta}%</div>
+          <div class="mc-lbl">CARETÓMETRO MESA</div>
+          <div class="mc-bar"><div class="mc-fill" style="width: ${diagnosis.careta}%;"></div></div>
+        </div>
+      </div>
+
+      <!-- RECAP OF CHOICES -->
+      <div class="show-recap-grid">
+        <div class="recap-box">
+          <div class="rb-title">⚔️ GUERRA DE BANDOS</div>
+          <div class="rb-content">
+            Bando Elegido: <strong>${showUserChoices.bandos.vote === 'a' ? showUserChoices.bandos.duel?.sideA?.name : showUserChoices.bandos.duel?.sideB?.name || 'Empate Técnico'}</strong>
+          </div>
+        </div>
+
+        <div class="recap-box">
+          <div class="rb-title">⚖️ TRIBUNAL DE FARÁNDULA</div>
+          <div class="rb-content">
+            Postura: <strong>${showUserChoices.tribunal.option === 'A' ? 'Factos / Tomás Holder' : showUserChoices.tribunal.option === 'B' ? 'Dignidad / Diane' : 'Migajera / Luli'}</strong>
+          </div>
+        </div>
+
+        <div class="recap-box">
+          <div class="rb-title">🚦 SEMÁFORO DE HOY</div>
+          <div class="rb-content">
+            ${showUserChoices.semaforo.map((s, i) => `${i+1}. ${s.vote ? s.vote.toUpperCase() : 'PENDIENTE'}`).join(" • ")}
+          </div>
+        </div>
+
+        <div class="recap-box">
+          <div class="rb-title">💍 CASORIO & FUNA</div>
+          <div class="rb-content">
+            💍 ${showUserChoices.ruleta.assignments.casorio || 'Nadie'} | ❌ ${showUserChoices.ruleta.assignments.funa || 'Nadie'}
+          </div>
+        </div>
+      </div>
+
+      <!-- FUNA RECOMMENDATION -->
+      <div class="funa-verdict-box">
+        <div class="fvb-icon">💀</div>
+        <div class="fvb-info">
+          <h4>VEREDICTO: EL CONDUCTOR MÁS CANCELABLE DE HOY</h4>
+          <p>${diagnosis.funadoRecommendation}</p>
+        </div>
+        <button class="btn-apply-funa" onclick="applyDashboardFuna('${diagnosis.funadoHost}')">
+          🚨 SUMAR +1 FUNA A ${diagnosis.funadoHost.toUpperCase()}
+        </button>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="dashboard-actions-row">
+        <button class="btn-dash-action" onclick="startShowDia('today')">
+          🔄 REPETIR EL SHOW DE HOY
+        </button>
+        <button class="btn-dash-action btn-dash-rng" onclick="startShowDia('rng')">
+          🎲 JUGAR SHOW ALEATORIO (RNG)
+        </button>
+        <button class="btn-dash-action btn-dash-home" onclick="switchTab('home')">
+          🏠 VOLVER AL INICIO
+        </button>
+      </div>
+
+    </div>
+  `;
+}
+
+function generatePsychologicalAnalysis(choices) {
+  let venom = 75;
+  let aura = 80;
+  let migajera = 60;
+  let careta = 40;
+
+  if (choices.bandos.vote === "a") {
+    venom += 15;
+    aura += 10;
+  } else if (choices.bandos.vote === "b") {
+    careta += 15;
+    aura -= 5;
+  }
+
+  if (choices.tribunal.option === "A") {
+    aura += 15;
+    venom += 10;
+  } else if (choices.tribunal.option === "B") {
+    aura += 10;
+    careta -= 10;
+  } else if (choices.tribunal.option === "C") {
+    migajera += 30;
+    aura -= 15;
+  }
+
+  choices.semaforo.forEach(s => {
+    if (s.vote === "fuego") venom += 8;
+    else if (s.vote === "verde") aura += 5;
+    else if (s.vote === "amarillo") migajera += 8;
+    else if (s.vote === "rojo") careta += 5;
+  });
+
+  venom = Math.min(99, Math.max(25, venom));
+  aura = Math.min(99, Math.max(20, aura));
+  migajera = Math.min(99, Math.max(15, migajera));
+  careta = Math.min(99, Math.max(10, careta));
+
+  let title = "DIAGNÓSTICO: MESA NIVEL WANDAGATE (TOXICIDAD GALÁCTICA & DESPECHO CON FACTOS)";
+  let description = "La mesa demostró una adicción severa a los bardos de conventillo y a las capturas de WhatsApp a las 4 AM. Holder tiró factos que rozan la cancelación en el INADI, Diane intentó poner cordura monogámica sin éxito, y Luli ya le mandó la carta natal de Maxi López a sus amigas.";
+  let funadoHost = "holder";
+  let funadoRecommendation = "Tomás Holder por justificar las anécdotas de sótanos de Rusia y amenazar con prohibir las medialunas en el estudio.";
+
+  if (migajera > 75) {
+    title = "DIAGNÓSTICO: MESA MIGAJERA CRÓNICA (APEGO ANSIOSO, TAROT Y MEDIALUNAS EN EL BAÑO)";
+    description = "El nivel de apego de esta mesa asusta a cualquier psicólogo de la UBA. Perdonarían una infidelidad en un telo si el chongo les escribe un tema de RKT y les promete no comer azúcar en el laburo.";
+    funadoHost = "luli";
+    funadoRecommendation = "Luli Casé por defender firmar como 'Solange' y justificar los 70 millones con culpa kármica.";
+  } else if (aura > 85) {
+    title = "DIAGNÓSTICO: MESA MONOGÁMICA CON DIGNIDAD DE ACERO & RESPETO A LOS CÓDIGOS";
+    description = "Cero tolerancia a la careteada. Esta mesa corta en seco, se lleva a los hijos con las valijas y factura como modelo internacional sin mirar atrás.";
+    funadoHost = "diane";
+    funadoRecommendation = "Diane Caracchi por ser demasiado correcta y no dejar que Holder prenda fuego el estudio con los audios de PH.";
+  }
+
+  return {
+    title,
+    description,
+    venom,
+    aura,
+    migajera,
+    careta,
+    funadoHost,
+    funadoRecommendation
+  };
+}
+
+function applyDashboardFuna(host) {
+  adjustFuna(host, 1);
+  triggerSoundEffect("siren");
+  alert(`🚨 ¡SENTENCIA APLICADA! Se sumó +1 FUNA a ${host.toUpperCase()}. Total acumulado: ${funaCounts[host]}`);
+}
+
+function updateLowerThirdShowDia() {
+  if (currentShowStep === 1) {
+    setPresetZocalo("⚔️ SHOW DEL DÍA • ETAPA 1", `${currentShowEpisode?.bando?.title?.toUpperCase() || "GUERRA DE BANDOS"}`);
+  } else if (currentShowStep === 2) {
+    setPresetZocalo("⚖️ SHOW DEL DÍA • ETAPA 2", `${currentShowEpisode?.tribunal?.title?.toUpperCase() || "EL TRIBUNAL DE FARÁNDULA"}`);
+  } else if (currentShowStep === 3) {
+    setPresetZocalo("🚦 SHOW DEL DÍA • ETAPA 3", "LA RÁFAGA DEL SEMÁFORO: 3 RED FLAGS DE HOY AL AIRE");
+  } else if (currentShowStep === 4) {
+    setPresetZocalo("🎡 SHOW DEL DÍA • ETAPA 4", "LA RULETA BIZARRA & LOS 3 TRONOS (CASORIO, CHONGO, FUNA)");
+  } else if (currentShowStep === 5) {
+    setPresetZocalo("🏆 SHOW DEL DÍA • FINAL", "DASHBOARD FINAL & ANÁLISIS PSICOLÓGICO DE LA MESA");
+  }
 }

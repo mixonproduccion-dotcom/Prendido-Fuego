@@ -14,7 +14,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Mi mujer no es un hotel, es un hogar.",
     "bio": "Primer expulsado y más icónico de GH. Amante de la noche, anabólicos, mewing y soltar factos cancelables.",
     "lore": "El rey del contenido divisivo. Saltó a la fama en TikTok mostrando su físico y un personaje de rugbier clasista. Tras GH protagonizó romances escandalosos, internaciones por excesos, videos íntimos filtrados y una transformación espiritual que convive con su ego de gimnasio.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/tomas-holder.jpg",
     "auraScore": 7.8,
     "caretaScore": 8.5
   },
@@ -27,7 +27,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Sos un cinco códigos, Tomás.",
     "bio": "Modelo y estudiante de RR.PP. 8 años de novia, 2 de convivencia. Defensora a ultranza de la fidelidad.",
     "lore": "Representa la voz de la razón y los límites inquebrantables en la mesa. No le perdona una sola infidelidad a la farándula, destruye a los jugadores de fútbol sin códigos y le pone los puntos a Holder cada vez que derrapa al aire.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/diane-caracchi.jpg",
     "auraScore": 9.1,
     "caretaScore": 2.3
   },
@@ -40,7 +40,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Esperé 2 años a un pibe y se comió a otra en Miami.",
     "bio": "Conductora histriónica, astróloga de cabecera y experta en conformarse con migajas de amor por idealización.",
     "lore": "El corazón sensible de Prendido Fuego. Conoce todas las red flags porque cayó en todas. Tira las cartas del tarot en vivo, analiza las cartas natales de los famosos y confiesa sus fracasos amorosos sin filtro para salvar a las oyentes.",
-    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/luli-case.jpg",
     "auraScore": 8.9,
     "caretaScore": 1.8
   },
@@ -53,7 +53,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "A los hombres hay que tenerlos cortitos.",
     "bio": "Podóloga de Rosario, madre de Tomás y protagonista de rumores picantes con mediáticos.",
     "lore": "Se convirtió en una estrella mediática propia durante el paso de Tomás por GH. Su fuerte personalidad, belleza y romances con figuras del espectáculo (como Martín Ku y mediáticos porteños) revolucionaron los programas de chimentos.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/gisela-holder.jpg",
     "auraScore": 8.4,
     "caretaScore": 6.9
   },
@@ -66,7 +66,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Cariños! A la final no llegás.",
     "bio": "La jugadora más disruptiva e intensa de la historia del reality en Argentina.",
     "lore": "Marcó un antes y un después en la televisión abierta. Con la cabeza rapada, gritos de guerra, tácticas de desgaste psicológico y un fandom militarizado ('Los Furiosos'), dominó el rating durante 7 meses. Enfrentada con Telefe y panelistas tradicionales.",
-    "image": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/furia-scaglione.jpg",
     "auraScore": 9.9,
     "caretaScore": 1.5
   },
@@ -79,7 +79,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Que se vacha, que se vacha.",
     "bio": "Autora de la espontánea más icónica a sus amigas. Figura del streaming y la farándula joven.",
     "lore": "Revolucionó GH 2022 con su juego maquiavélico y su osito de peluche. Tras salir de la casa protagonizó separaciones dolorosas (El Conejo), ataques de pánico superados, pases por el Bailando y un romance mediático con Nacho Castañares.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/coty-romero.jpg",
     "auraScore": 9.2,
     "caretaScore": 6.8
   },
@@ -92,9 +92,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Gracias a todos, los quiero mucho.",
     "bio": "Ganador indiscutido de GH 2022 con más del 70% de votos positivos. Modelo de alta costura.",
     "lore": "El arquetipo de la paz absoluta. En una casa llena de peleas y traición, ganó sin levantar la voz, adoptando a la perra Mora y manteniendo su humildad. Tras el reality rechazó el conventillo televisivo para triunfar en la moda internacional.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
-    "caretaScore": 1.0
+    "image": "assets/celebrities/marcos-ginocchio.jpg",
+    "auraScore": 10,
+    "caretaScore": 1
   },
   {
     "id": "alfa-gh",
@@ -105,7 +105,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Acá mando yo, nene! Yo vi a Spinetta en Obras.",
     "bio": "El veterano más polémico del reality. Amante de los autos clásicos y las anécdotas incomprobables.",
     "lore": "Con su bandana y su overol, Alfa polarizó al país. Asegura haber cenado con todas las estrellas de Hollywood y la política de los últimos 40 años. Protagonizó peleas memorables con Ariel, romances con chicas 40 años menores y visitas al hospital por estrés mediático.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/alfa-gh.jpg",
     "auraScore": 7.9,
     "caretaScore": 8.9
   },
@@ -118,7 +118,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "La jugada fue limpia, las cartas están sobre la mesa.",
     "bio": "Subcampeón de GH 2022, conductor de streaming en Telefe y figura del canal Luzu TV.",
     "lore": "Empezó formando 'Los Monitos' con Holder y terminó siendo uno de los favoritos de la gente por su madurez tras la pérdida de su madre. Tras separarse de La Tora blanqueó romance con Coty Romero generando el mayor bardo de ex compañeros.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/nacho-castanares.jpg",
     "auraScore": 8.6,
     "caretaScore": 3.8
   },
@@ -131,7 +131,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Fuera malas vibras! #SeCaeElPersonaje.",
     "bio": "Tercer puesto de GH 2022. Estrella de teatro, espectáculos infantiles y reina de la moda joven.",
     "lore": "Su frase '#SeCaeElPersonaje' en el confesionario fue viral nacional. Triunfó en la calle Corrientes de la mano de José María Muscari en 'Coqueluche' y Fuerza Bruta, consolidándose como la ex Gran Hermano más exitosa en la industria del espectáculo.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/julieta-poggio.jpg",
     "auraScore": 9.3,
     "caretaScore": 2.5
   },
@@ -144,7 +144,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Ganamos la casa, el perro y el liderazgo.",
     "bio": "Récord histórico de liderazgos ganados en GH. Se llevó la casa prefabricada y al perro Arturo.",
     "lore": "Estratega implacable de 'Los Bro'. Ganó casi todas las pruebas físicas y de ingenio. Afuera de la casa protagonizó rumores de romance con la mamá de Holder (Gisela Gordillo) que casi dinamitan su relación con su novia Marisol.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/martin-ku.jpg",
     "auraScore": 8.7,
     "caretaScore": 5.1
   },
@@ -157,7 +157,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tranqui, todo se acomoda solo.",
     "bio": "Músico uruguayo (ex Toco Para Vos) y ganador de Gran Hermano 2024.",
     "lore": "Ganó la edición más violenta y ruidosa jugando en silencio, componiendo canciones en la guitarra y manteniendo un romance limpio con Denisse González. Tras salir llenó un Teatro Gran Rex con su música.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/bautista-mascia.jpg",
     "auraScore": 8.5,
     "caretaScore": 2.9
   },
@@ -170,7 +170,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Icónica, perra, devoraste!",
     "bio": "Peluquero cordobés, aliado incondicional de Furia y finalista de GH 2024.",
     "lore": "Atravesó todas las placas de nominación recibiendo ataques feroces pero respondiendo con looks de alta costura, maquillaje y lealtad ciega a Furia. Su marido militar y sus escándalos de celos con famosos nutrieron horas de stream.",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/emmanuel-vich.jpg",
     "auraScore": 8.8,
     "caretaScore": 4.2
   },
@@ -183,7 +183,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Hagan lo que se les cante el orto, yo me voy a llorar!",
     "bio": "Comediante platense que entró como reemplazo y se convirtió en ícono viral de memes.",
     "lore": "Famosa por sus botas bucaneras rojas, sus llantos espontáneos que se transformaban en risas y su rol como 'Mamá' de la casa. Protagonizó la obra musical 'Legalmente Rubia' en calle Corrientes demostrando un talento teatral intacto.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/virginia-demo.jpg",
     "auraScore": 9.1,
     "caretaScore": 1.2
   },
@@ -196,8 +196,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "¿Me dejás chuparte los dedos del pie?",
     "bio": "Influencer uruguaya. Amante de la energía positiva, las mariposas y los fetiches de pies.",
     "lore": "Su comportamiento infantil y sus insólitos fetiches de lamerle los dedos de los pies a sus compañeros desconcertaron a la audiencia. Afuera demostró un magnetismo impresionante en marcas de moda y campañas globales.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 8.0,
+    "image": "assets/celebrities/rosina-beltran.jpg",
+    "auraScore": 8,
     "caretaScore": 6.4
   },
   {
@@ -209,9 +209,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Solamente me queda decirles una cosa... ¡Que a pasao!",
     "bio": "Pionero del RKT tucumano con millones de reproducciones y protagonista de GH 2024.",
     "lore": "Hizo historia con su discurso en vivo frente a toda la casa donde le declaró la guerra a Furia mirándola a los ojos. Su carisma de barrio y su bondad lo convirtieron en un personaje entrañable del streaming.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/manzana-big-apple.jpg",
     "auraScore": 8.8,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "lisandro-navarro",
@@ -222,7 +222,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "La educación y el físico ante todo.",
     "bio": "Asesor financiero, cocinero oficial de GH 2024 y víctima principal de los ataques de Furia.",
     "lore": "Su porte hegemónico y su estilo maduro lo convirtieron en el rival número uno de Furia, con quien mantuvo un juego de atracción-odio televisivo histórico. Actualmente modelo y conductor de streamings deportivos.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/lisandro-navarro.jpg",
     "auraScore": 8.2,
     "caretaScore": 4.8
   },
@@ -235,7 +235,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "A mí con careteadas no me vengas.",
     "bio": "Ex participante de GH 2022 y conductora del streaming oficial 'Fuera de Joda' y 'La Noche de los Ex'.",
     "lore": "Entró con furia, fue eliminada, aprendió de sus errores y volvió para ser una de las mejores jugadoras. Hoy es una de las conductoras más profesionales del universo Telefe, manejando con carisma las entrevistas a los eliminados.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/la-tora-lucila.jpg",
     "auraScore": 8.9,
     "caretaScore": 2.1
   },
@@ -248,7 +248,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Me comí a medio plantel de fútbol y qué.",
     "bio": "Médica pediatra de Santa Fe, hija del futbolista 'Loco' Gorostidi y líder de 'Las Furiosas'.",
     "lore": "No tiene pelos en la lengua para ventilar romances con campeones del mundo y futbolistas de primera división. Su alianza y posterior guerra a muerte con Furia marcó los picos de rating más altos de la televisión en 2024.",
-    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/cata-gorostidi.jpg",
     "auraScore": 8.7,
     "caretaScore": 3.5
   },
@@ -261,7 +261,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Entré de novia pero la casa te confunde.",
     "bio": "Contadora pública mendocina. Ganó la primera prueba del líder y desató un escándalo de infidelidad.",
     "lore": "Entró presumiendo 8 años de noviazgo formal y a las dos semanas estaba a los besos bajo las sábanas con Alan Simone. Su ruptura pública con su ex Brian Fernández y su relación tóxica posterior con Alan alimentaron programas de chimentos.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/sabrina-cortez.jpg",
     "auraScore": 7.3,
     "caretaScore": 7.9
   },
@@ -274,9 +274,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Fui Daniela, fui Pestañela y ahora soy Vengañela.",
     "bio": "Ex GH 2022, madre de gemelas con Thiago Medina y dueña de su propio centro de estética.",
     "lore": "Fue traicionada por Thiago Medina, el público la eliminó y la volvió a meter por repechaje para ejecutar una venganza televisiva implacable ('Vengañela'). El destino los unió afuera, tuvieron gemelas y construyeron una familia hermosa y millonaria.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
-    "caretaScore": 3.0
+    "image": "assets/celebrities/daniela-celis.jpg",
+    "auraScore": 9,
+    "caretaScore": 3
   },
   {
     "id": "thiago-medina",
@@ -287,7 +287,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "La vida me dio una oportunidad y la voy a aprovechar.",
     "bio": "De juntar cartón y trabajar en el Mercado Central a ser una de las figuras más queridas de Argentina.",
     "lore": "Emocionó al país con su historia de superación. Dentro de la casa fue un titán en las pruebas físicas. Afuera montó una verdulería propia, compró su casa y junto a Daniela Celis formó una de las parejas más estables del espectáculo.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/thiago-medina.jpg",
     "auraScore": 9.4,
     "caretaScore": 1.1
   },
@@ -300,7 +300,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Yo cocino para todos pero a mis hijas no me las toca nadie.",
     "bio": "Ex diputada nacional, semifinalista de GH 2022 y panelista de televisión.",
     "lore": "Manejó la cocina y la disciplina de GH 2022 con mano de hierro. Sus idas y vueltas con el ex intendente Walter Festa, investigaciones judiciales y romances con jóvenes de la farándula la mantienen en agenda constante.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/romina-uhrig.jpg",
     "auraScore": 7.5,
     "caretaScore": 8.2
   },
@@ -313,7 +313,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "La jugada maestra recién comienza.",
     "bio": "Analista político, streamer y creador de 'La Frodoneta'.",
     "lore": "Pasó de ser el más apoyado del país (apoyado por el Kun Agüero, Bizarrap y Duki) a ser cancelado masivamente en una semana por comentarios desafortunados sobre guardar fotos íntimas. Hoy exitoso streamer de gaming.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/agustin-guardis.jpg",
     "auraScore": 7.2,
     "caretaScore": 6.5
   },
@@ -326,7 +326,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El juego del silencio es el más letal.",
     "bio": "Productor agropecuario cordobés, ex GH 2022 y protagonista de teatro en calle Corrientes.",
     "lore": "El cerebro oculto de GH 2022 detrás de las jugadas de Coty Romero. Tras la escandalosa separación de Coty con audios y videos de boliches filtrados, se dedicó a la actuación y el teatro con gran éxito.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/alexis-conejo.jpg",
     "auraScore": 8.1,
     "caretaScore": 5.9
   },
@@ -339,7 +339,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Dormí mucho al principio pero me desperté con todo.",
     "bio": "Estudiante de abogacía de Chubut, modelo y pareja de Bautista Mascia.",
     "lore": "Viralizada al inicio por pasar horas durmiendo, fue reingresada por la 'Golden Ticket' y demostró una astucia letal jugando con la fulminante. Su noviazgo con Bautista es uno de los más shippeados en redes.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/denisse-gonzalez.jpg",
     "auraScore": 8.3,
     "caretaScore": 3.2
   },
@@ -352,7 +352,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "No me gusta bañarme todos los días, ¿cuál es el problema?",
     "bio": "Modelo de Temperley que revolucionó GH 2024 con su sinceridad higiénica.",
     "lore": "Entró diciendo que no le gustaba lavarse el pelo a diario y enamoró a Nico Grosman. Tras el final de GH sufrió la peor infidelidad mediática cuando Grosman la engañó con Lucía Maidana en un viaje a Uruguay.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/florencia-regidor.jpg",
     "auraScore": 8.6,
     "caretaScore": 2.8
   },
@@ -365,7 +365,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "No le tengo miedo a los gritos de nadie.",
     "bio": "Ex rugbier y empleado de marketing. Protagonista del romance más explosivo con Furia.",
     "lore": "Entró como reemplazo y mantuvo una relación de altísimo voltaje sexual con Furia que terminó en empujones, gritos desmedidos en el comedor y sanciones históricas de Gran Hermano.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/mauro-dalessio.jpg",
     "auraScore": 7.9,
     "caretaScore": 5.5
   },
@@ -378,9 +378,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Ay gordi, no sé qué es una pala.",
     "bio": "Joven de alta sociedad porteña. Famosa por su inocencia y vida de lujos.",
     "lore": "Vivió 5 meses en la casa sin quedar nominada casi nunca gracias a su simpatía. Afuera protagonizó un escándalo familiar feroz entre su madre Aixa y su novio Manuel por el manejo de su dinero.",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 8.0,
-    "caretaScore": 4.0
+    "image": "assets/celebrities/zoe-bogach.jpg",
+    "auraScore": 8,
+    "caretaScore": 4
   },
   {
     "id": "cristian-u",
@@ -391,9 +391,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡No toquen nada, carajo! Esto es estrategia.",
     "bio": "Paseador de perros que se consagró como el mejor jugador táctico de la historia de GH (2011).",
     "lore": "Inventó la 'autonominación' para obligar a su fandom a eliminar a sus rivales uno por uno. Se fue de la casa, el público exigió su regreso y ganó el programa arrasando. Hoy DJ internacional y panelista filoso.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/cristian-u.jpg",
     "auraScore": 9.8,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "marianela-mirra",
@@ -404,9 +404,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hice lo que sentí que tenía que hacer para ganar.",
     "bio": "Ganadora de GH 2007 tras clavarle la espontánea a su amigo y protector Diego Leonardi.",
     "lore": "Autora de la traición más recordada de la televisión argentina. Se hizo la víctima durante todo el encierro, esperó la semifinal y liquidó a Diego Leonardi con una espontánea maestra. Años después filtró chats íntimos de Jorge Rial.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/marianela-mirra.jpg",
     "auraScore": 9.5,
-    "caretaScore": 6.0
+    "caretaScore": 6
   },
   {
     "id": "gaston-trezeguet",
@@ -417,7 +417,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Gran Hermano es un juego de ajedrez humano.",
     "bio": "Finalista de la primera edición de GH (2001) y productor general del formato en Kuarzo.",
     "lore": "Pionero absoluto de las estrategias psicológicas en la televisión argentina: escondió comida, fingió pactos y revolucionó el juego. Hoy es el panelista más respetado y temido de 'El Debate'.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/gaston-trezeguet.jpg",
     "auraScore": 9.2,
     "caretaScore": 3.5
   },
@@ -430,7 +430,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Dejé todo en el barro para ser quien soy hoy.",
     "bio": "Ex GH 2007, vedette furor, ganadora del Premio Martín Fierro y actriz de ficción dramática.",
     "lore": "Surgió con peleas históricas en GH y Showmatch, superó adicciones complejas, se bautizó en la iglesia evangélica y demostró una capacidad actoral descomunal en series de televisión y cine.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/andrea-rincon.jpg",
     "auraScore": 9.3,
     "caretaScore": 1.8
   },
@@ -443,8 +443,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Vivan con amor, perdonen y cuiden su salud.",
     "bio": "Subcampeona de GH 2001, actriz, modelo y símbolo de la lucha contra la mala praxis médica.",
     "lore": "Conquistó el corazón de los argentinos con su baile del 'Meneíto' y su frescura rosarina. Su trágica muerte tras años de lucha contra las consecuencias de las cirugías de Aníbal Lotocki unió al país en un reclamo unánime de justicia.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
+    "image": "assets/celebrities/silvina-luna.jpg",
+    "auraScore": 10,
     "caretaScore": 0.5
   },
   {
@@ -456,7 +456,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Las mujeres ya no lloran, las mujeres facturan millones.",
     "bio": "Empresaria, conductora y dueña del 90% de los escándalos mediáticos de Argentina e Italia.",
     "lore": "Inventora de la profesión botinera moderna y maestra del timing mediático. De la supuesta virginidad con Maradona a negociar contratos en Inter y PSG, pasando por L-Gante y La China Suárez.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/wanda-nara.jpg",
     "auraScore": 9.8,
     "caretaScore": 9.5
   },
@@ -469,7 +469,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Ella es mi esposa, mi vida y mi único amor.",
     "bio": "Goleador del Galatasaray, ex capitán del Inter y protagonista del culebrón más largo del siglo.",
     "lore": "Pasó de traicionar a Maxi López a ser vigilado 24/7 por Wanda. Famoso por subir fotos románticas de alta intensidad minutos después de que Wanda anuncia separaciones.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/mauro-icardi.jpg",
     "auraScore": 6.5,
     "caretaScore": 8.9
   },
@@ -482,7 +482,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Yo soy libre y hago lo que quiero con mi vida.",
     "bio": "Actriz, cantante, imán mediático internacional y pesadilla de los chats de botineras.",
     "lore": "Figura magnética que protagonizó quiebres de parejas legendarios: Cabré-Tobal, Vicuña-Pampita (motorhome y manta de Nepal), y el Wandagate en París.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/china-suarez.jpg",
     "auraScore": 9.5,
     "caretaScore": 7.2
   },
@@ -495,9 +495,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Te destruyo en vivo pero con una sonrisa perfecta.",
     "bio": "Supermodelo y estratega máxima. Se separa de un político y a los 3 días ya tiene nuevo novio polista.",
     "lore": "La mujer más respetada del espectáculo. Capaz de atravesar tragedias, infidelidades en motorhomes y escándalos políticos de Moritán, saliendo siempre ilesa y cobrando en dólares.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
-    "caretaScore": 5.0
+    "image": "assets/celebrities/pampita.jpg",
+    "auraScore": 10,
+    "caretaScore": 5
   },
   {
     "id": "yanina-latorre",
@@ -508,7 +508,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tengo los chats y los audios, amor. No me busques.",
     "bio": "La voz más temida del espectáculo. Sabe con quién te fuiste de fiesta antes de que vos llegues.",
     "lore": "Reina de la primicia destructiva. Conduce su programa de radio y domina LAM con información directa de los teléfonos de los protagonistas.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/yanina-latorre.jpg",
     "auraScore": 9.6,
     "caretaScore": 4.1
   },
@@ -521,9 +521,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Si querés llorar, llorá. ¡Decorado, callate!",
     "bio": "Máxima deidad del espectáculo. Inventora del léxico pop argentino y blindada contra todo.",
     "lore": "Medio siglo reinando el teatro de revistas, televisión y streaming. Creadora de frases inmortales. Nada la cancela y siempre tiene la última palabra.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
-    "caretaScore": 1.0
+    "image": "assets/celebrities/moria-casan.jpg",
+    "auraScore": 10,
+    "caretaScore": 1
   },
   {
     "id": "susana-gimenez",
@@ -534,9 +534,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¿Vivo? ¡Un dinosaurio vivo!",
     "bio": "La diva número uno de la historia argentina. Millonaria en Punta del Este y despistada profesional.",
     "lore": "Ícono indiscutido de la televisión dorada. Famosa por sus preguntas inocentes pero letales, su cenicero arrojado a Roviralta y sus juegos millonarios.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/susana-gimenez.jpg",
     "auraScore": 9.9,
-    "caretaScore": 6.0
+    "caretaScore": 6
   },
   {
     "id": "angel-de-brito",
@@ -547,7 +547,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tengo un último momento que va a paralizar el país.",
     "bio": "Conductor de LAM y zar del chimento argentino. Controla las primicias del prime time.",
     "lore": "Maneja las primicias con puño de hierro, no se casa con nadie y administra los egos de sus angelitas como un director de orquesta.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/angel-de-brito.jpg",
     "auraScore": 8.8,
     "caretaScore": 5.5
   },
@@ -560,7 +560,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Yo no trabajo, me gusta el shampein y dormir.",
     "bio": "Hija del Pájaro Caniggia y Mariana Nannis. Reina de la sinceridad bizarra y el humor involuntario.",
     "lore": "Cada vez que pisa un reality genera momentos de culto instantáneos. No le interesa la corrección política y admite que odia madrugar.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/charlotte-caniggia.jpg",
     "auraScore": 9.4,
     "caretaScore": 1.2
   },
@@ -573,7 +573,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Siempre al top, nunca barat!",
     "bio": "Ganador de realities en Argentina y España. Enemigo jurado de los 'barats' y maestro del bardo.",
     "lore": "Personaje ruidoso, ostentoso y magnético. Ganó El Hotel de los Famosos y mantiene una guerra mediática eterna con su padre Claudio Caniggia.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/alex-caniggia.jpg",
     "auraScore": 8.1,
     "caretaScore": 8.8
   },
@@ -586,7 +586,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Yo no soy una carmelita descalza, mi amor!",
     "bio": "Capocómica histórica, conductora de Mañanísima y madre de Fede Bal.",
     "lore": "Toda su vida privada fue transmitida en cadena nacional: la infidelidad de Santiago Bal, los escándalos del lavarropas de Fede Bal y sus internaciones dramáticas.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/carmen-barbieri.jpg",
     "auraScore": 8.7,
     "caretaScore": 4.8
   },
@@ -599,7 +599,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Pasé por el infierno y volví para contarlo.",
     "bio": "Productora teatral, ex vedette furor de los 2000 y panelista estrella de LAM.",
     "lore": "Vivió todas las batallas de la farándula. Hoy panelista sensata y frontal, se ríe de sus romances pasados y no le tiene miedo a nadie.",
-    "image": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/nazarena-velez.jpg",
     "auraScore": 8.9,
     "caretaScore": 2.5
   },
@@ -612,7 +612,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "A mí me vas a pagar la cuota alimentaria hasta el último peso.",
     "bio": "Bailarina, panelista y pareja del abogado Roberto Castillo. Cruzada contra padres deudores.",
     "lore": "Convirtió su conflicto judicial por alimentos en una causa nacional, ganándole todas las batallas a su ex marido futbolista.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/cinthia-fernandez.jpg",
     "auraScore": 8.5,
     "caretaScore": 5.2
   },
@@ -625,7 +625,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "La paz y los animales son mi prioridad absoluta.",
     "bio": "Top model histórica, rival legendaria de Pampita y esposa del piloto Manu Urcera.",
     "lore": "Rivalidad mítica con Pampita durante dos décadas. Enfrentamientos con Cubero y Mica Viciconte por sus hijas, y un estilo de vida vegano.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/nicole-neumann.jpg",
     "auraScore": 7.9,
     "caretaScore": 7.5
   },
@@ -638,8 +638,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Bienvenidos a Intrusos en el Espectáculo!",
     "bio": "Conductora de Intrusos, actriz de comedia e ícono histórico del colectivo LGBTIQ+ en Argentina.",
     "lore": "Conquistó el teatro de revista, el prime time con Los Roldán y la conducción de Intrusos con elegancia y alta costura.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
+    "image": "assets/celebrities/flor-de-la-v.jpg",
+    "auraScore": 9,
     "caretaScore": 6.2
   },
   {
@@ -651,7 +651,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El talento y el ensayo no se negocian.",
     "bio": "Bailarina virtuosa, actriz de musicales y conductora estrella de El Trece y El Nueve.",
     "lore": "Surgió de Combate y Showmatch para convertirse en la figura joven más completa de la pantalla. Romances con Fede Bal y Cabré.",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/laurita-fernandez.jpg",
     "auraScore": 8.6,
     "caretaScore": 4.5
   },
@@ -664,9 +664,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "A mí me gusta gustar, no tengo edad ni vergüenza.",
     "bio": "La mujer más deseada del cine nacional de los 80, ex jurado del Bailando y dueña de un aura indestructible.",
     "lore": "Romances con presidentes, estrellas de fútbol (Maradona) y galanes jóvenes. Maneja Twitter e Instagram con soltura de Gen Z.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/graciela-alfano.jpg",
     "auraScore": 9.7,
-    "caretaScore": 5.0
+    "caretaScore": 5
   },
   {
     "id": "marcelo-tinelli",
@@ -677,7 +677,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Buenas noches América! ¡Señores, esto es Showmatch!",
     "bio": "El conductor más exitoso de los últimos 35 años de televisión en Argentina.",
     "lore": "Moldeó la cultura popular durante tres décadas: el corte de pollera, las peleas del Bailando y el fútbol en San Lorenzo y AFA.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/marcelo-tinelli.jpg",
     "auraScore": 8.5,
     "caretaScore": 8.7
   },
@@ -690,8 +690,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Si hablo yo, se cae el sistema.",
     "bio": "Creador de Intrusos, conductor de Argenzuela y sobreviviente a un paro cardíaco en Colombia.",
     "lore": "Durante 20 años fue la persona con más poder para consagrar o destruir carreras en el espectáculo argentino.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 8.0,
+    "image": "assets/celebrities/jorge-rial.jpg",
+    "auraScore": 8,
     "caretaScore": 7.9
   },
   {
@@ -703,7 +703,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tengo información de primerísima fuente sobre las medidas del Banco Central.",
     "bio": "Modelo icónica, madre de Matilda y enemiga pública número uno de Martín Redrado.",
     "lore": "Sorprendió al país filtrando primicias políticas en Twitter. Su juicio eterno con Redrado es un culebrón sin fin.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/luciana-salazar.jpg",
     "auraScore": 7.7,
     "caretaScore": 8.6
   },
@@ -716,9 +716,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Soy una nena que vive en una nube de algodón!",
     "bio": "Reina del disparate televisivo, ex MasterChef Celebrity y madre de Salvador Uriel.",
     "lore": "Autora de momentos insólitos: pilotear un avión de Austral en despegue y vestirse de dólares en el subte de Nueva York.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/vicky-xipolitakis.jpg",
     "auraScore": 8.9,
-    "caretaScore": 3.0
+    "caretaScore": 3
   },
   {
     "id": "felipe-fort",
@@ -729,7 +729,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Mi papá me enseñó a no tenerle miedo a los números grandes.",
     "bio": "Hijo mellizo del legendario Ricardo Fort. Inversor en criptomonedas, autos de lujo y marcas.",
     "lore": "Tomó el control de sus inversiones en Miami, modificó recetas de chocolates y mantiene viva la leyenda de Ricardo Fort.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/felipe-fort.jpg",
     "auraScore": 8.7,
     "caretaScore": 3.8
   },
@@ -742,7 +742,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tengo la personalidad de mi papá: voy de frente contra todo.",
     "bio": "Heredera de la dinastía Felfort, influencer de moda y guardiana de la memoria de Ricardo.",
     "lore": "Heredó la mirada imponente y el carácter frontal de Ricardo Fort. Frecuenta eventos de alta moda y festivales en el mundo.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/marta-fort.jpg",
     "auraScore": 8.8,
     "caretaScore": 2.9
   },
@@ -755,9 +755,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Tengo las pruebas en una caja de seguridad!",
     "bio": "Presidente de APTRA, conductor de Secretos Verdaderos y DT de Victoriano Arenas.",
     "lore": "El periodista más pasional y barroco. Jurado de los Martín Fierro y autor de investigaciones bizarrotas sobre la mamá de Luis Miguel.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/luis-ventura.jpg",
     "auraScore": 8.5,
-    "caretaScore": 6.0
+    "caretaScore": 6
   },
   {
     "id": "mariana-fabbiani",
@@ -768,7 +768,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Hola a todos, bienvenidos a DDM!",
     "bio": "Conductora histórica de RSM y El Diario de Mariana. Nieta del prócer Mariano Mores.",
     "lore": "La cara de la televisión vespertina elegante. Trata policiales macabros y chimentos con sonrisa imperturbable.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/mariana-fabbiani.jpg",
     "auraScore": 8.3,
     "caretaScore": 7.1
   },
@@ -781,9 +781,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Como te ven te tratan, si te ven mal te maltratan.",
     "bio": "La reina absoluta de la televisión mundial con más de 55 años de almuerzos al aire.",
     "lore": "Figura histórica e inmortal de la cultura argentina. Sus preguntas punzantes a presidentes y celebridades son sentencias de estado.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
-    "caretaScore": 4.0
+    "image": "assets/celebrities/mirtha-legrand.jpg",
+    "auraScore": 10,
+    "caretaScore": 4
   },
   {
     "id": "viviana-canosa",
@@ -794,7 +794,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Me tienen harta con la hipocresía progre!",
     "bio": "Ex panelista de Intrusos, conductora y francotiradora política de prime time.",
     "lore": "De los chimentos con panel de fuego a tomar dióxido de cloro en vivo y denunciar censuras en canales de noticias.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/viviana-canosa.jpg",
     "auraScore": 8.4,
     "caretaScore": 7.8
   },
@@ -807,7 +807,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Yo no vivo del Estado, me votó la gente de Santa Fe.",
     "bio": "De pasar una noche con Robbie Williams en 2004 a ser diputada provincial reelecta.",
     "lore": "La transformación más radical de la farándula. Hizo de su frontalidad una carrera política ganándole a los partidos tradicionales.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/amalia-granata.jpg",
     "auraScore": 8.6,
     "caretaScore": 5.5
   },
@@ -820,7 +820,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Todos mis acuerdos fueron estrictamente profesionales.",
     "bio": "Ex presidente del Banco Central y protagonista del culebrón judicial con Luciana Salazar.",
     "lore": "Economista de Wall Street atrapado en un reality mediático interminable de brujerías en el freezer y demandas de manutención.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/martin-redrado.jpg",
     "auraScore": 6.8,
     "caretaScore": 9.1
   },
@@ -833,7 +833,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "A nosotras nos subestimaron toda la vida.",
     "bio": "Animadora infantil, panelista y testigo clave de los escándalos de su hermana Vicky.",
     "lore": "La mitad más tranquila de las 'Mellizas Griegas'. Se dedicó a la música infantil y a la defensa de las víctimas de Lotocki.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/stefy-xipolitakis.jpg",
     "auraScore": 8.1,
     "caretaScore": 3.5
   },
@@ -846,7 +846,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "De la villa a los campos de polo con amor.",
     "bio": "Modelo, panelista y pareja del mediático abogado Fernando Burlando.",
     "lore": "Orgullosa de sus orígenes humildes en la Villa 21-24, conquistó al abogado más famoso del país y hoy muestra su vida de campo y lujo.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/barby-franco.jpg",
     "auraScore": 8.8,
     "caretaScore": 2.2
   },
@@ -859,9 +859,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Vamos a llegar hasta las últimas consecuencias penales.",
     "bio": "El penalista más famoso y bronceado de Argentina. Defensor de famosos y causas nacionales.",
     "lore": "Abogado del caso Báez Sosa, Loan y los mayores litigios de famosos. Se pasea en sunga, autos deportivos y sets de televisión.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/fernando-burlando.jpg",
     "auraScore": 8.9,
-    "caretaScore": 7.0
+    "caretaScore": 7
   },
   {
     "id": "mica-viciconte",
@@ -872,9 +872,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "A mí me gusta ir de frente y sin filtro.",
     "bio": "Ícono de Combate, ganadora de MasterChef Celebrity y pareja de Fabián Cubero.",
     "lore": "La némesis eterna de Nicole Neumann. Conquistó a 'Poroto' Cubero y demostró una capacidad implacable de competencia y cocina.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/mica-viciconte.jpg",
     "auraScore": 8.7,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "fabian-cubero",
@@ -885,7 +885,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Todo lo que hago es por la paz de mis hijas.",
     "bio": "Ídolo histórico de Vélez Sarsfield y protagonista de la guerra judicial con Nicole Neumann.",
     "lore": "Jugador récord de Vélez que pasó a ser figura de las revistas del corazón. Su romance con Mica Viciconte trajo una paz con bardo colateral.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/fabian-cubero.jpg",
     "auraScore": 7.9,
     "caretaScore": 4.5
   },
@@ -898,9 +898,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "El amor de familia y el deporte van de la mano.",
     "bio": "Modelo de Super M, periodista de ESPN y esposa de Darío Cvitanich.",
     "lore": "Dejó su carrera en pleno éxito para acompañar a Cvitanich a Europa y México, regresando luego como conductora deportiva de primer nivel.",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/chechu-bonelli.jpg",
     "auraScore": 8.5,
-    "caretaScore": 3.0
+    "caretaScore": 3
   },
   {
     "id": "dario-cvitanich",
@@ -911,7 +911,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El fútbol es una etapa, la familia es para siempre.",
     "bio": "Ex delantero de Banfield, Boca, Racing y Ajax. Esposo de Chechu Bonelli.",
     "lore": "Goleador respetado por todas las hinchadas, hoy panelista de televisión deportiva con análisis tácticos claros y cero escándalos.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/dario-cvitanich.jpg",
     "auraScore": 8.8,
     "caretaScore": 1.5
   },
@@ -924,9 +924,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Menos mal que no me casé.",
     "bio": "Hermana de Wanda Nara, supermodelo y conductora de televisión.",
     "lore": "Su tuit histórico cancelando su boda con Diego Forlán a días del altar es patrimonio nacional. Romances con Pico Mónaco, Jakob Von Plessen y Facundo Pieres.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/zaira-nara.jpg",
     "auraScore": 9.2,
-    "caretaScore": 4.0
+    "caretaScore": 4
   },
   {
     "id": "facundo-pieres",
@@ -937,7 +937,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Los caballos y la tranquilidad son mi vida.",
     "bio": "Uno de los mejores polistas del mundo (10 de hándicap). Pareja de Zaira Nara.",
     "lore": "Protagonista involuntario de la interna entre Zaira Nara y Paula Chaves por códigos de ex parejas. Multimillonario de perfil bajo.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/facundo-pieres.jpg",
     "auraScore": 8.4,
     "caretaScore": 3.2
   },
@@ -950,9 +950,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "La naturaleza y los caballos no mienten.",
     "bio": "Aristócrata austríaco, guía de safaris en África y ex marido de Zaira Nara.",
     "lore": "Quedó en medio del Wandagate al ser el cómplice que esperó a Icardi en el auto en París durante el encuentro con La China Suárez.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/jakob-von-plessen.jpg",
     "auraScore": 7.8,
-    "caretaScore": 5.0
+    "caretaScore": 5
   },
   {
     "id": "matias-ale",
@@ -963,8 +963,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Amo a todas las mujeres de Argentina!",
     "bio": "El galán más querido de la televisión. Ex novio de Graciela Alfano y Silvina Escudero.",
     "lore": "Sobreviviente de un brote psicótico, hoy renacido como el personaje más querible y premiado en los Martín Fierro de Radio.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
+    "image": "assets/celebrities/matias-ale.jpg",
+    "auraScore": 9,
     "caretaScore": 2.5
   },
   {
@@ -976,7 +976,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Eduardo Fort, hacete cargo de tu mujer!",
     "bio": "Creadora del Baile del Koala y veterana de más de 15 realities en Chile y Argentina.",
     "lore": "Su reclamo de furia en vivo contra su pareja millonaria Eduardo Fort en Showmatch es una pieza maestra de la televisión dramática.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/rocio-marengo.jpg",
     "auraScore": 8.6,
     "caretaScore": 4.8
   },
@@ -989,9 +989,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Lo dejo a tu criterio. Casi latina.",
     "bio": "Modelo y creadora de las frases más memorables y desopilantes del espectáculo nacional.",
     "lore": "Su matrimonio con Leonardo Fariña la puso en el centro de las investigaciones de la 'Ruta del Dinero K'. Cero maldad, pura ternura pop.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/karina-jelinek.jpg",
     "auraScore": 9.5,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "belen-francese",
@@ -1002,7 +1002,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "En una noche de luna llena te clavé una rima buena.",
     "bio": "Actriz cómica, escritora de poemas bizarros y protagonista de peleas con Andrea Rincón.",
     "lore": "Inventó las 'arrimadas' en Showmatch y protagonizó una noche escandalosa en PH Podemos Hablar con Andrea Rincón por un romance retro.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/belen-francese.jpg",
     "auraScore": 8.3,
     "caretaScore": 3.1
   },
@@ -1015,7 +1015,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Está mal pero no tan mal! ¿A ver la repe?",
     "bio": "El conductor con más horas de aire y rating en la historia reciente de El Trece.",
     "lore": "Máquina incansable de juegos de televisión: Los 8 Escalones, A Todo o Nada, Bariloche y perros saltando a la pileta.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/guido-kaczka.jpg",
     "auraScore": 9.4,
     "caretaScore": 2.8
   },
@@ -1028,7 +1028,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Esto es una fiesta descomunal!",
     "bio": "Conductor histriónico de Polémica en el Bar, La Cocina del Show y dueño de parador gastronómico.",
     "lore": "Símbolo de la euforia desmedida en cámara, abrazos apretados y debates acalorados de café porteño.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/mariano-iudica.jpg",
     "auraScore": 7.2,
     "caretaScore": 8.8
   },
@@ -1041,7 +1041,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Creamos una comunidad de amigos que labura todos los días.",
     "bio": "Fundador y CEO de Luzu TV. Conductor de Nadie Dice Nada y novio de Flor Jazmín Peña.",
     "lore": "Pionero del streaming masivo en Argentina. De Combate a montar el canal digital más visto de la juventud. Su romance con Flor Jazmín ('Occhiamin') paralizó internet tras años de rumores.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/nicolas-occhiato.jpg",
     "auraScore": 8.9,
     "caretaScore": 6.8
   },
@@ -1054,7 +1054,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hay que animarse a sentir y romper mandatos.",
     "bio": "Bailarina campeona del Bailando con Occhiato y conductora estrella de Nadie Dice Nada.",
     "lore": "Su espontaneidad, sentido del humor y reflexiones sobre sexualidad y vínculos la convirtieron en la figura femenina más querida del streaming joven.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/flor-jazmin-pena.jpg",
     "auraScore": 9.4,
     "caretaScore": 2.2
   },
@@ -1067,7 +1067,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Ay por favor chicos, me muero de vergüenza pero lo cuento!",
     "bio": "Ex bailarina de Showmatch, actriz de stand up y pilar de humor en Nadie Dice Nada.",
     "lore": "Cero careteada. Cuenta anécdotas de citas desastrosas, romances con mediáticos (Tinelli) y papelones escatológicos sin pudor alguno.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/momi-giardina.jpg",
     "auraScore": 9.5,
     "caretaScore": 1.4
   },
@@ -1080,7 +1080,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tengo 45 ataques de pánico por día pero acá estoy al aire.",
     "bio": "Ex galán juvenil de Patito Feo, director de series y conductor histriónico de Nadie Dice Nada.",
     "lore": "Visibilizó la salud mental con humor ácido y sketches delirantes. Amigo íntimo de Lali Espósito y creador de contenidos que explotan en TikTok.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/santi-talledo.jpg",
     "auraScore": 9.1,
     "caretaScore": 2.5
   },
@@ -1093,7 +1093,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Si no es bizarro y disruptivo, no me interesa.",
     "bio": "Conductor de Luzu TV, dueño de la fiesta Polenta y finalista de Bake Off Famosos.",
     "lore": "Creador de la Polenta (una de las fiestas más convocantes del país). Conduce 'Algo de Música' y se destaca por sus outfits estrafalarios.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/nacho-elizalde.jpg",
     "auraScore": 8.7,
     "caretaScore": 4.1
   },
@@ -1106,7 +1106,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Le di un beso en el cuello a Messi en Miami y qué.",
     "bio": "Comediante, músico y fundador del canal de streaming Olga. Creador del podcast La Cruda.",
     "lore": "Hizo historia entrevistando a Lionel Messi en su casa de Miami con un beso en el cuello. Llenó el estadio de River Plate y la Bombonera con festivales musicales temáticos de Olga.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/migue-granados.jpg",
     "auraScore": 9.7,
     "caretaScore": 2.8
   },
@@ -1119,7 +1119,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "La música en vivo cura cualquier mal día.",
     "bio": "Director musical, productor general de Olga y compañero inseparable de Migue Granados.",
     "lore": "El artesano detrás de los 'Olga Specials' que homenajearon a Charly García, Spinetta y Cerati con las mayores leyendas del rock argentino.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/lucas-fridman.jpg",
     "auraScore": 9.2,
     "caretaScore": 1.2
   },
@@ -1132,8 +1132,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Escribo tuits con el corazón roto desde 2012.",
     "bio": "Periodista, influencer histórica de Twitter y conductora estrella de 'Sería Increíble' en Olga.",
     "lore": "La voz generacional de los desamores y las reflexiones sobre la soltería. Su salida de Luzu para sumarse a Olga desató la primera gran guerra de canales de streaming.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
+    "image": "assets/celebrities/nati-jota.jpg",
+    "auraScore": 9,
     "caretaScore": 3.9
   },
   {
@@ -1145,7 +1145,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tengo anécdotas de rechazos amorosos para escribir 4 enciclopedias.",
     "bio": "Pionero del stand up en Instagram y conductor del ciclo de entrevistas 'Ferné con Grego'.",
     "lore": "Entrevistó a todas las estrellas del trap, fútbol y farándula con un vaso de fernet en mano. Famoso por reírse de sus propios fracasos con honestidad total.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/grego-rossello.jpg",
     "auraScore": 8.7,
     "caretaScore": 3.5
   },
@@ -1158,7 +1158,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Esto es cine puro, muchachos.",
     "bio": "Creador de 'Paren La Mano' en Vorterix y organizador de 'Párense de Manos' en el Luna Park y Vélez.",
     "lore": "El streamer con mejor oratoria y sentido del timing de Argentina. Creador de la 'Teoría de la Anécdota' y del evento de boxeo de streamers más masivo del país.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/luquitas-rodriguez.jpg",
     "auraScore": 9.9,
     "caretaScore": 1.1
   },
@@ -1171,7 +1171,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "No soporto la modernidad ni a los jóvenes de Palermo.",
     "bio": "Ex jefe de prensa de la CABB, escritor y pilar humorístico cascarrabias de Paren La Mano.",
     "lore": "Dueño de anécdotas tragicómicas de viajes, infancia en Bahía Blanca y una aversión total a las tendencias vacías de redes sociales.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/german-beder.jpg",
     "auraScore": 9.6,
     "caretaScore": 0.8
   },
@@ -1184,7 +1184,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tengo el dato exacto del lateral izquierdo de Gimnasia de Jujuy en 1994.",
     "bio": "Periodista deportivo, integrante de Paren La Mano y fanático enfermo de Independiente.",
     "lore": "Aporta la cuota de obsesión futbolera y datos insólitos que enriquecen los debates deportivos más desopilantes de la radio digital.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/alfredo-montes-de-oca.jpg",
     "auraScore": 8.9,
     "caretaScore": 1.5
   },
@@ -1197,9 +1197,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Un saludo para toda la muchachada de Morón!",
     "bio": "Comediante de stand up (dupla de Lucas Rodríguez) y peleador ganador en Párense de Manos.",
     "lore": "Carisma barrial puro. Su nocaut en el Luna Park durante Párense de Manos conmovió a toda la comunidad de streamers.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/roberto-galati.jpg",
     "auraScore": 9.3,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "coscu",
@@ -1210,8 +1210,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Nashe, buenardo, de ruculaski y de la cabeza.",
     "bio": "Fundador de la Coscu Army y creador de los Coscu Army Awards. El pionero de Twitch en Argentina.",
     "lore": "Inventó el lenguaje que habla toda una generación de adolescentes en el país. Sus reacciones a canciones catapultaron carreras de Duki, Bizarrap y María Becerra.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
+    "image": "assets/celebrities/coscu.jpg",
+    "auraScore": 9,
     "caretaScore": 6.2
   },
   {
@@ -1223,7 +1223,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Códigos de barrio, papá! Acá no se traiciona.",
     "bio": "Streamer del año en 2021, voz del estadio en el Mundial de Qatar 2022 y polemista nato.",
     "lore": "Famoso por su defensa de la historia argentina, documentales en Europa y peleas virales en La Velada del Año de Ibai Llanos.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/momo.jpg",
     "auraScore": 8.7,
     "caretaScore": 4.5
   },
@@ -1236,9 +1236,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Prendo stream y somos 100.000 personas jugando.",
     "bio": "El streamer de habla hispana más visto del mundo en 2023. Protagonista del debut en Deportivo Riestra.",
     "lore": "De streamear Minecraft desde Santa Fe a romper récords globales. Su polémico debut de 1 minuto en la primera división con Riestra causó un terremoto nacional.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/spreen.jpg",
     "auraScore": 9.5,
-    "caretaScore": 5.0
+    "caretaScore": 5
   },
   {
     "id": "davo-xeneize",
@@ -1249,7 +1249,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Boca es mi vida, no me importa nada más.",
     "bio": "El streamer de fútbol más respetado de la juventud. Conocimiento enciclopédico de Boca Juniors.",
     "lore": "Capaz de debatir con periodistas consagrados con datos irrebatibles y un respeto absoluto. Su entrevista con Juan Román Riquelme fue histórica.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/davo-xeneize.jpg",
     "auraScore": 9.4,
     "caretaScore": 1.2
   },
@@ -1262,9 +1262,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Esto es un escándalo, muchachos! ¡Banco totalmente!",
     "bio": "Streamer de fútbol, ganador en La Velada del Año 4 en el Santiago Bernabéu contra Guanyar.",
     "lore": "Famoso por sus opiniones extremas sobre Messi, Cristiano Ronaldo y el fútbol argentino. Hizo historia noqueando en el estadio del Real Madrid.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/la-cobra.jpg",
     "auraScore": 9.1,
-    "caretaScore": 3.0
+    "caretaScore": 3
   },
   {
     "id": "pedro-rosemblat",
@@ -1275,9 +1275,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Bienvenidos a la Fábrica de Jingles.",
     "bio": "Director de Gelatina, creador de la Fábrica de Jingles y pareja de Lali Espósito.",
     "lore": "Revolucionó el humor político con la 'Fábrica de Jingles'. Su noviazgo con Lali Espósito lo convirtió en el hombre más envidiado y festejado del país.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/pedro-rosemblat.jpg",
     "auraScore": 9.6,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "tomas-rebord",
@@ -1288,7 +1288,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hablamos 4 horas sin cortes con la verdad sobre la mesa.",
     "bio": "Abogado, conductor de 'El Método Rebord' y 'Hay Algo Ahí' en Blender. Creador de la doctrina HAGOV.",
     "lore": "Entrevistó a presidentes, sindicalistas y científicos durante horas sin filtro. Creó una comunidad de culto con su propia liturgia política y humor místico.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/tomas-rebord.jpg",
     "auraScore": 9.5,
     "caretaScore": 3.2
   },
@@ -1301,7 +1301,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El país se prende fuego y nosotros hacemos comedia.",
     "bio": "Actor, guionista y conductor de 'Escucho Ofertas' en Blender. Maestro de los sketches virales.",
     "lore": "Sus videos satíricos de los viernes en YouTube y streaming anticiparon con precisión quirúrgica todas las crisis políticas y sociales de los últimos 6 años.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/guille-aquino.jpg",
     "auraScore": 9.3,
     "caretaScore": 1.5
   },
@@ -1314,9 +1314,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "O sea, gordi, literalmente no puedo con esta energía.",
     "bio": "Personaje de culto creado por Julián Kartun (cantante de El Kuelgue) que explotó en Olga.",
     "lore": "Se convirtió en el fenómeno de humor más viral de 2024 en 'Se Extraña a la Nona' junto a Yayo, participando en publicidades masivas y shows multitudinarios.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/caro-pardiaco.jpg",
     "auraScore": 9.9,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "lucas-spadafora",
@@ -1327,9 +1327,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "El humor negro y el make up salvan vidas.",
     "bio": "Actor, comediante pionero de Instagram y conductor en canales de streaming.",
     "lore": "Ganador del Martín Fierro Digital a temprana edad. Famoso por sus parodias de familias tradicionales y su talento en el teatro musical.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/lucas-spadafora.jpg",
     "auraScore": 8.7,
-    "caretaScore": 3.0
+    "caretaScore": 3
   },
   {
     "id": "marti-benza",
@@ -1340,7 +1340,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hacer vlogs de mi vida real es mi terapia.",
     "bio": "YouTuber de vlogs de viajes, conductora de 'Tarde Tertulia' en Luzu y referente LGBT+.",
     "lore": "Compartió toda su vida y su noviazgo con Luli González ante millones de seguidores, logrando una transición exitosa a la conducción de streaming diario.",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/marti-benza.jpg",
     "auraScore": 9.1,
     "caretaScore": 2.2
   },
@@ -1353,9 +1353,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "La honestidad con la gente que nos mira es lo primero.",
     "bio": "Creadora de contenido, conductora en Luzu TV y figura destacada de TikTok.",
     "lore": "Conquistó las redes con su simpatía y vlogs diarios, construyendo junto a Marti Benza una de las comunidades más fieles de internet.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/luli-gonzalez.jpg",
     "auraScore": 8.9,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "sofi-gonet",
@@ -1366,7 +1366,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hola reinis, acompáñenme a gastar fortunas en París.",
     "bio": "La influencer de moda y lujo más vista de TikTok en Argentina.",
     "lore": "Creadora del formato 'Get Ready With Me' de alta gama en Argentina. Famosa por sus romances con empresarios, canjes internacionales y hablar de dinero sin pudor.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/sofi-gonet.jpg",
     "auraScore": 8.8,
     "caretaScore": 7.5
   },
@@ -1379,7 +1379,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Mi cara habla más rápido que mis palabras.",
     "bio": "Actriz, modelo y creadora con más de 15 millones de seguidores en TikTok.",
     "lore": "Reconocida mundialmente por su elasticidad gestual y humor visual. Novia del streamer Gaspi y protagonista de videos con figuras internacionales.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/juli-savioli.jpg",
     "auraScore": 9.2,
     "caretaScore": 1.5
   },
@@ -1392,9 +1392,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡La energía arriba siempre!",
     "bio": "Conductor de Luzu TV, animador de eventos masivos y creador de contenidos.",
     "lore": "Surgió con videos callejeros de humor y hoy es uno de los conductores más versátiles de Luzu TV, acompañando a las estrellas juveniles.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/fermin-bo.jpg",
     "auraScore": 8.5,
-    "caretaScore": 4.0
+    "caretaScore": 4
   },
   {
     "id": "ian-lucas",
@@ -1405,7 +1405,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Los sueños se cumplen trabajando todos los días.",
     "bio": "Actor, cantante y YouTuber con millones de fanáticos adolescentes en toda América Latina.",
     "lore": "Protagonizó desafíos virales multitudinarios, convivencias en mansiones de creadores de contenido y giras teatrales con entradas agotadas.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/ian-lucas.jpg",
     "auraScore": 8.3,
     "caretaScore": 5.8
   },
@@ -1418,9 +1418,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Trabajo detrás y delante de escena con perfil bajo.",
     "bio": "Hermano de Tini Stoessel, modelo internacional, productor de fiestas Bresh y streaming.",
     "lore": "El soltero más codiciado de la noche porteña. Vinculado sentimentalmente con Julieta Poggio y modelos internacionales.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/fran-stoessel.jpg",
     "auraScore": 8.6,
-    "caretaScore": 5.0
+    "caretaScore": 5
   },
   {
     "id": "lizardo-ponce",
@@ -1431,7 +1431,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¿Me estás jodiendo? ¡Contame todo!",
     "bio": "Periodista cordobés que explotó en la pandemia con sus vivos de Instagram. Conductor de streaming.",
     "lore": "Fue el gran anfitrión digital del encierro de 2020. Amigo íntimo de Tini, Oriana Sabatini y Yanina Latorre.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/lizardo-ponce.jpg",
     "auraScore": 8.4,
     "caretaScore": 6.5
   },
@@ -1444,7 +1444,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Amo emprender y ser dueña de mis proyectos.",
     "bio": "Ex estrella de Disney (Violetta), actriz, ex conductora de Luzu TV y dueña de Borja Café.",
     "lore": "Formó parte del equipo fundacional de Nadie Dice Nada antes de abrir su propio canal Loft Stream. Romances con Ruggero Pasquarelli y Gastón Soffritti.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/cande-molfese.jpg",
     "auraScore": 8.6,
     "caretaScore": 4.5
   },
@@ -1457,9 +1457,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "La música de fiesta y los perritos son mi mundo.",
     "bio": "Ex cantante líder de Agapornis, conductora de 'Estamos en Una' en Luzu y activista rescatista.",
     "lore": "Puso la voz al fenómeno de cumbia pop que sonó en todos los boliches durante una década. Hoy rescata animales y conduce en streaming.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/melina-lezcano.jpg",
     "auraScore": 8.9,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "martin-cirio",
@@ -1470,9 +1470,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Chicos, no me quemen la choza!",
     "bio": "El primer gran fenómeno de historias de Instagram en Argentina. Sobreviviente de una cancelación masiva.",
     "lore": "Creador de un léxico propio que marcó a millones. Tras ser llevado a juicio y declarado inocente, regresó al streaming llenando teatros en tiempo récord.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/martin-cirio.jpg",
     "auraScore": 9.4,
-    "caretaScore": 3.0
+    "caretaScore": 3
   },
   {
     "id": "marito-baracus",
@@ -1483,7 +1483,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Hola vieja! ¡Marito Kids para toda la familia!",
     "bio": "Pionero indiscutido de YouTube Argentina desde 2008 con sus doblajes bizarros.",
     "lore": "Dobló publicidades, películas y series infantiles con groserías legendarias. Sigue vigente como ícono del humor sin censura en Kick y YouTube.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/marito-baracus.jpg",
     "auraScore": 9.8,
     "caretaScore": 0.5
   },
@@ -1496,9 +1496,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Suscribite o te pasa algo malo.",
     "bio": "El primer YouTuber argentino en llenar el Luna Park con un show de comedia.",
     "lore": "Dominó las tendencias de YouTube durante años analizando televisión bizarra. Amigo de Duki y pionero en unir el trap con el contenido digital.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/el-demente.jpg",
     "auraScore": 8.7,
-    "caretaScore": 4.0
+    "caretaScore": 4
   },
   {
     "id": "paulina-cocina",
@@ -1509,7 +1509,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Gente, no le pongan crema a la carbonara por el amor de Dios!",
     "bio": "Socióloga y creadora del canal de cocina más visto de habla hispana.",
     "lore": "Enseñó a cocinar a millones de estudiantes y familias con humor y pragmatismo. Famosa por sus batallas en redes por el nombre del pastel de papa.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/paulina-cocina.jpg",
     "auraScore": 9.5,
     "caretaScore": 1.8
   },
@@ -1522,7 +1522,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Pegale un tiro en la rodilla para que aprenda.",
     "bio": "Actor platense creador del canal de resúmenes de cine y series más grande del continente.",
     "lore": "Creó frases inolvidables como 'Vamo a juga', 'Beso en la cola' y 'La vieja de Titanic', analizando películas con un humor brillante.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/jorge-pinarello.jpg",
     "auraScore": 9.8,
     "caretaScore": 0.9
   },
@@ -1535,7 +1535,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Esto no tiene ningún tipo de sentido.",
     "bio": "Streamer platense especializado en reacciones a realities, televisión bizarra y gaming.",
     "lore": "Sus coberturas de Gran Hermano y programas de citas alcanzaron cifras masivas de audiencia por su risa contagiosa y comentarios certeros.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/boffe-gp.jpg",
     "auraScore": 8.8,
     "caretaScore": 2.5
   },
@@ -1548,9 +1548,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Amigo, esto es una locura total.",
     "bio": "Uno de los streamers más vistos de la comunidad hispanohablante en Twitch y Kick.",
     "lore": "Famoso por sus streams caóticos de larga duración, amistades con Spreen e Iván de Pineda, y un fandom masivo en TikTok.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
-    "caretaScore": 3.0
+    "image": "assets/celebrities/carreraaa.jpg",
+    "auraScore": 9,
+    "caretaScore": 3
   },
   {
     "id": "robleis",
@@ -1561,7 +1561,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "De Olavarría a llenar el Movistar Arena.",
     "bio": "Uno de los primeros YouTubers en superar los 18 millones de suscriptores. Cantante pop masivo.",
     "lore": "Inspiró a toda una generación de creadores mostrando a su familia en videos de videojuegos y luego llenó estadios con su carrera musical.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/robleis.jpg",
     "auraScore": 9.3,
     "caretaScore": 2.2
   },
@@ -1574,7 +1574,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Prendemos el auto y recorremos Buenos Aires de noche.",
     "bio": "Pionero del formato IRL (en la vida real) en auto por las noches porteñas. Figura de Kick.",
     "lore": "Sufrió robos armados en vivo mientras streameaba en su auto y se levantó para ser una de las figuras mejor pagadas de la plataforma Kick.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/brunenger.jpg",
     "auraScore": 8.7,
     "caretaScore": 3.8
   },
@@ -1587,7 +1587,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Buen día! ¿Qué onda con esa cara?",
     "bio": "Creador de videos de humor absurdo e incómodo en la vía pública con millones de vistas.",
     "lore": "Su estilo de confrontación surrealista en la calle rompió el algoritmo de YouTube. Novio de Juli Savioli.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/gaspi.jpg",
     "auraScore": 9.6,
     "caretaScore": 0.5
   },
@@ -1600,7 +1600,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Los libros y el teatro me cambiaron la vida.",
     "bio": "Empezó recomendando libros en YouTube y terminó protagonizando series de Disney y teatro en calle Corrientes.",
     "lore": "El ejemplo de la evolución profesional de un YouTuber hacia la actuación seria en comedia musical y televisión internacional.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/kevsho.jpg",
     "auraScore": 8.8,
     "caretaScore": 2.8
   },
@@ -1613,7 +1613,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Si no sale mal en el primer intento, no es mi video.",
     "bio": "Creadora rosarina con más de 5 millones de suscriptores por su humor transparente.",
     "lore": "Su estilo sin poses ni maquillaje excesivo la convirtió en un referente de autenticidad para millones de jóvenes.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/angie-velasco.jpg",
     "auraScore": 9.2,
     "caretaScore": 1.2
   },
@@ -1626,9 +1626,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Empezamos en el Quinto Escalón y llenamos el Bernabéu.",
     "bio": "El máximo exponente de la música urbana argentina. Llenó dos estadios River y el Santiago Bernabéu.",
     "lore": "Ganador del Quinto Escalón en Parque Rivadavia, rechazó contratos leoninos de discográficas para construir el movimiento del trap nacional. En pareja con Emilia Mernes.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
-    "caretaScore": 1.0
+    "image": "assets/celebrities/duki.jpg",
+    "auraScore": 10,
+    "caretaScore": 1
   },
   {
     "id": "emilia-mernes",
@@ -1639,7 +1639,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Detrás del brillo hay horas interminables de ensayo.",
     "bio": "De Rombai a llenar 10 Movistar Arena y el estadio de Vélez con su estética de los 2000.",
     "lore": "La estrella pop femenina más convocante del momento. Su romance con Duki es considerado el matrimonio real de la música urbana.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/emilia-mernes.jpg",
     "auraScore": 9.8,
     "caretaScore": 4.5
   },
@@ -1652,9 +1652,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Una sesión en mi cuarto de Ramos Mejía cambió la música mundial.",
     "bio": "Productor de Ramos Mejía. Ganador de múltiples Grammy Latinos y récords Guinness.",
     "lore": "Desde su habitación produjo las sesiones históricas con Shakira (Waka Waka del despecho), Quevedo y Villano Antillano, sin mostrar nunca sus ojos.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
-    "caretaScore": 2.0
+    "image": "assets/celebrities/bizarrap.jpg",
+    "auraScore": 10,
+    "caretaScore": 2
   },
   {
     "id": "nicki-nicole",
@@ -1665,7 +1665,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "De Rosario para el mundo entero con estilo.",
     "bio": "La primera argentina en cantar con Jimmy Fallon. Estrella de hip hop y R&B latino.",
     "lore": "Ex de Trueno y Peso Pluma (a quien dejó públicamente por infidelidad en Las Vegas). Una de las voces más virtuosas de la música latina.",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/nicki-nicole.jpg",
     "auraScore": 9.4,
     "caretaScore": 3.8
   },
@@ -1678,7 +1678,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "De hacer videos tontos en mi cuarto a dos estadios River llenos.",
     "bio": "De YouTuber de Quilmes a llenar dos estadios River Plate consecutivos de forma independiente.",
     "lore": "La artista más escuchada de Spotify en Argentina. Su superación tras su separación de Rusherking y su compromiso con J Rei conmovieron a sus millones de fans.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/maria-becerra.jpg",
     "auraScore": 9.9,
     "caretaScore": 1.5
   },
@@ -1691,9 +1691,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "La Boca en el pecho y el rap en la sangre.",
     "bio": "Campeón nacional de Red Bull Batalla de Gallos y ganador del Premio Gardel de Oro.",
     "lore": "Hijo del legendario rapero Pedro Peligro. Autor de 'Mamichula' y 'Tierra Zanta', llevando la identidad barrial argentina a los festivales más importantes del planeta.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/trueno.jpg",
     "auraScore": 9.8,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "milo-j",
@@ -1704,7 +1704,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tengo 17 años pero canto lo que siento desde adentro.",
     "bio": "Fenómeno musical precoz. Grabó una sesión histórica con Bizarrap y llenó el estadio de Morón con 17 años.",
     "lore": "Sorprendió a la crítica con una madurez vocal y lírica impropia de su edad, rescatando sonidos del folclore y rock nacional.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/milo-j.jpg",
     "auraScore": 9.7,
     "caretaScore": 0.8
   },
@@ -1717,7 +1717,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hacía música con la tobillera puesta y hoy lleno el Luna Park.",
     "bio": "Pionero del RKT argentino. Grabó éxitos masivos mientras cumplía prisión domiciliaria.",
     "lore": "Superó un pasado carcelario para convertirse en ícono del RKT y brillar en Bake Off Famosos con una simpatía y ternura que conquistaron a toda la familia.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/callejero-fino.jpg",
     "auraScore": 9.5,
     "caretaScore": 1.2
   },
@@ -1730,7 +1730,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tu guachito me llama cuando vos no estás, papi.",
     "bio": "Pionera femenina del freestyle en Red Bull y reina indiscutida del RKT con 'Dos Besitos'.",
     "lore": "Madre de dos hijas, superó situaciones de violencia de género extremas para convertirse en jurado de Got Talent y referente de la cultura de las motos y el RKT.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/la-joaqui.jpg",
     "auraScore": 9.6,
     "caretaScore": 2.5
   },
@@ -1743,7 +1743,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Sola, sola se queda sola llorando en la habitación.",
     "bio": "Cantante de Monte Grande, autor de hits globales como 'Entre Nosotros' y 'Sola'.",
     "lore": "Su canción 'Sola' dedicada a su madre víctima de violencia de género emocionó al continente. Ex novio de Taichu y figura de exportación de la música urbana.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/tiago-pzk.jpg",
     "auraScore": 9.2,
     "caretaScore": 3.5
   },
@@ -1756,7 +1756,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Apagame la cámara que te clavo un doble tempo en un segundo.",
     "bio": "Freestyler legendario del Quinto Escalón, productor, streamer y novio de Tuli Acosta.",
     "lore": "Famoso por su velocidad métrica ('doble tempo') insuperable y por unir a los máximos exponentes del trap en 'Además de Mí Remix'.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/lit-killah.jpg",
     "auraScore": 9.1,
     "caretaScore": 2.8
   },
@@ -1769,7 +1769,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¿Cómo que se canceló por sismo? ¡Saltamos más fuerte!",
     "bio": "Fundador del Quinto Escalón a los 13 años. Sus recitales provocan temblores en los edificios de Buenos Aires.",
     "lore": "El visionario que inventó la movida del trap argentino en una plaza. Amante del tango moderno y dueño de su propia joyería Don Rouch.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/ysy-a.jpg",
     "auraScore": 9.9,
     "caretaScore": 0.8
   },
@@ -1782,8 +1782,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Ella es una loca, me llama y me provoca.",
     "bio": "Autor de 'Loca' junto a Duki y Cazzu (con remix de Bad Bunny que abrió el trap al mundo).",
     "lore": "Pionero en sonar en radios internacionales con trap argentino. Superó períodos de depresión para regresar con álbumes íntimos de altísimo nivel.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
+    "image": "assets/celebrities/khea.jpg",
+    "auraScore": 9,
     "caretaScore": 2.5
   },
   {
@@ -1795,9 +1795,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Me fui mundial con la China y con la música.",
     "bio": "Cantante pop urbano de Santiago del Estero. Ex novio de María Becerra, La China Suárez y Ángela Torres.",
     "lore": "Creador de la frase 'Me fui mundial'. Su historial amoroso con las mujeres más hermosas y polémicas del espectáculo lo mantiene en el centro del chimento.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/rusherking.jpg",
     "auraScore": 8.4,
-    "caretaScore": 7.0
+    "caretaScore": 7
   },
   {
     "id": "luck-ra",
@@ -1808,9 +1808,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¿A quién no le gusta una morocha que le guste el cuarteto?",
     "bio": "De cantante de trap a revivir el cuarteto cordobés para todo el país con 'La Morocha' y 'Hola Perdida'.",
     "lore": "El artista más festivo de la Argentina actual. En pareja con La Joaqui, llenó estadios y revolucionó la música tropical con colaboraciones históricas.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/luck-ra.jpg",
     "auraScore": 9.3,
-    "caretaScore": 3.0
+    "caretaScore": 3
   },
   {
     "id": "bm",
@@ -1821,7 +1821,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Te estás portando mal, serás castigada.",
     "bio": "De albañil y repartidor en Chivilcoy a crear el hit del año 'M.A (Mejores Amigos)'.",
     "lore": "Su tema explotó en el vestuario de la Selección Argentina y lo llevó al remix con Lola Índigo y Callejero Fino. Novio de Lucila 'La Tora'.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/bm.jpg",
     "auraScore": 8.8,
     "caretaScore": 2.2
   },
@@ -1834,8 +1834,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Yo no hago música para que bailes en TikTok, hago arte conceptual.",
     "bio": "El artista más vanguardista y disruptivo del género urbano. Creador de las obras maestras 'Post Mortem' y 'Por Cesárea'.",
     "lore": "Enfrentó en un avión a libertarios que lo insultaron en Twitter, convirtiendo la confrontación en un video viral épico. Llenó el Luna Park y el Movistar Arena con shows teatrales oscuros.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
+    "image": "assets/celebrities/dillom.jpg",
+    "auraScore": 10,
     "caretaScore": 0.5
   },
   {
@@ -1847,7 +1847,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "No me pidan que no vuelva a intentar que las cosas vuelvan a su lugar.",
     "bio": "Campeón Internacional de Red Bull 2018 y autor del himno de la Selección Argentina 'Arrancármelo'.",
     "lore": "Llenó el estadio de Racing y Argentinos Juniors cantando con el Indio Solari y Fito Páez. Símbolo del rap con contenido social y rock nacional.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/wos.jpg",
     "auraScore": 9.9,
     "caretaScore": 1.2
   },
@@ -1860,7 +1860,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hacemos música extraterrestre con Paco.",
     "bio": "Guitarrista prodigio, cantante y revolucionario del funk y trap junto a Paco Amoroso.",
     "lore": "Su sesión en el Tiny Desk de NPR en Washington se convirtió en el video musical argentino más elogiado en el mundo entero en 2024.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/ca7riel.jpg",
     "auraScore": 9.9,
     "caretaScore": 0.9
   },
@@ -1873,7 +1873,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El estilo no se compra, se transpira en el escenario.",
     "bio": "Baterista, rapero y mitad indiscutible del fenómeno Ca7riel & Paco Amoroso.",
     "lore": "Sufrió una caída de 2 metros del escenario en México y siguió cantando como una estrella de rock inmortal. Elogiado por artistas de todo el planeta.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/paco-amoroso.jpg",
     "auraScore": 9.8,
     "caretaScore": 0.8
   },
@@ -1886,8 +1886,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Y de Florencio Varela es El Noba, papá! ¡Tamo chelo!",
     "bio": "El albañil que inventó la frase 'Tamo Chelo' y se convirtió en leyenda del RKT antes de su trágico accidente.",
     "lore": "Símbolo de la alegría de los barrios humildes y la pasión por las motos. Su música sigue sonando en caravanas multitudinarias en toda la provincia.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
+    "image": "assets/celebrities/el-noba.jpg",
+    "auraScore": 10,
     "caretaScore": 0.2
   },
   {
@@ -1899,8 +1899,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Alce las manos el que no corre ninguna!",
     "bio": "El padre indiscutido de la cumbia villera en Argentina con Damas Gratis.",
     "lore": "Llevó la cumbia de los monoblocks al festival Lollapalooza y a sonar en las consagraciones de la Selección Argentina con su teclado con metralleta.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
+    "image": "assets/celebrities/pablo-lescano.jpg",
+    "auraScore": 10,
     "caretaScore": 0.5
   },
   {
@@ -1912,9 +1912,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Yo soy un muchacho de barrio que vive enamorado.",
     "bio": "Ídolo de la cumbia tropical. Ex pareja de Karina La Princesita, Silvina Luna y Barby Silenzi.",
     "lore": "Protagonista de mil separaciones y reconciliaciones mediáticas. Finalista del Bailando y MasterChef, querido por todo el arco del espectáculo.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/el-polaco.jpg",
     "auraScore": 9.1,
-    "caretaScore": 4.0
+    "caretaScore": 4
   },
   {
     "id": "karina-la-princesita",
@@ -1925,7 +1925,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Con la misma moneda te pagaré, infiel.",
     "bio": "La voz femenina más importante de la cumbia argentina. Ex pareja de El Polaco y Sergio 'Kun' Agüero.",
     "lore": "Sus canciones de despecho y traición son himnos nacionales. Se plantó como jurado inflexible en el Cantando destruyendo a los mediáticos caretas.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/karina-la-princesita.jpg",
     "auraScore": 9.6,
     "caretaScore": 1.8
   },
@@ -1938,9 +1938,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Tumbando el club con todos los pibes de la plaza.",
     "bio": "Pilar de 'Modo Diablo' junto a Duki e YSY A. Creador del himno que consagró al trap nacional.",
     "lore": "Con 'Tumbando el Club Remix' logró la colaboración más importante de la historia de la música urbana argentina, reuniendo a 10 artistas en un solo video.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/neo-pistea.jpg",
     "auraScore": 9.5,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "bhavi",
@@ -1951,7 +1951,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Puff puff pass, estamos en otra dimensión.",
     "bio": "Nacido en Bélgica y criado en Mar del Plata. El cantante más histriónico y creativo del trap.",
     "lore": "Famoso por sus óperas de trap, shows con comida gigante en el escenario y su energía desbordante en festivales masivos.",
-    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/bhavi.jpg",
     "auraScore": 9.2,
     "caretaScore": 1.9
   },
@@ -1964,9 +1964,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "A mí me respetan por mi música y por mi dignidad.",
     "bio": "La mujer que abrió el camino del trap en Argentina. Madre de Inti.",
     "lore": "Traicionada internacionalmente por Christian Nodal y Ángela Aguilar tras tener a su hija, respondió con un silencio digno y reapareció cantando en vivo con ovaciones mundiales.",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/cazzu.jpg",
     "auraScore": 9.9,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "christian-nodal",
@@ -1977,7 +1977,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El amor me llegó de golpe con Angelita.",
     "bio": "Cantante regional mexicano. Dejó a Cazzu a los meses de ser padre para casarse con Ángela Aguilar.",
     "lore": "El enemigo público número uno de las redes sociales argentinas. Cancelación unánime por su conducta con Cazzu y su boda express.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/christian-nodal.jpg",
     "auraScore": 4.5,
     "caretaScore": 9.9
   },
@@ -1990,7 +1990,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Canto y actúo desde que tengo memoria.",
     "bio": "Ganadora del Bailando, actriz de Simona y cantante pop. Novia de Rusherking.",
     "lore": "Creció en el centro de la escena artística argentina. Su romance con Rusherking generó picantes idas y vueltas con María Becerra y La China Suárez.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/angela-torres.jpg",
     "auraScore": 8.7,
     "caretaScore": 3.8
   },
@@ -2003,8 +2003,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "¿Quiénes son? ¡Que se vengan de a uno!",
     "bio": "De Chiquititas y Casi Ángeles a llenar el estadio de Vélez y ser ícono de la cultura pop y la libertad.",
     "lore": "Enfrentó ataques presidenciales con canciones ('Fanático'), llenó estadios con su 'Disciplina Tour' y blanqueó su romance con Pedro Rosemblat siendo la persona más querida del país.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
+    "image": "assets/celebrities/lali-esposito.jpg",
+    "auraScore": 10,
     "caretaScore": 1.2
   },
   {
@@ -2016,9 +2016,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Es Miranda, mi amor!",
     "bio": "Compositor brillante y cantante líder de Miranda! con más de 20 años de éxitos ininterrumpidos.",
     "lore": "Revivió todo el catálogo pop argentino con 'Hotel Miranda!' llenando 4 estadios de Ferro y el Movistar Arena junto a todas las nuevas generaciones.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/ale-sergi.jpg",
     "auraScore": 9.7,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "juliana-gattas",
@@ -2029,7 +2029,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El drama con ritmo bailable es la mejor medicina.",
     "bio": "Cantante de Miranda! y solista de pop electrónico con estética de alta moda.",
     "lore": "Ícono de la moda excéntrica y la voz femenina de los estribillos más cantados en los casamientos y boliches del país.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/juliana-gattas.jpg",
     "auraScore": 9.6,
     "caretaScore": 1.5
   },
@@ -2042,9 +2042,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Con vos es 4 de noviembre cada media hora.",
     "bio": "Líder de Tan Biónica. Sobreviviente de adicciones y tragedias, llenó 5 estadios en su regreso triunfal.",
     "lore": "Protagonista de choques legendarios y episodios policiales dramáticos. Su regreso con Tan Biónica llenando River, Vélez y La Plata fue el evento emocional del año.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/chano-charpentier.jpg",
     "auraScore": 9.8,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "abel-pintos",
@@ -2055,7 +2055,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Cantar con el alma es el único camino.",
     "bio": "El artista folclórico y melódico con más récords de teatros Ópera y estadios consecutivos en Argentina.",
     "lore": "De niño apadrinado por León Gieco a emperador de la música popular. Cero polémicas, perfil familiar intachable y venta de entradas récord.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/abel-pintos.jpg",
     "auraScore": 9.7,
     "caretaScore": 2.5
   },
@@ -2068,9 +2068,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Intento no pensar en vos pero me gana la noche.",
     "bio": "Hermano del Potro Rodrigo y dueño indiscutido de los bailes de cuarteto de Córdoba y el país.",
     "lore": "Llenó el Luna Park innumerables veces con canciones de desamor desgarradoras como 'Dale Vieja Dale' e 'Intento'.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/ulises-bueno.jpg",
     "auraScore": 9.3,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "lionel-messi",
@@ -2081,9 +2081,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¿Qué mirás, bobo? Andá pa allá, bobo.",
     "bio": "El mejor jugador de la historia del fútbol. Campeón del Mundo en Qatar 2022 y 8 veces Balón de Oro.",
     "lore": "Alcanzó la gloria máxima dándole la tercera estrella a la Argentina. Su frase 'Qué mirás bobo' a Weghorst en cuartos de final es patrimonio de la cultura nacional.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
-    "caretaScore": 0.0
+    "image": "assets/celebrities/lionel-messi.jpg",
+    "auraScore": 10,
+    "caretaScore": 0
   },
   {
     "id": "antonela-roccuzzo",
@@ -2094,8 +2094,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Familia unida siempre.",
     "bio": "La mujer de Lionel Messi desde la infancia en Rosario. Ícono de moda, elegancia y bajo perfil.",
     "lore": "Amada por los 47 millones de argentinos. Embajadora de marcas de lujo mundial (Tiffany, Alo Yoga) sin haber dado un solo escándalo mediático en 15 años.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
+    "image": "assets/celebrities/antonela-roccuzzo.jpg",
+    "auraScore": 10,
     "caretaScore": 0.5
   },
   {
@@ -2107,7 +2107,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "A los que dudaron, que me tiren de la...",
     "bio": "Bicampeón de América y Campeón del Mundo. El alma gemela de Messi en la cancha.",
     "lore": "Jugó desgarrado cuartos de final del Mundial. Protagonizó la separación más mediática con Camila Homs y el romance explosivo con Tini Stoessel.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/rodrigo-de-paul.jpg",
     "auraScore": 9.2,
     "caretaScore": 7.5
   },
@@ -2120,9 +2120,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hoy fumo, hoy bebo, hoy ando suelta.",
     "bio": "De Violetta en Disney a llenar 5 Hipódromos de Palermo y estadios en España y América.",
     "lore": "Publicó su álbum más íntimo y descarnado 'Un Mechón de Pelo', respondiendo a las acusaciones de Camila Homs y sanando heridas de exposición mediática.",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/tini-stoessel.jpg",
     "auraScore": 9.8,
-    "caretaScore": 3.0
+    "caretaScore": 3
   },
   {
     "id": "cami-homs",
@@ -2133,7 +2133,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Jamás me van a ver derrotada.",
     "bio": "Madre de los hijos de De Paul, finalista del Bailando, ganadora de Bake Off Famosos y pareja del Principito Sosa.",
     "lore": "Se convirtió en ícono de las mujeres que salieron adelante tras ser abandonadas por futbolistas. Conquistó a la audiencia en Bake Off demostrando calidez y talento.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/cami-homs.jpg",
     "auraScore": 9.3,
     "caretaScore": 3.2
   },
@@ -2146,8 +2146,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "En el fútbol y en la vida hay que tomar decisiones difíciles.",
     "bio": "Figura del Liverpool de Inglaterra y pieza clave en la final del Mundial de Qatar 2022.",
     "lore": "Dejó a su novia de 5 años Cami Mayan en plena Navidad tras salir Campeón del Mundo para ponerse en pareja con la mejor amiga de ella, Ailén Cova.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 8.0,
+    "image": "assets/celebrities/alexis-macallister.jpg",
+    "auraScore": 8,
     "caretaScore": 8.9
   },
   {
@@ -2159,7 +2159,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Me quedé sin perro pero me quedé con toda la dignidad.",
     "bio": "Licenciada en Administración, influencer de moda y conductora estrella de 'Patria y Familia' en Luzu TV.",
     "lore": "Convirtió el dolor de la traición de Mac Allister y el despojo de su perro en Inglaterra en una carrera fulgurante de streaming y simpatía nacional.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/cami-mayan.jpg",
     "auraScore": 9.7,
     "caretaScore": 1.5
   },
@@ -2172,8 +2172,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "El amor verdadero no sabe de tiempos.",
     "bio": "Diseñadora de indumentaria y actual prometida de Alexis Mac Allister en Inglaterra.",
     "lore": "Amiga de la infancia de Alexis desde los 10 años. Asistía a las meriendas con Cami Mayan antes de quedarse con el jugador tras el Mundial.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 5.0,
+    "image": "assets/celebrities/ailen-cova.jpg",
+    "auraScore": 5,
     "caretaScore": 9.5
   },
   {
@@ -2185,7 +2185,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Juego con el corazón por la camiseta argentina.",
     "bio": "Mejor Jugador Joven del Mundial Qatar 2022 y venta récord de 121 millones de euros al Chelsea.",
     "lore": "Protagonizó la separación del año con Valentina Cervantes tras pedirle 'vivir la etapa de soltería que no tuvo de pibe', desatando la furia de las redes.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/enzo-fernandez.jpg",
     "auraScore": 8.4,
     "caretaScore": 8.2
   },
@@ -2198,9 +2198,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Acepté su decisión con dolor pero me volví a Argentina a laburar.",
     "bio": "Madre de Olivia y Benjamín. Acompañó a Enzo Fernández desde que no tenían plata para pañales.",
     "lore": "Tras el pedido de separación de Enzo, armó las valijas con sus dos bebés, volvió a Buenos Aires y firmó contratos de modelo y panelista recibiendo el amor de todo el país.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/valentina-cervantes.jpg",
     "auraScore": 9.9,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "leandro-paredes",
@@ -2211,9 +2211,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Si tocan a uno, tocan a todos.",
     "bio": "Campeón del Mundo y bicampeón de América. El dueño de los tiros libres y el temple en la Roma.",
     "lore": "Famoso por tirarle el pelotazo al banco de suplentes de Países Bajos en el partido más caliente de Qatar. En pareja con Camila Galante desde los 14 años.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/leandro-paredes.jpg",
     "auraScore": 9.7,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "camila-galante",
@@ -2224,7 +2224,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Juntos desde que éramos dos chicos soñadores.",
     "bio": "Empresaria de cosméticos y esposa de Leandro Paredes desde la adolescencia.",
     "lore": "Una de las botineras más queridas y respetadas del grupo íntimo de la Scaloneta. Cero escándalos, puro amor familiar y emporio propio de cremas.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/camila-galante.jpg",
     "auraScore": 9.5,
     "caretaScore": 1.5
   },
@@ -2237,8 +2237,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Mirá que te como, hermano. Mirá que te como.",
     "bio": "Dos veces ganador del Premio The Best al Mejor Arquero del Mundo y Guante de Oro en Qatar.",
     "lore": "La atajada a Kolo Muani en el minuto 123 es el milagro deportivo más grande de la historia argentina. Amado por sus bailes en los penales y desparpajo total.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
+    "image": "assets/celebrities/dibu-martinez.jpg",
+    "auraScore": 10,
     "caretaScore": 0.5
   },
   {
@@ -2250,7 +2250,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Emi en casa es el papá más dulce del mundo.",
     "bio": "Diseñadora de interiores portuguesa y esposa de Dibu Martínez a quien conoció en una parada de colectivos en Londres.",
     "lore": "Conquistó al arquero antes de que fuera famoso. Administra sus empresas infantiles y comparte momentos íntimos de la familia campeona del mundo.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/mandinha-martinez.jpg",
     "auraScore": 9.4,
     "caretaScore": 1.2
   },
@@ -2263,7 +2263,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Bueno, vamo a juga. ¿Qué rompimo?",
     "bio": "Máximo goleador histórico del Manchester City, streamer furor y CEO del equipo de esports KRÜ.",
     "lore": "Su retiro forzado por una arritmia cardíaca lo transformó en uno de los creadores de contenido más graciosos y espontáneos de internet en Kings League y Twitch.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/kun-aguero.jpg",
     "auraScore": 9.8,
     "caretaScore": 2.5
   },
@@ -2276,9 +2276,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Acompañarlo en sus momentos difíciles fue mi mayor aprendizaje.",
     "bio": "Modelo, empresaria de ropa deportiva y madre de Olivia junto al Kun Agüero.",
     "lore": "Acompañó al Kun durante su internación cardíaca en Barcelona y construyó junto a él una vida de lujo y proyectos empresariales en Miami.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
-    "caretaScore": 3.0
+    "image": "assets/celebrities/sofia-calzetti.jpg",
+    "auraScore": 9,
+    "caretaScore": 3
   },
   {
     "id": "pocho-lavezzi",
@@ -2289,9 +2289,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "La vida hay que vivirla con alegría y sin caretas.",
     "bio": "Subcampeón del Mundo en 2014, ex delantero del PSG y el galán indiscutido del fútbol argentino.",
     "lore": "Famoso por tirarle agua al DT Alejandro Sabella en pleno partido del Mundial. Tras su retiro millonario en China protagonizó episodios de salud delicados en Punta del Este.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/pocho-lavezzi.jpg",
     "auraScore": 9.1,
-    "caretaScore": 4.0
+    "caretaScore": 4
   },
   {
     "id": "mauro-zarate",
@@ -2302,7 +2302,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Pasó el equipo grande.",
     "bio": "Delantero de jerarquía internacional que protagonizó la traición más furiosa al pasar de Vélez a Boca.",
     "lore": "Prometió no jugar en otro club de Argentina que no fuera Vélez y firmó con Boca. Su frase 'pasó el equipo grande' tras eliminar a Vélez por penales desató amenazas de muerte.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/mauro-zarate.jpg",
     "auraScore": 7.5,
     "caretaScore": 8.8
   },
@@ -2315,8 +2315,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "A mi marido lo defiendo a muerte contra toda la platea.",
     "bio": "Modelo, sobreviviente de cáncer de mama y panelista combativa de televisión.",
     "lore": "Defendió a Mauro Zárate en todos los programas de televisión durante el linchamiento de los hinchas de Vélez, demostrando un coraje y fidelidad incondicional.",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
+    "image": "assets/celebrities/natalie-weber.jpg",
+    "auraScore": 9,
     "caretaScore": 3.5
   },
   {
@@ -2328,7 +2328,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El gol en la final de la Copa América es para toda la vida.",
     "bio": "Capitán y goleador del Inter de Milán. Máximo goleador de la Copa América 2024.",
     "lore": "Metió el penal decisivo contra Países Bajos y el gol de la consagración contra Colombia en Miami. Casado con la influencer mendocina Agustina Gandolfo.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/lautaro-martinez.jpg",
     "auraScore": 9.7,
     "caretaScore": 1.5
   },
@@ -2341,7 +2341,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Entrenar y comer sano con disciplina.",
     "bio": "Empresaria gastronómica en Milán, influencer de fitness y esposa de Lautaro Martínez.",
     "lore": "Dueña de su propio restaurante de lujo en el centro de Milán. Famosa por congelar la camiseta de los rivales en el freezer como cábala en el Mundial.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/agustina-gandolfo.jpg",
     "auraScore": 9.2,
     "caretaScore": 3.8
   },
@@ -2354,8 +2354,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Ganar el Mundial, la Champions y la Libertadores con humildad.",
     "bio": "El único jugador de la historia en ganar Mundial, Champions, Libertadores y Copa América antes de los 24.",
     "lore": "De Calchín al mundo entero. Presión incansable en la cancha y amor eterno con su novia de la infancia Emilia Ferrero.",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
+    "image": "assets/celebrities/julian-alvarez.jpg",
+    "auraScore": 10,
     "caretaScore": 0.5
   },
   {
@@ -2367,8 +2367,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Un solo autógrafo por favor que nos tenemos que ir.",
     "bio": "Profesora de educación física y novia de toda la vida de Julián Álvarez.",
     "lore": "Viralizada en Navidad cuando intentó ordenar a un grupo de nenes que pedían firmas de Julián en Calchín. Mantienen una relación ultra sólida en Madrid.",
-    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 8.0,
+    "image": "assets/celebrities/emilia-ferrero.jpg",
+    "auraScore": 8,
     "caretaScore": 4.5
   },
   {
@@ -2380,9 +2380,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "No me importan las críticas, somos Campeones del Mundo.",
     "bio": "Presidente de la AFA que eligió a Lionel Scaloni cuando nadie confiaba.",
     "lore": "Subió a la Difunta Correa con la Copa del Mundo en la espalda. Dueño de un poder político inmenso y de fotos virales siendo secado por asistentes con toallas.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/chiqui-tapia.jpg",
     "auraScore": 8.8,
-    "caretaScore": 8.0
+    "caretaScore": 8
   },
   {
     "id": "pipo-gorosito",
@@ -2393,9 +2393,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Si te gusta el durazno, bancate la pelusa.",
     "bio": "Ex 10 clásico de River y San Lorenzo, director técnico y generador serial de frases memorables.",
     "lore": "Conferencias de prensa de culto donde liquida a los entrenadores modernos que usan drones y palabras en inglés.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/pipo-gorosito.jpg",
     "auraScore": 9.2,
-    "caretaScore": 1.0
+    "caretaScore": 1
   },
   {
     "id": "javier-milei",
@@ -2406,7 +2406,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Viva la libertad carajo! No hay plata.",
     "bio": "Economista libertario que pasó de panelista explosivo a Presidente de la Nación Argentina.",
     "lore": "Romance mediático con Fátima Florez y posterior noviazgo con Yuyito González en el Teatro Colón y la Quinta de Olivos. Maneja su cuenta de Twitter personalmente las 24 horas del día.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/javier-milei.jpg",
     "auraScore": 9.2,
     "caretaScore": 6.5
   },
@@ -2419,8 +2419,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Estoy enamorada del hombre más inteligente del mundo.",
     "bio": "Ex sex symbol de los 80, conductora de 'Empezar el Día' y actual pareja de Javier Milei.",
     "lore": "De tapa de Playboy y romances con Carlos Menem a ser la primera dama libertaria, comentando los besos y cenas con el Presidente todas las mañanas al aire.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 8.0,
+    "image": "assets/celebrities/yuyito-gonzalez.jpg",
+    "auraScore": 8,
     "caretaScore": 7.8
   },
   {
@@ -2432,7 +2432,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Soy Cristina, soy Moria, soy Susana y soy Fátima!",
     "bio": "La imitadora más taquillera de la historia del teatro argentino. Ex pareja de Javier Milei.",
     "lore": "Llenó teatros en Mar del Plata y Las Vegas. Su romance de alta intensidad y posterior separación presidencial fue tapa de todos los diarios del mundo.",
-    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/fatima-florez.jpg",
     "auraScore": 8.9,
     "caretaScore": 5.2
   },
@@ -2445,8 +2445,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Argentina ante todo, no me arrodillo ante nadie.",
     "bio": "Abogada y Vicepresidenta de la Nación. Defensora de las víctimas del terrorismo y las tradiciones patrias.",
     "lore": "Famosa por sus intervenciones implacables en el Senado, mate en mano, vestidos tradicionales en festivales folclóricos y tensiones internas con la Casa Rosada.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 9.0,
+    "image": "assets/celebrities/victoria-villarruel.jpg",
+    "auraScore": 9,
     "caretaScore": 4.8
   },
   {
@@ -2458,9 +2458,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "Javier es el líder, yo cuido el movimiento.",
     "bio": "Hermana de Javier Milei y Secretaria General de la Presidencia. El poder real de La Libertad Avanza.",
     "lore": "Lectora de cartas del tarot, escultora de tortas y estratega política que armó el partido que ganó la presidencia sin estructura previa.",
-    "image": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/karina-milei.jpg",
     "auraScore": 8.5,
-    "caretaScore": 6.0
+    "caretaScore": 6
   },
   {
     "id": "mauricio-macri",
@@ -2471,7 +2471,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Pasaron cosas, pero no se inunda más.",
     "bio": "Presidente de la Nación (2015-2019), Presidente más ganador de Boca Juniors y presidente del PRO.",
     "lore": "Famoso por sus bailes con globos amarillos, frases como 'no se inunda más' y sus torneos mundiales de Bridge en Europa.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/mauricio-macri.jpg",
     "auraScore": 8.2,
     "caretaScore": 8.5
   },
@@ -2484,9 +2484,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "No se hagan los rulos. La historia ya me absolvió.",
     "bio": "Dos veces Presidenta de la Nación y Vicepresidenta. La figura política más influyente del siglo XXI en Argentina.",
     "lore": "Sobreviviente a un atentado con arma de fuego en la puerta de su casa. Sus discursos de horas en cadena nacional marcaron a fuego la política argentina.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/cristina-kirchner.jpg",
     "auraScore": 9.8,
-    "caretaScore": 7.0
+    "caretaScore": 7
   },
   {
     "id": "patricia-bullrich",
@@ -2497,7 +2497,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "El que las hace, las paga. Sin vueltas.",
     "bio": "Ministra de Seguridad de la Nación. Líder de la política de mano dura y despeje de cortes de calle.",
     "lore": "Pasó de la militancia juvenil montonera a ser la cara más dura de la derecha y la seguridad en Argentina. Famosa por sus videos probando armas Taser.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/patricia-bullrich.jpg",
     "auraScore": 8.9,
     "caretaScore": 6.8
   },
@@ -2510,7 +2510,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Pudimos ganar la provincia recorriendo pueblo por pueblo.",
     "bio": "Gobernador de la Provincia de Buenos Aires reelecto y ex Ministro de Economía.",
     "lore": "Hizo campaña recorriendo los 135 municipios bonaerenses en un auto Renault Clio viejo, consolidándose como el principal referente de la oposición.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/axel-kicillof.jpg",
     "auraScore": 8.4,
     "caretaScore": 5.5
   },
@@ -2523,8 +2523,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Hay que discutir con números y racionalidad técnica.",
     "bio": "Presidente de la UCR, Senador Nacional y ex Ministro de Economía de la 125.",
     "lore": "Autor de la resolución 125 que desató el conflicto con el campo en 2008. Su foto con Juana Viale en un auto y sus votaciones a mano alzada en el Senado fueron virales.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 7.0,
+    "image": "assets/celebrities/martin-lousteau.jpg",
+    "auraScore": 7,
     "caretaScore": 8.9
   },
   {
@@ -2536,7 +2536,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Pampita es la mujer de mi vida pero la política es despiadada.",
     "bio": "Empresario gastronómico, ex legislador y ex Ministro de Desarrollo Económico porteño.",
     "lore": "De pedirle casamiento a Pampita con violinistas en el Caribe a renunciar a su cargo por denuncias y ser internado en una clínica de rehabilitación en Entre Ríos.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/roberto-garcia-moritan.jpg",
     "auraScore": 5.5,
     "caretaScore": 9.6
   },
@@ -2549,8 +2549,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Mi querida Fabiola organizó un brindis que no debió haberse hecho.",
     "bio": "Presidente de la Nación (2019-2023). Protagonista de los mayores escándalos de Olivos.",
     "lore": "Su presidencia quedó marcada por la foto del cumpleaños en cuarentena estricta en Olivos, y tras su mandato fue denunciado judicialmente por violencia de género por Fabiola Yáñez.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 2.0,
+    "image": "assets/celebrities/alberto-fernandez.jpg",
+    "auraScore": 2,
     "caretaScore": 9.9
   },
   {
@@ -2562,8 +2562,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "Decime algo lindo antes de que te vayas.",
     "bio": "Panelista e hija de Roberto Pettinato. Protagonista del video filtrado con Alberto Fernández.",
     "lore": "Los videos de ella tomando cerveza y bromeando con Alberto Fernández adentro del despacho presidencial de la Casa Rosada causaron conmoción nacional.",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 6.0,
+    "image": "assets/celebrities/tamara-pettinato.jpg",
+    "auraScore": 6,
     "caretaScore": 8.5
   },
   {
@@ -2575,9 +2575,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Basta chicos! ¡Yo no manejo el rating, manejo un Rolls Royce!",
     "bio": "Heredero de Felfort, showman absoluto y la deidad máxima de los memes en Argentina.",
     "lore": "Llegó a la televisión con guardaespaldas armados, cantando musicales en cuero y comprando espacios de aire. Su frase '¡Maiameee!' y sus peleas con Guido Süller son patrimonio nacional.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 10.0,
-    "caretaScore": 1.0
+    "image": "assets/celebrities/ricardo-fort.jpg",
+    "auraScore": 10,
+    "caretaScore": 1
   },
   {
     "id": "zulma-lobato",
@@ -2588,7 +2588,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Hasta Tinelli y el Maipo no paro!",
     "bio": "Figura mediática descubierta por Anabela Ascar en Crónica TV con números musicales virales.",
     "lore": "Autora de 'Resistiré' en televisión abierta y de los momentos más desopilantes de la televisión de culto de los 2000.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/zulma-lobato.jpg",
     "auraScore": 8.8,
     "caretaScore": 0.5
   },
@@ -2601,9 +2601,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Me rompieron el diente, asesinos!",
     "bio": "Arquitecto, ex comisario de abordo de Aerolíneas Argentinas y prócer mediático indiscutido.",
     "lore": "Protagonizó los mejores escándalos de Zap y los programas de la tarde: noviazgos bizarros con Tomasito Süller, peleas por herencias y su casa de cristal en Pilar.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/guido-suller.jpg",
     "auraScore": 9.3,
-    "caretaScore": 4.0
+    "caretaScore": 4
   },
   {
     "id": "silvia-suller",
@@ -2614,9 +2614,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Silvio Soldán me arruinó la vida pero yo soy la Süller!",
     "bio": "Ex secretaria de Grandes Valores del Tango, vedette y la mediática más desenfadada del país.",
     "lore": "Hizo de ventilar las intimidades de sus amantes famosos (Soldán, Cacho Castaña, futbolistas) un arte televisivo que paralizó los mediodías de la televisión argentina.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/silvia-suller.jpg",
     "auraScore": 9.4,
-    "caretaScore": 2.0
+    "caretaScore": 2
   },
   {
     "id": "jacobo-winograd",
@@ -2627,9 +2627,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡No me hagas hablar porque se cae el país! ¡Chizito!",
     "bio": "Empresario de la noche porteña de los 90 y filósofo de la farándula clandestina.",
     "lore": "Creador de la teoría del 'Chizito' contra Guido Süller y de la frase universal 'billetera mata galán'. Amigo íntimo de Guillermo Cóppola.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/jacobo-winograd.jpg",
     "auraScore": 8.7,
-    "caretaScore": 5.0
+    "caretaScore": 5
   },
   {
     "id": "el-gigolo",
@@ -2640,8 +2640,8 @@ const CELEBRITIES_DATABASE = [
     "quote": "All the night, champaña y polo en San Isidro.",
     "bio": "Estafador mediático denunciado por la hermana de Flavio Mendoza que se convirtió en meme nacional.",
     "lore": "Se paseaba con chomba de polo con cuello levantado, vaso de whisky y dientes postizos prometiendo inversiones agropecuarias para terminar en boliches cobrando por presencia.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
-    "auraScore": 7.0,
+    "image": "assets/celebrities/el-gigolo.jpg",
+    "auraScore": 7,
     "caretaScore": 9.9
   },
   {
@@ -2653,9 +2653,9 @@ const CELEBRITIES_DATABASE = [
     "quote": "¡Usted se tiene que arrepentir de lo que dijo!",
     "bio": "Empresario frigorífico, político peronista y protagonista de la pelea más vista de la TV con Mauro Viale.",
     "lore": "La trompada en vivo a Mauro Viale tras ser acusado de avalar el atentado a la AMIA es el video más reproducido de la historia de la televisión argentina.",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/alberto-samid.jpg",
     "auraScore": 9.5,
-    "caretaScore": 5.0
+    "caretaScore": 5
   },
   {
     "id": "anibal-lotocki",
@@ -2666,9 +2666,48 @@ const CELEBRITIES_DATABASE = [
     "quote": "Todos los productos que utilicé estaban aprobados.",
     "bio": "Médico condenado y detenido por mala praxis contra Silvina Luna, Mariano Caprarola y decenas de víctimas.",
     "lore": "El personaje más repudiado del país. Responsable de la muerte de Silvina Luna y Mariano Caprarola tras inyectar metacrilato en cirugías estéticas clandestinas.",
-    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80",
+    "image": "assets/celebrities/anibal-lotocki.jpg",
     "auraScore": 0.5,
-    "caretaScore": 10.0
+    "caretaScore": 10
+  },
+  {
+    "id": "maxi-lopez",
+    "name": "Maxi López",
+    "category": "futbol",
+    "categoryLabel": "Fútbol & Farándula / Ex de Wanda",
+    "tag": "El Bardo de Rusia & 'Solange'",
+    "quote": "Los hechos ocurrieron antes de que nos conociéramos, Solange. Yo elegí seguir adelante.",
+    "bio": "Ex futbolista de River, Barcelona y Milan. Protagonista del 'Wandagate' original.",
+    "lore": "Contó anécdotas de que lo cacheteaban en sótanos de Rusia en PH, y Wanda le retrucó con capturas de ChatGPT listando 7 infidelidades históricas.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 8,
+    "caretaScore": 6.5
+  },
+  {
+    "id": "gaston-edul",
+    "name": "Gastón Edul",
+    "category": "periodismo",
+    "categoryLabel": "Periodismo / TyC Sports & La Scaloneta",
+    "tag": "El Shippeo de PH & 'Qué Mirás Bobo'",
+    "quote": "Tranquilo Leo, andá pa' allá.",
+    "bio": "Periodista deportivo estrella de TyC Sports y el cronista más cercano a Lionel Messi.",
+    "lore": "Mantuvo la calma en la histórica frase de Messi a Weghorst en Qatar, y fue tendencia en PH tras sus miradas cómplices con Juli Poggio en el punto de encuentro.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 9.2,
+    "caretaScore": 2.5
+  },
+  {
+    "id": "alvarito-jefe-fit",
+    "name": "Alvarito (El Jefe Fit)",
+    "category": "streaming",
+    "categoryLabel": "Streaming / La Casa & CEO Sigma",
+    "tag": "Prohibido Azúcar y Medialunas en el Trabajo",
+    "quote": "El azúcar es veneno; en mi oficina no se comen harinas de 9 a 18 hs.",
+    "bio": "Joven empresario y panelista de La Casa Stream que se volvió viral por sus reglas de productividad extrema.",
+    "lore": "Desató un debate nacional sobre derechos laborales y culto fit tras revelar que prohíbe las facturas y el azúcar a sus empleados para evitar el bajón de insulina.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 6.8,
+    "caretaScore": 8
   }
 ];
 

@@ -2,6 +2,48 @@
 // Prendido Fuego 🔥 (Mix On Studio)
 
 const SEMAFORO_CASES = [
+  // SITUACIONES VIRALES DEL DÍA (GUION 31/08)
+  {
+    id: "sem-hoy-001",
+    title: "La Consulta a ChatGPT sobre Infidelidades",
+    text: "Le preguntás a ChatGPT cuántas veces te engañó tu pareja y subís la captura a tus historias de Instagram etiquetándolo y firmando con tu segundo nombre...",
+    expectedLevel: "fuego",
+    category: "Farándula & IA",
+    tags: ["Wanda Nara", "ChatGPT", "Despecho"]
+  },
+  {
+    id: "sem-hoy-002",
+    title: "El Fetiche Viral en la Primera Cita",
+    text: "En la primera cita te confiesa que le gusta dar chirlos y experimentar fetiches del ojo en la intimidad (al estilo Juli Poggio en PH)...",
+    expectedLevel: "amarillo",
+    category: "Intimidad & Tabúes",
+    tags: ["Juli Poggio", "PH", "Fetiches"]
+  },
+  {
+    id: "sem-hoy-003",
+    title: "El Jefe Anti-Harinas y Cero Azúcar",
+    text: "Tu jefe prohíbe terminantemente comer medialunas, facturas y azúcar en horario laboral para que no tengas bajones de insulina y rindas al 100%...",
+    expectedLevel: "rojo",
+    category: "Trabajo & Disciplina",
+    tags: ["La Casa Stream", "Jefe Fit", "Oficina"]
+  },
+  {
+    id: "sem-hoy-004",
+    title: "La Mamá Administradora Millonaria",
+    text: "Sos mayor de edad, ganás millones pero tu mamá te administra cada centavo y te da plata por semana porque no confía en que sepas ahorrar...",
+    expectedLevel: "amarillo",
+    category: "Familia & Dinero",
+    tags: ["Juli Poggio", "Familia", "Dinero"]
+  },
+  {
+    id: "sem-hoy-005",
+    title: "El Mensaje de Despecho en RKT",
+    text: "Tu pareja te corta para estar soltero y a la semana sacás un tema de RKT diciéndole 'si no te valora ese gil quién se cree'...",
+    expectedLevel: "fuego",
+    category: "Música & Rupturas",
+    tags: ["La Joaqui", "Luck Ra", "Canción"]
+  },
+
   // 1-10: REDES, CELULAR & STALKING
   {
     id: "sem-001",

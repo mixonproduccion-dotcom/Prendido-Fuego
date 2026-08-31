@@ -1,413 +1,500 @@
 // =========================================================
 // BASE DE DATOS 2: EL TRIBUNAL DE FARÁNDULA & DILEMAS MORALES
-// "¿Qué harías vos en su lugar?" - 14 Casos de Alta Tensión (Lores Argentinos)
+// "¿Qué harías vos en su lugar?" - 15 Casos de Alta Tensión
 // Prendido Fuego 🔥 (Mix On Studio)
 // =========================================================
 
 const TRIBUNAL_CASES = [
   {
-    id: "caso-chino-holder-gisela",
-    title: "El Telo de Rosario: El Chino Ku, Gisela Gordillo y Marisol",
-    protagonist: "Marisol (o el Amigo del Reality)",
-    category: "Gran Hermano / Traición Familiar",
-    context: "Tu novio 'tranquilo y virgo' de la tele sale de Gran Hermano y a los meses lo descubren saliendo de un hotel alojamiento en Rosario con la mamá de su compañero de reality (Gisela Gordillo). Ella muestra los chats en vivo donde él decía estar soltero.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
-    quote: "El pibe virgo de la televisión era un personaje para la cámara.",
-    options: [
+    "id": "caso-wanda-maxi-chatgpt",
+    "title": "El Escándalo de Rusia & ChatGPT: Wanda Nara vs. Maxi López",
+    "protagonist": "Wanda Nara ('Solange')",
+    "category": "Farándula / Infidelidad & IA",
+    "context": "Tu ex marido va a la tele (PH) a contar anécdotas de que lo cacheteaban en sótanos de Rusia para tener sexo cuando estaba casado con vos. Le preguntás a ChatGPT cuántas veces te engañó y te lista 7 infidelidades históricas con lujo de detalles.",
+    "image": "assets/celebrities/wanda-nara.jpg",
+    "quote": "Mujeres salgan a trabajar, no dependan. Ser mantenida a veces sale muy caro. Solange.",
+    "options": [
       {
-        id: "A",
-        title: "1. Descarte Inmediato y Show en Vivo en el Streaming (Factos)",
-        text: "Le hacés las valijas, lo dejás en la calle, te sentás en LAM a contar cómo te mintió durante 2 años y no le das ni 10 segundos de derecho a réplica. La careteada se paga con la verdad.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Exponer las 7 Infidelidades con Abogados y Facturar en LAM (Factos)",
+        "text": "Publicás las capturas de ChatGPT en Instagram, le recordás que gracias a vos come y aconsejás a todas las mujeres a ser independientes económicamente para no dejarse pisotear.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Charla a Solas, Cierre Legal y Cero Circo (Dignidad)",
-        text: "Cortás la relación en privado con total frialdad, no te prestás al conventillo mediático de la televisión y te enfocás en tus proyectos con la dignidad intacta.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Silencio por Respeto a los 3 Hijos y Charla en Privado (Dignidad)",
+        "text": "No le contestás en redes para no alimentar el conventillo televisivo por respeto a tus 3 hijos adolescentes y le mandás un mensaje frío y privado advirtiéndole que no hable más de vos.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Perdonarlo por Culpa de la Fama y Buscar Ayuda Espiritual (Migajera)",
-        text: "Pensás 'pobrecito, la fama le quemó la cabeza', le perdonás la salida del telo, le pedís a tu tarotista que limpie la energía del departamento y seguís conviviendo como si nada.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Mandar Indirectas Firmando 'Solange' y Tirar las Cartas (Migajera)",
+        "text": "Subís historias a las 3 AM firmando con tu segundo nombre, le preguntás a la astróloga si Maxi sigue enamorado de vos y esperás a que te mande un WhatsApp pidiendo perdón.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-enzo-valentina-solteria",
-    title: "La 'Soltería Saltada' en Londres: Enzo Fernández vs. Valentina",
-    protagonist: "Valentina Cervantes",
-    category: "Fútbol / Parejas",
-    context: "Acompañaste a tu novio desde que no tenía para el colectivo hasta ser Campeón del Mundo en Qatar. Tienen dos bebés en Londres. De repente te dice: 'Quiero separarme porque me salteé la etapa de soltero a los 19 y quiero vivirla ahora'.",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
-    quote: "Lo banqué en las malas y cuando llegó a la gloria me pidió soltería.",
-    options: [
+    "id": "caso-tinigate-70m-antonela",
+    "title": "El #TiniGate ($70M USD): Tini Stoessel, su Padre y Antonela Roccuzzo",
+    "protagonist": "Tini Stoessel",
+    "category": "Música / Fortuna Familiar",
+    "context": "Trabajás desde los 10 años sin parar. Descubrís inconsistencias millonarias en el manejo de tus empresas a cargo de tu padre. Antonela Roccuzzo y Messi te contactan con su equipo legal para recuperar más de 70 millones de dólares y tus padres analizan contrademandarte.",
+    "image": "assets/celebrities/tini-stoessel.jpg",
+    "quote": "La plata que gané trabajando desde niña me pertenece a mí.",
+    "options": [
       {
-        id: "A",
-        title: "1. Mudanza a Buenos Aires, Agencia Top y Facturar Millones (Factos)",
-        text: "Agarrás a tus dos hijos, te instalás en Buenos Aires, firmás contrato con las mejores marcas y canales de TV y demostrás que tu aura brilla el triple sin depender de un futbolista.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Auditoría Implacable con el Equipo de Messi y Cobrar Todo (Factos)",
+        "text": "Le quitás el 100% del poder a tu familia, auditás hasta el último dólar con los mejores abogados de Europa y ponés a tu nombre todas las marcas y regalías de por vida.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Acuerdo Económico Impecable y Respeto por los Hijos (Dignidad)",
-        text: "Firmás un convenio de alimentos en dólares ejemplar con abogados, mantenés una relación cordial como padres por los chicos y no soltás una sola palabra de rencor en la prensa.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Pacto de Cierre Familiar sin Juicio Público (Dignidad)",
+        "text": "Le dejás lo que se llevaron como indemnización por los años de trabajo, cortás todo vínculo comercial y salvás el lazo afectivo con tus padres para vivir en paz.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Esperarlo en Silencio a que se Canse de la Noche de Londres (Migajera)",
-        text: "Le decís que lo entendés, te quedás viviendo cerca esperando que en 6 meses se arrepienta de salir con los amigos del Chelsea y vuelva llorando a pedirte casamiento.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Perdonar por Culpa Kármica y Llorar en el Piano (Emocional)",
+        "text": "Sentís culpa por demandar a tu papá, le perdonás los 70 millones, hacés catarsis con Antonela y le componés un tema acústico llorando en el piano.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-joaqui-luckra-casa",
-    title: "El Amor Cuartetero: La Joaqui, Luck Ra y la Casa al Lado",
-    protagonist: "La Joaqui",
-    category: "Música Urbana / Convivencia",
-    context: "Estás enamoradísima, comprás una casa al lado de tu novio para armar una familia ensamblada con tus dos hijas. El pibe se asusta por el compromiso, te corta de un día para el otro y al mes vuelve a hablar con su ex que era tu amiga.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    quote: "Me la jugué entera por amor y me quedé con la casa vacía.",
-    options: [
+    "id": "caso-jefe-sigma-harinas",
+    "title": "El Jefe Sigma: Prohibido Azúcar y Harinas en el Trabajo",
+    "protagonist": "El Empleado de Oficina",
+    "category": "Vida Cotidiana / Trabajo",
+    "context": "Tu jefe fit de 24 años prohíbe terminantemente que los empleados coman medialunas, azúcar o galletitas en la oficina de 9 a 18 hs porque 'baja la productividad y da picos de insulina'. Si te ven con un alfajor te descuentan el presentismo.",
+    "image": "assets/celebrities/tomas-holder.jpg",
+    "quote": "En esta empresa se rinde al 100% y el azúcar es veneno.",
+    "options": [
       {
-        id: "A",
-        title: "1. Vender la Casa, Alquilar un Penthouse y Sacar Temas de RKT (Factos)",
-        text: "Vendés la casa al toque para no verle la cara nunca más, te mudás a Puerto Madero y sacás tres temas de RKT destrozándolo a él y a su ex en el estribillo.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Bancar al Jefe, Sumar Proteína y Agradecer la Disciplina (Factos)",
+        "text": "Le das la razón al jefe: el hombre de éxito no come harinas refinadas. Te llevás tu tupper con bife y arroz al escritorio y te convertís en el empleado del mes.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Poner el Foco en tus Hijas y Marcar Distancia de Acero (Dignidad)",
-        text: "Te quedás en tu casa tranquila, priorizás la felicidad de tus nenas, cortás todo vínculo comercial con el ambiente del cuarteto y dejás que el tiempo ponga a cada uno en su lugar.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Denuncia Laboral Inmediata por Abuso Patronal (Dignidad)",
+        "text": "Le marcás los límites: el contrato laboral no incluye el control de la alimentación personal. Exigís respeto a tus derechos y que no se meta con tu comida.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Mandarle Mensajes de Madrugada y Tirar las Cartas (Migajera)",
-        text: "Le mandás audios llorando a las 4 AM recordándole los momentos lindos, le stalkeás los seguidores a la ex cada media hora y le prendés velas rojas para que vuelva.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Comer Bizcochitos Escondido en el Baño (Inseguridad)",
+        "text": "Te comés dos medialunas a las escondidas en el baño con culpa, te lavás los dientes con pánico a que te huelan el azúcar y le pedís perdón al jefe si te descubre.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-spreen-riestra-minuto",
-    title: "El Minuto de Fama: El Debut de Spreen en Primera División",
-    protagonist: "El Streamer Famoso",
-    category: "Streaming / Fútbol",
-    context: "Sos el streamer número 1 del país. Un club de Primera y una marca de energizantes te ofrecen ponerte la camiseta titular contra el puntero del torneo, jugar 59 segundos sin tocar la pelota y salir reemplazado por marketing viral.",
-    image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=80",
-    quote: "Le di al club la mayor visibilidad de su historia en 59 segundos.",
-    options: [
+    "id": "caso-chino-holder-gisela",
+    "title": "El Telo de Rosario: El Chino Ku, Gisela Gordillo y Marisol",
+    "protagonist": "Marisol (o el Amigo del Reality)",
+    "category": "Gran Hermano / Traición Familiar",
+    "context": "Tu novio 'tranquilo y virgo' de la tele sale de Gran Hermano y a los meses lo descubren saliendo de un hotel alojamiento en Rosario con la mamá de su compañero de reality (Gisela Gordillo). Ella muestra los chats en vivo donde él decía estar soltero.",
+    "image": "assets/celebrities/gisela-holder.jpg",
+    "quote": "El pibe virgo de la televisión era un personaje para la cámara.",
+    "options": [
       {
-        id: "A",
-        title: "1. Aceptar, Facturar la Pauta y Reírte de los Críticos (Factos)",
-        text: "Aceptás de una, te ponés la 47, batís récord de viewers en Kick/YouTube y que los periodistas tradicionales de la tele se queden rabiando mientras vos contás los dólares.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Descarte Inmediato y Show en Vivo en el Streaming (Factos)",
+        "text": "Le hacés las valijas, lo dejás en la calle, te sentás en LAM a contar cómo te mintió durante 2 años y no le das ni 10 segundos de derecho a réplica. La careteada se paga con la verdad.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Rechazar por Respeto al Potrero y a los Pibes de Inferiores (Dignidad)",
-        text: "Rechazás la propuesta diciendo que el fútbol profesional se respeta y que no te vas a prestar a una payasada de apuestas que le saca el lugar a un pibe que entrenó 10 años.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Charla a Solas, Cierre Legal y Cero Circo (Dignidad)",
+        "text": "Cortás la relación en privado con total frialdad, no te prestás al conventillo mediático de la televisión y te enfocás en tus proyectos con la dignidad intacta.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Jugar el Minuto pero Salir Llorando a Pedir Disculpas Públicas (Inseguridad)",
-        text: "Jugás los 59 segundos tentado por la plata, pero apenas termina el partido hacés un vivo de 3 horas llorando y donando la camiseta para que la gente de Twitter no te cancele.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Perdonarlo por Culpa de la Fama y Buscar Ayuda Espiritual (Migajera)",
+        "text": "Pensás 'pobrecito, la fama le quemó la cabeza', le perdonás la salida del telo, le pedís a tu tarotista que limpie la energía del departamento y seguís conviviendo como si nada.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-siciliani-florvigna-castro",
-    title: "El 'Siciliani Gate': Mensajes en la Madrugada y la Ex Esposa",
-    protagonist: "Flor Vigna",
-    category: "Farándula / Infidelidad",
-    context: "Descubrís que una actriz consagrada le manda mensajes de madrugada a tu novio con el que convivís hace 2 años. Cuando se separan, ellos blanquean al mes y la ex esposa de él sale en TV diciendo que la actriz hacía lo mismo cuando ella estaba embarazada.",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
-    quote: "Le mandaba mensajes a Luciano mientras convivía conmigo.",
-    options: [
+    "id": "caso-enzo-valentina-solteria",
+    "title": "La 'Soltería Saltada' en Londres: Enzo Fernández vs. Valentina",
+    "protagonist": "Valentina Cervantes",
+    "category": "Fútbol / Parejas",
+    "context": "Acompañaste a tu novio desde que no tenía para el colectivo hasta ser Campeón del Mundo en Qatar. Tienen dos bebés en Londres. De repente te dice: 'Quiero separarme porque me salteé la etapa de soltero a los 19 y quiero vivirla ahora'.",
+    "image": "assets/celebrities/valentina-cervantes.jpg",
+    "quote": "Lo banqué en las malas y cuando llegó a la gloria me pidió soltería.",
+    "options": [
       {
-        id: "A",
-        title: "1. Sacar Canciones de Despecho y Nombrarla en Todos los Móviles (Factos)",
-        text: "Le ponés nombre y apellido a la situación, sacás un videoclip con una modelo parecida a ella y aprovechás el bardo mediático para llenar teatros con tu música.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Mudanza a Buenos Aires, Agencia Top y Facturar Millones (Factos)",
+        "text": "Agarrás a tus dos hijos, te instalás en Buenos Aires, firmás contrato con las mejores marcas y canales de TV y demostrás que tu aura brilla el triple sin depender de un futbolista.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Cortar Todo Vínculo con Elegancia y Cero Declaraciones (Dignidad)",
-        text: "Entendés que el problema real no es la tercera persona sino tu ex pareja que no te respetó. Te alejás en silencio y no volvés a pronunciar sus nombres nunca más.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Acuerdo Económico Impecable y Respeto por los Hijos (Dignidad)",
+        "text": "Firmás un convenio de alimentos en dólares ejemplar con abogados, mantenés una relación cordial como padres por los chicos y no soltás una sola palabra de rencor en la prensa.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Armar Alianzas con las Otras Ex Parejas para Vengarse (Emocional)",
-        text: "Te juntás a merendar con Sabrina Rojas todas las semanas para desahogarte, analizar las fotos de Instagram de ellos dos y mandarle indirectas por TikTok.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Esperarlo en Silencio a que se Canse de la Noche de Londres (Migajera)",
+        "text": "Le decís que lo entendés, te quedás viviendo cerca esperando que en 6 meses se arrepienta de salir con los amigos del Chelsea y vuelva llorando a pedirte casamiento.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-wanda-icardi-lgante",
-    title: "El Triángulo Tóxico: Wanda, Icardi y L-Gante en Río de Janeiro",
-    protagonist: "Wanda Nara",
-    category: "Farándula / Botineras",
-    context: "Tu marido multimillonario en Turquía se rompe los ligamentos, pero vos te vas a Río de Janeiro con L-Gante a los besos en la playa. Cuando volvés, él te traba el departamento del Chateau Libertador y llega la policía.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80",
-    quote: "Las mujeres ya no lloran, las mujeres facturan y disfrutan en Brasil.",
-    options: [
+    "id": "caso-joaqui-luckra-casa",
+    "title": "El Amor Cuartetero: La Joaqui, Luck Ra y la Casa al Lado",
+    "protagonist": "La Joaqui",
+    "category": "Música Urbana / Convivencia",
+    "context": "Estás enamoradísima, comprás una casa al lado de tu novio para armar una familia ensamblada con tus dos hijas. El pibe se asusta por el compromiso, te corta de un día para el otro y al mes vuelve a hablar con su ex que era tu amiga.",
+    "image": "assets/celebrities/la-joaqui.jpg",
+    "quote": "De tín marín de do pingüé, si no te valora ese gil quién se cree.",
+    "options": [
       {
-        id: "A",
-        title: "1. Denuncia Penal, Desalojo y Mostrar los Chats en LAM (Factos)",
-        text: "Le metés una denuncia por violencia de género, le exigís la cuota alimentaria en euros y te mostrás en vivo comiendo asado en General Rodríguez con L-Gante para liquidarlo.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Vender la Casa, Alquilar un Penthouse y Sacar Temas de RKT (Factos)",
+        "text": "Vendés la casa al toque para no verle la cara nunca más, te mudás a Puerto Madero y sacás tres temas de RKT destrozándolo a él y a su ex en el estribillo.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. División de Bienes 50/50 y Fin del Circo por los Hijos (Dignidad)",
-        text: "Cortás de raíz el show mediático, firmás la división de bienes con abogados y priorizás la estabilidad emocional de tus hijas en lugar de llamar a los cronistas de TV.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Poner el Foco en tus Hijas y Marcar Distancia de Acero (Dignidad)",
+        "text": "Te quedás en tu casa tranquila, priorizás la felicidad de tus nenas, cortás todo vínculo comercial con el ambiente del cuarteto y dejás que el tiempo ponga a cada uno en su lugar.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Vivos de TikTok a las 3 AM con L-Gante y Tamara Báez (Show)",
-        text: "Prendés vivo en TikTok con L-Gante, invitás a Tamara Báez a cantar RKT y convertís el divorcio en el reality show más bizarro y visto de Latinoamérica.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Mandarle Mensajes de Madrugada y Tirar las Cartas (Migajera)",
+        "text": "Le mandás audios llorando a las 4 AM recordándole los momentos lindos, le stalkeás los seguidores a la ex cada media hora y le prendés velas rojas para que vuelva.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-tini-stoessel-papa",
-    title: "El Desahogo de 'Ángel': Tini Stoessel y la Presión Familiar",
-    protagonist: "Tini Stoessel",
-    category: "Farándula / Música Pop",
-    context: "Trabajás desde los 10 años sin parar. Tu papá/manager se peleó con Tinelli y la industria te hizo cargar con ese odio toda tu adolescencia. A los 26 años colapsás con ataques de pánico y depresión. ¿Cómo sanás?",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    quote: "Me cargué mochilas y juicios que no eran míos.",
-    options: [
+    "id": "caso-spreen-riestra-minuto",
+    "title": "El Minuto de Fama: El Debut de Spreen en Primera División",
+    "protagonist": "El Streamer Famoso",
+    "category": "Streaming / Fútbol",
+    "context": "Sos el streamer número 1 del país. Un club de Primera y una marca de energizantes te ofrecen ponerte la camiseta titular contra el puntero del torneo, jugar 59 segundos sin tocar la pelota y salir reemplazado por marketing viral.",
+    "image": "assets/celebrities/spreen.jpg",
+    "quote": "Le di al club la mayor visibilidad de su historia en 59 segundos.",
+    "options": [
       {
-        id: "A",
-        title: "1. Descarte Comercial y Emancipación Tajante (Factos)",
-        text: "Le quitás el manejo de tus contratos a tu papá, contratás a un manager de Los Ángeles, cobrás el 100% de tus regalías y cortás todo lazo comercial para que la familia sea solo familia.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Aceptar, Facturar la Pauta y Reírte de los Críticos (Factos)",
+        "text": "Aceptás de una, te ponés la 47, batís récord de viewers en Kick/YouTube y que los periodistas tradicionales de la tele se queden rabiando mientras vos contás los dólares.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Charla Terapéutica Familiar y Retiro Temporal (Dignidad)",
-        text: "Ponés un freno a las giras mundiales por 1 año, te sentás a hablar con tus padres sin cámaras, hacés terapia profunda y ponés límites saludables antes de volver a subirte a un escenario.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Rechazar por Respeto al Potrero y a los Pibes de Inferiores (Dignidad)",
+        "text": "Rechazás la propuesta diciendo que el fútbol profesional se respeta y que no te vas a prestar a una payasada de apuestas que le saca el lugar a un pibe que entrenó 10 años.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Disco Catártico, Cambio de Look y Catarsis Pública (Emocional)",
-        text: "Te cortás y te teñís el pelo, sacás un álbum desgarrador contando todo con nombres propios, le prendés velas a tu papá en la clínica y hacés shows íntimos llorando junto a tu fandom.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Jugar el Minuto pero Salir Llorando a Pedir Disculpas Públicas (Inseguridad)",
+        "text": "Jugás los 59 segundos tentado por la plata, pero apenas termina el partido hacés un vivo de 3 horas llorando y donando la camiseta para que la gente de Twitter no te cancele.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-cami-mayan-macallister",
-    title: "La Traición Navideña: Cami Mayan vs. Alexis & Ailén Cova",
-    protagonist: "Cami Mayan",
-    category: "Fútbol / Traición",
-    context: "Salís 5 años con un pibe, se consagran Campeones del Mundo en Qatar, y a los 5 días en Navidad te deja por tu mejor amiga de la infancia, te echa del departamento de Inglaterra y se queda con el perro.",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
-    quote: "Me robó el perro y la dignidad, pero gané el aura.",
-    options: [
+    "id": "caso-siciliani-florvigna-castro",
+    "title": "El 'Siciliani Gate': Mensajes en la Madrugada y la Ex Esposa",
+    "protagonist": "Flor Vigna",
+    "category": "Farándula / Infidelidad",
+    "context": "Descubrís que una actriz consagrada le manda mensajes de madrugada a tu novio con el que convivís hace 2 años. Cuando se separan, ellos blanquean al mes y la ex esposa de él sale en TV diciendo que la actriz hacía lo mismo cuando ella estaba embarazada.",
+    "image": "assets/celebrities/florvigna.jpg",
+    "quote": "Le mandaba mensajes a Luciano mientras convivía conmigo.",
+    "options": [
       {
-        id: "A",
-        title: "1. Venganza de Ego y Pareja de Mayor Rango (Factos)",
-        text: "No vas a la justicia: te vas a Ibiza, te ponés de novia con un crack rival de la Premier League (ej: Haaland o Enzo) y le festejás un gol en la cara en el clásico inglés.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Sacar Canciones de Despecho y Nombrarla en Todos los Móviles (Factos)",
+        "text": "Le ponés nombre y apellido a la situación, sacás un videoclip con una modelo parecida a ella y aprovechás el bardo mediático para llenar teatros con tu música.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Demanda Judicial Millonaria y Trabajo en Streaming (Dignidad)",
-        text: "Demanda de compensación económica millonaria por los 5 años convividos, exigís la tenencia del perro en primera clase y te sentás en el streaming a liquidarlos con elegancia y alta costura.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Cortar Todo Vínculo con Elegancia y Cero Declaraciones (Dignidad)",
+        "text": "Entendés que el problema real no es la tercera persona sino tu ex pareja que no te respetó. Te alejás en silencio y no volvés a pronunciar sus nombres nunca más.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Audios Llorando y Congelamiento en el Freezer (Migajera)",
-        text: "Le mandás audios de 15 minutos a Ailén Cova pidiéndole explicaciones, le hacés un congelamiento con ruda en el freezer y te quedás esperando 1 año en silencio a que él te mande un WhatsApp.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Armar Alianzas con las Otras Ex Parejas para Vengarse (Emocional)",
+        "text": "Te juntás a merendar con Sabrina Rojas todas las semanas para desahogarte, analizar las fotos de Instagram de ellos dos y mandarle indirectas por TikTok.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-pampita-moritan",
-    title: "La Sonrisa Impecable: Pampita vs. Moritán y el Divorcio Express",
-    protagonist: "Pampita Ardohain",
-    category: "Farándula / Política",
-    context: "Tu marido ministro empieza a salir en los noticieros por allanamientos, denuncias de contrataciones y rumores de infidelidad con fotos comprometedoras en el ascensor.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    quote: "Yo trabajo desde los 16 años y a mí nadie me va a ensuciar.",
-    options: [
+    "id": "caso-wanda-lgante-icardi",
+    "title": "La Escapada a Río: Wanda, L-Gante y el Chateau Libertador",
+    "protagonist": "Wanda Nara",
+    "category": "Farándula / Botineras & Cumbia",
+    "context": "Te vas de escapada romántica a Brasil a los besos con un cantante de cumbia 13 años menor mientras tu ex marido se rompe los ligamentos en Turquía. Al volver a Buenos Aires, tu ex te bloquea la entrada a tu departamento con la policía.",
+    "image": "assets/celebrities/wanda-nara.jpg",
+    "quote": "Yo vivo mi vida libre y no le debo nada a ningún hombre.",
+    "options": [
       {
-        id: "A",
-        title: "1. Recambio Inmediato con Polista Millonario (Factos)",
-        text: "Ni bien firma la renuncia, te vas al Teatro Colón de la mano con un polista millonario de 1,90 m con campo en Inglaterra, subiendo fotos a 4K en Instagram para liquidar su ego.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Administrar la Billetera y Vivir la Noche (Factos)",
+        "text": "Hacés la tuya, te quedás con las propiedades de mayor valor, disfrutás de la noche porteña y que la justicia le embargue las cuentas bancarias a tu ex por despechado.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Operativo Borrado 24 Horas y Capturas Públicas (Dignidad)",
-        text: "El mismo viernes contratás un camión de mudanza a las 11 AM para que lo filme todo el país, publicás las capturas de WhatsApp con fecha y hora y el lunes salís al jurado de gala cobrando el triple.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Corte Frontal y División de Bienes Ejemplar (Dignidad)",
+        "text": "Firmás el divorcio definitivo en Europa con abogados de primera línea, terminás el circo mediático y no exponés más a tus hijos a escándalos policiales.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Aguante Familiar en el Country y Bajo Perfil (Tradicional)",
-        text: "Ponés la cara en una conferencia de prensa al lado de él, decís que 'la familia está unida frente a las operaciones' y te vas a esperar que pase la tormenta en una estancia en La Pampa.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Mudanza a General Rodríguez y Hacerse la Humilde (Migajera)",
+        "text": "Te vas a vivir al barrio con tu nuevo chongo, comés asado en la vereda para limpiar tu imagen en redes y le llorás al tarot por las energías negativas de Estambul.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-wandagate-efimero",
-    title: "El Mensaje Efímero en Instagram a las 3 AM",
-    protagonist: "Novia del Influencer",
-    category: "Redes / Infidelidad",
-    context: "Ves que a tu pareja le llega una notificación de una modelo famosa en modo efímero: 'Qué lindo estabas ayer... lástima que estabas tan acompañado ;) Mandame a Telegram'. Él te jura que no le contestó.",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
-    quote: "El que busca encuentra, pero el que deja la puerta abierta es culpable.",
-    options: [
+    "id": "caso-duki-emilia-chats",
+    "title": "Los Chats de DMs: Duki, Emilia Mernes y la Fan de las Redes",
+    "protagonist": "Emilia Mernes",
+    "category": "Música Urbana / Traición en Redes",
+    "context": "Una fanatica viraliza grabaciones de pantalla de supuestos mensajes directos de Instagram con tu novio estrella de trap, donde él le tira onda y le pide fotos. La chica sale en streams jurando que los chats son 100% reales.",
+    "image": "assets/celebrities/emilia-mernes.jpg",
+    "quote": "Construimos un imperio juntos y no lo voy a tirar por un rumor de Twitter.",
+    "options": [
       {
-        id: "A",
-        title: "1. Valija por el Balcón y Corte Tajante (Factos)",
-        text: "Si la mina le escribió al privado es porque en el evento él le tiró miradas. Le bajás la persiana en el acto, le tirás la valija a la vereda y te vas al gimnasio a entrenar. El respeto no se negocia.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Blindaje Total, Paseo en Miami y Facturar en Dólares (Factos)",
+        "text": "Salen agarrados de la mano a caminar por Miami frente a los paparazzi, hacen como si nada hubiera pasado y llenan cuatro estadios más para demostrar quién manda.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Bloqueo Delante Tuyo y Advertencia Final (Dignidad)",
-        text: "Lo sentás en la mesa con frialdad. Exigís que la bloquee en vivo de todas las redes delante tuyo y le advertís que a la próxima ambigüedad se termina el noviazgo para siempre.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Auditoría Privada de Dispositivos y Ultimátum de Respeto (Dignidad)",
+        "text": "Tenés una charla a puertas cerradas con pruebas sobre la mesa: un solo desliz más en redes y el noviazgo se termina sin vuelta atrás.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Stalkeo con 3 Cuentas Falsas y Cartas Natales (Migajera)",
-        text: "Lo perdonás porque 'no le contestó', pero te creás tres cuentas truchas en Instagram, le controlás los seguidores cada 10 minutos y le pedís a tu tarotista que revise si tienen un lazo kármico.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Bloqueo Masivo de Palabras en Redes y Negación Total (Migajera)",
+        "text": "Bloqueás la palabra 'Lula' y 'DMs' de todos tus comentarios de TikTok, te convencés de que fue todo inteligencia artificial y le pedís a tus fans que ataquen a la chica.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-amigo-icardi-primera",
-    title: "La Novia Famosa de tu Mejor Amigo en el VIP",
-    protagonist: "El Amigo Leal",
-    category: "Amistad & Códigos",
-    context: "Tu mejor amigo de la infancia se pone de novio con una botinera top. Se va de pretemporada y en el boliche la mina te agarra en el VIP y te dice al oído: 'Él es re básico... vení a mi departamento hoy'.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
-    quote: "Los códigos entre amigos no se negocian por ninguna mina.",
-    options: [
+    "id": "caso-coty-nacho-tora",
+    "title": "El Romance de Pasillo: Coty Romero, Nacho Castañares y La Tora",
+    "protagonist": "Coty Romero",
+    "category": "Streaming / Códigos de Amigas",
+    "context": "Entrás a trabajar al streaming oficial del canal y te enamorás del ex novio de tu compañera de mesa (La Tora). La química es innegable y empezás a salir con él a escondidas hasta que la prensa los descubre a los besos.",
+    "image": "assets/celebrities/coty-romero.jpg",
+    "quote": "Fui egoísta pero el corazón no elige de quién enamorarse.",
+    "options": [
       {
-        id: "A",
-        title: "1. Empujón, Audio al Amigo y Cancelación del Grupo (Factos)",
-        text: "La sacás de encima en 2 segundos, le mandás un audio a tu amigo en el momento: 'Hermano, la mina que tenés al lado es un peligro, te acaba de encarar en Tequila'. Códigos de sangre primero.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Blanquear en LAM con Orgullo y Disfrutar el Amor (Factos)",
+        "text": "Vas a LAM, admitís que fuiste egoísta pero que estás feliz, te chupan un huevo los códigos de oficina y subís fotos chapando en el feed.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Distancia Inmediata y Charla a Solas en un Café (Dignidad)",
-        text: "Te vas del boliche para no prestarte al circo, la bloqueás de WhatsApp y al día siguiente citás a tu amigo a tomar un café para contarle con respeto y madurez exactamente lo que pasó.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Renunciar al Stream para Cuidar el Clima Laboral (Dignidad)",
+        "text": "Pedís el cambio de programa o te abrís tu propio canal para no hacerle pasar un momento incómodo a tu ex compañera todos los días al aire.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Silencio por Pánico e Indirectas en TikTok (Inseguridad)",
-        text: "No le decís nada por miedo a que tu amigo piense que fuiste vos el que provocó la situación. Te tomás tres tragos para olvidar y le tirás indirectas por TikTok para que él se dé cuenta solo.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Fingir Amistad en Cámara y Llorar en el Camarín (Inseguridad)",
+        "text": "Tratás a La Tora con cariño exagerado al aire para no quedar como la mala de la película y te vas a llorar al baño del canal sintiéndote culpable.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-after-mansión-sanisidro",
-    title: "El After Clandestino en la Mansión de San Isidro",
-    protagonist: "La Novia Engañada",
-    category: "Noche & Parejas",
-    context: "Tu novio te manda un WhatsApp a las 4 AM diciendo 'estoy cansadísimo, me voy a dormir'. A las 8 AM ves historias públicas de una influencer con tu novio en cuero tomando fernet en una pileta con 20 personas.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
-    quote: "El problema no es la fiesta, el problema es la mentira cobarde.",
-    options: [
+    "id": "caso-nicki-pesopluma-trueno",
+    "title": "La Traición en Las Vegas: Nicki Nicole, Peso Pluma y Trueno",
+    "protagonist": "Nicki Nicole",
+    "category": "Música / Despecho & Honor",
+    "context": "Tu novio mexicano es grabado caminando de la mano con otra mujer en un casino de Las Vegas durante el Super Bowl. El video explota en TikTok mientras vos estabas de gira en Costa Rica.",
+    "image": "assets/celebrities/nicki-nicole.jpg",
+    "quote": "Lo que se ama se respeta; cuando no hay respeto yo de ahí me voy.",
+    "options": [
       {
-        id: "A",
-        title: "1. Cambio de Cerradura y Cosas en Bolsas de Basura (Factos)",
-        text: "La mentira mata el respeto. Le cambiás la cerradura del departamento, le dejás la ropa en bolsas de basura en la guardia del edificio y no le atendés más el teléfono en tu vida.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Comunicado Fulminante, 'Ojos Verdes' y Regreso Triunfal (Factos)",
+        "text": "Publicás una historia demoledora cortando la relación en el acto, lanzás un hit de despecho al mes y volvés a colaborar con los pibes de La Boca.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Fin de la Convivencia con Frialdad y Calma (Dignidad)",
-        text: "Cuando vuelva le decís con frialdad: 'Si querías salir me lo decías de frente; la mentira cobarde no la tolero. Juntá tus cosas y andate, con alguien en quien no confío no tengo futuro'.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Silencio de Radio y Enfoque en la Música Internacional (Dignidad)",
+        "text": "Borrás las fotos de Instagram sin decir una sola palabra, no le das entidad al tipo en ninguna entrevista y te dedicás a romperla en España y Estados Unidos.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Cocinarle Milanesas para el Bajón del Escabio (Migajera)",
-        text: "Pensás 'seguro los amigos lo obligaron a subirse al auto'. Le mandás 30 mensajes con signos de pregunta y cuando llega le cocinás milanesas para que no le pegue tan mal la resaca.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Volver Corriendo con tu Ex Novio de la Infancia (Migajera)",
+        "text": "Le mandás mensajes a Trueno a las 3 AM diciendo que te diste cuenta de que siempre fue el amor de tu vida y le tirás indirectas por Twitter.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-close-friends-ex",
-    title: "La Ex Novia en 'Mejores Amigos' de Instagram",
-    protagonist: "La Pareja Formal",
-    category: "Redes & Red Flags",
-    context: "Descubrís que tu novio tiene una lista de Close Friends de 5 personas donde está su ex de toda la vida. Ahí sube fotos en cuero entrenando y frases melancólicas de trap que no sube a su historia pública.",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80",
-    quote: "Guardarse a la ex en un círculo íntimo es buscar validación del pasado.",
-    options: [
+    "id": "caso-occhiato-natijota-olga",
+    "title": "La Guerra del Streaming: Nico Occhiato, Nati Jota y Olga",
+    "protagonist": "El Conductor / Productor",
+    "category": "Streaming / Competencia & Egos",
+    "context": "Tu co-conductora estrella y figura fundacional de tu canal de streaming decide renunciar porque no le diste el aumento que pedía. A los meses debuta en el canal de la competencia (Olga) liderando la misma franja horaria y te empieza a ganar en las métricas.",
+    "image": "assets/celebrities/nicolas-occhiato.jpg",
+    "quote": "El streaming es una jungla y acá nadie es imprescindible.",
+    "options": [
       {
-        id: "A",
-        title: "1. Descarte Inmediato: 'A Mí Me Eligen Entero' (Factos)",
-        text: "Eso es de pibe inseguro que vive del pasado. Le decís 'sos un payaso sin códigos', agarrás tus cosas y te vas. A vos te eligen con exclusividad absoluta o no te eligen.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Blanquear Romance con tu Co-Conductora y Llenar River (Factos)",
+        "text": "Metés el romance del año con Flor Jazmín en Pinamar, armás eventos gigantes en el Movistar Arena y demostrás quién es el verdadero dueño del streaming en Argentina.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Ultimátum Monogámico Sin Vueltas (Dignidad)",
-        text: "Es una red flag inaceptable. 'O cerrás definitivamente todo histeriqueo con tu pasado o acá se termina la pareja'. Sin histeria pero con límites de acero.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Mejorar la Propuesta Técnica y Respetar a la Competencia (Dignidad)",
+        "text": "Felicitás el crecimiento del medio colega, invertís en nuevos talentos y formatos y mantenés una competencia sana sin chicanas al aire.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Competencia en Lencería a las 3 AM (Migajera)",
-        text: "Te comparás con la ex todas las noches, subís fotos en lencería a mejores amigos esperando que él te mande un fuego y asumís que si no lo hace es culpa de tu signo solar.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Obsesión Diaria con el Minuto a Minuto y Rencor Silencioso (Inseguridad)",
+        "text": "Tenés tres pantallas abiertas en el control mirando los viewers de Olga todo el programa, te amargás cuando van arriba y mandás indirectas ácidas.",
+        "style": "luli"
       }
     ]
   },
   {
-    id: "caso-alias-mercadopago-telo",
-    title: "El Alias de Mercado Pago en la Puerta del Telo",
-    protagonist: "La Chica de la Cita",
-    category: "Noche & Primera Cita",
-    context: "Primera cita increíble, van a un hotel alojamiento de lujo, la pasan genial. A las 8 AM esperando el Uber, el tipo te muestra el alias de Mercado Pago: 'La habitación salió $65.000 y los forros $8.000... transferime $36.500'.",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
-    quote: "Pedirte la mitad de los forros por Mercado Pago es la muerte del levante.",
-    options: [
+    "id": "caso-camila-homs-demil",
+    "title": "La 'Sombra de Tini': Camila Homs, Rodrigo De Paul y el Chateau",
+    "protagonist": "Camila Homs",
+    "category": "Farándula / Botineras",
+    "context": "El padre de tus dos hijos te deja en Madrid tras 12 años juntos y a los pocos meses se muestra públicamente con la estrella pop del país. Te ofrecen 100.000 dólares para salir en el Bailando y contar tu verdad.",
+    "image": "assets/celebrities/cami-homs.jpg",
+    "quote": "Me banqué todo en silencio mientras el país opinaba de mi vida.",
+    "options": [
       {
-        id: "A",
-        title: "1. Transferir los $36.500 y Bloqueo Eterno (Factos)",
-        text: "Eso es de rata de alcantarilla sin hombría. Si invitás a una mujer a salir, el hombre se hace cargo de la cuenta completa con orgullo. Le transferís para que no llore y lo bloqueás para siempre.",
-        style: "holder"
+        "id": "A",
+        "title": "1. Agarrar la Guita del Bailando, Ponerte de Novia con un Principito y Facturar (Factos)",
+        "text": "Firmás contrato televisivo, te ponés de novia con José Sosa (un futbolista con más facha y clase), ganás el juicio de alimentos y brillás en las pasarelas.",
+        "style": "holder"
       },
       {
-        id: "B",
-        title: "2. Pagar Tu Parte y Cero Segunda Cita (Dignidad)",
-        text: "Compartir gastos se habla con naturalidad antes, pero pedir la mitad de los preservativos en la vereda demuestra una falta de clase total. Pagás tu parte y no lo ves nunca más.",
-        style: "diane"
+        "id": "B",
+        "title": "2. Perfil Bajo Absoluto y Cero Declaraciones sobre tu Ex (Dignidad)",
+        "text": "Rechazás todas las notas de espectáculos, te enfocás en criar a tus bebés en paz y dejás que los abogados resuelvan la manutención sin cámaras.",
+        "style": "diane"
       },
       {
-        id: "C",
-        title: "3. Transferir con Propina y Esperar Mensaje (Migajera)",
-        text: "Le transferís el 60% por las dudas y le dejás propina en el alias, le agradecés por la noche hermosa y te quedás esperando que te invite a una segunda cita a ver si te cobra el estacionamiento.",
-        style: "luli"
+        "id": "C",
+        "title": "3. Cantar Temas en Boliches de Punta del Este contra la Amante (Despecho)",
+        "text": "Te subís a la tarima en Tequila a las 5 AM cantando canciones contra la estrella pop y le mandás mensajes por WhatsApp a las 4 de la mañana.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-charly-benvenuto-redes",
+    "title": "El 'Unfollow' de Madrugada y la Historia Borrada",
+    "protagonist": "La Pareja en Crisis",
+    "category": "Parejas & Celular",
+    "context": "Tu pareja se va a una fiesta Bresh con amigos. A las 4:30 AM deja de seguir tu cuenta de Instagram, borra la foto de perfil donde estaban juntos y sube una historia en un VIP con dos copas de champagne.",
+    "image": "assets/celebrities/luli-case.jpg",
+    "quote": "Fue un error del algoritmo de Instagram, te lo juro.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Cambio de Cerradura Inmediato y Salir de Gira con Amigos (Factos)",
+        "text": "Le cambiás la combinación a la puerta, le dejás la ropa en dos bolsas de consorcio en la guardia del edificio y te vas de after a Costanera.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Esperar al Día Siguiente Sobrio y Escuchar la Explicación (Dignidad)",
+        "text": "No te volvés loco a las 5 AM: esperás al mediodía para tener una charla cara a cara y si no hay una explicación lógica, se termina con altura.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Mandar 47 Mensajes Desesperados y Stalkear a Toda la Bresh (Migajera)",
+        "text": "Le reventás el celular con llamadas perdidas, entrás a las historias de todos los que están etiquetados en la fiesta para buscar de quién es la segunda copa.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-billetera-amigos-boliche",
+    "title": "La Cuenta del VIP: $800.000 y el 'Te Transfiero Mañana'",
+    "protagonist": "El Amigo Pagador",
+    "category": "Amistad & Guita",
+    "context": "Van a un boliche exclusivo de Costanera entre 6 amigos. Piden dos mesas VIP y champagne premium por un total de $800.000. Al llegar la cuenta, tus amigos dicen 'pagá con tu tarjeta que no tenemos límite y mañana te transferimos'. Pasan tres semanas y nadie te transfirió un peso.",
+    "image": "assets/celebrities/diane-caracchi.jpg",
+    "quote": "La plata entre amigos no se reclama, pero tampoco se roba.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Mandar Captura del Resumen al Grupo con Alias y Amenaza (Factos)",
+        "text": "Mandás la captura de la tarjeta al grupo de WhatsApp: 'Tienen 2 horas para transferir o los etiqueto a todos en historias de Instagram como morosos'.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Mensaje Individual a Cada Uno y Cero Salidas Futuras (Dignidad)",
+        "text": "Le escribís por privado a cada uno con el monto exacto. Al que no paga, lo eliminás de tu círculo de amigos para siempre sin hacer escándalo.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Pagar el Resumen en Silencio para que no se Enojen (Inseguridad)",
+        "text": "Te comés la deuda vos solo pagando el mínimo de la tarjeta con intereses monstruosos para no generar mala onda en el grupo y seguís saliendo con ellos.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-el-amigo-del-ex",
+    "title": "El 'Chongueo' con el Mejor Amigo de tu Ex",
+    "protagonist": "La Soltera Indecisa",
+    "category": "Códigos & Noche",
+    "context": "Te separaste hace 8 meses de una relación larga. En un cumpleaños en un bar, el mejor amigo de tu ex (que siempre te pareció hermoso) se te acerca en la barra, te dice que siempre le gustaste y te invita a su departamento.",
+    "image": "assets/celebrities/luli-case.jpg",
+    "quote": "La soltería no tiene códigos, pero la noche pasa factura.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Irte con el Amigo sin Culpa: La Vida es Una Sola (Factos)",
+        "text": "Te vas al departamento del amigo de una. Con tu ex ya terminaste y los códigos entre hombres son problema de ellos dos, no tuyo.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Rechazar la Propuesta por Respeto a la Historia Pasada (Dignidad)",
+        "text": "Le decís que no con una sonrisa: no te gusta mezclarte en traiciones entre amigos ni alimentar quilombos innecesarios en tu vida.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Darle un Beso en el Baño pero Irte con Culpa y Escribirle a tu Ex (Migajera)",
+        "text": "Chapás con el amigo a escondidas, te agarra un ataque de pánico a las 4 AM, te vas a tu casa en Uber y le mandás un mensaje a tu ex diciendo 'te extraño'.",
+        "style": "luli"
       }
     ]
   }

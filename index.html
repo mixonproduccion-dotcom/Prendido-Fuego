@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRENDIDO FUEGO 🔥 | Mix On Studio Live Hub</title>
-  <link rel="stylesheet" href="style.css?v=2.2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css?v=2.3">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
 </head>
 <body class="stage-mode">
@@ -171,6 +174,9 @@
     <div class="sidebar-section">
       <div class="sidebar-section-title">🎬 CONTROL DE TRANSMISIÓN</div>
       <div class="sidebar-toggles-grid">
+        <button class="btn-stream-toggle" id="btnTogglePerf">
+          <span id="sidePerfIcon">⚡</span> <span id="sidePerfText">Modo 60 FPS (Ultra Fluido)</span>
+        </button>
         <button class="btn-stream-toggle" id="btnToggleOBS">
           <span>🎬</span> Modo OBS Clean Feed
         </button>
@@ -198,7 +204,7 @@
         </button>
 
         <div class="brand-pill" id="btnGoHome" role="button" title="Volver al inicio">
-          <img src="assets/logo-pf.jpg" alt="PF" class="brand-logo-small" onerror="this.style.display='none'">
+          <img src="assets/logo-pf.jpg" alt="PF" class="brand-logo-small" loading="lazy" decoding="async" onerror="this.style.display='none'">
           <span class="brand-name">PRENDIDO FUEGO</span>
           <span class="live-indicator-dot"></span>
           <span class="live-indicator-text">EN VIVO</span>
@@ -213,6 +219,11 @@
       </div>
 
       <div class="topbar-right">
+        <!-- BOTÓN MODO RENDIMIENTO (60 FPS STREAMING) -->
+        <button class="btn-topbar-tool btn-perf-toggle" id="btnTopPerf" title="Alternar Modo Rendimiento 60 FPS (Ahorro GPU para OBS)">
+          ⚡ <span id="topPerfLabel">60 FPS</span>
+        </button>
+
         <!-- CRONÓMETRO CON CONTROLES COMPLETOS (PLAY, PAUSE, RESET, +10s) -->
         <div class="floating-timer-suite" id="topbarTimerSuite" title="Cronómetro de Debate">
           <span class="timer-icon">⏱️</span>
@@ -1237,13 +1248,13 @@
 
 
   <!-- Data Scripts -->
-  <script src="data_celebrities.js?v=2.2"></script>
-  <script src="data_tribunal.js?v=2.2"></script>
-  <script src="data_semaforo.js?v=2.2"></script>
-  <script src="data_bandos.js?v=2.2"></script>
-  <script src="data_ranking.js?v=2.2"></script>
+  <script src="data_celebrities.js?v=2.3"></script>
+  <script src="data_tribunal.js?v=2.3"></script>
+  <script src="data_semaforo.js?v=2.3"></script>
+  <script src="data_bandos.js?v=2.3"></script>
+  <script src="data_ranking.js?v=2.3"></script>
   <!-- Engine Scripts -->
-  <script src="audio.js?v=2.2"></script>
-  <script src="app.js?v=2.2"></script>
+  <script src="audio.js?v=2.3"></script>
+  <script src="app.js?v=2.3"></script>
 </body>
 </html>

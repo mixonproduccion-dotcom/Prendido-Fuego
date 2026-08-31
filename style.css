@@ -1,17 +1,16 @@
 /* =========================================================
    PRENDIDO FUEGO 🔥 - CINEMATIC STUDIO BROADCAST HUB
    Design System for Live Streaming & TV-Ready Interactivity
+   High Performance Edition (60 FPS Locked for OBS & Multi-Screen)
    ========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* Obsidian Luxury Palette */
   --bg-deep: #050609;
   --bg-stage: #090b12;
-  --bg-card: rgba(15, 18, 30, 0.88);
-  --bg-card-hover: rgba(22, 27, 44, 0.95);
-  --bg-glass-blur: rgba(12, 14, 24, 0.85);
+  --bg-card: rgba(15, 18, 30, 0.94);
+  --bg-card-hover: rgba(22, 27, 44, 0.98);
+  --bg-glass-blur: rgba(10, 13, 24, 0.92);
   
   /* Fire Brand Accents */
   --fire-red: #ff2a42;
@@ -30,16 +29,16 @@
   /* Gradients */
   --grad-fire: linear-gradient(135deg, #ff2a42 0%, #ff7a00 50%, #ffe600 100%);
   --grad-fire-text: linear-gradient(90deg, #ffffff 0%, #ffe600 35%, #ff4b2b 75%, #ff2a42 100%);
-  --grad-card: linear-gradient(145deg, rgba(25, 29, 48, 0.85) 0%, rgba(10, 12, 20, 0.92) 100%);
-  --grad-card-active: linear-gradient(145deg, rgba(35, 42, 70, 0.95) 0%, rgba(15, 18, 30, 0.98) 100%);
+  --grad-card: linear-gradient(145deg, rgba(25, 29, 48, 0.92) 0%, rgba(10, 12, 20, 0.96) 100%);
+  --grad-card-active: linear-gradient(145deg, rgba(35, 42, 70, 0.96) 0%, rgba(15, 18, 30, 0.98) 100%);
   
   /* Borders & Shadows */
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-fire: rgba(255, 75, 43, 0.35);
   --border-fire-strong: rgba(255, 75, 43, 0.8);
-  --glow-flame: 0 0 30px rgba(255, 60, 0, 0.35);
-  --glow-flame-intense: 0 0 45px rgba(255, 42, 66, 0.6), 0 0 80px rgba(255, 122, 0, 0.3);
-  --glow-gold: 0 0 35px rgba(255, 230, 0, 0.45);
+  --glow-flame: 0 0 25px rgba(255, 60, 0, 0.28);
+  --glow-flame-intense: 0 0 35px rgba(255, 42, 66, 0.5), 0 0 60px rgba(255, 122, 0, 0.25);
+  --glow-gold: 0 0 25px rgba(255, 230, 0, 0.35);
   
   /* Typography */
   --font-display: 'Bebas Neue', sans-serif;
@@ -69,7 +68,7 @@ html, body {
   position: relative;
 }
 
-/* Background Embers Canvas */
+/* Background Embers Canvas (GPU Optimized) */
 #particlesCanvas {
   position: fixed;
   top: 0;
@@ -78,6 +77,8 @@ html, body {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* Subtle background radial glow */
@@ -86,10 +87,10 @@ body::before {
   position: fixed;
   top: -20vh;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0);
   width: 90vw;
   height: 60vh;
-  background: radial-gradient(circle, rgba(255, 42, 66, 0.12) 0%, rgba(255, 122, 0, 0.05) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 42, 66, 0.1) 0%, rgba(255, 122, 0, 0.04) 40%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -117,8 +118,10 @@ body::before {
   background: var(--bg-glass-blur);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 60, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateZ(0);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 60, 0, 0.08);
   margin-bottom: 14px;
   transition: all 0.3s var(--ease-cinematic);
 }
@@ -205,8 +208,9 @@ body::before {
   height: 8px;
   background: #ff2a42;
   border-radius: 50%;
-  box-shadow: 0 0 10px #ff2a42, 0 0 20px #ff2a42;
+  box-shadow: 0 0 10px #ff2a42;
   animation: livePulse 1.5s infinite;
+  transform: translateZ(0);
 }
 
 .live-indicator-text {
@@ -218,8 +222,8 @@ body::before {
 }
 
 @keyframes livePulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
+  0%, 100% { opacity: 1; transform: scale(1) translateZ(0); }
+  50% { opacity: 0.4; transform: scale(0.85) translateZ(0); }
 }
 
 /* Indicador Central de Escena Activa */
@@ -248,6 +252,23 @@ body::before {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.btn-perf-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 230, 0, 0.12);
+  border: 1px solid rgba(255, 230, 0, 0.35);
+  color: var(--fire-yellow);
+  font-weight: 800;
+  transition: all 0.2s ease;
+}
+
+.btn-perf-toggle:hover, .btn-perf-toggle.active {
+  background: var(--fire-yellow);
+  color: #000;
+  box-shadow: 0 0 15px rgba(255, 230, 0, 0.4);
 }
 
 .floating-timer-suite {
@@ -352,12 +373,12 @@ body::before {
   justify-content: space-between;
   gap: 18px;
   padding: 12px 22px;
-  background: linear-gradient(90deg, rgba(20, 24, 40, 0.96) 0%, rgba(10, 12, 22, 0.98) 100%);
+  background: linear-gradient(90deg, rgba(20, 24, 40, 0.98) 0%, rgba(10, 12, 22, 0.98) 100%);
   border: 1px solid var(--border-fire);
   border-left: 6px solid var(--fire-flame);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), var(--glow-flame);
-  backdrop-filter: blur(25px);
+  transform: translateZ(0);
   margin-bottom: 20px;
   transition: all 0.3s var(--ease-cinematic);
 }
@@ -367,8 +388,8 @@ body::before {
 }
 
 @keyframes zocaloUpdateFlash {
-  0% { transform: scale(0.99); box-shadow: 0 0 40px var(--fire-flame); }
-  100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), var(--glow-flame); }
+  0% { transform: scale(0.99) translateZ(0); box-shadow: 0 0 40px var(--fire-flame); }
+  100% { transform: scale(1) translateZ(0); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), var(--glow-flame); }
 }
 
 .zocalo-left-brand {
@@ -458,12 +479,12 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(3, 4, 7, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(3, 4, 7, 0.85);
   z-index: 99;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
+  transform: translateZ(0);
 }
 
 .sidebar-overlay.active {
@@ -478,12 +499,11 @@ body::before {
   width: 380px;
   max-width: 90vw;
   height: 100vh;
-  background: rgba(10, 12, 20, 0.96);
+  background: rgba(10, 12, 20, 0.98);
   border-right: 1px solid var(--border-fire);
-  backdrop-filter: blur(25px);
   z-index: 100;
   box-shadow: 10px 0 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 42, 66, 0.2);
-  transform: translateX(-100%);
+  transform: translateX(-100%) translateZ(0);
   transition: transform 0.35s var(--ease-cinematic);
   display: flex;
   flex-direction: column;
@@ -492,7 +512,7 @@ body::before {
 }
 
 .studio-sidebar.open {
-  transform: translateX(0);
+  transform: translateX(0) translateZ(0);
 }
 
 .sidebar-header {
@@ -851,14 +871,15 @@ body::before {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   width: 160px;
   height: 160px;
   background: radial-gradient(circle, rgba(255, 42, 66, 0.6) 0%, rgba(255, 122, 0, 0.3) 50%, transparent 70%);
   border-radius: 50%;
-  filter: blur(15px);
+  filter: blur(12px);
   animation: emblemPulse 3s infinite ease-in-out;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .hero-logo-img {
@@ -870,6 +891,7 @@ body::before {
   object-fit: cover;
   border: 2px solid rgba(255, 75, 43, 0.6);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), var(--glow-flame);
+  transform: translateZ(0);
 }
 
 .hero-fallback-logo {
@@ -878,8 +900,8 @@ body::before {
 }
 
 @keyframes emblemPulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  0%, 100% { transform: translate(-50%, -50%) scale(1) translateZ(0); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.12) translateZ(0); opacity: 1; }
 }
 
 /* Títulos Principales */
@@ -941,18 +963,20 @@ body::before {
   color: white;
   cursor: pointer;
   box-shadow: 0 15px 50px rgba(255, 42, 66, 0.5), 0 0 40px rgba(255, 122, 0, 0.4);
-  transition: all 0.3s var(--ease-cinematic);
+  transition: transform 0.25s var(--ease-cinematic), box-shadow 0.25s var(--ease-cinematic);
   overflow: hidden;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .btn-huge-play:hover {
-  transform: scale(1.05) translateY(-3px);
+  transform: scale(1.05) translateY(-3px) translateZ(0);
   box-shadow: 0 25px 70px rgba(255, 42, 66, 0.8), 0 0 60px rgba(255, 166, 0, 0.6);
   border-color: #ffffff;
 }
 
 .btn-huge-play:active {
-  transform: scale(0.98);
+  transform: scale(0.98) translateZ(0);
 }
 
 .play-glow-pulse {
@@ -964,11 +988,13 @@ body::before {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
   animation: playGlowRotate 4s infinite linear;
   pointer-events: none;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 @keyframes playGlowRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg) translateZ(0); }
+  100% { transform: rotate(360deg) translateZ(0); }
 }
 
 .play-icon-shape {
@@ -1026,7 +1052,7 @@ body::before {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  backdrop-filter: blur(15px);
+  transform: translateZ(0);
   cursor: pointer;
   transition: all 0.25s var(--ease-cinematic);
   position: relative;
@@ -1122,7 +1148,7 @@ body::before {
 }
 
 .host-feature-card {
-  background: linear-gradient(145deg, rgba(20, 24, 38, 0.92) 0%, rgba(10, 12, 20, 0.96) 100%);
+  background: linear-gradient(145deg, rgba(20, 24, 38, 0.94) 0%, rgba(10, 12, 20, 0.98) 100%);
   border: 1px solid var(--border-fire);
   border-radius: 20px;
   padding: 24px 20px;
@@ -1130,7 +1156,7 @@ body::before {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  backdrop-filter: blur(20px);
+  transform: translateZ(0);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   transition: all 0.3s var(--ease-cinematic);
   position: relative;
@@ -1138,7 +1164,7 @@ body::before {
 }
 
 .host-feature-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) translateZ(0);
   border-color: var(--fire-orange);
   box-shadow: 0 15px 40px rgba(255, 75, 43, 0.4), var(--glow-flame);
 }
@@ -1238,7 +1264,7 @@ body::before {
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
   margin-bottom: 20px;
-  backdrop-filter: blur(15px);
+  transform: translateZ(0);
 }
 
 .stage-nav-left, .stage-nav-right {
@@ -1320,7 +1346,7 @@ body::before {
 
 .tribunal-phase {
   display: none;
-  animation: phaseEntrance 0.45s var(--ease-cinematic) forwards;
+  animation: phaseEntrance 0.35s var(--ease-cinematic) forwards;
 }
 
 .tribunal-phase.active {
@@ -1328,8 +1354,8 @@ body::before {
 }
 
 @keyframes phaseEntrance {
-  from { opacity: 0; transform: scale(0.97) translateY(15px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: scale(0.98) translateY(10px) translateZ(0); }
+  to { opacity: 1; transform: scale(1) translateY(0) translateZ(0); }
 }
 
 /* FASE 1: EL GRAN DILEMA */
@@ -1339,7 +1365,7 @@ body::before {
   border-radius: 24px;
   padding: 36px 40px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), var(--glow-flame);
-  backdrop-filter: blur(20px);
+  transform: translateZ(0);
 }
 
 .dilema-headline-wrap {
@@ -1505,24 +1531,24 @@ body::before {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(15px);
-  transition: all 0.3s var(--ease-cinematic);
-  animation: cardSlideUp 0.5s var(--ease-cinematic) both;
+  transform: translateZ(0);
+  transition: all 0.25s var(--ease-cinematic);
+  animation: cardSlideUp 0.35s var(--ease-cinematic) both;
 }
 
-.tribunal-option-card:nth-child(1) { animation-delay: 0.1s; }
-.tribunal-option-card:nth-child(2) { animation-delay: 0.2s; }
-.tribunal-option-card:nth-child(3) { animation-delay: 0.3s; }
+.tribunal-option-card:nth-child(1) { animation-delay: 0.05s; }
+.tribunal-option-card:nth-child(2) { animation-delay: 0.1s; }
+.tribunal-option-card:nth-child(3) { animation-delay: 0.15s; }
 
 @keyframes cardSlideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px) translateZ(0); }
+  to { opacity: 1; transform: translateY(0) translateZ(0); }
 }
 
 .tribunal-option-card:hover {
   background: var(--bg-card-hover);
   border-color: var(--fire-orange);
-  transform: translateY(-6px);
+  transform: translateY(-6px) translateZ(0);
   box-shadow: 0 15px 35px rgba(0,0,0,0.8), var(--glow-flame);
 }
 
@@ -1575,6 +1601,7 @@ body::before {
   border: 1px solid var(--border-fire);
   border-radius: 24px;
   padding: 30px 36px;
+  transform: translateZ(0);
 }
 
 .voting-phase-header {
@@ -1725,7 +1752,7 @@ body::before {
 
 .roulette-step-view {
   display: none;
-  animation: rouletteStepFade 0.4s var(--ease-cinematic) forwards;
+  animation: rouletteStepFade 0.35s var(--ease-cinematic) forwards;
 }
 
 .roulette-step-view.active {
@@ -1733,8 +1760,8 @@ body::before {
 }
 
 @keyframes rouletteStepFade {
-  from { opacity: 0; transform: scale(0.96) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: scale(0.97) translateY(12px) translateZ(0); }
+  to { opacity: 1; transform: scale(1) translateY(0) translateZ(0); }
 }
 
 /* FASE 1: SPLIT RULETA + VÍCTIMA */
@@ -1753,7 +1780,7 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(15px);
+  transform: translateZ(0);
   box-shadow: 0 15px 45px rgba(0,0,0,0.7);
 }
 
@@ -1858,7 +1885,7 @@ body::before {
   padding: 36px 44px;
   text-align: center;
   box-shadow: 0 25px 70px rgba(0,0,0,0.85), var(--glow-flame);
-  backdrop-filter: blur(25px);
+  transform: translateZ(0);
   position: relative;
   overflow: hidden;
 }
@@ -2023,7 +2050,7 @@ body::before {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  backdrop-filter: blur(15px);
+  transform: translateZ(0);
   transition: all 0.25s ease;
   position: relative;
 }
@@ -2150,7 +2177,7 @@ body::before {
   border: 1px solid var(--border-fire);
   border-radius: 20px;
   padding: 20px;
-  backdrop-filter: blur(15px);
+  transform: translateZ(0);
 }
 
 .thrones-title {
@@ -2264,7 +2291,7 @@ body::before {
   padding: 40px;
   text-align: center;
   box-shadow: 0 20px 60px rgba(0,0,0,0.8), var(--glow-flame);
-  backdrop-filter: blur(20px);
+  transform: translateZ(0);
 }
 
 .semaforo-situation-badge {
@@ -2450,13 +2477,13 @@ body::before {
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   padding: 12px 20px;
-  backdrop-filter: blur(15px);
+  transform: translateZ(0);
   transition: all 0.2s ease;
 }
 
 .ranking-item-card:hover {
   border-color: var(--fire-orange);
-  transform: translateX(6px);
+  transform: translateX(6px) translateZ(0);
 }
 
 .rank-position-pill {
@@ -2597,6 +2624,7 @@ body::before {
   border: 1px solid var(--border-fire);
   border-radius: 24px;
   padding: 30px;
+  transform: translateZ(0);
 }
 
 .bandos-explainer-tag {
@@ -2636,8 +2664,8 @@ body::before {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  backdrop-filter: blur(15px);
-  transition: all 0.3s ease;
+  transform: translateZ(0);
+  transition: all 0.25s ease;
 }
 
 .bando-fighter-card.side-a { border-color: rgba(255, 122, 0, 0.4); }
@@ -2885,12 +2913,12 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(10, 0, 5, 0.92);
-  backdrop-filter: blur(25px);
+  background: rgba(10, 0, 5, 0.94);
   z-index: 1000;
   display: none;
   align-items: center;
   justify-content: center;
+  transform: translateZ(0);
 }
 
 .veto-overlay-modal.active {
@@ -2911,6 +2939,7 @@ body::before {
   text-align: center;
   box-shadow: 0 0 80px rgba(255, 0, 85, 0.8);
   max-width: 600px;
+  transform: translateZ(0);
   animation: vetoScaleUp 0.35s var(--ease-cinematic);
 }
 
@@ -3606,24 +3635,26 @@ body::before {
   position: fixed;
   bottom: 14px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0);
   z-index: 1200;
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(8, 10, 18, 0.94);
+  background: rgba(8, 10, 18, 0.96);
   border: 1.5px solid rgba(255, 75, 43, 0.45);
   border-radius: 20px;
   padding: 6px 12px;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 60, 0, 0.25);
-  transition: all 0.3s var(--ease-cinematic);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 60, 0, 0.2);
+  transition: transform 0.2s var(--ease-cinematic), border-color 0.2s ease;
   user-select: none;
+  will-change: transform;
 }
 
 .persistent-sound-dock:hover {
   border-color: var(--fire-orange);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 75, 43, 0.4);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 75, 43, 0.35);
 }
 
 .dock-badge-brand {
@@ -3637,11 +3668,13 @@ body::before {
 .dock-fire-icon {
   font-size: 1.4rem;
   animation: dockFirePulse 2s infinite ease-in-out;
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
 @keyframes dockFirePulse {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px #ff4b2b); }
-  50% { transform: scale(1.15); filter: drop-shadow(0 0 10px #ffaa00); }
+  0%, 100% { transform: scale(1) translateZ(0); opacity: 0.9; }
+  50% { transform: scale(1.14) translateZ(0); opacity: 1; }
 }
 
 .dock-brand-texts {
@@ -3687,13 +3720,13 @@ body::before {
   cursor: pointer;
   overflow: hidden;
   transition: all 0.18s var(--ease-cinematic);
+  transform: translateZ(0);
 }
 
 .dock-pad-btn .pad-icon {
   font-size: 1.3rem;
   line-height: 1;
   margin-bottom: 3px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 .dock-pad-btn .pad-label {
@@ -3721,21 +3754,20 @@ body::before {
 
 /* Efecto de Click / Pulsación */
 .dock-pad-btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) translateZ(0);
   border-color: rgba(255, 255, 255, 0.3);
 }
 
 .dock-pad-btn:active,
 .dock-pad-btn.pad-active-flash {
-  transform: scale(0.92);
-  filter: brightness(1.7);
+  transform: scale(0.92) translateZ(0);
   animation: padPunch 0.25s var(--ease-cinematic);
 }
 
 @keyframes padPunch {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.9); box-shadow: 0 0 25px currentColor; }
-  100% { transform: scale(1); }
+  0% { transform: scale(1) translateZ(0); }
+  50% { transform: scale(0.9) translateZ(0); }
+  100% { transform: scale(1) translateZ(0); }
 }
 
 /* Variantes de Color para cada Pad */
@@ -3861,11 +3893,11 @@ body::before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(10, 12, 20, 0.85);
+  background: rgba(10, 12, 20, 0.95);
   border: 1px solid rgba(255, 75, 43, 0.35);
   border-radius: 18px;
   padding: 16px 24px;
-  backdrop-filter: blur(16px);
+  transform: translateZ(0);
   gap: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
@@ -3962,10 +3994,14 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(8, 10, 16, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 10, 16, 0.9);
+  border: 1.5px solid rgba(255, 75, 43, 0.35);
   border-radius: 16px;
   padding: 14px 22px;
+  margin-bottom: 110px;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
 }
 
 .btn-show-nav {
@@ -4761,7 +4797,7 @@ body::before {
 }
 
 .tribunal-opt-card {
-  background: rgba(14, 17, 28, 0.9);
+  background: rgba(14, 17, 28, 0.94);
   border: 1.5px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   padding: 24px;
@@ -4769,7 +4805,7 @@ body::before {
   flex-direction: column;
   gap: 12px;
   cursor: pointer;
-  backdrop-filter: blur(16px);
+  transform: translateZ(0);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   transition: all 0.25s var(--ease-cinematic);
   position: relative;
@@ -5636,8 +5672,7 @@ body::before {
 
 /* =========================================================
    PROGRESS PIPELINE TRACKER & TIMELINE SYSTEM
-   ========================================================= */
-.progress-pipeline-strip {
+   ===============.progress-pipeline-strip {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -5645,7 +5680,7 @@ body::before {
   border: 1.5px solid rgba(255, 75, 43, 0.35);
   border-radius: 20px;
   padding: 18px 24px;
-  backdrop-filter: blur(20px);
+  transform: translateZ(0);
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 69, 0, 0.15);
   margin-bottom: 20px;
 }
@@ -5677,7 +5712,7 @@ body::before {
   background: linear-gradient(90deg, #ff0055 0%, #ff4500 45%, #ffbb00 100%);
   border-radius: 999px;
   box-shadow: 0 0 16px #ff4500, 0 0 30px rgba(255, 122, 0, 0.6);
-  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .pipeline-nodes-deck {
@@ -5704,6 +5739,7 @@ body::before {
   transition: all 0.25s var(--ease-cinematic);
   position: relative;
   text-align: center;
+  transform: translateZ(0);
 }
 
 .pipeline-node-btn:hover {
@@ -5718,7 +5754,7 @@ body::before {
   color: #050609;
   font-weight: 900;
   box-shadow: 0 0 20px rgba(255, 100, 0, 0.6);
-  transform: translateY(-2px) scale(1.03);
+  transform: translateY(-2px) scale(1.03) translateZ(0);
 }
 
 .pipeline-node-btn.completed {
@@ -5728,79 +5764,80 @@ body::before {
 }
 
 /* =========================================================
-   CINEMATIC ENTRANCE ANIMATIONS (STREAMING BROADCAST GRADE)
+   CINEMATIC ENTRANCE ANIMATIONS (STREAMING BROADCAST GRADE - 60 FPS)
    ========================================================= */
 
 @keyframes questionPunchHero {
   0% {
     opacity: 0;
-    transform: scale(0.92) translateY(18px);
-    filter: blur(10px) brightness(1.8);
+    transform: scale(0.94) translateY(12px) translateZ(0);
   }
   65% {
     opacity: 1;
-    transform: scale(1.025) translateY(-2px);
-    filter: blur(0px) brightness(1.2);
+    transform: scale(1.015) translateY(-1px) translateZ(0);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: brightness(1);
+    transform: scale(1) translateY(0) translateZ(0);
   }
 }
 
 @keyframes staggerCardUp {
   0% {
     opacity: 0;
-    transform: translateY(28px) scale(0.95);
-    filter: blur(4px);
+    transform: translateY(20px) scale(0.96) translateZ(0);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0) scale(1) translateZ(0);
   }
 }
 
 @keyframes flameAuraPulse {
   0% {
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3), inset 0 0 10px rgba(255, 69, 0, 0.2);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
   }
   50% {
-    box-shadow: 0 0 35px rgba(255, 122, 0, 0.6), inset 0 0 20px rgba(255, 170, 0, 0.4);
+    box-shadow: 0 0 35px rgba(255, 122, 0, 0.55);
   }
   100% {
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3), inset 0 0 10px rgba(255, 69, 0, 0.2);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
   }
 }
 
 .anim-question-reveal {
-  animation: questionPunchHero 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: questionPunchHero 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
 }
 
 .anim-card-stagger-1 {
-  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 0.05s;
+  animation: staggerCardUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.04s;
+  will-change: transform, opacity;
 }
 
 .anim-card-stagger-2 {
-  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 0.15s;
+  animation: staggerCardUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.08s;
+  will-change: transform, opacity;
 }
 
 .anim-card-stagger-3 {
-  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 0.25s;
+  animation: staggerCardUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.12s;
+  will-change: transform, opacity;
 }
 
 .anim-card-stagger-4 {
-  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 0.35s;
+  animation: staggerCardUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.16s;
+  will-change: transform, opacity;
 }
 
 .anim-card-stagger-5 {
-  animation: staggerCardUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 0.45s;
+  animation: staggerCardUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.2s;
+  will-change: transform, opacity;
 }
 
 .pulse-fire-glow {
@@ -5822,6 +5859,7 @@ body::before {
   width: fit-content;
   margin: 0 auto 16px auto;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transform: translateZ(0);
 }
 
 .pearl-node {
@@ -5837,14 +5875,15 @@ body::before {
   font-size: 0.75rem;
   font-weight: 900;
   color: #94a3b8;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  transform: translateZ(0);
 }
 
 .pearl-node.active-now {
   border-color: white;
   color: white;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-  transform: scale(1.2);
+  transform: scale(1.15) translateZ(0);
   background: rgba(255, 255, 255, 0.25);
 }
 
@@ -5876,5 +5915,28 @@ body::before {
   box-shadow: 0 0 18px rgba(255, 69, 0, 0.8);
 }
 
+/* =========================================================
+   PERFORMANCE MODE (MODO 60 FPS ULTRA FLUIDO STREAMING)
+   ========================================================= */
+body.perf-mode-active #particlesCanvas {
+  display: none !important;
+}
+
+body.perf-mode-active * {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.perf-mode-active .emblem-fire-glow,
+body.perf-mode-active .play-glow-pulse {
+  display: none !important;
+}
+
+body.perf-mode-active .btn-perf-toggle {
+  background: #00e676 !important;
+  border-color: #00e676 !important;
+  color: #050609 !important;
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.5) !important;
+}
 
 

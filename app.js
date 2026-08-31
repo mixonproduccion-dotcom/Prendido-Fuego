@@ -25,6 +25,7 @@ function getShortDisplayName(fullName) {
 // Global App State
 let currentTab = "home";
 let isOBSMode = false;
+let isPerformanceMode = localStorage.getItem("pf_perf_mode") === "true";
 
 
 // 1. Global Funa Tracker (Funas acumuladas por conductor)
@@ -82,6 +83,7 @@ window.addEventListener("DOMContentLoaded", () => {
   initParticles();
   initRouletteCanvas();
   setupSidebar();
+  setupPerformanceMode();
   setupSoundboard();
   setupKeyboardShortcuts();
   setupTimer();
@@ -198,6 +200,62 @@ function setupSidebar() {
 
   // Brand pill back to home
   document.getElementById("btnGoHome")?.addEventListener("click", () => switchTab("home"));
+}
+
+// =========================================================
+// 2.05 MODO RENDIMIENTO 60 FPS ULTRA FLUIDO (STREAMING OBS)
+// =========================================================
+function setupPerformanceMode() {
+  const btnTopPerf = document.getElementById("btnTopPerf");
+  const btnTogglePerf = document.getElementById("btnTogglePerf");
+
+  function applyPerfMode(active) {
+    isPerformanceMode = active;
+    localStorage.setItem("pf_perf_mode", active ? "true" : "false");
+    if (active) {
+      document.body.classList.add("perf-mode-active");
+      if (btnTopPerf) {
+        btnTopPerf.classList.add("active");
+        btnTopPerf.innerHTML = `⚡ <span id="topPerfLabel">60 FPS ON</span>`;
+      }
+      if (btnTogglePerf) {
+        btnTogglePerf.classList.add("active");
+        btnTogglePerf.innerHTML = `<span id="sidePerfIcon">⚡</span> <span id="sidePerfText">Modo 60 FPS (Activado)</span>`;
+      }
+    } else {
+      document.body.classList.remove("perf-mode-active");
+      if (btnTopPerf) {
+        btnTopPerf.classList.remove("active");
+        btnTopPerf.innerHTML = `⚡ <span id="topPerfLabel">60 FPS</span>`;
+      }
+      if (btnTogglePerf) {
+        btnTogglePerf.classList.remove("active");
+        btnTogglePerf.innerHTML = `<span id="sidePerfIcon">⚡</span> <span id="sidePerfText">Modo 60 FPS (Ultra Fluido)</span>`;
+      }
+    }
+  }
+
+  btnTopPerf?.addEventListener("click", () => {
+    applyPerfMode(!isPerformanceMode);
+    audioFX.playTick(isPerformanceMode ? 750 : 400, 0.2);
+  });
+
+  btnTogglePerf?.addEventListener("click", () => {
+    applyPerfMode(!isPerformanceMode);
+    audioFX.playTick(isPerformanceMode ? 750 : 400, 0.2);
+  });
+
+  applyPerfMode(isPerformanceMode);
+}
+
+function togglePerformanceMode() {
+  const btnTopPerf = document.getElementById("btnTopPerf");
+  if (btnTopPerf) btnTopPerf.click();
+  else {
+    isPerformanceMode = !isPerformanceMode;
+    localStorage.setItem("pf_perf_mode", isPerformanceMode ? "true" : "false");
+    document.body.classList.toggle("perf-mode-active", isPerformanceMode);
+  }
 }
 
 // =========================================================
@@ -693,13 +751,58 @@ function updateLowerThirdRoulette() {
   }
 }
 
-// Wheel Canvas Physics
+// Wheel Canvas Physics (High Performance Offscreen Blitting)
 const WHEEL_SLICES = 12;
 const SLICE_COLORS = [
   "#ff1e00", "#ff7b00", "#d500f9", "#ffb703",
   "#ff005b", "#00e676", "#ff3d00", "#ff9100",
   "#9c27b0", "#ffc107", "#ff1744", "#00b0ff"
 ];
+let offscreenWheelCanvas = null;
+
+function renderOffscreenWheelDisk() {
+  offscreenWheelCanvas = document.createElement("canvas");
+  offscreenWheelCanvas.width = 300;
+  offscreenWheelCanvas.height = 300;
+  const offCtx = offscreenWheelCanvas.getContext("2d");
+  const size = 300;
+  const center = size / 2;
+  const radius = center - 10;
+  const sliceAngle = (2 * Math.PI) / WHEEL_SLICES;
+
+  offCtx.save();
+  offCtx.translate(center, center);
+
+  for (let i = 0; i < WHEEL_SLICES; i++) {
+    const startA = i * sliceAngle;
+    const endA = startA + sliceAngle;
+
+    offCtx.beginPath();
+    offCtx.moveTo(0, 0);
+    offCtx.arc(0, 0, radius, startA, endA);
+    offCtx.closePath();
+    offCtx.fillStyle = SLICE_COLORS[i % SLICE_COLORS.length];
+    offCtx.fill();
+
+    offCtx.lineWidth = 2;
+    offCtx.strokeStyle = "rgba(10, 10, 15, 0.6)";
+    offCtx.stroke();
+
+    offCtx.save();
+    offCtx.rotate(startA + sliceAngle / 2);
+    offCtx.textAlign = "right";
+    offCtx.fillStyle = "#ffffff";
+    offCtx.font = "bold 13px Bebas Neue, Montserrat";
+    offCtx.shadowColor = "rgba(0,0,0,0.8)";
+    offCtx.shadowBlur = 4;
+
+    const labels = ["🔥 FUEGO", "💍 MATCH", "🤫 CHONGO", "GH", "TRAP", "BOTINERA", "POLÍTICA", "AURA", "CARETA", "STREAM", "NOCHE", "RED FLAG"];
+    offCtx.fillText(labels[i % labels.length], radius - 20, 5);
+    offCtx.restore();
+  }
+
+  offCtx.restore();
+}
 
 function initRouletteCanvas() {
   rouletteCanvas = document.getElementById("rouletteCanvas");
@@ -709,49 +812,21 @@ function initRouletteCanvas() {
   rouletteCanvas.width = 300 * dpr;
   rouletteCanvas.height = 300 * dpr;
   rouletteCtx.scale(dpr, dpr);
+  renderOffscreenWheelDisk();
   drawWheel();
 }
 
 function drawWheel(currentRotAngle = wheelAngle) {
   if (!rouletteCtx) return;
+  if (!offscreenWheelCanvas) renderOffscreenWheelDisk();
   const size = 300;
   const center = size / 2;
-  const radius = center - 10;
-  const sliceAngle = (2 * Math.PI) / WHEEL_SLICES;
 
   rouletteCtx.clearRect(0, 0, size, size);
   rouletteCtx.save();
   rouletteCtx.translate(center, center);
   rouletteCtx.rotate(currentRotAngle);
-
-  for (let i = 0; i < WHEEL_SLICES; i++) {
-    const startA = i * sliceAngle;
-    const endA = startA + sliceAngle;
-
-    rouletteCtx.beginPath();
-    rouletteCtx.moveTo(0, 0);
-    rouletteCtx.arc(0, 0, radius, startA, endA);
-    rouletteCtx.closePath();
-    rouletteCtx.fillStyle = SLICE_COLORS[i % SLICE_COLORS.length];
-    rouletteCtx.fill();
-
-    rouletteCtx.lineWidth = 2;
-    rouletteCtx.strokeStyle = "rgba(10, 10, 15, 0.6)";
-    rouletteCtx.stroke();
-
-    rouletteCtx.save();
-    rouletteCtx.rotate(startA + sliceAngle / 2);
-    rouletteCtx.textAlign = "right";
-    rouletteCtx.fillStyle = "#ffffff";
-    rouletteCtx.font = "bold 13px Bebas Neue, Montserrat";
-    rouletteCtx.shadowColor = "rgba(0,0,0,0.8)";
-    rouletteCtx.shadowBlur = 4;
-
-    const labels = ["🔥 FUEGO", "💍 MATCH", "🤫 CHONGO", "GH", "TRAP", "BOTINERA", "POLÍTICA", "AURA", "CARETA", "STREAM", "NOCHE", "RED FLAG"];
-    rouletteCtx.fillText(labels[i % labels.length], radius - 20, 5);
-    rouletteCtx.restore();
-  }
-
+  rouletteCtx.drawImage(offscreenWheelCanvas, -center, -center);
   rouletteCtx.restore();
 }
 
@@ -1698,6 +1773,8 @@ function setupKeyboardShortcuts() {
       triggerSoundEffect("match");
     } else if (key === "5") {
       triggerSoundEffect("cringe");
+    } else if (key === "P") {
+      togglePerformanceMode();
     } else if (key === "ESCAPE") {
       closeFunaModal();
     }
@@ -1706,12 +1783,12 @@ function setupKeyboardShortcuts() {
 }
 
 // =========================================================
-// 13. PARTICLES ENGINE (CHISPAS & CENIZAS VOLÁTILES)
+// 13. PARTICLES ENGINE (CHISPAS & CENIZAS VOLÁTILES - 30 FPS GPU OPTIMIZED)
 // =========================================================
 function initParticles() {
   particlesCanvas = document.getElementById("particlesCanvas");
   if (!particlesCanvas) return;
-  particlesCtx = particlesCanvas.getContext("2d");
+  particlesCtx = particlesCanvas.getContext("2d", { alpha: true });
 
   function resize() {
     particlesCanvas.width = window.innerWidth;
@@ -1721,38 +1798,55 @@ function initParticles() {
   window.addEventListener("resize", resize);
 
   const particles = [];
-  const count = 45;
+  const count = 35;
   for (let i = 0; i < count; i++) {
     particles.push({
       x: Math.random() * particlesCanvas.width,
       y: Math.random() * particlesCanvas.height,
-      radius: Math.random() * 2.5 + 0.8,
-      speedX: (Math.random() - 0.5) * 0.8,
-      speedY: -(Math.random() * 1.5 + 0.5),
-      alpha: Math.random() * 0.7 + 0.3,
+      radius: Math.random() * 2.2 + 0.8,
+      speedX: (Math.random() - 0.5) * 0.7,
+      speedY: -(Math.random() * 1.3 + 0.4),
+      alpha: Math.random() * 0.6 + 0.25,
       color: Math.random() > 0.4 ? "#ff4500" : "#ffb703"
     });
   }
 
-  function render() {
-    particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
-    particles.forEach(p => {
-      p.x += p.speedX;
-      p.y += p.speedY;
-      if (p.y < 0) {
-        p.y = particlesCanvas.height + 10;
-        p.x = Math.random() * particlesCanvas.width;
+  let lastFrameTime = 0;
+  const FPS_INTERVAL = 1000 / 30; // 30 FPS Lock for OBS/Streaming rigs
+
+  function render(timestamp) {
+    if (!isPerformanceMode && !document.hidden) {
+      if (!lastFrameTime || timestamp - lastFrameTime >= FPS_INTERVAL) {
+        lastFrameTime = timestamp;
+        particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+        
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.speedX;
+          p.y += p.speedY;
+          if (p.y < 0) {
+            p.y = particlesCanvas.height + 8;
+            p.x = Math.random() * particlesCanvas.width;
+          }
+          particlesCtx.beginPath();
+          particlesCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          particlesCtx.fillStyle = p.color;
+          particlesCtx.globalAlpha = p.alpha;
+          particlesCtx.fill();
+        }
+        particlesCtx.globalAlpha = 1;
       }
-      particlesCtx.beginPath();
-      particlesCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      particlesCtx.fillStyle = p.color;
-      particlesCtx.globalAlpha = p.alpha;
-      particlesCtx.fill();
-    });
-    particlesCtx.globalAlpha = 1;
+    }
     requestAnimationFrame(render);
   }
-  render();
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && !isPerformanceMode) {
+      lastFrameTime = 0;
+    }
+  });
+
+  requestAnimationFrame(render);
 }
 
 // =========================================================
@@ -2064,29 +2158,18 @@ function startShowDia(mode = "today") {
   showUserChoices.semaforo = [];
   showUserChoices.ruleta = [];
 
-  if (mode === "today") {
-    // 1. APERTURA EDITORIAL
-    const apertura = {
-      question: "¿HASTA DÓNDE SE JUSTIFICA QUEMAR A UN EX POR RATING Y DESPECHO?",
-      context: "El país habla de Wanda consultándole a ChatGPT 7 infidelidades de Maxi tras las anécdotas de Rusia, Tini auditando a su padre con Messi y Antonela, y Messi anunciando su retiro oficial. ¿Todo vale en la guerra del ego?",
-      stances: {
-        holder: { name: "Tomás Holder", title: "Factos & Cero Hipocresía", text: "Si el vínculo se rompió y no hay lealtad, se tira con todo. Facturá, mostrá las pruebas y no te dejes pisotear jamás." },
-        diane: { name: "Diane Caracchi", title: "Dignidad & Códigos", text: "Hay un límite ético. Cuando hay hijos o familia de por medio, el despecho en redes te degrada a vos misma." },
-        luli: { name: "Luli Casé", title: "Despecho Glam & Tarot", text: "¡Chicas, firmar 'Solange' es arte puro! Si te rompieron el corazón, que arda Troya y que la culpa la paguen ellos." }
-      },
-      chatTrigger: "¿De qué lado estás en la mesa? Escribí FACTOS, DIGNIDAD o DESPECHO en el chat."
+    // 1. APERTURA: GRAN PORTADA DEL DÍA (WANDA VS MAXI)
+    const aperturaDuel = GUERRA_BANDOS_DATA[0] || {
+      id: "duelo-wanda-maxi",
+      title: "EL ESCÁNDALO DE RUSIA: WANDA NARA VS. MAXI LÓPEZ",
+      guide: "La gran polémica del día: ¿A quién banca cada conductor de la mesa?",
+      sideA: { name: "Wanda Nara ('Solange')", badge: "La que Consulta a ChatGPT", argument: "Bancó sola 3 hijos en Rusia mientras Maxi andaba de joda; tiene derecho a cobrarle todo.", image: "assets/celebrities/wanda-nara.jpg" },
+      sideB: { name: "Maxi López", badge: "El que Elige Seguir Adelante", argument: "Fueron anécdotas de soltero antes del matrimonio; Wanda no supera el pasado.", image: "assets/celebrities/maxi-lopez.jpg" },
+      chatTrigger: "¿De qué lado está el chat? Escribí [1] WANDA o [2] MAXI en vivo."
     };
 
-
-    // 2. GUERRA DE BANDOS (3 DUELOS AL HILO)
+    // 2. GUERRA DE BANDOS (3 DUELOS SIGUIENTES AL HILO)
     const bandosList = [
-      GUERRA_BANDOS_DATA[0] || {
-        id: "duelo-wanda-maxi",
-        title: "El Escándalo de Rusia: Wanda Nara vs. Maxi López",
-        guide: "¿Bancás a Solange exponiendo las 7 infidelidades históricas o a Maxi que rehizo su vida?",
-        sideA: { name: "Wanda Nara ('Solange')", badge: "La que Consulta a ChatGPT", argument: "Bancó sola 3 hijos en Rusia mientras Maxi andaba de joda; tiene derecho a cobrarle todo.", image: "assets/celebrities/wanda-nara.jpg" },
-        sideB: { name: "Maxi López", badge: "El que Elige Seguir Adelante", argument: "Fueron anécdotas de soltero antes del matrimonio; Wanda no supera el pasado.", image: "assets/celebrities/maxi-lopez.jpg" }
-      },
       GUERRA_BANDOS_DATA[1] || {
         id: "duelo-messi-retiro",
         title: "El Retiro del Capitán: Messi se Despidió de la Selección",
@@ -2100,6 +2183,13 @@ function startShowDia(mode = "today") {
         guide: "¿Auditoría implacable con Messi y Antonela o perdón familiar por respeto a los padres?",
         sideA: { name: "Tini Stoessel (Con Messi y Anto)", badge: "La que Reclama su Trabajo", argument: "Trabajó desde niña sin parar; su dinero le pertenece y debe recuperar hasta el último dólar.", image: "assets/celebrities/tini-stoessel.jpg" },
         sideB: { name: "Alejandro Stoessel", badge: "El Padre & Mánager", argument: "La convirtió en estrella mundial desde Disney; la familia está por encima de los negocios.", image: "assets/logo-pf.jpg" }
+      },
+      GUERRA_BANDOS_DATA[3] || {
+        id: "duelo-joaqui-luckra",
+        title: "El Amor Cuartetero & La Ruptura: La Joaqui vs. Luck Ra",
+        guide: "¿Apostar a la familia ensamblada o frenar a tiempo por la carrera?",
+        sideA: { name: "La Joaqui", badge: "La que Proyectó Familia", argument: "Se la jugó con el corazón abierto, compró una casa al lado y fue leal hasta el final.", image: "assets/celebrities/joaqui.jpg" },
+        sideB: { name: "Luck Ra", badge: "El Soltero del Cuarteto", argument: "Está en el pico de su carrera con 25 años; es más sano frenar a tiempo que convivir por presión.", image: "assets/celebrities/luckra.jpg" }
       }
     ];
 
@@ -2537,9 +2627,19 @@ function voteAperturaByHost(hostKey, side) {
 }
 
 function voteAperturaAll(side) {
-  voteAperturaByHost("holder", side);
-  voteAperturaByHost("diane", side);
-  voteAperturaByHost("luli", side);
+  side = (side || "a").toLowerCase();
+  if (!showUserChoices.aperturaVotes) {
+    showUserChoices.aperturaVotes = { holder: null, diane: null, luli: null };
+  }
+  showUserChoices.aperturaVotes.holder = side;
+  showUserChoices.aperturaVotes.diane = side;
+  showUserChoices.aperturaVotes.luli = side;
+
+  if (side === "a") audioFX.playFireIgnite();
+  else audioFX.playFactosHorn();
+
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep1_Apertura(body);
 }
 
 // ---------------------------------------------------------
@@ -2726,9 +2826,28 @@ function voteBandoByHost(hostKey, side) {
 }
 
 function voteShowBandoAll(side) {
-  voteBandoByHost("holder", side);
-  voteBandoByHost("diane", side);
-  voteBandoByHost("luli", side);
+  side = (side || "a").toLowerCase();
+  if (!showUserChoices.bandos[showBandosSubIndex]) {
+    showUserChoices.bandos[showBandosSubIndex] = {
+      duel: currentShowEpisode?.bandosList[showBandosSubIndex] || GUERRA_BANDOS_DATA[0],
+      hostVotes: { holder: null, diane: null, luli: null },
+      votesA: 50,
+      votesB: 50
+    };
+  }
+  const hv = showUserChoices.bandos[showBandosSubIndex].hostVotes;
+  hv.holder = side;
+  hv.diane = side;
+  hv.luli = side;
+
+  showUserChoices.bandos[showBandosSubIndex].votesA = side === "a" ? 100 : 0;
+  showUserChoices.bandos[showBandosSubIndex].votesB = side === "b" ? 100 : 0;
+
+  if (side === "a") audioFX.playFireIgnite();
+  else audioFX.playFactosHorn();
+
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep2_Bandos(body);
 }
 
 // ---------------------------------------------------------

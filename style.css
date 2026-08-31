@@ -4495,3 +4495,469 @@ body::before {
 .candidate-throne-card.text-only {
   padding: 20px;
 }
+
+/* =========================================================
+   ESTILOS PARA LOS 8 BLOQUES DEL MEGA SHOW DEL DÍA
+   ========================================================= */
+
+/* BLOQUE 1: APERTURA & PREGUNTA EDITORIAL */
+.apertura-block-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.apertura-hero-question {
+  background: linear-gradient(135deg, rgba(255, 42, 66, 0.18) 0%, rgba(255, 122, 0, 0.15) 100%);
+  border: 2px solid var(--fire-orange);
+  border-radius: 20px;
+  padding: 28px 32px;
+  text-align: center;
+  box-shadow: 0 0 35px rgba(255, 60, 0, 0.25);
+}
+
+.ahq-tag {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--fire-yellow);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.ahq-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: white;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+  line-height: 1.2;
+}
+
+.ahq-context {
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  max-width: 850px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.apertura-stances-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.stance-card {
+  background: rgba(10, 12, 22, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.stance-card:hover {
+  border-color: var(--fire-orange);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 122, 0, 0.3);
+}
+
+.stance-card.selected {
+  border-color: var(--fire-yellow);
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.25) 0%, rgba(255, 170, 0, 0.15) 100%);
+  box-shadow: 0 0 25px rgba(255, 170, 0, 0.4);
+}
+
+.sc-badge {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--fire-yellow);
+  letter-spacing: 1px;
+}
+
+.sc-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: white;
+}
+
+.sc-text {
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+  flex-grow: 1;
+}
+
+.btn-stance-vote {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stance-card.selected .btn-stance-vote {
+  background: linear-gradient(135deg, #ff4500 0%, #ff7a00 100%);
+  border-color: var(--fire-yellow);
+  color: #050609;
+  font-weight: 900;
+}
+
+.apertura-chat-trigger-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 14px 20px;
+}
+
+.act-icon { font-size: 1.8rem; }
+.act-text strong {
+  color: var(--fire-yellow);
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  margin-bottom: 2px;
+}
+.act-text span {
+  font-size: 0.95rem;
+  color: white;
+}
+
+/* SUB PROGRESS DOTS */
+.sub-progress-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* BLOQUE 5: EL PODIO DEL BIZARREO */
+.podio-step-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.podio-main-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.podio-interactive-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.podio-rank-card {
+  background: rgba(10, 12, 22, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.podio-rank-card.rank-pos-1 {
+  border-color: #ffd700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+  background: linear-gradient(180deg, rgba(255, 215, 0, 0.12) 0%, rgba(10, 12, 22, 0.9) 100%);
+}
+
+.prc-medal-badge {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: var(--fire-yellow);
+  letter-spacing: 0.5px;
+}
+
+.prc-photo-wrap {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.prc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prc-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  color: white;
+}
+
+.prc-crime {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.3;
+  flex-grow: 1;
+}
+
+.prc-move-buttons {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.btn-move-rank {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 6px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-move-rank:hover:not(:disabled) {
+  background: var(--fire-orange);
+  color: #050609;
+  border-color: var(--fire-yellow);
+}
+
+.btn-move-rank:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.podio-hosts-commentary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+
+.phc-item {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+.phc-item strong {
+  color: var(--fire-yellow);
+}
+
+/* BLOQUE 7: LA ZONA DE FUNA (30s) */
+.funa-step-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.funa-live-arena {
+  background: linear-gradient(135deg, rgba(255, 0, 85, 0.15) 0%, rgba(20, 10, 15, 0.95) 100%);
+  border: 2px solid #ff0055;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 45px rgba(255, 0, 85, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fla-siren { font-size: 3.5rem; animation: pulseSiren 1s infinite alternate; }
+
+@keyframes pulseSiren {
+  from { transform: scale(1); filter: drop-shadow(0 0 10px #ff0055); }
+  to { transform: scale(1.15); filter: drop-shadow(0 0 30px #ff0055); }
+}
+
+.fla-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: white;
+  text-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+}
+
+.fla-sub {
+  font-size: 1.05rem;
+  color: #e2e8f0;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.fla-accused-selector {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-accused-select {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-accused-select.active {
+  background: #ff0055;
+  border-color: var(--fire-yellow);
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+}
+
+.funa-timer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.ftb-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 3px solid #ff0055;
+  color: white;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(255, 0, 85, 0.5);
+}
+
+.ftb-circle.pulse {
+  animation: pulseSiren 0.5s infinite alternate;
+}
+
+.ftb-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-ftb-play {
+  background: linear-gradient(135deg, #ff0055 0%, #ff4500 100%);
+  border: none;
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 900;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ftb-play:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+}
+
+.btn-ftb-reset {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.funa-verdict-decision-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-funa-verdict {
+  flex: 1;
+  max-width: 320px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 900;
+  padding: 14px 20px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-fv-zafo {
+  background: rgba(0, 230, 118, 0.15);
+  border: 1.5px solid #00e676;
+  color: #00e676;
+}
+
+.btn-fv-zafo:hover, .btn-fv-zafo.active {
+  background: #00e676;
+  color: #050609;
+  box-shadow: 0 0 25px rgba(0, 230, 118, 0.5);
+}
+
+.btn-fv-cancelado {
+  background: rgba(255, 0, 85, 0.15);
+  border: 1.5px solid #ff0055;
+  color: #ff0055;
+}
+
+.btn-fv-cancelado:hover, .btn-fv-cancelado.active {
+  background: #ff0055;
+  color: white;
+  box-shadow: 0 0 25px rgba(255, 0, 85, 0.7);
+}
+
+.funa-result-banner {
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.funa-result-banner.zafo {
+  background: rgba(0, 230, 118, 0.2);
+  border: 1px solid #00e676;
+  color: #00e676;
+}
+
+.funa-result-banner.cancelado {
+  background: rgba(255, 0, 85, 0.25);
+  border: 1px solid #ff0055;
+  color: #ff0055;
+}
+

@@ -1554,35 +1554,44 @@ function setupKeyboardShortcuts() {
     } else if (key === "O") {
       toggleOBSMode();
     } else if (key === "F") {
-      if (currentTab === "show-dia" && currentShowStep === 3) {
-        voteShowSemaforo("fuego");
+      if (currentTab === "show-dia" && currentShowStep === 4) {
+        voteShowSemaforoMulti("fuego");
       } else {
         toggleFullscreen();
       }
     } else if (key === "T") {
-      document.getElementById("topbarTimerPlay")?.click();
+      if (currentTab === "show-dia" && currentShowStep === 7) {
+        toggleShowFunaTimer();
+      } else {
+        document.getElementById("topbarTimerPlay")?.click();
+      }
     } else if (key === "V") {
-      if (currentTab === "show-dia" && currentShowStep === 3) {
-        voteShowSemaforo("verde");
+      if (currentTab === "show-dia" && currentShowStep === 4) {
+        voteShowSemaforoMulti("verde");
       } else {
         triggerSoundEffect("siren");
       }
     } else if (key === "A") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 2) selectShowTribunal("A");
-        else if (currentShowStep === 3) voteShowSemaforo("amarillo");
+        if (currentShowStep === 3) selectShowTribunalMulti("A");
+        else if (currentShowStep === 4) voteShowSemaforoMulti("amarillo");
       }
     } else if (key === "B") {
-      if (currentTab === "show-dia" && currentShowStep === 2) {
-        selectShowTribunal("B");
+      if (currentTab === "show-dia" && currentShowStep === 3) {
+        selectShowTribunalMulti("B");
       }
     } else if (key === "C") {
-      if (currentTab === "show-dia" && currentShowStep === 2) {
-        selectShowTribunal("C");
+      if (currentTab === "show-dia") {
+        if (currentShowStep === 3) selectShowTribunalMulti("C");
+        else if (currentShowStep === 7) resolveShowFuna("cancelado");
+      }
+    } else if (key === "Z") {
+      if (currentTab === "show-dia" && currentShowStep === 7) {
+        resolveShowFuna("zafo");
       }
     } else if (key === "R") {
-      if (currentTab === "show-dia" && currentShowStep === 3) {
-        voteShowSemaforo("rojo");
+      if (currentTab === "show-dia" && currentShowStep === 4) {
+        voteShowSemaforoMulti("rojo");
       } else if (currentTab === "roulette") spinRoulette();
       else if (currentTab === "semaforo") startSemaforoRound();
     } else if (key === "N") {
@@ -1599,22 +1608,34 @@ function setupKeyboardShortcuts() {
       else if (currentTab === "tribunal") loadTribunalCase(currentTribunalIndex + 1);
     } else if (key === "1") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 1) voteShowBando("a");
-        else if (currentShowStep === 2) selectShowTribunal("A");
-        else if (currentShowStep === 4) assignShowThrone("casorio");
+        if (currentShowStep === 1) voteApertura("holder");
+        else if (currentShowStep === 2) voteShowBandoMulti("a");
+        else if (currentShowStep === 3) selectShowTribunalMulti("A");
+        else if (currentShowStep === 6) {
+          const curR = currentShowEpisode?.ruletaList[showRuletaSubIndex];
+          if (curR?.candidates[0]) assignShowThroneMulti("casorio", curR.candidates[0].name);
+        }
       } else if (currentTab === "bandos") voteBando("a");
       triggerSoundEffect("fire");
     } else if (key === "2") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 1) voteShowBando("b");
-        else if (currentShowStep === 2) selectShowTribunal("B");
-        else if (currentShowStep === 4) assignShowThrone("chongo");
+        if (currentShowStep === 1) voteApertura("diane");
+        else if (currentShowStep === 2) voteShowBandoMulti("b");
+        else if (currentShowStep === 3) selectShowTribunalMulti("B");
+        else if (currentShowStep === 6) {
+          const curR = currentShowEpisode?.ruletaList[showRuletaSubIndex];
+          if (curR?.candidates[1]) assignShowThroneMulti("chongo", curR.candidates[1].name);
+        }
       } else if (currentTab === "bandos") voteBando("b");
       triggerSoundEffect("factos");
     } else if (key === "3") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 2) selectShowTribunal("C");
-        else if (currentShowStep === 4) assignShowThrone("funa");
+        if (currentShowStep === 1) voteApertura("luli");
+        else if (currentShowStep === 3) selectShowTribunalMulti("C");
+        else if (currentShowStep === 6) {
+          const curR = currentShowEpisode?.ruletaList[showRuletaSubIndex];
+          if (curR?.candidates[2]) assignShowThroneMulti("funa", curR.candidates[2].name);
+        }
       }
       triggerSoundEffect("buzzer");
     } else if (key === "4") {
@@ -3057,8 +3078,21 @@ function updateLowerThirdShowDia() {
   if (currentShowStep === 1) {
     setPresetZocalo("🎙️ SHOW DEL DÍA • BLOQUE 1", "APERTURA & PREGUNTA EDITORIAL: ¿HASTA DÓNDE VALE QUEMAR A UN EX?");
   } else if (currentShowStep === 2) {
-    setPresetZocalo("🎡 SHOW DEL DÍA • ETAPA 4", "LA RULETA BIZARRA & LOS 3 TRONOS (CASORIO, CHONGO, FUNA)");
+    const duel = currentShowEpisode?.bandosList[showBandosSubIndex];
+    setPresetZocalo("⚔️ SHOW DEL DÍA • BLOQUE 2", `GUERRA DE BANDOS (${showBandosSubIndex + 1}/3): ${duel?.title?.toUpperCase() || "DUELOS CALIENTES"}`);
+  } else if (currentShowStep === 3) {
+    const c = currentShowEpisode?.tribunalList[showTribunalSubIndex];
+    setPresetZocalo("⚖️ SHOW DEL DÍA • BLOQUE 3", `TRIBUNAL DE FARÁNDULA (${showTribunalSubIndex + 1}/3): ${c?.title?.toUpperCase() || "JUICIOS MORALES"}`);
+  } else if (currentShowStep === 4) {
+    setPresetZocalo("🚦 SHOW DEL DÍA • BLOQUE 4", `LA RÁFAGA DEL SEMÁFORO (${showSemaforoSubIndex + 1}/7): RED FLAGS DE HOY AL AIRE`);
   } else if (currentShowStep === 5) {
-    setPresetZocalo("🏆 SHOW DEL DÍA • FINAL", "DASHBOARD FINAL & ANÁLISIS PSICOLÓGICO DE LA MESA");
+    setPresetZocalo("🏆 SHOW DEL DÍA • BLOQUE 5", "EL PODIO DEL BIZARREO: TOP 5 TRAICIONES DEL MULTIVERSO WANDAGATE");
+  } else if (currentShowStep === 6) {
+    const r = currentShowEpisode?.ruletaList[showRuletaSubIndex];
+    setPresetZocalo("🎡 SHOW DEL DÍA • BLOQUE 6", `LA RULETA DE 3 TRONOS (${showRuletaSubIndex + 1}/2): ${r?.victim?.name?.toUpperCase()} EN EL BANQUILLO`);
+  } else if (currentShowStep === 7) {
+    setPresetZocalo("🚨 SHOW DEL DÍA • BLOQUE 7", "LA ZONA DE FUNA: DERECHO A RÉPLICA DE 30 SEGUNDOS AL AIRE");
+  } else if (currentShowStep === 8) {
+    setPresetZocalo("📊 SHOW DEL DÍA • FINAL", "MASTER DASHBOARD & ANÁLISIS PSICOLÓGICO TOTAL DE LA MESA");
   }
 }

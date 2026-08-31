@@ -1608,9 +1608,9 @@ function setupKeyboardShortcuts() {
       else if (currentTab === "tribunal") loadTribunalCase(currentTribunalIndex + 1);
     } else if (key === "1") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 1) voteApertura("holder");
-        else if (currentShowStep === 2) voteShowBandoMulti("a");
-        else if (currentShowStep === 3) selectShowTribunalMulti("A");
+        if (currentShowStep === 1) voteAperturaAll("A");
+        else if (currentShowStep === 2) voteShowBandoAll("a");
+        else if (currentShowStep === 3) voteTribunalAll("A");
         else if (currentShowStep === 6) {
           const curR = currentShowEpisode?.ruletaList[showRuletaSubIndex];
           if (curR?.candidates[0]) assignShowThroneMulti("casorio", curR.candidates[0].name);
@@ -1619,9 +1619,9 @@ function setupKeyboardShortcuts() {
       triggerSoundEffect("fire");
     } else if (key === "2") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 1) voteApertura("diane");
-        else if (currentShowStep === 2) voteShowBandoMulti("b");
-        else if (currentShowStep === 3) selectShowTribunalMulti("B");
+        if (currentShowStep === 1) voteAperturaAll("B");
+        else if (currentShowStep === 2) voteShowBandoAll("b");
+        else if (currentShowStep === 3) voteTribunalAll("B");
         else if (currentShowStep === 6) {
           const curR = currentShowEpisode?.ruletaList[showRuletaSubIndex];
           if (curR?.candidates[1]) assignShowThroneMulti("chongo", curR.candidates[1].name);
@@ -1630,8 +1630,8 @@ function setupKeyboardShortcuts() {
       triggerSoundEffect("factos");
     } else if (key === "3") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 1) voteApertura("luli");
-        else if (currentShowStep === 3) selectShowTribunalMulti("C");
+        if (currentShowStep === 1) voteAperturaAll("C");
+        else if (currentShowStep === 3) voteTribunalAll("C");
         else if (currentShowStep === 6) {
           const curR = currentShowEpisode?.ruletaList[showRuletaSubIndex];
           if (curR?.candidates[2]) assignShowThroneMulti("funa", curR.candidates[2].name);
@@ -2196,12 +2196,18 @@ function setShowDiaStep(step) {
   currentShowStep = Math.max(1, Math.min(8, step));
   audioFX.playReveal();
 
-  // Actualizar Stepper Indicators
-  document.querySelectorAll(".show-step-indicators .step-pill").forEach(pill => {
+  // Actualizar Barra y Nodos del Pipeline de Progreso
+  const fill = document.getElementById("showPipelineFill");
+  if (fill) {
+    fill.style.width = `${(currentShowStep / 8) * 100}%`;
+  }
+
+  document.querySelectorAll("#showStepIndicators .pipeline-node-btn, #showStepIndicators .step-pill").forEach(pill => {
     const s = parseInt(pill.dataset.showStep, 10);
     pill.classList.toggle("active", s === currentShowStep);
     pill.classList.toggle("completed", s < currentShowStep);
   });
+
 
   const modeBadge = document.getElementById("showModeBadge");
   const stepCounter = document.getElementById("showStepCounter");
@@ -2322,43 +2328,107 @@ function renderShowStep1_Apertura(container) {
   const ap = currentShowEpisode?.apertura;
   if (!ap) return;
 
+  if (!showUserChoices.aperturaVotes) {
+    showUserChoices.aperturaVotes = { holder: null, diane: null, luli: null };
+  }
+  const votes = showUserChoices.aperturaVotes;
+
+  const getStanceBackers = (stanceKey) => {
+    const list = [];
+    if (votes.holder === stanceKey) list.push('<span class="backer-pill pill-holder">🗿 Holder</span>');
+    if (votes.diane === stanceKey) list.push('<span class="backer-pill pill-diane">🟢 Diane</span>');
+    if (votes.luli === stanceKey) list.push('<span class="backer-pill pill-luli">💔 Luli</span>');
+    return list.length ? `<div class="backers-chips-box"><span class="bc-lbl">Elegida por:</span> ${list.join(" ")}</div>` : '<div class="backers-chips-box empty"><span>Sin votos aún</span></div>';
+  };
+
+  const countA = Object.values(votes).filter(v => v === "A").length;
+  const countB = Object.values(votes).filter(v => v === "B").length;
+  const countC = Object.values(votes).filter(v => v === "C").length;
+
   container.innerHTML = `
     <div class="show-stage-card apertura-block-card">
       
       <!-- HERO QUESTION BANNER -->
-      <div class="apertura-hero-question">
+      <div class="apertura-hero-question anim-question-reveal">
         <div class="ahq-tag">🎯 LA GRAN PREGUNTA DISPARADORA DEL PROGRAMA DE HOY</div>
         <h2 class="ahq-title">"${ap.question}"</h2>
         <p class="ahq-context">${ap.context}</p>
       </div>
 
-      <!-- 3 CONDUCTORES POSTURAS -->
+      <!-- 3 POSTURAS EDITORIALES ANTE EL TEMA -->
       <div class="apertura-stances-grid">
-        <div class="stance-card stance-holder ${showUserChoices.aperturaVote === 'holder' ? 'selected' : ''}" onclick="voteApertura('holder')">
-          <div class="sc-badge">🔥 FACTOS / TOMÁS HOLDER</div>
-          <h3 class="sc-title">${ap.stances.holder.title}</h3>
-          <p class="sc-text">"${ap.stances.holder.text}"</p>
-          <button class="btn-stance-vote">
-            ${showUserChoices.aperturaVote === 'holder' ? '✓ BANCO ESTA POSTURA' : 'BANCAR A HOLDER [1]'}
+        
+        <!-- POSTURA A -->
+        <div class="stance-card stance-holder anim-card-stagger-1 ${votes.holder === 'A' || votes.diane === 'A' || votes.luli === 'A' ? 'selected' : ''}">
+          <div class="sc-badge">🔥 POSTURA A • FACTOS & EXPONER TODO</div>
+          <h3 class="sc-title">Factos & Cero Hipocresía</h3>
+          <p class="sc-text">"Si el vínculo se rompió y no hubo lealtad, se expone todo sin piedad. Mostrá las pruebas, facturá y no te dejes pisotear jamás."</p>
+          ${getStanceBackers("A")}
+          <button class="btn-stance-vote" onclick="voteAperturaAll('A')">
+            ${countA > 0 ? `✓ ELEGIDA POR ${countA} CONDUCTOR(ES)` : 'VOTO MAYORITARIO [1]'}
           </button>
         </div>
 
-        <div class="stance-card stance-diane ${showUserChoices.aperturaVote === 'diane' ? 'selected' : ''}" onclick="voteApertura('diane')">
-          <div class="sc-badge">🟢 DIGNIDAD / DIANE CARACCHI</div>
-          <h3 class="sc-title">${ap.stances.diane.title}</h3>
-          <p class="sc-text">"${ap.stances.diane.text}"</p>
-          <button class="btn-stance-vote">
-            ${showUserChoices.aperturaVote === 'diane' ? '✓ BANCO ESTA POSTURA' : 'BANCAR A DIANE [2]'}
+        <!-- POSTURA B -->
+        <div class="stance-card stance-diane anim-card-stagger-2 ${votes.holder === 'B' || votes.diane === 'B' || votes.luli === 'B' ? 'selected' : ''}">
+          <div class="sc-badge">🟢 POSTURA B • DIGNIDAD & LÍMITES</div>
+          <h3 class="sc-title">Dignidad, Códigos & Silencio</h3>
+          <p class="sc-text">"Hay un límite ético sagrado. Cuando hay familia o pasado en común, el despecho en redes te degrada a vos misma. Se corta con altura."</p>
+          ${getStanceBackers("B")}
+          <button class="btn-stance-vote" onclick="voteAperturaAll('B')">
+            ${countB > 0 ? `✓ ELEGIDA POR ${countB} CONDUCTOR(ES)` : 'VOTO MAYORITARIO [2]'}
           </button>
         </div>
 
-        <div class="stance-card stance-luli ${showUserChoices.aperturaVote === 'luli' ? 'selected' : ''}" onclick="voteApertura('luli')">
-          <div class="sc-badge">💔 MIGAJERA / LULI CASÉ</div>
-          <h3 class="sc-title">${ap.stances.luli.title}</h3>
-          <p class="sc-text">"${ap.stances.luli.text}"</p>
-          <button class="btn-stance-vote">
-            ${showUserChoices.aperturaVote === 'luli' ? '✓ BANCO ESTA POSTURA' : 'BANCAR A LULI [3]'}
+        <!-- POSTURA C -->
+        <div class="stance-card stance-luli anim-card-stagger-3 ${votes.holder === 'C' || votes.diane === 'C' || votes.luli === 'C' ? 'selected' : ''}">
+          <div class="sc-badge">💔 POSTURA C • DESPECHO GLAM & MONETIZAR</div>
+          <h3 class="sc-title">Despecho Glam & Venganza Pop</h3>
+          <p class="sc-text">"¡Firmar 'Solange' es arte puro! Si te rompieron el corazón, que arda Troya en prime time y que la culpa la paguen ellos."</p>
+          ${getStanceBackers("C")}
+          <button class="btn-stance-vote" onclick="voteAperturaAll('C')">
+            ${countC > 0 ? `✓ ELEGIDA POR ${countC} CONDUCTOR(ES)` : 'VOTO MAYORITARIO [3]'}
           </button>
+        </div>
+
+      </div>
+
+
+      <!-- PANEL DE ELECCIÓN INDIVIDUAL DE CADA CONDUCTOR -->
+      <div class="hosts-individual-vote-panel">
+        <div class="hiv-title">🗳️ ¿QUÉ POSTURA ELIGE CADA CONDUCTOR EN EL PISO?</div>
+        <div class="hiv-grid">
+          
+          <!-- HOLDER -->
+          <div class="hiv-host-card card-holder">
+            <div class="hiv-host-name">🗿 Tomás Holder</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${votes.holder === 'A' ? 'active-a' : ''}" onclick="voteAperturaByHost('holder', 'A')">Postura A</button>
+              <button class="btn-hiv ${votes.holder === 'B' ? 'active-a' : ''}" onclick="voteAperturaByHost('holder', 'B')">Postura B</button>
+              <button class="btn-hiv ${votes.holder === 'C' ? 'active-a' : ''}" onclick="voteAperturaByHost('holder', 'C')">Postura C</button>
+            </div>
+          </div>
+
+          <!-- DIANE -->
+          <div class="hiv-host-card card-diane">
+            <div class="hiv-host-name">🟢 Diane Caracchi</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${votes.diane === 'A' ? 'active-a' : ''}" onclick="voteAperturaByHost('diane', 'A')">Postura A</button>
+              <button class="btn-hiv ${votes.diane === 'B' ? 'active-a' : ''}" onclick="voteAperturaByHost('diane', 'B')">Postura B</button>
+              <button class="btn-hiv ${votes.diane === 'C' ? 'active-a' : ''}" onclick="voteAperturaByHost('diane', 'C')">Postura C</button>
+            </div>
+          </div>
+
+          <!-- LULI -->
+          <div class="hiv-host-card card-luli">
+            <div class="hiv-host-name">💔 Luli Casé</div>
+            <div class="hiv-btn-group">
+              <button class="btn-hiv ${votes.luli === 'A' ? 'active-a' : ''}" onclick="voteAperturaByHost('luli', 'A')">Postura A</button>
+              <button class="btn-hiv ${votes.luli === 'B' ? 'active-a' : ''}" onclick="voteAperturaByHost('luli', 'B')">Postura B</button>
+              <button class="btn-hiv ${votes.luli === 'C' ? 'active-a' : ''}" onclick="voteAperturaByHost('luli', 'C')">Postura C</button>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -2375,14 +2445,24 @@ function renderShowStep1_Apertura(container) {
   `;
 }
 
-function voteApertura(host) {
-  showUserChoices.aperturaVote = host;
-  if (host === "holder") audioFX.playFactosHorn();
-  else if (host === "diane") audioFX.playMatchChime();
-  else if (host === "luli") audioFX.playFireIgnite();
-  
+function voteAperturaByHost(hostKey, stanceKey) {
+  if (!showUserChoices.aperturaVotes) {
+    showUserChoices.aperturaVotes = { holder: null, diane: null, luli: null };
+  }
+  showUserChoices.aperturaVotes[hostKey] = stanceKey;
+
+  if (stanceKey === "A") audioFX.playFactosHorn();
+  else if (stanceKey === "B") audioFX.playMatchChime();
+  else if (stanceKey === "C") audioFX.playFireIgnite();
+
   const body = document.getElementById("showStageBody");
   if (body) renderShowStep1_Apertura(body);
+}
+
+function voteAperturaAll(stanceKey) {
+  voteAperturaByHost("holder", stanceKey);
+  voteAperturaByHost("diane", stanceKey);
+  voteAperturaByHost("luli", stanceKey);
 }
 
 // ---------------------------------------------------------

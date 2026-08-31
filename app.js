@@ -1661,7 +1661,7 @@ function setupKeyboardShortcuts() {
       else if (currentTab === "tribunal") loadTribunalCase(currentTribunalIndex + 1);
     } else if (key === "1") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 1) voteAperturaAll("A");
+        if (currentShowStep === 1) voteAperturaAll("a");
         else if (currentShowStep === 2) voteShowBandoAll("a");
         else if (currentShowStep === 3) voteTribunalAll("A");
         else if (currentShowStep === 6) {
@@ -1672,7 +1672,7 @@ function setupKeyboardShortcuts() {
       triggerSoundEffect("fire");
     } else if (key === "2") {
       if (currentTab === "show-dia") {
-        if (currentShowStep === 1) voteAperturaAll("B");
+        if (currentShowStep === 1) voteAperturaAll("b");
         else if (currentShowStep === 2) voteShowBandoAll("b");
         else if (currentShowStep === 3) voteTribunalAll("B");
         else if (currentShowStep === 6) {
@@ -1681,6 +1681,7 @@ function setupKeyboardShortcuts() {
         }
       } else if (currentTab === "bandos") voteBando("b");
       triggerSoundEffect("factos");
+
     } else if (key === "3") {
       if (currentTab === "show-dia") {
         if (currentShowStep === 1) voteAperturaAll("C");
@@ -2334,10 +2335,22 @@ function nextShowDiaStep() {
       showRuletaSubIndex++;
       const body = document.getElementById("showStageBody");
       if (body) renderShowStep6_Ruleta(body);
-      audioFX.playTick(// ---------------------------------------------------------
+      audioFX.playTick(600, 0.2);
+      setShowDiaStep(6);
+      return;
+    }
+  }
+
+  if (currentShowStep < 8) {
+    setShowDiaStep(currentShowStep + 1);
+  }
+}
+
+// ---------------------------------------------------------
 // BLOQUE 1: APERTURA & GRAN DUELO DE PORTADA DEL DÍA
 // ---------------------------------------------------------
 function renderShowStep1_Apertura(container) {
+
   const apDuel = currentShowEpisode?.aperturaDuel || {
     title: "EL ESCÁNDALO DE RUSIA: WANDA NARA VS. MAXI LÓPEZ",
     guide: "La gran polémica del día: ¿A quién banca cada conductor de la mesa?",
@@ -2366,6 +2379,10 @@ function renderShowStep1_Apertura(container) {
   const total = countA + countB;
   const pctA = total === 0 ? 50 : Math.round((countA / total) * 100);
   const pctB = 100 - pctA;
+
+  let apVerdict = "EMPATE EN MESA";
+  if (countA > countB) apVerdict = `GANA ${getShortDisplayName(apDuel.sideA.name).toUpperCase()} (${countA} a ${countB})`;
+  else if (countB > countA) apVerdict = `GANA ${getShortDisplayName(apDuel.sideB.name).toUpperCase()} (${countB} a ${countA})`;
 
   const getBackersHtml = (side) => {
     const list = [];
@@ -2479,7 +2496,7 @@ function renderShowStep1_Apertura(container) {
       <div class="tug-meter-box">
         <div class="tug-meter-labels">
           <span class="tug-label-a">${apDuel.sideA.name}: <strong>${pctA}%</strong></span>
-          <span class="tug-meter-title">⚖️ VEREDICTO DE LA MESA: ${countA > countB ? `GANA ${getShortDisplayName(apDuel.sideA.name).toUpperCase()} (${countA} a ${countB})` : countB > countA ? `GANA ${getShortDisplayName(apDuel.sideB.name).toUpperCase()} (${countB} a ${countA})` : 'EMPATE EN MESA'}</span>
+          <span class="tug-meter-title">⚖️ VEREDICTO DE LA MESA: ${apVerdict}</span>
           <span class="tug-label-b">${apDuel.sideB.name}: <strong>${pctB}%</strong></span>
         </div>
         <div class="tug-bar-track">
@@ -2502,6 +2519,7 @@ function renderShowStep1_Apertura(container) {
 }
 
 function voteAperturaByHost(hostKey, side) {
+  side = (side || "a").toLowerCase();
   if (!showUserChoices.aperturaVotes) {
     showUserChoices.aperturaVotes = { holder: null, diane: null, luli: null };
   }
@@ -2542,6 +2560,10 @@ function renderShowStep2_Bandos(container) {
   const countA = Object.values(hostVotes).filter(v => v === "a").length;
   const countB = Object.values(hostVotes).filter(v => v === "b").length;
 
+  let bandosVerdict = "EMPATE EN MESA";
+  if (countA > countB) bandosVerdict = `GANA ${getShortDisplayName(duel.sideA.name).toUpperCase()} (${countA} a ${countB})`;
+  else if (countB > countA) bandosVerdict = `GANA ${getShortDisplayName(duel.sideB.name).toUpperCase()} (${countB} a ${countA})`;
+
   const getBackersHtml = (side) => {
     const list = [];
     if (hostVotes.holder === side) list.push('<span class="backer-pill pill-holder">🗿 Tomás Holder</span>');
@@ -2549,6 +2571,7 @@ function renderShowStep2_Bandos(container) {
     if (hostVotes.luli === side) list.push('<span class="backer-pill pill-luli">💔 Luli Casé</span>');
     return list.length ? `<div class="backers-chips-box"><span class="bc-lbl">Bancado por:</span> ${list.join(" ")}</div>` : '<div class="backers-chips-box empty"><span>Nadie de la mesa lo votó aún</span></div>';
   };
+
 
   container.innerHTML = `
     <div class="show-stage-card bandos-step-arena">
@@ -2647,7 +2670,7 @@ function renderShowStep2_Bandos(container) {
       <div class="tug-meter-box">
         <div class="tug-meter-labels">
           <span class="tug-label-a">${duel.sideA.name}: <strong id="showPctA">${votesA}%</strong></span>
-          <span class="tug-meter-title">⚖️ VEREDICTO DE LA MESA: ${countA > countB ? `GANA ${getShortDisplayName(duel.sideA.name).toUpperCase()} (${countA} a ${countB})` : countB > countA ? `GANA ${getShortDisplayName(duel.sideB.name).toUpperCase()} (${countB} a ${countA})` : 'EMPATE EN MESA'}</span>
+          <span class="tug-meter-title">⚖️ VEREDICTO DE LA MESA: ${bandosVerdict}</span>
           <span class="tug-label-b">${duel.sideB.name}: <strong id="showPctB">${votesB}%</strong></span>
         </div>
         <div class="tug-bar-track">
@@ -2805,15 +2828,42 @@ function renderShowStep3_Tribunal(container) {
 }
 
 function selectShowTribunalMulti(optionId) {
-  const cases = currentShowEpisode?.tribunalList || TRIBUNAL_CASES.slice(0, 3);
-  showUserChoices.tribunal[showTribunalSubIndex] = {
-    caseItem: cases[showTribunalSubIndex],
-    option: optionId
-  };
+  voteTribunalAll(optionId);
+}
+
+function voteTribunalByHost(hostKey, optId) {
+  if (!showUserChoices.tribunal[showTribunalSubIndex]) {
+    const cases = currentShowEpisode?.tribunalList || TRIBUNAL_CASES.slice(0, 3);
+    showUserChoices.tribunal[showTribunalSubIndex] = {
+      caseItem: cases[showTribunalSubIndex] || cases[0],
+      hostVotes: { holder: null, diane: null, luli: null },
+      option: null
+    };
+  }
+  showUserChoices.tribunal[showTribunalSubIndex].hostVotes[hostKey] = optId.toUpperCase();
+  audioFX.playTick(550, 0.3);
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep3_Tribunal(body);
+}
+
+function voteTribunalAll(optId) {
+  if (!showUserChoices.tribunal[showTribunalSubIndex]) {
+    const cases = currentShowEpisode?.tribunalList || TRIBUNAL_CASES.slice(0, 3);
+    showUserChoices.tribunal[showTribunalSubIndex] = {
+      caseItem: cases[showTribunalSubIndex] || cases[0],
+      hostVotes: { holder: null, diane: null, luli: null },
+      option: null
+    };
+  }
+  showUserChoices.tribunal[showTribunalSubIndex].hostVotes.holder = optId.toUpperCase();
+  showUserChoices.tribunal[showTribunalSubIndex].hostVotes.diane = optId.toUpperCase();
+  showUserChoices.tribunal[showTribunalSubIndex].hostVotes.luli = optId.toUpperCase();
+  showUserChoices.tribunal[showTribunalSubIndex].option = optId.toUpperCase();
   audioFX.playReveal();
   const body = document.getElementById("showStageBody");
   if (body) renderShowStep3_Tribunal(body);
 }
+
 
 // ---------------------------------------------------------
 // BLOQUE 4: LA RÁFAGA DEL SEMÁFORO (7 RED FLAGS)

@@ -1926,16 +1926,22 @@ function startShowDia(mode = "today") {
   showUserChoices.semaforo = [];
 
   if (mode === "today") {
-    // Curated for Today's Script (31/08)
+    // Curated for Today's Script (31/08) con TODOS los temas del guion
     const bando = (typeof GUERRA_BANDOS_DATA !== "undefined" && GUERRA_BANDOS_DATA.length) ? GUERRA_BANDOS_DATA[0] : null;
     const tribunal = (typeof TRIBUNAL_CASES !== "undefined" && TRIBUNAL_CASES.length > 1) ? TRIBUNAL_CASES[1] : (TRIBUNAL_CASES[0] || null);
-    const semaforo = (typeof SEMAFORO_CASES !== "undefined" && SEMAFORO_CASES.length >= 3) ? [SEMAFORO_CASES[0], SEMAFORO_CASES[1], SEMAFORO_CASES[2]] : [];
+    const semaforo = (typeof SEMAFORO_CASES !== "undefined") ? [
+      SEMAFORO_CASES[0], // ChatGPT y Wanda
+      SEMAFORO_CASES[1], // Juli Poggio PH chirlos
+      SEMAFORO_CASES[2], // Jefe fit anti-harinas
+      SEMAFORO_CASES[5] || SEMAFORO_CASES[3], // Messi renuncia 2016
+      SEMAFORO_CASES[6] || SEMAFORO_CASES[4]  // Tinelli 30s de fama
+    ].filter(Boolean) : [];
     
     const victim = celebrities.find(c => c.id === "maxi-lopez") || celebrities.find(c => c.id === "juli-poggio") || celebrities[0];
     const candidates = [
       celebrities.find(c => c.id === "wanda-nara") || celebrities[1],
       celebrities.find(c => c.id === "gaston-edul") || celebrities[2],
-      celebrities.find(c => c.id === "mauro-icardi") || celebrities[3]
+      celebrities.find(c => c.id === "marcelo-tinelli") || celebrities[3]
     ].filter(Boolean);
 
     currentShowEpisode = {
@@ -1951,7 +1957,7 @@ function startShowDia(mode = "today") {
     const bando = GUERRA_BANDOS_DATA[Math.floor(Math.random() * GUERRA_BANDOS_DATA.length)];
     const tribunal = TRIBUNAL_CASES[Math.floor(Math.random() * TRIBUNAL_CASES.length)];
     const shuffledSem = [...SEMAFORO_CASES].sort(() => 0.5 - Math.random());
-    const semaforo = shuffledSem.slice(0, 3);
+    const semaforo = shuffledSem.slice(0, 4);
     
     const shuffledCelebs = [...celebrities].sort(() => 0.5 - Math.random());
     const victim = shuffledCelebs[0];
@@ -2001,11 +2007,12 @@ function setShowDiaStep(step) {
   if (modeBadge && currentShowEpisode) modeBadge.textContent = currentShowEpisode.badge;
   if (stepCounter) stepCounter.textContent = `ETAPA ${currentShowStep} / 5`;
 
+  const totalSem = currentShowEpisode?.semaforo?.length || 5;
   const titles = [
     "",
     `⚔️ ETAPA 1: ${currentShowEpisode?.bando?.title || "GUERRA DE BANDOS"}`,
     `⚖️ ETAPA 2: ${currentShowEpisode?.tribunal?.title || "EL TRIBUNAL DE FARÁNDULA"}`,
-    `🚦 ETAPA 3: RÁFAGA DEL SEMÁFORO (3 RED FLAGS VIRALES)`,
+    `🚦 ETAPA 3: RÁFAGA DEL SEMÁFORO (${totalSem} RED FLAGS VIRALES)`,
     `🎡 ETAPA 4: LA RULETA BIZARRA & 3 TRONOS`,
     `📊 ETAPA 5: DASHBOARD FINAL & ANÁLISIS PSICOLÓGICO DE LA MESA`
   ];
@@ -2024,8 +2031,9 @@ function setShowDiaStep(step) {
 }
 
 function nextShowDiaStep() {
+  const maxSemIndex = (currentShowEpisode?.semaforo?.length || 3) - 1;
   if (currentShowStep === 3) {
-    if (showSemaforoSubIndex < 2) {
+    if (showSemaforoSubIndex < maxSemIndex) {
       showSemaforoSubIndex++;
       const body = document.getElementById("showStageBody");
       if (body) renderShowStep3_Semaforo(body);

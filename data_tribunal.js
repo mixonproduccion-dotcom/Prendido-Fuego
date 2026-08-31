@@ -64,6 +64,35 @@ const TRIBUNAL_CASES = [
     ]
   },
   {
+    "id": "caso-messi-renuncia-2016",
+    "title": "El Momento Messi 2016: Renunciar a Todo vs. Pelear Hasta la Gloria",
+    "protagonist": "Lionel Messi (o el Emprendedor Frustrado)",
+    "category": "Fútbol / Resiliencia & Éxito",
+    "context": "Te rompés el lomo dando el 100%, perdés tu tercera final seguida y todo un país te insulta diciendo que 'no sentís la camiseta'. En caliente escribís una carta diciendo 'no va más, la Selección no es para mí'.",
+    "image": "assets/logo-pf.jpg",
+    "quote": "Lo pensé mucho en el vestuario y ya está, se terminó para mí.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Volver con Sed de Venganza y Cerrarles la Boca a Todos (Factos)",
+        "text": "Te tomás dos meses de descanso, volvés con la 10, ganás en el Maracaná, salís Campeón del Mundo en Qatar y les tirás 'Andá pa' allá bobo' en la cara.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Cierre Digno, Enfoque en tu Familia y Cero Rencor (Dignidad)",
+        "text": "Mantenés tu decisión de renuncia con altura, cuidás tu salud mental y te dedicás a brillar en tu club sin desgastarte por las críticas de los periodistas.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Llorar en el Vestuario y Pedir que Vuelva el Kun Agüero (Emocional)",
+        "text": "Hacés un vivo de Instagram con tus amigos del fútbol llorando, pedís disculpas públicas y le prendés velas a San Cayetano para que se te dé un título.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
     "id": "caso-jefe-sigma-harinas",
     "title": "El Jefe Sigma: Prohibido Azúcar y Harinas en el Trabajo",
     "protagonist": "El Empleado de Oficina",

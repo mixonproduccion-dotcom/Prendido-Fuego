@@ -43,6 +43,22 @@ const SEMAFORO_CASES = [
     category: "Música & Rupturas",
     tags: ["La Joaqui", "Luck Ra", "Canción"]
   },
+  {
+    id: "sem-hoy-006",
+    title: "La Carta de Renuncia a las 3 AM (Momento Messi 2016)",
+    text: "Tenés una discusión o una mala semana en el trabajo y a las 3:30 AM mandás una carta formal diciendo 'lo pensé mucho y ya está, esto no es para mí'...",
+    expectedLevel: "rojo",
+    category: "Impulsividad & Emociones",
+    tags: ["Messi 2016", "Renuncia", "Drama"]
+  },
+  {
+    id: "sem-hoy-007",
+    title: "Los '30 Segundos de Fama' de Tinelli",
+    text: "Tu pareja va a un casting de streaming a hacer imitaciones bizarras de animales para que Tinelli se tiente de risa en vivo...",
+    expectedLevel: "amarillo",
+    category: "Vergüenza Ajena & TV",
+    tags: ["Tinelli", "Luzu TV", "Cringe"]
+  },
 
   // 1-10: REDES, CELULAR & STALKING
   {

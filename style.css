@@ -2941,8 +2941,11 @@ body::before {
 .veto-modal-rule {
   font-size: 0.95rem;
   color: #cbd5e1;
+}
+
 /* CONTADOR DE FUNAS EN CABECERA */
 .topbar-funa-chip {
+
   display: flex;
   align-items: center;
   gap: 10px;
@@ -4444,57 +4447,7 @@ body::before {
   box-shadow: 0 0 15px rgba(255, 122, 0, 0.2);
 }
 
-.hero-hosts-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
 
-.host-pill-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(20, 20, 28, 0.85);
-  border: 1px solid rgba(255, 122, 0, 0.25);
-  border-radius: 14px;
-  padding: 10px 18px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.host-pill-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--fire-orange);
-}
-
-.host-pill-icon {
-  font-size: 1.6rem;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 122, 0, 0.12);
-  border-radius: 50%;
-  border: 1px solid rgba(255, 122, 0, 0.3);
-}
-
-.host-pill-name {
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: white;
-  letter-spacing: 0.5px;
-}
-
-.host-pill-role {
-  font-size: 0.8rem;
-  color: var(--fire-amber);
-  text-transform: uppercase;
-  font-weight: 600;
-}
 
 .conductor-badge-icon {
   display: inline-block;

@@ -6,9 +6,26 @@
 // and instant lower-third chyron graphics.
 // =========================================================
 
+// Helper: Extraer nombre corto y claro para botones ("Wanda", "Maxi", "Tini", "Emilia", "Messi", etc.)
+function getShortDisplayName(fullName) {
+  if (!fullName) return "";
+  let clean = fullName.replace(/\(.*?\)/g, "").replace(/['"]/g, "").trim();
+  if (clean.toLowerCase().startsWith("el ") || clean.toLowerCase().startsWith("la ")) {
+    const withoutArticle = clean.substring(3).trim();
+    const parts = withoutArticle.split(" ");
+    if (parts[0] && parts[0].length > 1) return parts[0];
+  }
+  const parts = clean.split(" ");
+  if (parts.length >= 2 && parts[0].length > 1) {
+    return parts[0];
+  }
+  return clean;
+}
+
 // Global App State
 let currentTab = "home";
 let isOBSMode = false;
+
 
 // 1. Global Funa Tracker (Funas acumuladas por conductor)
 let funaCounts = {
@@ -1066,6 +1083,14 @@ function loadBandoDuel(index) {
   document.getElementById("bandoSideBBadge").textContent = duel.sideB.badge;
   document.getElementById("bandoSideBArg").textContent = `"${duel.sideB.argument}"`;
 
+  // Dynamic Button Labels (e.g. "BANCAR A WANDA [1]", "BANCAR A MAXI [2]")
+  const nameA = getShortDisplayName(duel.sideA.name).toUpperCase();
+  const nameB = getShortDisplayName(duel.sideB.name).toUpperCase();
+  const btnA = document.getElementById("btnVoteSideA");
+  const btnB = document.getElementById("btnVoteSideB");
+  if (btnA) btnA.textContent = `BANCAR A ${nameA} [1]`;
+  if (btnB) btnB.textContent = `BANCAR A ${nameB} [2]`;
+
   updateBandoMeter();
   updateLowerThirdBandos();
 }
@@ -1082,15 +1107,34 @@ function voteBando(side) {
 }
 
 function updateBandoMeter() {
+  if (typeof GUERRA_BANDOS_DATA === "undefined" || !GUERRA_BANDOS_DATA.length) return;
+  const duel = GUERRA_BANDOS_DATA[currentBandoIndex];
+  const nameA = getShortDisplayName(duel.sideA.name);
+  const nameB = getShortDisplayName(duel.sideB.name);
+
   const total = bandoVotes.a + bandoVotes.b;
   const pctA = Math.round((bandoVotes.a / total) * 100);
   const pctB = 100 - pctA;
 
-  document.getElementById("bandoPctA").textContent = `${pctA}%`;
-  document.getElementById("bandoPctB").textContent = `${pctB}%`;
-  document.getElementById("meterFillA").style.width = `${pctA}%`;
-  document.getElementById("meterFillB").style.width = `${pctB}%`;
+  const labelA = document.getElementById("bandoLabelA");
+  const labelB = document.getElementById("bandoLabelB");
+  if (labelA) labelA.innerHTML = `${nameA}: <strong id="bandoPctA">${pctA}%</strong>`;
+  else {
+    const elPctA = document.getElementById("bandoPctA");
+    if (elPctA) elPctA.textContent = `${pctA}%`;
+  }
+  if (labelB) labelB.innerHTML = `${nameB}: <strong id="bandoPctB">${pctB}%</strong>`;
+  else {
+    const elPctB = document.getElementById("bandoPctB");
+    if (elPctB) elPctB.textContent = `${pctB}%`;
+  }
+
+  const fillA = document.getElementById("meterFillA");
+  const fillB = document.getElementById("meterFillB");
+  if (fillA) fillA.style.width = `${pctA}%`;
+  if (fillB) fillB.style.width = `${pctB}%`;
 }
+
 
 function updateLowerThirdBandos() {
   if (typeof GUERRA_BANDOS_DATA === "undefined" || !GUERRA_BANDOS_DATA.length) return;
@@ -1871,7 +1915,6 @@ function analyzeDailyTrend(rawText) {
   if (rec.bando) {
     document.getElementById("genBandoTitle").textContent = rec.bando.title;
     document.getElementById("genBandoSummary").textContent = `${rec.bando.sideA.name} (${rec.bando.sideA.badge}) vs. ${rec.bando.sideB.name} (${rec.bando.sideB.badge})`;
-  }
   if (rec.tribunal) {
     document.getElementById("genTribunalTitle").textContent = rec.tribunal.title;
     document.getElementById("genTribunalSummary").textContent = `Protagonista: ${rec.tribunal.protagonist} • "${rec.tribunal.quote}"`;
@@ -1891,18 +1934,29 @@ function analyzeDailyTrend(rawText) {
 }
 
 // =========================================================
-// 15. MÓDULO MASTER: EL SHOW DEL DÍA (CIRCUITO UNIFICADO)
+// 15. MÓDULO MASTER: EL SHOW DEL DÍA (MEGA SHOW 8 BLOQUES)
 // =========================================================
 let currentShowEpisode = null;
 let currentShowStep = 1;
+let showBandosSubIndex = 0;
+let showTribunalSubIndex = 0;
 let showSemaforoSubIndex = 0;
+let showRuletaSubIndex = 0;
+let showPodioState = [];
+let showFunaTimer = 30;
+let showFunaRunning = false;
+let showFunaInterval = null;
+
 let showUserChoices = {
   mode: "today",
-  bandos: { duel: null, vote: null, votesA: 50, votesB: 50 },
-  tribunal: { caseItem: null, option: null },
+  aperturaVote: null,
+  bandos: [],
+  tribunal: [],
   semaforo: [],
-  ruleta: { victim: null, candidates: [], assignments: { casorio: null, chongo: null, funa: null } },
-  metrics: { venom: 88, aura: 85, migajera: 75, careta: 35 }
+  podio: [],
+  ruleta: [],
+  funa: { accused: "holder", result: null },
+  metrics: { venom: 80, aura: 85, migajera: 70, careta: 40 }
 };
 
 function setupShowDiaEvents() {
@@ -1912,7 +1966,7 @@ function setupShowDiaEvents() {
   document.querySelectorAll("[data-show-step]").forEach(pill => {
     pill.addEventListener("click", () => {
       const targetStep = parseInt(pill.dataset.showStep, 10);
-      if (targetStep >= 1 && targetStep <= 5) {
+      if (targetStep >= 1 && targetStep <= 8) {
         setShowDiaStep(targetStep);
       }
     });
@@ -1922,106 +1976,204 @@ function setupShowDiaEvents() {
 function startShowDia(mode = "today") {
   audioFX.playFireIgnite();
   showUserChoices.mode = mode;
+  showBandosSubIndex = 0;
+  showTribunalSubIndex = 0;
   showSemaforoSubIndex = 0;
+  showRuletaSubIndex = 0;
+  showUserChoices.bandos = [];
+  showUserChoices.tribunal = [];
   showUserChoices.semaforo = [];
+  showUserChoices.ruleta = [];
 
   if (mode === "today") {
-    // Curated for Today's Script (31/08) con TODO el Lore Multiverso Cruzado
-    const bando = (typeof GUERRA_BANDOS_DATA !== "undefined" && GUERRA_BANDOS_DATA.length) ? GUERRA_BANDOS_DATA[0] : null;
-    const tribunal = (typeof TRIBUNAL_CASES !== "undefined" && TRIBUNAL_CASES.length > 1) ? TRIBUNAL_CASES[1] : (TRIBUNAL_CASES[0] || null);
-    
-    // Semáforo con los 5 lores del día cruzados
-    const semaforo = [
+    // 1. APERTURA EDITORIAL
+    const apertura = {
+      question: "¿HASTA DÓNDE SE JUSTIFICA QUEMAR A UN EX POR RATING Y DESPECHO?",
+      context: "El país habla de Wanda consultándole a ChatGPT 7 infidelidades de Maxi tras las anécdotas de Rusia, Tini auditando a su padre con Messi y Antonela, y Messi anunciando su retiro oficial. ¿Todo vale en la guerra del ego?",
+      stances: {
+        holder: { name: "Tomás Holder", title: "Factos & Cero Hipocresía", text: "Si el vínculo se rompió y no hay lealtad, se tira con todo. Facturá, mostrá las pruebas y no te dejes pisotear jamás." },
+        diane: { name: "Diane Caracchi", title: "Dignidad & Códigos", text: "Hay un límite ético. Cuando hay hijos o familia de por medio, el despecho en redes te degrada a vos misma." },
+        luli: { name: "Luli Casé", title: "Despecho Glam & Tarot", text: "¡Chicas, firmar 'Solange' es arte puro! Si te rompieron el corazón, que arda Troya y que la culpa la paguen ellos." }
+      },
+      chatTrigger: "¿De qué lado estás en la mesa? Escribí [1] FACTOS, [2] DIGNIDAD o [3] DESPECHO en el chat."
+    };
+
+    // 2. GUERRA DE BANDOS (3 DUELOS AL HILO)
+    const bandosList = [
+      GUERRA_BANDOS_DATA[0] || {
+        id: "duelo-wanda-maxi",
+        title: "El Escándalo de Rusia: Wanda Nara vs. Maxi López",
+        guide: "¿Bancás a Solange exponiendo las 7 infidelidades históricas o a Maxi que rehizo su vida?",
+        sideA: { name: "Wanda Nara ('Solange')", badge: "La que Consulta a ChatGPT", argument: "Bancó sola 3 hijos en Rusia mientras Maxi andaba de joda; tiene derecho a cobrarle todo.", image: "assets/celebrities/wanda-nara.jpg" },
+        sideB: { name: "Maxi López", badge: "El que Elige Seguir Adelante", argument: "Fueron anécdotas de soltero antes del matrimonio; Wanda no supera el pasado.", image: "assets/celebrities/maxi-lopez.jpg" }
+      },
+      GUERRA_BANDOS_DATA[1] || {
+        id: "duelo-messi-retiro",
+        title: "El Retiro del Capitán: Messi se Despidió de la Selección",
+        guide: "¿Retirarse en la cima como el Rey Indiscutido o el clamor del pueblo por 'Un Baile Más'?",
+        sideA: { name: "Retiro en la Cima (Gloria Eterna)", badge: "El Fin de una Era", argument: "Ganó todo: Copa América, Finalissima y el Mundial. Irse como Campeón del Mundo es grandeza pura.", image: "assets/logo-pf.jpg" },
+        sideB: { name: "El Clamor Popular ('Un Baile Más')", badge: "El Vacío Nacional", argument: "El país se niega a soltarlo; con 39 años sigue siendo el mejor del planeta y lo necesitamos.", image: "assets/logo-pf.jpg" }
+      },
+      GUERRA_BANDOS_DATA[2] || {
+        id: "duelo-tinigate",
+        title: "El #TiniGate (US$ 70.000.000): Tini vs. Alejandro Stoessel",
+        guide: "¿Auditoría implacable con Messi y Antonela o perdón familiar por respeto a los padres?",
+        sideA: { name: "Tini Stoessel (Con Messi y Anto)", badge: "La que Reclama su Trabajo", argument: "Trabajó desde niña sin parar; su dinero le pertenece y debe recuperar hasta el último dólar.", image: "assets/celebrities/tini-stoessel.jpg" },
+        sideB: { name: "Alejandro Stoessel", badge: "El Padre & Mánager", argument: "La convirtió en estrella mundial desde Disney; la familia está por encima de los negocios.", image: "assets/logo-pf.jpg" }
+      }
+    ];
+
+    // 3. TRIBUNAL DE FARÁNDULA (3 CASOS)
+    const tribunalList = [
+      TRIBUNAL_CASES[1] || TRIBUNAL_CASES[0],
+      TRIBUNAL_CASES[2] || TRIBUNAL_CASES[0],
+      TRIBUNAL_CASES[3] || TRIBUNAL_CASES[0]
+    ];
+
+    // 4. SEMÁFORO DE TOXICIDAD (7 RED FLAGS)
+    const semaforoList = [
       {
-        id: "sem-lore-wanda-chatgpt",
+        id: "sem-1",
         title: "El Historial de Infidelidades con ChatGPT",
         category: "Farándula / Wanda & Maxi",
-        text: "Le pedís a ChatGPT que liste las 7 infidelidades históricas de tu ex marido (el barco, la empleada y Barcelona) y subís la captura a Instagram firmando como 'Solange'..."
+        guide: "¿Normal o Despecho Tóxico?",
+        text: "Le pedís a ChatGPT que liste las 7 infidelidades de tu ex (el barco, la empleada y Barcelona) y subís la captura a Instagram firmando como 'Solange'..."
       },
       {
-        id: "sem-lore-icardi-tatuaje",
-        title: "La Icardeada Histórica & El Tatuaje",
-        category: "Códigos / Icardi & Maxi",
-        text: "Tu mejor amigo de club te recibe en su casa de Italia y a los 6 meses se pone de novio con tu ex mujer y se tatúa los nombres de tus 3 hijos en el brazo..."
+        id: "sem-2",
+        title: "La Icardeada Histórica & El Tatuaje con los Hijos",
+        category: "Códigos de Amistad",
+        guide: "¿Se perdona o se rompen códigos para siempre?",
+        text: "Tu mejor amigo de club te recibe en su casa de Italia y a los 6 meses se casa con tu ex mujer y se tatúa los nombres de tus 3 hijos en el brazo..."
       },
       {
-        id: "sem-lore-poggio-ph",
+        id: "sem-3",
         title: "El Fetiche de PH & El Ojo de Leuco",
         category: "Intimidad / Juli Poggio & Edul",
+        guide: "¿Te copa en la primera cita o salís corriendo?",
         text: "En la primera cita te confiesa que le gusta dar chirlos en la cama y el truco del ojo mientras Gastón Edul te mira con cara cómplice..."
       },
       {
-        id: "sem-lore-messi-retiro",
+        id: "sem-4",
         title: "El Llanto Desconsolado por el Retiro de Messi",
         category: "Urgente / Conmoción Nacional",
+        guide: "¿Empatía total o exageración?",
         text: "Tu pareja se tira a llorar en el piso y cancela todos los planes de la semana porque Messi acaba de publicar su carta de despedida definitiva de la Selección Argentina..."
       },
       {
-        id: "sem-lore-jefe-harinas",
+        id: "sem-5",
         title: "Prohibido Azúcar y Medialunas en la Oficina",
         category: "Trabajo / El Jefe Sigma Fit",
+        guide: "¿Disciplina laboral o explotación tóxica?",
         text: "Tu jefe fit te descuenta el sueldo si te encuentra comiendo facturas con grasa de 9 a 18 hs porque 'te da pico de insulina y baja la productividad'..."
+      },
+      {
+        id: "sem-6",
+        title: "Tener 22 Años, Ganar Millones y que tu Mamá te Administre Todo",
+        category: "Familia & Dinero / Juli Poggio",
+        guide: "¿Ahorro inteligente o falta de madurez?",
+        text: "Sos mayor de edad, facturás millones por mes pero tu mamá maneja tus cuentas y te pasa plata por semana porque no confía en que sepas ahorrar..."
+      },
+      {
+        id: "sem-7",
+        title: "El Casting Bizarro para Hacer Reír a Tinelli",
+        category: "Streaming & Cringe / Luzu TV",
+        guide: "¿Banco las ganas de figurar o vergüenza ajena?",
+        text: "Tu pareja va a un casting de '30 Segundos de Fama' disfrazado de dinosaurio a pasar vergüenza nacional para que Tinelli se tiente en vivo..."
       }
     ];
-    
-    // Ruleta Multiverso: Víctima Wanda Nara con sus 3 hombres históricos
-    const victim = celebrities.find(c => c.id === "wanda-nara") || celebrities[0];
-    const candidates = [
-      celebrities.find(c => c.id === "maxi-lopez") || { name: "Maxi López", image: "assets/celebrities/maxi-lopez.jpg", lore: "El primer marido, padre de Valentino, Constantino y Benedicto. El bardo de Rusia y ChatGPT." },
-      celebrities.find(c => c.id === "mauro-icardi") || { name: "Mauro Icardi", image: "assets/celebrities/mauro-icardi.jpg", lore: "La icardeada histórica de 2013, 10 años de matrimonio, 2 hijas y el Wandagate en París." },
-      celebrities.find(c => c.id === "l-gante") || { name: "L-Gante", image: "assets/celebrities/l-gante.jpg", lore: "El amor de cumbia 420, la escapada a Río de Janeiro y la guerra en el Chateau Libertador." }
+
+    // 5. PODIO TOP RANKING
+    const podioItem = {
+      title: "TOP 5: LAS PEORES TRAICIONES DEL MULTIVERSO WANDAGATE",
+      guide: "La mesa debe ordenar del #1 (El más traidor y sin códigos) al #5 (El traidor con más glamour o justificación).",
+      candidates: [
+        { id: "icardi", name: "Mauro Icardi", crime: "La Icardeada a Maxi López (Amigo de club)", image: "assets/celebrities/mauro-icardi.jpg" },
+        { id: "china", name: "La China Suárez", crime: "El Motorhome y el Hotel de París", image: "assets/celebrities/china-suarez.jpg" },
+        { id: "maxi", name: "Maxi López", crime: "Las 7 Infidelidades y Sótanos de Rusia", image: "assets/celebrities/maxi-lopez.jpg" },
+        { id: "lgante", name: "L-Gante", crime: "El Romance de Cumbia y el Chateau", image: "assets/celebrities/l-gante.jpg" },
+        { id: "wanda", name: "Wanda Nara", crime: "Exponer a todos con ChatGPT en LAM", image: "assets/celebrities/wanda-nara.jpg" }
+      ]
+    };
+    showPodioState = [...podioItem.candidates];
+
+    // 6. RULETA & 3 TRONOS (2 RONDAS)
+    const ruletaList = [
+      {
+        victim: celebrities.find(c => c.id === "wanda-nara") || { name: "Wanda Nara", image: "assets/celebrities/wanda-nara.jpg", tag: "La Empresaria del Despecho", lore: "En el ojo de la tormenta tras exponer a Maxi López con ChatGPT y firmar 'Solange'." },
+        candidates: [
+          celebrities.find(c => c.id === "maxi-lopez") || { name: "Maxi López", image: "assets/celebrities/maxi-lopez.jpg", lore: "El primer marido, padre de 3 hijos y bardo de Rusia." },
+          celebrities.find(c => c.id === "mauro-icardi") || { name: "Mauro Icardi", image: "assets/celebrities/mauro-icardi.jpg", lore: "10 años de matrimonio, 2 hijas y la Icardeada histórica." },
+          celebrities.find(c => c.id === "l-gante") || { name: "L-Gante", image: "assets/celebrities/l-gante.jpg", lore: "Cumbia 420, amor en Río de Janeiro y guerra en el Chateau." }
+        ]
+      },
+      {
+        victim: celebrities.find(c => c.id === "juli-poggio") || { name: "Juli Poggio", image: "assets/celebrities/juli-poggio.jpg", tag: "La Soltera de PH", lore: "Confesó sus fetiches sexuales en la tele y cruzó miradas cómplices con Gastón Edul." },
+        candidates: [
+          celebrities.find(c => c.id === "gaston-edul") || { name: "Gastón Edul", image: "assets/celebrities/gaston-edul.jpg", lore: "El cronista de la Selección con el que hubo miradas y tensión en PH." },
+          celebrities.find(c => c.id === "marcos-ginocchio") || { name: "Marcos Ginocchio", image: "assets/celebrities/marcos-ginocchio.jpg", lore: "El shippeo eterno de Marculi desde Gran Hermano." },
+          celebrities.find(c => c.id === "marcelo-tinelli") || { name: "Marcelo Tinelli", image: "assets/celebrities/marcelo-tinelli.jpg", lore: "Reviviendo los 30 segundos de fama tentado de risa en Luzu TV." }
+        ]
+      }
     ];
 
     currentShowEpisode = {
       title: "PROGRAMA DE HOY • LUNES 31/08",
-      badge: "🔥 GUION OFICIAL • MULTIVERSO PRENDIDO FUEGO",
-      bando,
-      tribunal,
-      semaforo,
-      ruleta: { victim, candidates }
+      badge: "🔥 GUION OFICIAL • MEGA SHOW TRANSMISIÓN COMPLETA",
+      apertura,
+      bandosList,
+      tribunalList,
+      semaforoList,
+      podioItem,
+      ruletaList,
+      funaAccused: "holder"
     };
   } else {
-    // Randomized Episode with RNG from all databases
-    const bando = GUERRA_BANDOS_DATA[Math.floor(Math.random() * GUERRA_BANDOS_DATA.length)];
-    const tribunal = TRIBUNAL_CASES[Math.floor(Math.random() * TRIBUNAL_CASES.length)];
-    const shuffledSem = [...SEMAFORO_CASES].sort(() => 0.5 - Math.random());
-    const semaforo = shuffledSem.slice(0, 4);
-    
+    // Modo RNG aleatorio de 8 bloques
+    const shuffledBandos = [...GUERRA_BANDOS_DATA].sort(() => 0.5 - Math.random());
+    const shuffledTribunal = [...TRIBUNAL_CASES].sort(() => 0.5 - Math.random());
+    const shuffledSemaforo = [...SEMAFORO_CASES].sort(() => 0.5 - Math.random());
     const shuffledCelebs = [...celebrities].sort(() => 0.5 - Math.random());
-    const victim = shuffledCelebs[0];
-    const candidates = shuffledCelebs.slice(1, 4);
 
     currentShowEpisode = {
-      title: "SHOW ALEATORIO (MODO RNG)",
-      badge: "🎲 GENERADOR DE BARDOS & LORES",
-      bando,
-      tribunal,
-      semaforo,
-      ruleta: { victim, candidates }
+      title: "MEGA SHOW ALEATORIO (MODO RNG)",
+      badge: "🎲 TRANSMISIÓN ALEATORIA INFINITA",
+      apertura: {
+        question: "¿CUÁL ES EL LÍMITE DE LA CARETEADA EN LA TELE Y EL STREAMING?",
+        context: "La mesa debate las mayores polémicas de la farándula argentina con posturas enfrentadas.",
+        stances: {
+          holder: { name: "Tomás Holder", title: "Factos", text: "La verdad sin filtro siempre, caiga quien caiga." },
+          diane: { name: "Diane Caracchi", title: "Límites", text: "Respeto a los códigos y coherencia personal." },
+          luli: { name: "Luli Casé", title: "Empatía", text: "Entender el dolor del otro y perdonar." }
+        },
+        chatTrigger: "¿Con qué conductor te identificás hoy? Votá en el chat."
+      },
+      bandosList: shuffledBandos.slice(0, 3),
+      tribunalList: shuffledTribunal.slice(0, 3),
+      semaforoList: shuffledSemaforo.slice(0, 7),
+      podioItem: {
+        title: "TOP 5: RANKING DE CARETEADA Y TRAICIONES",
+        guide: "Ordená a los personajes del más careta al más auténtico de la noche.",
+        candidates: shuffledCelebs.slice(0, 5).map(c => ({ id: c.id, name: c.name, crime: c.tag || c.lore, image: c.image }))
+      },
+      ruletaList: [
+        { victim: shuffledCelebs[5], candidates: shuffledCelebs.slice(6, 9) },
+        { victim: shuffledCelebs[9], candidates: shuffledCelebs.slice(10, 13) }
+      ],
+      funaAccused: "holder"
     };
+    showPodioState = [...currentShowEpisode.podioItem.candidates];
   }
-
-  showUserChoices.bandos.duel = currentShowEpisode.bando;
-  showUserChoices.bandos.vote = null;
-  showUserChoices.bandos.votesA = 50;
-  showUserChoices.bandos.votesB = 50;
-
-  showUserChoices.tribunal.caseItem = currentShowEpisode.tribunal;
-  showUserChoices.tribunal.option = null;
-
-  showUserChoices.ruleta.victim = currentShowEpisode.ruleta.victim;
-  showUserChoices.ruleta.candidates = currentShowEpisode.ruleta.candidates;
-  showUserChoices.ruleta.assignments = { casorio: null, chongo: null, funa: null };
 
   switchTab("show-dia");
   setShowDiaStep(1);
 }
 
 function setShowDiaStep(step) {
-  currentShowStep = Math.max(1, Math.min(5, step));
+  currentShowStep = Math.max(1, Math.min(8, step));
   audioFX.playReveal();
 
-  // Update Stepper Indicators
+  // Actualizar Stepper Indicators
   document.querySelectorAll(".show-step-indicators .step-pill").forEach(pill => {
     const s = parseInt(pill.dataset.showStep, 10);
     pill.classList.toggle("active", s === currentShowStep);
@@ -2033,44 +2185,80 @@ function setShowDiaStep(step) {
   const stageTitle = document.getElementById("showStageTitle");
 
   if (modeBadge && currentShowEpisode) modeBadge.textContent = currentShowEpisode.badge;
-  if (stepCounter) stepCounter.textContent = `ETAPA ${currentShowStep} / 5`;
+  if (stepCounter) stepCounter.textContent = `BLOQUE ${currentShowStep} / 8`;
 
-  const totalSem = currentShowEpisode?.semaforo?.length || 5;
   const titles = [
     "",
-    `⚔️ ETAPA 1: ${currentShowEpisode?.bando?.title || "GUERRA DE BANDOS"}`,
-    `⚖️ ETAPA 2: ${currentShowEpisode?.tribunal?.title || "EL TRIBUNAL DE FARÁNDULA"}`,
-    `🚦 ETAPA 3: RÁFAGA DEL SEMÁFORO (${totalSem} RED FLAGS VIRALES)`,
-    `🎡 ETAPA 4: LA RULETA BIZARRA & 3 TRONOS`,
-    `📊 ETAPA 5: DASHBOARD FINAL & ANÁLISIS PSICOLÓGICO DE LA MESA`
+    "🎙️ BLOQUE 1: APERTURA & PREGUNTA EDITORIAL DEL DÍA",
+    `⚔️ BLOQUE 2: GUERRA DE BANDOS (DUELO ${showBandosSubIndex + 1} DE ${currentShowEpisode?.bandosList?.length || 3})`,
+    `⚖️ BLOQUE 3: EL TRIBUNAL DE FARÁNDULA (JUICIO ${showTribunalSubIndex + 1} DE ${currentShowEpisode?.tribunalList?.length || 3})`,
+    `🚦 BLOQUE 4: LA RÁFAGA DEL SEMÁFORO (RED FLAG ${showSemaforoSubIndex + 1} DE ${currentShowEpisode?.semaforoList?.length || 7})`,
+    "🏆 BLOQUE 5: EL PODIO DEL BIZARREO (TOP 5 EN VIVO)",
+    `🎡 BLOQUE 6: LA RULETA DE 3 TRONOS (RONDA ${showRuletaSubIndex + 1} DE ${currentShowEpisode?.ruletaList?.length || 2})`,
+    "🚨 BLOQUE 7: LA ZONA DE FUNA & DERECHO A RÉPLICA (30s)",
+    "📊 BLOQUE 8: MASTER DASHBOARD & ANÁLISIS TOXICOLÓGICO TOTAL"
   ];
   if (stageTitle) stageTitle.textContent = titles[currentShowStep];
 
   const body = document.getElementById("showStageBody");
   if (!body) return;
 
-  if (currentShowStep === 1) renderShowStep1_Bandos(body);
-  else if (currentShowStep === 2) renderShowStep2_Tribunal(body);
-  else if (currentShowStep === 3) renderShowStep3_Semaforo(body);
-  else if (currentShowStep === 4) renderShowStep4_Ruleta(body);
-  else if (currentShowStep === 5) renderShowStep5_Dashboard(body);
+  if (currentShowStep === 1) renderShowStep1_Apertura(body);
+  else if (currentShowStep === 2) renderShowStep2_Bandos(body);
+  else if (currentShowStep === 3) renderShowStep3_Tribunal(body);
+  else if (currentShowStep === 4) renderShowStep4_Semaforo(body);
+  else if (currentShowStep === 5) renderShowStep5_Podio(body);
+  else if (currentShowStep === 6) renderShowStep6_Ruleta(body);
+  else if (currentShowStep === 7) renderShowStep7_Funa(body);
+  else if (currentShowStep === 8) renderShowStep8_Dashboard(body);
 
   updateLowerThirdShowDia();
 }
 
 function nextShowDiaStep() {
-  const maxSemIndex = (currentShowEpisode?.semaforo?.length || 3) - 1;
-  if (currentShowStep === 3) {
-    if (showSemaforoSubIndex < maxSemIndex) {
+  if (currentShowStep === 2) {
+    const max = (currentShowEpisode?.bandosList?.length || 3) - 1;
+    if (showBandosSubIndex < max) {
+      showBandosSubIndex++;
+      const body = document.getElementById("showStageBody");
+      if (body) renderShowStep2_Bandos(body);
+      audioFX.playTick(600, 0.2);
+      setShowDiaStep(2);
+      return;
+    }
+  } else if (currentShowStep === 3) {
+    const max = (currentShowEpisode?.tribunalList?.length || 3) - 1;
+    if (showTribunalSubIndex < max) {
+      showTribunalSubIndex++;
+      const body = document.getElementById("showStageBody");
+      if (body) renderShowStep3_Tribunal(body);
+      audioFX.playTick(600, 0.2);
+      setShowDiaStep(3);
+      return;
+    }
+  } else if (currentShowStep === 4) {
+    const max = (currentShowEpisode?.semaforoList?.length || 7) - 1;
+    if (showSemaforoSubIndex < max) {
       showSemaforoSubIndex++;
       const body = document.getElementById("showStageBody");
-      if (body) renderShowStep3_Semaforo(body);
+      if (body) renderShowStep4_Semaforo(body);
       audioFX.playTick(600, 0.2);
+      setShowDiaStep(4);
+      return;
+    }
+  } else if (currentShowStep === 6) {
+    const max = (currentShowEpisode?.ruletaList?.length || 2) - 1;
+    if (showRuletaSubIndex < max) {
+      showRuletaSubIndex++;
+      const body = document.getElementById("showStageBody");
+      if (body) renderShowStep6_Ruleta(body);
+      audioFX.playTick(600, 0.2);
+      setShowDiaStep(6);
       return;
     }
   }
 
-  if (currentShowStep < 5) {
+  if (currentShowStep < 8) {
     setShowDiaStep(currentShowStep + 1);
   } else {
     audioFX.playFactosHorn();
@@ -2078,10 +2266,24 @@ function nextShowDiaStep() {
 }
 
 function prevShowDiaStep() {
-  if (currentShowStep === 3 && showSemaforoSubIndex > 0) {
+  if (currentShowStep === 2 && showBandosSubIndex > 0) {
+    showBandosSubIndex--;
+    setShowDiaStep(2);
+    return;
+  }
+  if (currentShowStep === 3 && showTribunalSubIndex > 0) {
+    showTribunalSubIndex--;
+    setShowDiaStep(3);
+    return;
+  }
+  if (currentShowStep === 4 && showSemaforoSubIndex > 0) {
     showSemaforoSubIndex--;
-    const body = document.getElementById("showStageBody");
-    if (body) renderShowStep3_Semaforo(body);
+    setShowDiaStep(4);
+    return;
+  }
+  if (currentShowStep === 6 && showRuletaSubIndex > 0) {
+    showRuletaSubIndex--;
+    setShowDiaStep(6);
     return;
   }
 
@@ -2091,26 +2293,102 @@ function prevShowDiaStep() {
 }
 
 // ---------------------------------------------------------
-// STEP 1: GUERRA DE BANDOS
+// BLOQUE 1: APERTURA & PREGUNTA EDITORIAL DEL DÍA
 // ---------------------------------------------------------
-function renderShowStep1_Bandos(container) {
-  const duel = currentShowEpisode?.bando || GUERRA_BANDOS_DATA[0];
-  if (!duel) return;
+function renderShowStep1_Apertura(container) {
+  const ap = currentShowEpisode?.apertura;
+  if (!ap) return;
+
+  container.innerHTML = `
+    <div class="show-stage-card apertura-block-card">
+      
+      <!-- HERO QUESTION BANNER -->
+      <div class="apertura-hero-question">
+        <div class="ahq-tag">🎯 LA GRAN PREGUNTA DISPARADORA DEL PROGRAMA DE HOY</div>
+        <h2 class="ahq-title">"${ap.question}"</h2>
+        <p class="ahq-context">${ap.context}</p>
+      </div>
+
+      <!-- 3 CONDUCTORES POSTURAS -->
+      <div class="apertura-stances-grid">
+        <div class="stance-card stance-holder ${showUserChoices.aperturaVote === 'holder' ? 'selected' : ''}" onclick="voteApertura('holder')">
+          <div class="sc-badge">🔥 FACTOS / TOMÁS HOLDER</div>
+          <h3 class="sc-title">${ap.stances.holder.title}</h3>
+          <p class="sc-text">"${ap.stances.holder.text}"</p>
+          <button class="btn-stance-vote">
+            ${showUserChoices.aperturaVote === 'holder' ? '✓ BANCO ESTA POSTURA' : 'BANCAR A HOLDER [1]'}
+          </button>
+        </div>
+
+        <div class="stance-card stance-diane ${showUserChoices.aperturaVote === 'diane' ? 'selected' : ''}" onclick="voteApertura('diane')">
+          <div class="sc-badge">🟢 DIGNIDAD / DIANE CARACCHI</div>
+          <h3 class="sc-title">${ap.stances.diane.title}</h3>
+          <p class="sc-text">"${ap.stances.diane.text}"</p>
+          <button class="btn-stance-vote">
+            ${showUserChoices.aperturaVote === 'diane' ? '✓ BANCO ESTA POSTURA' : 'BANCAR A DIANE [2]'}
+          </button>
+        </div>
+
+        <div class="stance-card stance-luli ${showUserChoices.aperturaVote === 'luli' ? 'selected' : ''}" onclick="voteApertura('luli')">
+          <div class="sc-badge">💔 MIGAJERA / LULI CASÉ</div>
+          <h3 class="sc-title">${ap.stances.luli.title}</h3>
+          <p class="sc-text">"${ap.stances.luli.text}"</p>
+          <button class="btn-stance-vote">
+            ${showUserChoices.aperturaVote === 'luli' ? '✓ BANCO ESTA POSTURA' : 'BANCAR A LULI [3]'}
+          </button>
+        </div>
+      </div>
+
+      <!-- CHAT TRIGGER BAR -->
+      <div class="apertura-chat-trigger-bar">
+        <span class="act-icon">💬</span>
+        <div class="act-text">
+          <strong>DISPARADOR PARA EL CHAT DE LA TRANSMISIÓN:</strong>
+          <span>${ap.chatTrigger}</span>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+function voteApertura(host) {
+  showUserChoices.aperturaVote = host;
+  if (host === "holder") audioFX.playFactosHorn();
+  else if (host === "diane") audioFX.playMatchChime();
+  else if (host === "luli") audioFX.playFireIgnite();
+  
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep1_Apertura(body);
+}
+
+// ---------------------------------------------------------
+// BLOQUE 2: GUERRA DE BANDOS (3 DUELOS AL HILO)
+// ---------------------------------------------------------
+function renderShowStep2_Bandos(container) {
+  const duels = currentShowEpisode?.bandosList || [GUERRA_BANDOS_DATA[0]];
+  const duel = duels[showBandosSubIndex] || duels[0];
+  const curVote = showUserChoices.bandos[showBandosSubIndex]?.vote;
+  const votesA = showUserChoices.bandos[showBandosSubIndex]?.votesA || 50;
+  const votesB = showUserChoices.bandos[showBandosSubIndex]?.votesB || 50;
 
   container.innerHTML = `
     <div class="show-stage-card bandos-step-arena">
       <div class="step-guide-tag">
-        ⚔️ DUELO EN VIVO • ¿De qué lado se para la mesa en este bardo? Votá con los botones o teclas [1] y [2]
+        ⚔️ GUERRA DE BANDOS • DUELO ${showBandosSubIndex + 1} DE ${duels.length} • ${duel.guide || "¿De qué lado se para la mesa?"}
       </div>
       
       <div class="bandos-clash-grid">
         <!-- BANDO A -->
-        <div class="bando-fighter-card side-a ${showUserChoices.bandos.vote === 'a' ? 'selected-winner' : ''}" id="showCardA">
-          <div class="fighter-badge">${duel.sideA.badge}</div>
+        <div class="bando-fighter-card side-a ${curVote === 'a' ? 'selected-winner' : ''}" id="showCardA">
+          <div class="fighter-photo-wrap">
+            <img src="${duel.sideA.image}" alt="${duel.sideA.name}" class="fighter-img" onerror="this.src='assets/logo-pf.jpg'">
+            <div class="fighter-badge">${duel.sideA.badge}</div>
+          </div>
           <h3 class="fighter-name">${duel.sideA.name}</h3>
           <p class="fighter-argument">${duel.sideA.argument || duel.sideA.quote}</p>
-          <button class="btn-vote-fighter" onclick="voteShowBando('a')">
-            ${showUserChoices.bandos.vote === 'a' ? '✓ BANCADO POR LA MESA' : 'BANCAR BANDO A [1]'}
+          <button class="btn-vote-fighter" onclick="voteShowBandoMulti('a')">
+            ${curVote === 'a' ? '✓ BANCADO POR LA MESA' : 'BANCAR BANDO A [1]'}
           </button>
         </div>
 
@@ -2121,12 +2399,15 @@ function renderShowStep1_Bandos(container) {
         </div>
 
         <!-- BANDO B -->
-        <div class="bando-fighter-card side-b ${showUserChoices.bandos.vote === 'b' ? 'selected-winner' : ''}" id="showCardB">
-          <div class="fighter-badge">${duel.sideB.badge}</div>
+        <div class="bando-fighter-card side-b ${curVote === 'b' ? 'selected-winner' : ''}" id="showCardB">
+          <div class="fighter-photo-wrap">
+            <img src="${duel.sideB.image}" alt="${duel.sideB.name}" class="fighter-img" onerror="this.src='assets/logo-pf.jpg'">
+            <div class="fighter-badge">${duel.sideB.badge}</div>
+          </div>
           <h3 class="fighter-name">${duel.sideB.name}</h3>
           <p class="fighter-argument">${duel.sideB.argument || duel.sideB.quote}</p>
-          <button class="btn-vote-fighter" onclick="voteShowBando('b')">
-            ${showUserChoices.bandos.vote === 'b' ? '✓ BANCADO POR LA MESA' : 'BANCAR BANDO B [2]'}
+          <button class="btn-vote-fighter" onclick="voteShowBandoMulti('b')">
+            ${curVote === 'b' ? '✓ BANCADO POR LA MESA' : 'BANCAR BANDO B [2]'}
           </button>
         </div>
       </div>
@@ -2134,63 +2415,65 @@ function renderShowStep1_Bandos(container) {
       <!-- TUG OF WAR BAR -->
       <div class="tug-meter-box">
         <div class="tug-meter-labels">
-          <span class="tug-label-a">${duel.sideA.name}: <strong id="showPctA">${showUserChoices.bandos.votesA}%</strong></span>
-          <span class="tug-meter-title">⚖️ BALANCE DE LA MESA</span>
-          <span class="tug-label-b">${duel.sideB.name}: <strong id="showPctB">${showUserChoices.bandos.votesB}%</strong></span>
+          <span class="tug-label-a">${duel.sideA.name}: <strong id="showPctA">${votesA}%</strong></span>
+          <span class="tug-meter-title">⚖️ BALANCE DE LA MESA (${showBandosSubIndex + 1}/${duels.length})</span>
+          <span class="tug-label-b">${duel.sideB.name}: <strong id="showPctB">${votesB}%</strong></span>
         </div>
         <div class="tug-bar-track">
-          <div class="tug-fill-a" id="showFillA" style="width: ${showUserChoices.bandos.votesA}%;"></div>
-          <div class="tug-fill-b" id="showFillB" style="width: ${showUserChoices.bandos.votesB}%;"></div>
+          <div class="tug-fill-a" id="showFillA" style="width: ${votesA}%;"></div>
+          <div class="tug-fill-b" id="showFillB" style="width: ${votesB}%;"></div>
         </div>
+      </div>
+
+      <div class="sub-progress-dots">
+        ${duels.map((d, i) => `
+          <div class="sub-dot ${i === showBandosSubIndex ? 'active' : ''} ${showUserChoices.bandos[i]?.vote ? 'voted' : ''}"></div>
+        `).join("")}
       </div>
     </div>
   `;
 }
 
-function voteShowBando(side) {
-  showUserChoices.bandos.vote = side;
+function voteShowBandoMulti(side) {
+  if (!showUserChoices.bandos[showBandosSubIndex]) {
+    showUserChoices.bandos[showBandosSubIndex] = { duel: currentShowEpisode?.bandosList[showBandosSubIndex], votesA: 50, votesB: 50 };
+  }
+  showUserChoices.bandos[showBandosSubIndex].vote = side;
+  
   if (side === "a") {
-    showUserChoices.bandos.votesA = Math.min(95, showUserChoices.bandos.votesA + 15);
-    showUserChoices.bandos.votesB = 100 - showUserChoices.bandos.votesA;
+    showUserChoices.bandos[showBandosSubIndex].votesA = Math.min(95, showUserChoices.bandos[showBandosSubIndex].votesA + 15);
+    showUserChoices.bandos[showBandosSubIndex].votesB = 100 - showUserChoices.bandos[showBandosSubIndex].votesA;
     audioFX.playFireIgnite();
   } else {
-    showUserChoices.bandos.votesB = Math.min(95, showUserChoices.bandos.votesB + 15);
-    showUserChoices.bandos.votesA = 100 - showUserChoices.bandos.votesB;
+    showUserChoices.bandos[showBandosSubIndex].votesB = Math.min(95, showUserChoices.bandos[showBandosSubIndex].votesB + 15);
+    showUserChoices.bandos[showBandosSubIndex].votesA = 100 - showUserChoices.bandos[showBandosSubIndex].votesB;
     audioFX.playFactosHorn();
   }
 
-  const fillA = document.getElementById("showFillA");
-  const fillB = document.getElementById("showFillB");
-  const pctA = document.getElementById("showPctA");
-  const pctB = document.getElementById("showPctB");
-
-  if (fillA) fillA.style.width = `${showUserChoices.bandos.votesA}%`;
-  if (fillB) fillB.style.width = `${showUserChoices.bandos.votesB}%`;
-  if (pctA) pctA.textContent = `${showUserChoices.bandos.votesA}%`;
-  if (pctB) pctB.textContent = `${showUserChoices.bandos.votesB}%`;
-
-  document.getElementById("showCardA")?.classList.toggle("selected-winner", side === "a");
-  document.getElementById("showCardB")?.classList.toggle("selected-winner", side === "b");
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep2_Bandos(body);
 }
 
 // ---------------------------------------------------------
-// STEP 2: EL TRIBUNAL DE FARÁNDULA
+// BLOQUE 3: EL TRIBUNAL DE FARÁNDULA (3 CASOS)
 // ---------------------------------------------------------
-function renderShowStep2_Tribunal(container) {
-  const caseItem = currentShowEpisode?.tribunal || TRIBUNAL_CASES[0];
-  if (!caseItem) return;
-
-  const chosen = showUserChoices.tribunal.option;
+function renderShowStep3_Tribunal(container) {
+  const cases = currentShowEpisode?.tribunalList || TRIBUNAL_CASES.slice(0, 3);
+  const caseItem = cases[showTribunalSubIndex] || cases[0];
+  const chosen = showUserChoices.tribunal[showTribunalSubIndex]?.option;
 
   container.innerHTML = `
     <div class="show-stage-card tribunal-step-stage">
       <div class="step-guide-tag">
-        ⚖️ ¿QUÉ HARÍAS VOS EN SU LUGAR? • Elegí una de las 3 opciones de la mesa [A], [B] o [C]
+        ⚖️ EL TRIBUNAL • JUICIO ${showTribunalSubIndex + 1} DE ${cases.length} • ¿QUÉ HARÍAS VOS EN SU LUGAR?
       </div>
 
-      <div class="tribunal-hero-case-card text-only">
-        <div class="thc-details">
+      <div class="tribunal-hero-case-card">
+        <div class="thc-image-wrap">
+          <img src="${caseItem.image}" alt="${caseItem.protagonist}" class="thc-img" onerror="this.src='assets/logo-pf.jpg'">
           <div class="thc-category-badge">${caseItem.category}</div>
+        </div>
+        <div class="thc-details">
           <div class="thc-protagonist-pill">PROTAGONISTA: ${caseItem.protagonist}</div>
           <h3 class="thc-title">${caseItem.title}</h3>
           <p class="thc-context">${caseItem.context}</p>
@@ -2203,7 +2486,7 @@ function renderShowStep2_Tribunal(container) {
           const letter = String.fromCharCode(65 + idx);
           const isSelected = chosen === letter;
           return `
-            <div class="tribunal-opt-card style-${opt.style} ${isSelected ? 'option-selected-glow' : ''}" onclick="selectShowTribunal('${letter}')">
+            <div class="tribunal-opt-card style-${opt.style} ${isSelected ? 'option-selected-glow' : ''}" onclick="selectShowTribunalMulti('${letter}')">
               <div class="toc-badge">${opt.style === 'holder' ? '🔥 FACTOS / HOLDER' : opt.style === 'diane' ? '🟢 DIGNIDAD / DIANE' : '💔 MIGAJERA / LULI'}</div>
               <h4 class="toc-title">${opt.title}</h4>
               <p class="toc-text">${opt.text}</p>
@@ -2214,35 +2497,45 @@ function renderShowStep2_Tribunal(container) {
           `;
         }).join("")}
       </div>
+
+      <div class="sub-progress-dots">
+        ${cases.map((c, i) => `
+          <div class="sub-dot ${i === showTribunalSubIndex ? 'active' : ''} ${showUserChoices.tribunal[i]?.option ? 'voted' : ''}"></div>
+        `).join("")}
+      </div>
     </div>
   `;
 }
 
-function selectShowTribunal(optionId) {
-  showUserChoices.tribunal.option = optionId;
+function selectShowTribunalMulti(optionId) {
+  const cases = currentShowEpisode?.tribunalList || TRIBUNAL_CASES.slice(0, 3);
+  showUserChoices.tribunal[showTribunalSubIndex] = {
+    caseItem: cases[showTribunalSubIndex],
+    option: optionId
+  };
   audioFX.playReveal();
   const body = document.getElementById("showStageBody");
-  if (body) renderShowStep2_Tribunal(body);
+  if (body) renderShowStep3_Tribunal(body);
 }
 
 // ---------------------------------------------------------
-// STEP 3: LA RÁFAGA DEL SEMÁFORO (3 RED FLAGS)
+// BLOQUE 4: LA RÁFAGA DEL SEMÁFORO (7 RED FLAGS)
 // ---------------------------------------------------------
-function renderShowStep3_Semaforo(container) {
-  const cases = currentShowEpisode?.semaforo || SEMAFORO_CASES.slice(0, 3);
+function renderShowStep4_Semaforo(container) {
+  const cases = currentShowEpisode?.semaforoList || SEMAFORO_CASES.slice(0, 7);
   const currentCase = cases[showSemaforoSubIndex] || cases[0];
   const savedVote = showUserChoices.semaforo[showSemaforoSubIndex]?.vote;
 
   container.innerHTML = `
     <div class="show-stage-card semaforo-step-stage">
       <div class="step-guide-tag">
-        🚦 RÁFAGA DEL SEMÁFORO • CASO ${showSemaforoSubIndex + 1} DE 3 • Votá con [V] Verde, [A] Amarillo, [R] Rojo o [F] Fuego
+        🚦 RÁFAGA DEL SEMÁFORO • RED FLAG ${showSemaforoSubIndex + 1} DE ${cases.length} • ${currentCase.guide || "¿Es normal o es red flag tóxica?"}
       </div>
 
       <div class="semaforo-play-card show-semaforo-card">
         <div class="spc-category-row">
           <span class="spc-category-badge">${currentCase.category}</span>
-          <span class="spc-progress-badge">RED FLAG ${showSemaforoSubIndex + 1} / 3</span>
+          <span class="spc-progress-badge">RED FLAG ${showSemaforoSubIndex + 1} / ${cases.length}</span>
         </div>
 
         <h3 class="spc-case-title">${currentCase.title}</h3>
@@ -2250,47 +2543,41 @@ function renderShowStep3_Semaforo(container) {
 
         <!-- TRAFFIC LIGHT CONTROLS -->
         <div class="semaforo-controls-row">
-          <button class="btn-sem-vote btn-sem-green ${savedVote === 'verde' ? 'selected' : ''}" onclick="voteShowSemaforo('verde')">
+          <button class="btn-sem-vote btn-sem-green ${savedVote === 'verde' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('verde')">
             <span class="sem-icon">🟢</span>
             <span class="sem-title">VERDE</span>
             <span class="sem-desc">Banco / Normal</span>
             <span class="sem-kbd">[V]</span>
           </button>
 
-          <button class="btn-sem-vote btn-sem-yellow ${savedVote === 'amarillo' ? 'selected' : ''}" onclick="voteShowSemaforo('amarillo')">
+          <button class="btn-sem-vote btn-sem-yellow ${savedVote === 'amarillo' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('amarillo')">
             <span class="sem-icon">🟡</span>
             <span class="sem-title">AMARILLO</span>
             <span class="sem-desc">Alerta / Dudo</span>
             <span class="sem-kbd">[A]</span>
           </button>
 
-          <button class="btn-sem-vote btn-sem-red ${savedVote === 'rojo' ? 'selected' : ''}" onclick="voteShowSemaforo('rojo')">
+          <button class="btn-sem-vote btn-sem-red ${savedVote === 'rojo' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('rojo')">
             <span class="sem-icon">🔴</span>
             <span class="sem-title">ROJO</span>
             <span class="sem-desc">Red Flag / No</span>
             <span class="sem-kbd">[R]</span>
           </button>
 
-          <button class="btn-sem-vote btn-sem-fire ${savedVote === 'fuego' ? 'selected' : ''}" onclick="voteShowSemaforo('fuego')">
+          <button class="btn-sem-vote btn-sem-fire ${savedVote === 'fuego' ? 'selected' : ''}" onclick="voteShowSemaforoMulti('fuego')">
             <span class="sem-icon">🔥</span>
             <span class="sem-title">FUEGO</span>
             <span class="sem-desc">Tóxico / Cancelar</span>
             <span class="sem-kbd">[F]</span>
           </button>
         </div>
-
-        <div class="semaforo-sub-dots">
-          ${cases.map((c, i) => `
-            <div class="sub-dot ${i === showSemaforoSubIndex ? 'active' : ''} ${showUserChoices.semaforo[i] ? 'voted' : ''}"></div>
-          `).join("")}
-        </div>
       </div>
     </div>
   `;
 }
 
-function voteShowSemaforo(level) {
-  const cases = currentShowEpisode?.semaforo || SEMAFORO_CASES.slice(0, 3);
+function voteShowSemaforoMulti(level) {
+  const cases = currentShowEpisode?.semaforoList || SEMAFORO_CASES.slice(0, 7);
   const cur = cases[showSemaforoSubIndex] || cases[0];
 
   showUserChoices.semaforo[showSemaforoSubIndex] = {
@@ -2304,43 +2591,114 @@ function voteShowSemaforo(level) {
   else if (level === "rojo") audioFX.playBuzzer();
   else if (level === "fuego") audioFX.playFireIgnite();
 
-  // Auto-advance to next sub-case or step 4
+  // Auto-advance
   setTimeout(() => {
-    if (showSemaforoSubIndex < 2) {
+    if (showSemaforoSubIndex < cases.length - 1) {
       showSemaforoSubIndex++;
       const body = document.getElementById("showStageBody");
-      if (body) renderShowStep3_Semaforo(body);
-    } else {
+      if (body) renderShowStep4_Semaforo(body);
       setShowDiaStep(4);
+    } else {
+      setShowDiaStep(5);
     }
   }, 400);
 }
 
 // ---------------------------------------------------------
-// STEP 4: LA RULETA & 3 TRONOS
+// BLOQUE 5: EL PODIO DEL BIZARREO (TOP 5 EN VIVO)
 // ---------------------------------------------------------
-function renderShowStep4_Ruleta(container) {
-  const victim = currentShowEpisode?.ruleta?.victim || celebrities[0];
-  const candidates = currentShowEpisode?.ruleta?.candidates || celebrities.slice(1, 4);
-  const assign = showUserChoices.ruleta.assignments;
+function renderShowStep5_Podio(container) {
+  const item = currentShowEpisode?.podioItem || {
+    title: "TOP 5: RANKING DE TRAICIONES DE LA FARÁNDULA",
+    guide: "La mesa debe ordenar del #1 al #5 a los protagonistas del multiverso.",
+    candidates: []
+  };
+
+  const medals = ["🥇 #1 MÁXIMO TRAIDOR", "🥈 #2 SEGUNDO PUESTO", "🥉 #3 TERCER PUESTO", "4️⃣ #4 CUARTO PUESTO", "5️⃣ #5 MENOS TRAIDOR"];
+
+  container.innerHTML = `
+    <div class="show-stage-card podio-step-stage">
+      <div class="step-guide-tag">
+        🏆 EL PODIO DEL BIZARREO • ${item.guide}
+      </div>
+
+      <h2 class="podio-main-title">${item.title}</h2>
+
+      <div class="podio-interactive-grid">
+        ${showPodioState.map((cand, idx) => `
+          <div class="podio-rank-card rank-pos-${idx + 1}">
+            <div class="prc-medal-badge">${medals[idx]}</div>
+            <div class="prc-photo-wrap">
+              <img src="${cand.image}" alt="${cand.name}" class="prc-img" onerror="this.src='assets/logo-pf.jpg'">
+            </div>
+            <h3 class="prc-name">${cand.name}</h3>
+            <p class="prc-crime">${cand.crime || cand.lore}</p>
+            
+            <div class="prc-move-buttons">
+              <button class="btn-move-rank" onclick="swapPodio(${idx}, ${idx - 1})" ${idx === 0 ? 'disabled' : ''} title="Subir Puesto">
+                ⬆ Subir
+              </button>
+              <button class="btn-move-rank" onclick="swapPodio(${idx}, ${idx + 1})" ${idx === showPodioState.length - 1 ? 'disabled' : ''} title="Bajar Puesto">
+                ⬇ Bajar
+              </button>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="podio-hosts-commentary">
+        <div class="phc-item"><strong>Holder:</strong> "Icardi no tiene perdón de Dios. Rompió los códigos sagrados de la capitanía."</div>
+        <div class="phc-item"><strong>Diane:</strong> "La China Suárez se lava las manos, pero entrar a un matrimonio ajeno tiene karma."</div>
+        <div class="phc-item"><strong>Luli:</strong> "¡Son todos perdonables si te cantan un tema de cumbia y te piden perdón por WhatsApp!"</div>
+      </div>
+    </div>
+  `;
+}
+
+function swapPodio(fromIdx, toIdx) {
+  if (toIdx < 0 || toIdx >= showPodioState.length) return;
+  const temp = showPodioState[fromIdx];
+  showPodioState[fromIdx] = showPodioState[toIdx];
+  showPodioState[toIdx] = temp;
+  showUserChoices.podio = [...showPodioState];
+  audioFX.playTick(600, 0.2);
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep5_Podio(body);
+}
+
+// ---------------------------------------------------------
+// BLOQUE 6: LA RULETA DE 3 TRONOS (2 RONDAS)
+// ---------------------------------------------------------
+function renderShowStep6_Ruleta(container) {
+  const rounds = currentShowEpisode?.ruletaList || [];
+  const curRound = rounds[showRuletaSubIndex] || rounds[0];
+  const victim = curRound?.victim || celebrities[0];
+  const candidates = curRound?.candidates || celebrities.slice(1, 4);
+
+  if (!showUserChoices.ruleta[showRuletaSubIndex]) {
+    showUserChoices.ruleta[showRuletaSubIndex] = { victim, assignments: { casorio: null, chongo: null, funa: null } };
+  }
+  const assign = showUserChoices.ruleta[showRuletaSubIndex].assignments;
 
   container.innerHTML = `
     <div class="show-stage-card ruleta-step-stage">
       <div class="step-guide-tag">
-        🎡 TINDER BIZARRO EN MESA • ${victim.name} en el banquillo. Asigná a los 3 candidatos a los 3 Tronos
+        🎡 LA RULETA DE 3 TRONOS • RONDA ${showRuletaSubIndex + 1} DE ${rounds.length} • ¿A quién casás con 💍 Casorio, a quién le das una noche de 🔥 Chongo y a quién mandás a la ❌ Funa?
       </div>
 
       <!-- VICTIM CARD -->
-      <div class="ruleta-victim-spotlight text-only">
+      <div class="ruleta-victim-spotlight">
+        <div class="rvs-avatar-wrap">
+          <img src="${victim.image}" alt="${victim.name}" class="rvs-img" onerror="this.src='assets/logo-pf.jpg'">
+          <div class="rvs-badge">VÍCTIMA DE LA RONDA</div>
+        </div>
         <div class="rvs-info">
-          <div class="rvs-badge">VÍCTIMA DEL DÍA</div>
           <h3 class="rvs-name">${victim.name}</h3>
           <div class="rvs-tag">${victim.tag || victim.categoryLabel}</div>
           <p class="rvs-lore">${victim.lore || victim.bio}</p>
         </div>
       </div>
 
-      <!-- 3 CANDIDATES & 3 THRONES -->
       <div class="ruleta-thrones-clash-grid">
         ${candidates.map((cand, idx) => {
           let curThrone = "";
@@ -2349,19 +2707,22 @@ function renderShowStep4_Ruleta(container) {
           else if (assign.funa === cand.name) curThrone = "❌ FUNA";
 
           return `
-            <div class="candidate-throne-card text-only">
-              <div class="ctc-assigned-badge ${curThrone ? 'active' : ''}">${curThrone || 'SIN ASIGNAR'}</div>
+            <div class="candidate-throne-card">
+              <div class="ctc-photo-wrap">
+                <img src="${cand.image}" alt="${cand.name}" class="ctc-img" onerror="this.src='assets/logo-pf.jpg'">
+                <div class="ctc-assigned-badge ${curThrone ? 'active' : ''}">${curThrone || 'SIN ASIGNAR'}</div>
+              </div>
               <h4 class="ctc-name">${cand.name}</h4>
               <p class="ctc-lore">${cand.lore || cand.bio}</p>
               
               <div class="ctc-actions-row">
-                <button class="btn-throne-pick btn-tp-casorio ${assign.casorio === cand.name ? 'active' : ''}" onclick="assignShowThroneDirect('casorio', '${cand.name}')">
+                <button class="btn-throne-pick btn-tp-casorio ${assign.casorio === cand.name ? 'active' : ''}" onclick="assignShowThroneMulti('casorio', '${cand.name}')">
                   💍 Casorio
                 </button>
-                <button class="btn-throne-pick btn-tp-chongo ${assign.chongo === cand.name ? 'active' : ''}" onclick="assignShowThroneDirect('chongo', '${cand.name}')">
+                <button class="btn-throne-pick btn-tp-chongo ${assign.chongo === cand.name ? 'active' : ''}" onclick="assignShowThroneMulti('chongo', '${cand.name}')">
                   🔥 Chongo
                 </button>
-                <button class="btn-throne-pick btn-tp-funa ${assign.funa === cand.name ? 'active' : ''}" onclick="assignShowThroneDirect('funa', '${cand.name}')">
+                <button class="btn-throne-pick btn-tp-funa ${assign.funa === cand.name ? 'active' : ''}" onclick="assignShowThroneMulti('funa', '${cand.name}')">
                   ❌ Funa
                 </button>
               </div>
@@ -2369,32 +2730,158 @@ function renderShowStep4_Ruleta(container) {
           `;
         }).join("")}
       </div>
+
+      <div class="sub-progress-dots">
+        ${rounds.map((r, i) => `
+          <div class="sub-dot ${i === showRuletaSubIndex ? 'active' : ''} ${showUserChoices.ruleta[i]?.assignments?.casorio ? 'voted' : ''}"></div>
+        `).join("")}
+      </div>
     </div>
   `;
 }
 
-function assignShowThroneDirect(throne, candName) {
-  showUserChoices.ruleta.assignments[throne] = candName;
+function assignShowThroneMulti(throne, candName) {
+  if (!showUserChoices.ruleta[showRuletaSubIndex]) {
+    showUserChoices.ruleta[showRuletaSubIndex] = { assignments: { casorio: null, chongo: null, funa: null } };
+  }
+  showUserChoices.ruleta[showRuletaSubIndex].assignments[throne] = candName;
+
   if (throne === "casorio") audioFX.playMatchChime();
   else if (throne === "chongo") audioFX.playFireIgnite();
   else if (throne === "funa") audioFX.playBuzzer();
 
   const body = document.getElementById("showStageBody");
-  if (body) renderShowStep4_Ruleta(body);
+  if (body) renderShowStep6_Ruleta(body);
 }
 
-function assignShowThrone(throne) {
-  const candidates = currentShowEpisode?.ruleta?.candidates || [];
-  const unassigned = candidates.find(c => !Object.values(showUserChoices.ruleta.assignments).includes(c.name));
-  if (unassigned) {
-    assignShowThroneDirect(throne, unassigned.name);
+// ---------------------------------------------------------
+// BLOQUE 7: LA ZONA DE FUNA & DERECHO A RÉPLICA (30s)
+// ---------------------------------------------------------
+function renderShowStep7_Funa(container) {
+  const accused = showUserChoices.funa.accused || "holder";
+  const result = showUserChoices.funa.result;
+
+  container.innerHTML = `
+    <div class="show-stage-card funa-step-stage">
+      <div class="step-guide-tag">
+        🚨 LA ZONA DE FUNA • JUICIO EN VIVO • DERECHO A RÉPLICA DE 30 SEGUNDOS
+      </div>
+
+      <div class="funa-live-arena">
+        <div class="fla-header">
+          <div class="fla-siren">🚨</div>
+          <h2 class="fla-title">¡CONDUCTOR EN JAQUE: ${accused.toUpperCase()}!</h2>
+          <p class="fla-sub">Acumuló demasiada polémica y veneno en los bloques anteriores. Tiene 30 segundos para convencer a la mesa de que tiró FACTOS y salvarse de la funa.</p>
+        </div>
+
+        <!-- SELECTOR DE CONDUCTOR ACUSADO -->
+        <div class="fla-accused-selector">
+          <button class="btn-accused-select ${accused === 'holder' ? 'active' : ''}" onclick="selectFunaHost('holder')">
+            Tomás Holder (${funaCounts.holder} Funas)
+          </button>
+          <button class="btn-accused-select ${accused === 'diane' ? 'active' : ''}" onclick="selectFunaHost('diane')">
+            Diane Caracchi (${funaCounts.diane} Funas)
+          </button>
+          <button class="btn-accused-select ${accused === 'luli' ? 'active' : ''}" onclick="selectFunaHost('luli')">
+            Luli Casé (${funaCounts.luli} Funas)
+          </button>
+        </div>
+
+        <!-- GIANT 30S COUNTDOWN -->
+        <div class="funa-timer-box">
+          <div class="ftb-circle ${showFunaRunning ? 'pulse' : ''}" id="showFunaTimerDisplay">
+            ${showFunaTimer}s
+          </div>
+          <div class="ftb-controls">
+            <button class="btn-ftb-play" onclick="toggleShowFunaTimer()">
+              ${showFunaRunning ? '⏸ PAUSAR CRONÓMETRO' : '▶ INICIAR 30s AL AIRE'}
+            </button>
+            <button class="btn-ftb-reset" onclick="resetShowFunaTimer()">
+              🔄 REINICIAR (30s)
+            </button>
+          </div>
+        </div>
+
+        <!-- VEREDICT BUTTONS -->
+        <div class="funa-verdict-decision-row">
+          <button class="btn-funa-verdict btn-fv-zafo ${result === 'zafo' ? 'active' : ''}" onclick="resolveShowFuna('zafo')">
+            🟢 ZAFÓ CON FACTOS (NO HAY FUNA) [Z]
+          </button>
+          <button class="btn-funa-verdict btn-fv-cancelado ${result === 'cancelado' ? 'active' : ''}" onclick="resolveShowFuna('cancelado')">
+            💀 CANCELADO / AL BANCO (+1 FUNA) [C]
+          </button>
+        </div>
+
+        ${result ? `
+          <div class="funa-result-banner ${result}">
+            ${result === 'zafo' ? '✅ ¡LA MESA LO PERDONÓ! Zafó con factos inapelables.' : '🚨 ¡SENTENCIA CUMPLIDA! Quedó funado y se sumó +1 a su contador global.'}
+          </div>
+        ` : ''}
+
+      </div>
+    </div>
+  `;
+}
+
+function selectFunaHost(host) {
+  showUserChoices.funa.accused = host;
+  audioFX.playReveal();
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep7_Funa(body);
+}
+
+function toggleShowFunaTimer() {
+  if (showFunaRunning) {
+    clearInterval(showFunaInterval);
+    showFunaRunning = false;
+  } else {
+    showFunaRunning = true;
+    audioFX.playSiren();
+    showFunaInterval = setInterval(() => {
+      if (showFunaTimer > 0) {
+        showFunaTimer--;
+        const disp = document.getElementById("showFunaTimerDisplay");
+        if (disp) disp.textContent = `${showFunaTimer}s`;
+        if (showFunaTimer === 5) audioFX.playBuzzer();
+      } else {
+        clearInterval(showFunaInterval);
+        showFunaRunning = false;
+        audioFX.playBuzzer();
+      }
+    }, 1000);
   }
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep7_Funa(body);
+}
+
+function resetShowFunaTimer() {
+  clearInterval(showFunaInterval);
+  showFunaRunning = false;
+  showFunaTimer = 30;
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep7_Funa(body);
+}
+
+function resolveShowFuna(res) {
+  showUserChoices.funa.result = res;
+  clearInterval(showFunaInterval);
+  showFunaRunning = false;
+
+  if (res === "cancelado") {
+    adjustFuna(showUserChoices.funa.accused, 1);
+    audioFX.playBuzzer();
+  } else {
+    audioFX.playFactosHorn();
+  }
+
+  const body = document.getElementById("showStageBody");
+  if (body) renderShowStep7_Funa(body);
 }
 
 // ---------------------------------------------------------
-// STEP 5: MASTER DASHBOARD & ANÁLISIS PSICOLÓGICO
+// BLOQUE 8: MASTER DASHBOARD & ANÁLISIS TOXICOLÓGICO TOTAL
 // ---------------------------------------------------------
-function renderShowStep5_Dashboard(container) {
+function renderShowStep8_Dashboard(container) {
   const diagnosis = generatePsychologicalAnalysis(showUserChoices);
   audioFX.playFactosHorn();
 
@@ -2403,7 +2890,7 @@ function renderShowStep5_Dashboard(container) {
       
       <!-- HERO DIAGNOSIS BANNER -->
       <div class="final-diagnosis-hero">
-        <div class="fdh-tag">🧠 ANÁLISIS PSICOLÓGICO & TOXICOLÓGICO DEL SHOW DE HOY</div>
+        <div class="fdh-tag">🧠 ANÁLISIS PSICOLÓGICO & TOXICOLÓGICO DE LA TRANSMISIÓN</div>
         <h2 class="fdh-title">${diagnosis.title}</h2>
         <p class="fdh-desc">${diagnosis.description}</p>
       </div>
@@ -2439,47 +2926,58 @@ function renderShowStep5_Dashboard(container) {
         </div>
       </div>
 
-      <!-- RECAP OF CHOICES -->
+      <!-- RECAP OF ALL 8 BLOCKS -->
       <div class="show-recap-grid">
         <div class="recap-box">
-          <div class="rb-title">⚔️ GUERRA DE BANDOS</div>
+          <div class="rb-title">🎙️ 1. APERTURA EDITORIAL</div>
           <div class="rb-content">
-            Bando Elegido: <strong>${showUserChoices.bandos.vote === 'a' ? showUserChoices.bandos.duel?.sideA?.name : showUserChoices.bandos.duel?.sideB?.name || 'Empate Técnico'}</strong>
+            Postura: <strong>${showUserChoices.aperturaVote ? showUserChoices.aperturaVote.toUpperCase() : 'DEBATE ABIERTO'}</strong>
           </div>
         </div>
 
         <div class="recap-box">
-          <div class="rb-title">⚖️ TRIBUNAL DE FARÁNDULA</div>
+          <div class="rb-title">⚔️ 2. GUERRA DE BANDOS (3 DUELOS)</div>
           <div class="rb-content">
-            Postura: <strong>${showUserChoices.tribunal.option === 'A' ? 'Factos / Tomás Holder' : showUserChoices.tribunal.option === 'B' ? 'Dignidad / Diane' : 'Migajera / Luli'}</strong>
+            ${showUserChoices.bandos.map((b, i) => `Duelo ${i+1}: ${b.vote ? b.vote.toUpperCase() : '-'}`).join(" • ") || '3 Duelos Jugados'}
           </div>
         </div>
 
         <div class="recap-box">
-          <div class="rb-title">🚦 SEMÁFORO DE HOY</div>
+          <div class="rb-title">⚖️ 3. TRIBUNAL DE FARÁNDULA (3 CASOS)</div>
           <div class="rb-content">
-            ${showUserChoices.semaforo.map((s, i) => `${i+1}. ${s.vote ? s.vote.toUpperCase() : 'PENDIENTE'}`).join(" • ")}
+            ${showUserChoices.tribunal.map((t, i) => `Caso ${i+1}: [${t.option || '-'}]`).join(" • ") || '3 Juicios Dictados'}
           </div>
         </div>
 
         <div class="recap-box">
-          <div class="rb-title">💍 CASORIO & FUNA</div>
+          <div class="rb-title">🚦 4. RÁFAGA DEL SEMÁFORO (7 RED FLAGS)</div>
           <div class="rb-content">
-            💍 ${showUserChoices.ruleta.assignments.casorio || 'Nadie'} | ❌ ${showUserChoices.ruleta.assignments.funa || 'Nadie'}
+            ${showUserChoices.semaforo.map((s, i) => `${i+1}. ${s.vote ? s.vote.toUpperCase() : '-'}`).join(" • ") || '7 Red Flags Votadas'}
+          </div>
+        </div>
+
+        <div class="recap-box">
+          <div class="rb-title">🏆 5. TOP 1 DE TRAICIONES</div>
+          <div class="rb-content">
+            🥇 <strong>${showPodioState[0]?.name || 'Mauro Icardi'}</strong>
+          </div>
+        </div>
+
+        <div class="recap-box">
+          <div class="rb-title">🎡 6. RULETA Y TRONOS</div>
+          <div class="rb-content">
+            💍 ${showUserChoices.ruleta[0]?.assignments?.casorio || 'Maxi López'} | ❌ ${showUserChoices.ruleta[0]?.assignments?.funa || 'Mauro Icardi'}
           </div>
         </div>
       </div>
 
-      <!-- FUNA RECOMMENDATION -->
+      <!-- FUNA FINAL VERDICT -->
       <div class="funa-verdict-box">
         <div class="fvb-icon">💀</div>
         <div class="fvb-info">
           <h4>VEREDICTO: EL CONDUCTOR MÁS CANCELABLE DE HOY</h4>
           <p>${diagnosis.funadoRecommendation}</p>
         </div>
-        <button class="btn-apply-funa" onclick="applyDashboardFuna('${diagnosis.funadoHost}')">
-          🚨 SUMAR +1 FUNA A ${diagnosis.funadoHost.toUpperCase()}
-        </button>
       </div>
 
       <!-- ACTION BUTTONS -->
@@ -2488,7 +2986,7 @@ function renderShowStep5_Dashboard(container) {
           🔄 REPETIR EL SHOW DE HOY
         </button>
         <button class="btn-dash-action btn-dash-rng" onclick="startShowDia('rng')">
-          🎲 JUGAR SHOW ALEATORIO (RNG)
+          🎲 JUGAR MEGA SHOW ALEATORIO (RNG)
         </button>
         <button class="btn-dash-action btn-dash-home" onclick="switchTab('home')">
           🏠 VOLVER AL INICIO
@@ -2500,35 +2998,31 @@ function renderShowStep5_Dashboard(container) {
 }
 
 function generatePsychologicalAnalysis(choices) {
-  let venom = 75;
-  let aura = 80;
-  let migajera = 60;
-  let careta = 40;
+  let venom = 78;
+  let aura = 82;
+  let migajera = 65;
+  let careta = 38;
 
-  if (choices.bandos.vote === "a") {
-    venom += 15;
-    aura += 10;
-  } else if (choices.bandos.vote === "b") {
-    careta += 15;
-    aura -= 5;
-  }
+  if (choices.aperturaVote === "holder") { venom += 10; aura += 12; }
+  else if (choices.aperturaVote === "diane") { aura += 8; careta -= 8; }
+  else if (choices.aperturaVote === "luli") { migajera += 18; venom += 8; }
 
-  if (choices.tribunal.option === "A") {
-    aura += 15;
-    venom += 10;
-  } else if (choices.tribunal.option === "B") {
-    aura += 10;
-    careta -= 10;
-  } else if (choices.tribunal.option === "C") {
-    migajera += 30;
-    aura -= 15;
-  }
+  choices.bandos?.forEach(b => {
+    if (b.vote === "a") { venom += 5; aura += 4; }
+    else if (b.vote === "b") { careta += 5; }
+  });
 
-  choices.semaforo.forEach(s => {
-    if (s.vote === "fuego") venom += 8;
-    else if (s.vote === "verde") aura += 5;
-    else if (s.vote === "amarillo") migajera += 8;
-    else if (s.vote === "rojo") careta += 5;
+  choices.tribunal?.forEach(t => {
+    if (t.option === "A") { aura += 6; venom += 4; }
+    else if (t.option === "B") { aura += 4; careta -= 3; }
+    else if (t.option === "C") { migajera += 10; aura -= 4; }
+  });
+
+  choices.semaforo?.forEach(s => {
+    if (s.vote === "fuego") venom += 4;
+    else if (s.vote === "verde") aura += 3;
+    else if (s.vote === "amarillo") migajera += 4;
+    else if (s.vote === "rojo") careta += 3;
   });
 
   venom = Math.min(99, Math.max(25, venom));
@@ -2538,20 +3032,8 @@ function generatePsychologicalAnalysis(choices) {
 
   let title = "DIAGNÓSTICO: MESA NIVEL WANDAGATE (TOXICIDAD GALÁCTICA & DESPECHO CON FACTOS)";
   let description = "La mesa demostró una adicción severa a los bardos de conventillo y a las capturas de WhatsApp a las 4 AM. Holder tiró factos que rozan la cancelación en el INADI, Diane intentó poner cordura monogámica sin éxito, y Luli ya le mandó la carta natal de Maxi López a sus amigas.";
-  let funadoHost = "holder";
-  let funadoRecommendation = "Tomás Holder por justificar las anécdotas de sótanos de Rusia y amenazar con prohibir las medialunas en el estudio.";
-
-  if (migajera > 75) {
-    title = "DIAGNÓSTICO: MESA MIGAJERA CRÓNICA (APEGO ANSIOSO, TAROT Y MEDIALUNAS EN EL BAÑO)";
-    description = "El nivel de apego de esta mesa asusta a cualquier psicólogo de la UBA. Perdonarían una infidelidad en un telo si el chongo les escribe un tema de RKT y les promete no comer azúcar en el laburo.";
-    funadoHost = "luli";
-    funadoRecommendation = "Luli Casé por defender firmar como 'Solange' y justificar los 70 millones con culpa kármica.";
-  } else if (aura > 85) {
-    title = "DIAGNÓSTICO: MESA MONOGÁMICA CON DIGNIDAD DE ACERO & RESPETO A LOS CÓDIGOS";
-    description = "Cero tolerancia a la careteada. Esta mesa corta en seco, se lleva a los hijos con las valijas y factura como modelo internacional sin mirar atrás.";
-    funadoHost = "diane";
-    funadoRecommendation = "Diane Caracchi por ser demasiado correcta y no dejar que Holder prenda fuego el estudio con los audios de PH.";
-  }
+  let funadoHost = showUserChoices.funa.accused;
+  let funadoRecommendation = `Tomás Holder por justificar las anécdotas de sótanos de Rusia y amenazar con prohibir las medialunas en el estudio.`;
 
   return {
     title,
@@ -2573,12 +3055,8 @@ function applyDashboardFuna(host) {
 
 function updateLowerThirdShowDia() {
   if (currentShowStep === 1) {
-    setPresetZocalo("⚔️ SHOW DEL DÍA • ETAPA 1", `${currentShowEpisode?.bando?.title?.toUpperCase() || "GUERRA DE BANDOS"}`);
+    setPresetZocalo("🎙️ SHOW DEL DÍA • BLOQUE 1", "APERTURA & PREGUNTA EDITORIAL: ¿HASTA DÓNDE VALE QUEMAR A UN EX?");
   } else if (currentShowStep === 2) {
-    setPresetZocalo("⚖️ SHOW DEL DÍA • ETAPA 2", `${currentShowEpisode?.tribunal?.title?.toUpperCase() || "EL TRIBUNAL DE FARÁNDULA"}`);
-  } else if (currentShowStep === 3) {
-    setPresetZocalo("🚦 SHOW DEL DÍA • ETAPA 3", "LA RÁFAGA DEL SEMÁFORO: 3 RED FLAGS DE HOY AL AIRE");
-  } else if (currentShowStep === 4) {
     setPresetZocalo("🎡 SHOW DEL DÍA • ETAPA 4", "LA RULETA BIZARRA & LOS 3 TRONOS (CASORIO, CHONGO, FUNA)");
   } else if (currentShowStep === 5) {
     setPresetZocalo("🏆 SHOW DEL DÍA • FINAL", "DASHBOARD FINAL & ANÁLISIS PSICOLÓGICO DE LA MESA");

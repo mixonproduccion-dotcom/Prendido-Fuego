@@ -384,17 +384,20 @@
           <div class="show-stepper-info">
             <div class="ssh-badge-row">
               <span class="ssh-badge" id="showModeBadge">🔥 PROGRAMA DE HOY • LUNES 31/08</span>
-              <span class="ssh-counter" id="showStepCounter">ETAPA 1 / 5</span>
+              <span class="ssh-counter" id="showStepCounter">BLOQUE 1 / 8</span>
             </div>
-            <h2 class="ssh-title" id="showStageTitle">⚔️ GUERRA DE BANDOS: WANDA NARA VS. MAXI LÓPEZ</h2>
+            <h2 class="ssh-title" id="showStageTitle">🎙️ BLOQUE 1: APERTURA & PREGUNTA EDITORIAL DEL DÍA</h2>
           </div>
 
           <div class="show-step-indicators" id="showStepIndicators">
-            <button class="step-pill active" data-show-step="1" id="pillShow1">1. BANDOS</button>
-            <button class="step-pill" data-show-step="2" id="pillShow2">2. TRIBUNAL</button>
-            <button class="step-pill" data-show-step="3" id="pillShow3">3. SEMÁFORO</button>
-            <button class="step-pill" data-show-step="4" id="pillShow4">4. RULETA</button>
-            <button class="step-pill" data-show-step="5" id="pillShow5">5. DASHBOARD</button>
+            <button class="step-pill active" data-show-step="1" id="pillShow1">1. APERTURA</button>
+            <button class="step-pill" data-show-step="2" id="pillShow2">2. BANDOS</button>
+            <button class="step-pill" data-show-step="3" id="pillShow3">3. TRIBUNAL</button>
+            <button class="step-pill" data-show-step="4" id="pillShow4">4. SEMÁFORO</button>
+            <button class="step-pill" data-show-step="5" id="pillShow5">5. PODIO TOP</button>
+            <button class="step-pill" data-show-step="6" id="pillShow6">6. RULETA</button>
+            <button class="step-pill" data-show-step="7" id="pillShow7">7. FUNA</button>
+            <button class="step-pill" data-show-step="8" id="pillShow8">8. DASHBOARD</button>
           </div>
         </div>
 
@@ -700,7 +703,7 @@
               <div class="fighter-badge" id="bandoSideABadge">La que Proyectó Familia</div>
               <h3 class="fighter-name" id="bandoSideAName">La Joaqui</h3>
               <p class="fighter-argument" id="bandoSideAArg"></p>
-              <button class="btn-vote-fighter" id="btnVoteSideA">BANCAR BANDO A [1]</button>
+              <button class="btn-vote-fighter" id="btnVoteSideA">BANCAR A LA JOAQUI [1]</button>
             </div>
 
             <!-- VS CENTER PIECE -->
@@ -714,22 +717,23 @@
               <div class="fighter-badge" id="bandoSideBBadge">El Soltero del Cuarteto</div>
               <h3 class="fighter-name" id="bandoSideBName">Luck Ra</h3>
               <p class="fighter-argument" id="bandoSideBArg"></p>
-              <button class="btn-vote-fighter" id="btnVoteSideB">BANCAR BANDO B [2]</button>
+              <button class="btn-vote-fighter" id="btnVoteSideB">BANCAR A LUCK RA [2]</button>
             </div>
           </div>
 
           <!-- TUG OF WAR BAR -->
           <div class="tug-meter-box">
             <div class="tug-meter-labels">
-              <span class="tug-label-a">BANDO A: <strong id="bandoPctA">50%</strong></span>
+              <span class="tug-label-a" id="bandoLabelA">La Joaqui: <strong id="bandoPctA">50%</strong></span>
               <span class="tug-meter-title">⚖️ BALANCE DE LA MESA</span>
-              <span class="tug-label-b">BANDO B: <strong id="bandoPctB">50%</strong></span>
+              <span class="tug-label-b" id="bandoLabelB">Luck Ra: <strong id="bandoPctB">50%</strong></span>
             </div>
             <div class="tug-bar-track">
               <div class="tug-fill-a" id="meterFillA" style="width: 50%;"></div>
               <div class="tug-fill-b" id="meterFillB" style="width: 50%;"></div>
             </div>
           </div>
+
         </div>
 
       </div>

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRENDIDO FUEGO 🔥 | Mix On Studio Live Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+</head>
+<body class="stage-mode">
+  <!-- Canvas de Chispas & Cenizas Volátiles de Fondo -->
+  <canvas id="particlesCanvas"></canvas>
+
+  <!-- OVERLAY DE FONDO PARA EL SIDEBAR -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ========================================================= -->
+  <!-- SIDEBAR / DRAWER RETRÁCTIL DE PRODUCCIÓN Y TRANSMISIÓN -->
+  <!-- ========================================================= -->
+  <aside class="studio-sidebar" id="studioSidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <img src="assets/logo-pf.jpg" alt="PF Logo" class="sidebar-logo-img" onerror="this.style.display='none'">
+        <div>
+          <div class="sidebar-brand-title">PRENDIDO FUEGO 🔥</div>
+          <div class="sidebar-brand-sub">STUDIO CONTROL • MIX ON</div>
+        </div>
+      </div>
+      <button class="btn-sidebar-close" id="btnCloseSidebar" title="Cerrar panel [M]">✕</button>
+    </div>
+
+    <!-- CONTADOR GLOBAL DE FUNAS / CANCELACIONES -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">💀 CONTADOR GLOBAL DE FUNAS</div>
+      <div class="sidebar-funa-tracker-box">
+        <div class="funa-tracker-row">
+          <span class="ft-name">Tomás Holder:</span>
+          <div class="ft-controls">
+            <button class="btn-funa-adj" onclick="adjustFuna('holder', -1)">-</button>
+            <span class="ft-val" id="sideFunaHolder">0</span>
+            <button class="btn-funa-adj" onclick="adjustFuna('holder', 1)">+</button>
+          </div>
+        </div>
+        <div class="funa-tracker-row">
+          <span class="ft-name">Diane Caracchi:</span>
+          <div class="ft-controls">
+            <button class="btn-funa-adj" onclick="adjustFuna('diane', -1)">-</button>
+            <span class="ft-val" id="sideFunaDiane">0</span>
+            <button class="btn-funa-adj" onclick="adjustFuna('diane', 1)">+</button>
+          </div>
+        </div>
+        <div class="funa-tracker-row">
+          <span class="ft-name">Luli Casé:</span>
+          <div class="ft-controls">
+            <button class="btn-funa-adj" onclick="adjustFuna('luli', -1)">-</button>
+            <span class="ft-val" id="sideFunaLuli">0</span>
+            <button class="btn-funa-adj" onclick="adjustFuna('luli', 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVEGADOR DE JUEGOS -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">📺 DINÁMICAS DE TRANSMISIÓN</div>
+      <div class="sidebar-game-list">
+        <button class="sidebar-game-card active" data-tab="home">
+          <div class="sg-icon">🏠</div>
+          <div class="sg-info">
+            <span class="sg-name">Pantalla de Inicio</span>
+            <span class="sg-desc">Portada principal y arranque del show</span>
+          </div>
+        </button>
+
+        <button class="sidebar-game-card" data-tab="roulette">
+          <div class="sg-icon">🎡</div>
+          <div class="sg-info">
+            <span class="sg-name">1. La Ruleta & Tinder Bizarro</span>
+            <span class="sg-desc">Paso a paso, lore de 200 figuras y 3 tronos</span>
+          </div>
+        </button>
+
+        <button class="sidebar-game-card" data-tab="semaforo">
+          <div class="sg-icon">🚦</div>
+          <div class="sg-info">
+            <span class="sg-name">2. Semáforo de Toxicidad 2.0</span>
+            <span class="sg-desc">Rondas de 10, diagnóstico & Botón de Funa</span>
+          </div>
+        </button>
+
+        <button class="sidebar-game-card" data-tab="ranking">
+          <div class="sg-icon">📊</div>
+          <div class="sg-info">
+            <span class="sg-name">3. El Ranking de Traición & Caretas</span>
+            <span class="sg-desc">Ordená el podio en vivo: Aura vs Traición</span>
+          </div>
+        </button>
+
+        <button class="sidebar-game-card" data-tab="bandos">
+          <div class="sg-icon">⚔️</div>
+          <div class="sg-info">
+            <span class="sg-name">4. Guerra de Bandos</span>
+            <span class="sg-desc">¿A quién bancás? Tini vs Emilia y clásicos</span>
+          </div>
+        </button>
+
+        <button class="sidebar-game-card" data-tab="tribunal">
+          <div class="sg-icon">⚖️</div>
+          <div class="sg-info">
+            <span class="sg-name">5. El Tribunal de Farándula</span>
+            <span class="sg-desc">Dilemas morales y votación en mesa</span>
+          </div>
+        </button>
+
+        <button class="sidebar-game-card" data-tab="zocalo">
+          <div class="sg-icon">📰</div>
+          <div class="sg-info">
+            <span class="sg-name">6. Generador de Zócalos (Graph)</span>
+            <span class="sg-desc">Titulares virales estilo LAM / Crónica</span>
+          </div>
+        </button>
+
+        <button class="sidebar-game-card" data-tab="planner">
+          <div class="sg-icon">🧠</div>
+          <div class="sg-info">
+            <span class="sg-name">7. Productor de Tendencias</span>
+            <span class="sg-desc">Pegá los tweets del día y armá el juego en 1 click</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- SOUNDBOARD EXPRESS -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">🔊 SOUNDBOARD DE ESTUDIO</div>
+      <div class="soundboard-grid">
+        <button class="btn-sfx-item" id="sfxFire" title="Tecla 1">🔥 FUEGO [1]</button>
+        <button class="btn-sfx-item" id="sfxFactos" title="Tecla 2">📢 FACTOS [2]</button>
+        <button class="btn-sfx-item" id="sfxBuzzer" title="Tecla 3">❌ CANCELADO [3]</button>
+        <button class="btn-sfx-item" id="sfxMatch" title="Tecla 4">💍 CASORIO [4]</button>
+        <button class="btn-sfx-item" id="sfxCringe" title="Tecla 5">🎻 CRINGE [5]</button>
+        <button class="btn-sfx-item sfx-veto" id="sfxSiren" title="Tecla V">🚨 FUNA [V]</button>
+      </div>
+    </div>
+
+    <!-- RELOJ DE DEBATE EN SIDEBAR -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">⏱️ RELOJ DE DEBATE</div>
+      <div class="sidebar-timer-box">
+        <div class="sidebar-timer-display" id="sidebarTimerDisplay">30s</div>
+        <div class="sidebar-timer-btns">
+          <button class="btn-timer-preset" data-seconds="30">30s</button>
+          <button class="btn-timer-preset" data-seconds="45">45s</button>
+          <button class="btn-timer-preset" data-seconds="60">60s</button>
+          <button class="btn-timer-action" id="sidebarTimerStart">▶ INICIAR [T]</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROLES OBS & STREAM -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">🎬 CONTROL DE TRANSMISIÓN</div>
+      <div class="sidebar-toggles-grid">
+        <button class="btn-stream-toggle" id="btnToggleOBS">
+          <span>🎬</span> Modo OBS Clean Feed [O]
+        </button>
+        <button class="btn-stream-toggle" id="btnToggleFullscreen">
+          <span>⛶</span> Pantalla Completa [F]
+        </button>
+        <button class="btn-stream-toggle" id="btnToggleMute">
+          <span id="muteIcon">🔊</span> Audio Activado
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE LA APLICACIÓN -->
+  <!-- ========================================================= -->
+  <div class="app-stage-wrapper">
+
+    <!-- MASTER TOP BAR -->
+    <header class="master-top-bar" id="masterTopBar">
+      <div class="topbar-left">
+        <button class="btn-menu-trigger" id="btnOpenSidebar" title="Abrir Menú de Control [M]">
+          <span class="menu-icon">☰</span>
+          <span class="menu-label">MENÚ</span>
+          <span class="kbd-hint">[M]</span>
+        </button>
+
+        <div class="brand-pill" id="btnGoHome" role="button" title="Volver al inicio">
+          <img src="assets/logo-pf.jpg" alt="PF" class="brand-logo-small" onerror="this.style.display='none'">
+          <span class="brand-name">PRENDIDO FUEGO</span>
+          <span class="live-indicator-dot"></span>
+          <span class="live-indicator-text">EN VIVO</span>
+        </div>
+      </div>
+
+      <div class="topbar-center">
+        <!-- CONTADOR GLOBAL DE FUNAS EN CABECERA -->
+        <div class="topbar-funa-chip" id="topbarFunaTracker" title="Funas acumuladas en el show">
+          <span class="tfc-title">💀 FUNAS:</span>
+          <span class="tfc-item">Holder: <strong id="topFunaHolder">0</strong></span>
+          <span class="tfc-item">Diane: <strong id="topFunaDiane">0</strong></span>
+          <span class="tfc-item">Luli: <strong id="topFunaLuli">0</strong></span>
+        </div>
+
+        <div class="active-stage-indicator" id="stageIndicator">
+          <span class="stage-icon">🔥</span>
+          <span class="stage-text" id="stageIndicatorText">STUDIO LIVE HUB</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <!-- BOTÓN DE FUNA RÁPIDO -->
+        <button class="btn-quick-funa" id="btnTopFuna" title="Mandar al banco / Funa [V]">
+          🚨 BOTÓN DE FUNA [V]
+        </button>
+
+        <div class="floating-timer-chip" id="topbarTimerChip" title="Reloj de Debate en Vivo">
+          <span class="timer-chip-icon">⏱️</span>
+          <span class="timer-chip-val" id="topbarTimerVal">30s</span>
+          <button class="btn-chip-play" id="topbarTimerPlay" title="Iniciar / Pausar [T]">▶</button>
+        </div>
+
+        <button class="btn-topbar-tool" id="btnTopOBS" title="Modo OBS Transparente [O]">
+          🎬 OBS
+        </button>
+        <button class="btn-topbar-tool" id="btnTopFull" title="Pantalla Completa [F]">
+          ⛶
+        </button>
+      </div>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- ZÓCALO / GRAPH PRINCIPAL EN CABECERA (ALTA VISIBILIDAD) -->
+    <!-- ========================================================= -->
+    <div class="top-broadcast-zocalo" id="lowerThirdBanner">
+      <div class="zocalo-left-brand">
+        <img src="assets/logo-pf.jpg" alt="PF" class="zocalo-logo-img" onerror="this.style.display='none'">
+        <span class="zocalo-brand-title">PRENDIDO FUEGO 🔥</span>
+      </div>
+      <div class="zocalo-middle-content">
+        <span class="zocalo-category-tag" id="lowerThirdTag">🎯 EN VIVO</span>
+        <h3 class="zocalo-main-headline" id="lowerThirdHeadline">
+          PRENDIDO FUEGO • EL SHOW DE FARÁNDULA & CANCELACIÓN DE MIX ON
+        </h3>
+      </div>
+      <div class="zocalo-right-status">
+        <span class="zocalo-live-badge">🔴 AL AIRE</span>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 0: HERO SPLASH SCREEN & ARRANCAR SHOW -->
+    <!-- ========================================================= -->
+    <main class="game-view active" id="section-home">
+      <div class="hero-splash-container">
+        <div class="hero-brand-emblem">
+          <div class="emblem-fire-glow"></div>
+          <img src="assets/logo-pf.jpg" alt="Prendido Fuego" class="hero-logo-img" onerror="this.style.display='none'">
+          <div class="hero-fallback-logo">🔥</div>
+        </div>
+
+        <div class="hero-titles-block">
+          <div class="hero-super-tag">MIX ON LIVE STREAMING • EL SHOW DE FARÁNDULA & TOXICIDAD</div>
+          <h1 class="hero-main-title">PRENDIDO FUEGO</h1>
+          <p class="hero-tagline">
+            Dilemas morales, traiciones de farándula, 200 famosos con lore investigado, veredictos en vivo y funas al banco.
+          </p>
+        </div>
+
+        <!-- EL BOTÓN DE PLAY ENORME PARA ARRANCAR EL JUEGO -->
+        <div class="hero-play-action-wrapper">
+          <button class="btn-huge-play" id="btnHugePlay" title="Arrancar el show [ESPACIO]">
+            <div class="play-glow-pulse"></div>
+            <div class="play-icon-shape">▶</div>
+            <div class="play-content-text">
+              <span class="play-main-cta">ARRANCAR EL SHOW</span>
+              <span class="play-sub-cta">JUGAR LA RULETA DE LA FARÁNDULA • [ESPACIO]</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- BENTO GRID DE MODOS DE JUEGO DIRECTOS -->
+        <div class="hero-games-grid">
+          <div class="hero-game-tile" data-start-game="roulette">
+            <div class="hgt-badge">RECOMENDADO EN VIVO</div>
+            <div class="hgt-icon">🎡</div>
+            <div class="hgt-title">La Ruleta & Tinder Bizarro</div>
+            <div class="hgt-desc">Show paso a paso: Revelá la víctima, los 3 candidatos y dictá sentencia con lore investigado.</div>
+            <button class="btn-tile-launch">JUGAR RULETA ▶</button>
+          </div>
+
+          <div class="hero-game-tile" data-start-game="semaforo">
+            <div class="hgt-badge">RONDA DE 10 & DIAGNÓSTICO</div>
+            <div class="hgt-icon">🚦</div>
+            <div class="hgt-title">Semáforo de Toxicidad</div>
+            <div class="hgt-desc">Ronda de 10 Red Flags, diagnóstico toxicológico final & Botón de Funa.</div>
+            <button class="btn-tile-launch">INICIAR TEST ▶</button>
+          </div>
+
+          <div class="hero-game-tile" data-start-game="ranking">
+            <div class="hgt-badge">INTERACTIVO</div>
+            <div class="hgt-icon">📊</div>
+            <div class="hgt-title">El Ranking de Traición</div>
+            <div class="hgt-desc">Ordená en vivo a los 5 personajes: Nivel de Traición y Caretómetro vs Aura.</div>
+            <button class="btn-tile-launch">ARMAR RANKING ▶</button>
+          </div>
+
+          <div class="hero-game-tile" data-start-game="bandos">
+            <div class="hgt-badge">CLÁSICOS VS</div>
+            <div class="hgt-icon">⚔️</div>
+            <div class="hgt-title">Guerra de Bandos</div>
+            <div class="hgt-desc">¿A quién bancás en este bardo? Tini vs Emilia, Wanda vs China, Cami Mayan vs Ailén Cova.</div>
+            <button class="btn-tile-launch">ABRIR ARENA ▶</button>
+          </div>
+        </div>
+
+        <!-- CONDUCTORES EN MESA -->
+        <div class="hero-hosts-bar">
+          <div class="host-pill-card">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" alt="Tomás Holder" class="host-pill-avatar">
+            <div>
+              <div class="host-pill-name">Tomás Holder</div>
+              <div class="host-pill-role">Macho Alfa / Factos</div>
+            </div>
+          </div>
+          <div class="host-pill-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" alt="Diane Caracchi" class="host-pill-avatar">
+            <div>
+              <div class="host-pill-name">Diane Caracchi</div>
+              <div class="host-pill-role">Límites & Monogamia</div>
+            </div>
+          </div>
+          <div class="host-pill-card">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80" alt="Luli Casé" class="host-pill-avatar">
+            <div>
+              <div class="host-pill-name">Luli Casé Rossi</div>
+              <div class="host-pill-role">La Migajera con Tarot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 1: LA RULETA & TINDER BIZARRO (PASO A PASO SHOW) -->
+    <!-- ========================================================= -->
+    <main class="game-view" id="section-roulette">
+      <div class="roulette-broadcast-stage">
+        
+        <!-- STEPPER BAR SUPERIOR -->
+        <div class="stage-nav-strip">
+          <div class="stage-nav-left">
+            <span class="tribunal-category-pill" id="roulettePillHeader">🎡 TINDER BIZARRO (BD 200 FAMOSOS)</span>
+            <span class="case-counter-badge" id="rouletteStepBadge">PASO 1 / 5</span>
+          </div>
+
+          <div class="stepper-pills" id="rouletteStepper">
+            <button class="step-pill active" data-rstep="1">1. Víctima</button>
+            <button class="step-pill" data-rstep="2">2. Candidato 1</button>
+            <button class="step-pill" data-rstep="3">3. Candidato 2</button>
+            <button class="step-pill" data-rstep="4">4. Candidato 3</button>
+            <button class="step-pill" data-rstep="5">5. Juicio Final & Tronos</button>
+          </div>
+
+          <div class="stage-nav-right">
+            <button class="btn-stage-nav" id="btnRouletteSpinAgain">🔄 Nuevo Giro [R]</button>
+          </div>
+        </div>
+
+        <!-- FASE 1: REVELACIÓN DE LA VÍCTIMA -->
+        <div class="roulette-step-view active" id="rouletteStep1">
+          <div class="roulette-hero-split">
+            <!-- RULETA EN ACCIÓN -->
+            <div class="wheel-stage-card">
+              <div class="wheel-outer-wrapper">
+                <svg class="wheel-pointer-svg" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 44L2 12C-1 6 3 0 10 0H26C33 0 37 6 34 12L18 44Z" fill="#ffb703" stroke="#ffffff" stroke-width="2"/>
+                  <circle cx="18" cy="14" r="5" fill="#ff1e00"/>
+                </svg>
+                <canvas id="rouletteCanvas"></canvas>
+                <div class="wheel-center-flame-btn" id="wheelCenterBtn">🔥</div>
+              </div>
+              <button class="btn-spin-huge" id="spinBtn">
+                <span>🔥 GIRAR RULETA [ESPACIO]</span>
+              </button>
+            </div>
+
+            <!-- TARJETA PROTAGONISTA DE LA VÍCTIMA -->
+            <div class="single-reveal-hero-card" id="step1VictimCard"></div>
+          </div>
+        </div>
+
+        <!-- FASE 2: REVELACIÓN DEL CANDIDATO 1 -->
+        <div class="roulette-step-view" id="rouletteStep2">
+          <div class="single-reveal-step-container">
+            <div class="step-victim-mini-context" id="step2VictimMini"></div>
+            <div class="single-reveal-hero-card" id="step2CandidateCard"></div>
+          </div>
+        </div>
+
+        <!-- FASE 3: REVELACIÓN DEL CANDIDATO 2 -->
+        <div class="roulette-step-view" id="rouletteStep3">
+          <div class="single-reveal-step-container">
+            <div class="step-victim-mini-context" id="step3VictimMini"></div>
+            <div class="single-reveal-hero-card" id="step3CandidateCard"></div>
+          </div>
+        </div>
+
+        <!-- FASE 4: REVELACIÓN DEL CANDIDATO 3 -->
+        <div class="roulette-step-view" id="rouletteStep4">
+          <div class="single-reveal-step-container">
+            <div class="step-victim-mini-context" id="step4VictimMini"></div>
+            <div class="single-reveal-hero-card" id="step4CandidateCard"></div>
+          </div>
+        </div>
+
+        <!-- FASE 5: PANTALLA FINAL - LOS 4 FAMOSOS CON LORE & LOS 3 TRONOS -->
+        <div class="roulette-step-view" id="rouletteStep5">
+          <div class="roulette-final-board">
+            <div class="final-board-header">
+              <h2 class="final-board-title">👑 JUICIO FINAL: ASIGNACIÓN DE TRONOS</h2>
+              <p class="final-board-subtitle">
+                La víctima tiene que decidir el destino de los 3 candidatos con su lore en mesa.
+              </p>
+            </div>
+
+            <!-- GRID DE LOS 4 PERSONAJES EN PANTALLA -->
+            <div class="final-squad-4-grid" id="finalSquadGrid"></div>
+
+            <!-- LOS 3 TRONOS DE SENTENCIA OBLIGATORIA -->
+            <div class="thrones-container">
+              <div class="thrones-title">🔥 SENTENCIA OBLIGATORIA: REPARTIR LOS 3 TRONOS</div>
+              <div class="thrones-grid">
+                <div class="throne-slot-card throne-match" id="slot-match" data-role="match"></div>
+                <div class="throne-slot-card throne-chongo" id="slot-chongo" data-role="chongo"></div>
+                <div class="throne-slot-card throne-quemado" id="slot-quemado" data-role="quemado"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 2: EL SEMÁFORO DE TOXICIDAD 2.0 (RONDA DE 10 & DIAGNÓSTICO) -->
+    <!-- ========================================================= -->
+    <main class="game-view" id="section-semaforo">
+      <div class="semaforo-broadcast-stage">
+        
+        <div class="stage-nav-strip">
+          <div class="stage-nav-left">
+            <span class="tribunal-category-pill" id="semaforoCategory">REDES & CELULAR</span>
+            <span class="case-counter-badge" id="semaforoCounter">SITUACIÓN 1 / 10</span>
+          </div>
+          <div class="stage-nav-right">
+            <button class="btn-stage-nav" id="btnPrevSemaforo">◀ Anterior</button>
+            <button class="btn-stage-nav" id="btnNextSemaforo">Siguiente ▶</button>
+            <button class="btn-stage-nav" id="btnResetSemaforoRound">🔄 Nueva Ronda de 10</button>
+          </div>
+        </div>
+
+        <!-- TARJETA PRINCIPAL DE JUEGO -->
+        <div class="semaforo-hero-card" id="semaforoPlayCard">
+          <div class="semaforo-situation-badge">TEST DE RED FLAGS & PSICOPATÍA • RONDA DE 10</div>
+          
+          <h2 class="semaforo-big-text" id="semaforoText">
+            Tu pareja le da like a una foto en bikini de su ex a las 3:45 AM...
+          </h2>
+
+          <!-- BOTONES DE LUCES MONUMENTALES -->
+          <div class="semaforo-lights-deck">
+            <button class="semaforo-giant-btn light-green" data-level="verde">
+              <span class="sgb-icon">🟢</span>
+              <span class="sgb-title">VERDE</span>
+              <span class="sgb-desc">Sano / Pasa</span>
+            </button>
+
+            <button class="semaforo-giant-btn light-yellow" data-level="amarillo">
+              <span class="sgb-icon">🟡</span>
+              <span class="sgb-title">AMARILLO</span>
+              <span class="sgb-desc">Alerta Migajera</span>
+            </button>
+
+            <button class="semaforo-giant-btn light-red" data-level="rojo">
+              <span class="sgb-icon">🔴</span>
+              <span class="sgb-title">ROJO</span>
+              <span class="sgb-desc">Red Flag / Peligro</span>
+            </button>
+
+            <button class="semaforo-giant-btn light-fire" data-level="fuego">
+              <span class="sgb-icon">🔥</span>
+              <span class="sgb-title">FUEGO</span>
+              <span class="sgb-desc">Tóxico Nuclear</span>
+            </button>
+          </div>
+
+          <!-- BANNER DE FUNA / MANDAR AL BANCO -->
+          <div class="veto-trigger-banner">
+            <div class="veto-banner-info">
+              <span class="veto-banner-title">🚨 BOTÓN DE FUNA • MANDAR AL BANCO (30s)</span>
+              <span class="veto-banner-desc">Si algún conductor defiende una postura cancelable, mandalo al banco con derecho a réplica.</span>
+            </div>
+            <button class="btn-fire-veto" id="btnTriggerVeto">¡DISPARAR FUNA! [V]</button>
+          </div>
+        </div>
+
+        <!-- PANTALLA DE RESULTADOS & DIAGNÓSTICO TOXICOLÓGICO FINAL DE LA RONDA -->
+        <div class="semaforo-results-card" id="semaforoResultsCard" style="display: none;">
+          <div class="src-header">
+            <span class="src-eyebrow">👑 RESUMEN FINAL DE LA RONDA</span>
+            <h2 class="src-title">PERFIL TOXICOLÓGICO DE LA MESA</h2>
+          </div>
+
+          <div class="src-stats-grid">
+            <div class="src-stat-box box-verde">
+              <span class="stat-icon">🟢</span>
+              <span class="stat-val" id="statCountVerde">0</span>
+              <span class="stat-lbl">PASA / SANO</span>
+            </div>
+            <div class="src-stat-box box-amarillo">
+              <span class="stat-icon">🟡</span>
+              <span class="stat-val" id="statCountAmarillo">0</span>
+              <span class="stat-lbl">MIGAJERAS</span>
+            </div>
+            <div class="src-stat-box box-rojo">
+              <span class="stat-icon">🔴</span>
+              <span class="stat-val" id="statCountRojo">0</span>
+              <span class="stat-lbl">RED FLAGS</span>
+            </div>
+            <div class="src-stat-box box-fuego">
+              <span class="stat-icon">🔥</span>
+              <span class="stat-val" id="statCountFuego">0</span>
+              <span class="stat-lbl">FUEGO TOTAL</span>
+            </div>
+          </div>
+
+          <div class="src-diagnosis-box" id="srcDiagnosisBox">
+            <div class="src-diag-tag">DIAGNÓSTICO OFICIAL DE PRENDIDO FUEGO</div>
+            <h3 class="src-diag-title" id="srcDiagTitle">MESA TÓXICA NIVEL WANDAGATE</h3>
+            <p class="src-diag-desc" id="srcDiagDesc">
+              El 80% de las situaciones fueron juzgadas como Red Flag o Fuego. Esta mesa está prendida fuego.
+            </p>
+          </div>
+
+          <div class="src-actions-row">
+            <button class="btn-advance-huge btn-fire-glow" id="btnPlayAnotherRound">
+              🔄 JUGAR OTRA RONDA DE 10 RED FLAGS [ESPACIO]
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 3: EL RANKING INTERACTIVO DE TRAICIÓN & CARETAS -->
+    <!-- ========================================================= -->
+    <main class="game-view" id="section-ranking">
+      <div class="ranking-broadcast-stage">
+        
+        <div class="stage-nav-strip">
+          <div class="stage-nav-left">
+            <span class="tribunal-category-pill">📊 PODIO & CARETÓMETRO</span>
+            <span class="case-counter-badge" id="rankingCounter">RANKING 1 / 5</span>
+          </div>
+          <div class="stage-nav-right">
+            <button class="btn-stage-nav" id="btnPrevRanking">◀ Categoría Anterior</button>
+            <button class="btn-stage-nav" id="btnNextRanking">Siguiente Categoría ▶</button>
+          </div>
+        </div>
+
+        <div class="ranking-hero-box">
+          <div class="ranking-headers">
+            <h2 class="ranking-category-title" id="rankingTitle">1. El Ranking de Traición en la Farándula</h2>
+            <p class="ranking-category-desc" id="rankingDesc">
+              Ordenalos del #1 (La traición más fría y descarada) al #5 usando los botones ⬆️ / ⬇️.
+            </p>
+          </div>
+
+          <!-- CONTENEDOR INTERACTIVO DE LAS 5 TARJETAS REORDENABLES -->
+          <div class="ranking-cards-stack" id="rankingStack"></div>
+
+          <div class="ranking-actions-bar">
+            <button class="btn-ranking-confirm" id="btnConfirmRanking">
+              🏆 CONFIRMAR PODIO DE LA MESA ▶
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 4: GUERRA DE BANDOS (¿A QUIÉN BANCÁS?) -->
+    <!-- ========================================================= -->
+    <main class="game-view" id="section-bandos">
+      <div class="bandos-broadcast-stage">
+        
+        <div class="stage-nav-strip">
+          <div class="stage-nav-left">
+            <span class="tribunal-category-pill">⚔️ GUERRA DE BANDOS</span>
+            <span class="case-counter-badge" id="bandoCounter">DUELO 1 / 10</span>
+          </div>
+          <div class="stage-nav-right">
+            <button class="btn-stage-nav" id="btnPrevBando">◀ Duelo Anterior</button>
+            <button class="btn-stage-nav" id="btnNextBando">Siguiente Duelo ▶</button>
+          </div>
+        </div>
+
+        <div class="bandos-arena-wrap">
+          <div class="bandos-explainer-tag">
+            🔥 ¿A QUIÉN BANCÁS? • ¿De qué lado de la historia te parás y quién tiene la razón en este bardo?
+          </div>
+          <h2 class="bandos-duel-title" id="bandoTitle">La Joaqui vs. Luck Ra</h2>
+
+          <div class="bandos-clash-grid">
+            <!-- SIDE A -->
+            <div class="bando-fighter-card side-a" id="bandoCardA">
+              <div class="fighter-photo-wrap">
+                <img src="" alt="Bando A" class="fighter-img" id="bandoSideAImg">
+                <div class="fighter-badge" id="bandoSideABadge">La que Proyectó Familia</div>
+              </div>
+              <h3 class="fighter-name" id="bandoSideAName">La Joaqui</h3>
+              <p class="fighter-argument" id="bandoSideAArg"></p>
+              <button class="btn-vote-fighter" id="btnVoteSideA">BANCAR BANDO A [1]</button>
+            </div>
+
+            <!-- VS CENTER PIECE -->
+            <div class="clash-center-piece">
+              <div class="vs-flame-circle">VS</div>
+              <div class="vs-clash-glow"></div>
+            </div>
+
+            <!-- SIDE B -->
+            <div class="bando-fighter-card side-b" id="bandoCardB">
+              <div class="fighter-photo-wrap">
+                <img src="" alt="Bando B" class="fighter-img" id="bandoSideBImg">
+                <div class="fighter-badge" id="bandoSideBBadge">El Soltero del Cuarteto</div>
+              </div>
+              <h3 class="fighter-name" id="bandoSideBName">Luck Ra</h3>
+              <p class="fighter-argument" id="bandoSideBArg"></p>
+              <button class="btn-vote-fighter" id="btnVoteSideB">BANCAR BANDO B [2]</button>
+            </div>
+          </div>
+
+          <!-- TUG OF WAR BAR -->
+          <div class="tug-meter-box">
+            <div class="tug-meter-labels">
+              <span class="tug-label-a">BANDO A: <strong id="bandoPctA">50%</strong></span>
+              <span class="tug-meter-title">⚖️ BALANCE DE LA MESA</span>
+              <span class="tug-label-b">BANDO B: <strong id="bandoPctB">50%</strong></span>
+            </div>
+            <div class="tug-bar-track">
+              <div class="tug-fill-a" id="meterFillA" style="width: 50%;"></div>
+              <div class="tug-fill-b" id="meterFillB" style="width: 50%;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 5: EL TRIBUNAL DE FARÁNDULA (DILEMAS MORALES) -->
+    <!-- ========================================================= -->
+    <main class="game-view" id="section-tribunal">
+      <div class="tribunal-broadcast-stage">
+        
+        <div class="stage-nav-strip">
+          <div class="stage-nav-left">
+            <span class="tribunal-category-pill" id="tribunalCategory">FARÁNDULA / BOTINERAS</span>
+            <span class="case-counter-badge" id="tribunalCounter">CASO 1 / 14</span>
+          </div>
+
+          <div class="stepper-pills" id="tribunalStepper">
+            <button class="step-pill active" data-step="1">1. El Dilema</button>
+            <button class="step-pill" data-step="2">2. Las 3 Opciones</button>
+            <button class="step-pill" data-step="3">3. Veredicto en Mesa</button>
+          </div>
+
+          <div class="stage-nav-right">
+            <button class="btn-stage-nav" id="btnPrevTribunal" title="Caso anterior">◀ Anterior</button>
+            <button class="btn-stage-nav" id="btnNextTribunal" title="Siguiente caso">Siguiente ▶</button>
+          </div>
+        </div>
+
+        <!-- FASE 1: EL GRAN DILEMA -->
+        <div class="tribunal-phase active" id="tribunalPhase1">
+          <div class="dilema-hero-card">
+            <div class="dilema-headline-wrap">
+              <span class="dilema-eyebrow">DILEMA MORAL EN VIVO</span>
+              <h2 class="dilema-big-question" id="tribunalBigQuestion">
+                ¿QUÉ HARÍAS VOS EN EL LUGAR DE <span class="highlight-name" id="tribunalProtagonistName">WANDA NARA</span>?
+              </h2>
+            </div>
+
+            <div class="dilema-spotlight-content">
+              <div class="dilema-protagonist-portrait">
+                <img src="" alt="Protagonista" class="protagonist-img" id="tribunalProtagonistImg">
+                <div class="portrait-name-tag" id="tribunalTitle">El Triángulo Tóxico</div>
+              </div>
+
+              <div class="dilema-story-box">
+                <div class="story-badge">EL ESCÁNDALO</div>
+                <p class="story-context-text" id="tribunalContext"></p>
+                <div class="story-fire-quote" id="tribunalProtagonistQuote"></div>
+
+                <div class="phase-action-cta">
+                  <button class="btn-phase-advance" id="btnRevealTribunalOptions">
+                    <span class="btn-advance-icon">⚡</span>
+                    <span>REVELAR LAS 3 POSTURAS EN MESA ▶ [ESPACIO]</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FASE 2: LAS 3 OPCIONES ESCALONADAS -->
+        <div class="tribunal-phase" id="tribunalPhase2">
+          <div class="options-phase-header">
+            <h3 class="options-phase-title">
+              ¿CÓMO ACTÚA LA MESA? SELECCIONÁ UNA POSTURA
+            </h3>
+            <span class="options-phase-subtitle">Las 3 salidas frente al escándalo (sin nombres de conductores)</span>
+          </div>
+
+          <div class="tribunal-cards-grid" id="tribunalCardsGrid"></div>
+
+          <div class="options-phase-footer">
+            <button class="btn-stage-nav" id="btnBackToDilemma">◀ Volver al Dilema</button>
+            <button class="btn-phase-advance" id="btnGoToVoting">
+              <span>PASAR A VOTACIÓN EN MESA 🔨 ▶</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- FASE 3: VOTACIÓN Y VEREDICTO EN MESA -->
+        <div class="tribunal-phase" id="tribunalPhase3">
+          <div class="voting-phase-container">
+            <div class="voting-phase-header">
+              <div class="voting-badge">TRANSMISIÓN EN DIRECTO</div>
+              <h3 class="voting-headline">VEREDICTO EN VIVO: ¿QUÉ VOTA CADA CONDUCTOR?</h3>
+            </div>
+
+            <div class="conductores-podium-grid">
+              <div class="conductor-podium-card" id="podiumHolder">
+                <div class="conductor-photo-wrap">
+                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" alt="Tomás Holder" class="conductor-photo">
+                  <div class="vote-locked-pill" id="voteLockHolder">-</div>
+                </div>
+                <div class="conductor-details">
+                  <div class="conductor-title">Tomás Holder</div>
+                  <div class="conductor-style-tag">Macho Alfa / Factos</div>
+                </div>
+                <div class="podium-vote-actions">
+                  <button class="btn-vote-key" data-conductor="holder" data-choice="A">OPCIÓN A</button>
+                  <button class="btn-vote-key" data-conductor="holder" data-choice="B">OPCIÓN B</button>
+                  <button class="btn-vote-key" data-conductor="holder" data-choice="C">OPCIÓN C</button>
+                </div>
+              </div>
+
+              <div class="conductor-podium-card" id="podiumDiane">
+                <div class="conductor-photo-wrap">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" alt="Diane Caracchi" class="conductor-photo">
+                  <div class="vote-locked-pill" id="voteLockDiane">-</div>
+                </div>
+                <div class="conductor-details">
+                  <div class="conductor-title">Diane Caracchi</div>
+                  <div class="conductor-style-tag">Límites & Monogamia</div>
+                </div>
+                <div class="podium-vote-actions">
+                  <button class="btn-vote-key" data-conductor="diane" data-choice="A">OPCIÓN A</button>
+                  <button class="btn-vote-key" data-conductor="diane" data-choice="B">OPCIÓN B</button>
+                  <button class="btn-vote-key" data-conductor="diane" data-choice="C">OPCIÓN C</button>
+                </div>
+              </div>
+
+              <div class="conductor-podium-card" id="podiumLuli">
+                <div class="conductor-photo-wrap">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80" alt="Luli Casé" class="conductor-photo">
+                  <div class="vote-locked-pill" id="voteLockLuli">-</div>
+                </div>
+                <div class="conductor-details">
+                  <div class="conductor-title">Luli Casé Rossi</div>
+                  <div class="conductor-style-tag">La Migajera con Tarot</div>
+                </div>
+                <div class="podium-vote-actions">
+                  <button class="btn-vote-key" data-conductor="luli" data-choice="A">OPCIÓN A</button>
+                  <button class="btn-vote-key" data-conductor="luli" data-choice="B">OPCIÓN B</button>
+                  <button class="btn-vote-key" data-conductor="luli" data-choice="C">OPCIÓN C</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="verdict-banner-box" id="verdictBannerBox">
+              <div class="verdict-status-title">⚖️ VEREDICTO DE LA MESA</div>
+              <div class="verdict-decision-text" id="verdictDecisionText">
+                Seleccioná los votos de los 3 conductores para dictar la sentencia oficial.
+              </div>
+            </div>
+
+            <div class="voting-phase-footer">
+              <button class="btn-stage-nav" id="btnBackToOptions">◀ Volver a Opciones</button>
+              <button class="btn-phase-advance" id="btnNextCaseDirect">
+                <span>SIGUIENTE CASO ▶ [N]</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 6: GENERADOR DE ZÓCALOS (GRAPH DE TV / STREAM) -->
+    <!-- ========================================================= -->
+    <main class="game-view" id="section-zocalo">
+      <div class="zocalo-broadcast-stage">
+        
+        <div class="stage-nav-strip">
+          <div class="stage-nav-left">
+            <span class="tribunal-category-pill">📰 BROADCAST GRAPHICS (CHYRON)</span>
+            <span class="case-counter-badge">CONTROL DE GRAPH EN VIVO</span>
+          </div>
+        </div>
+
+        <div class="zocalo-info-banner">
+          <h3>📺 ¿QUÉ ES EL GENERADOR DE ZÓCALOS?</h3>
+          <p>
+            Es el titular en pantalla (Graph / Lower-Third estilo LAM, Crónica TV o Luzu TV) que los televidentes ven arriba de la transmisión. Usalo para mandar frases picantes, alertas urgentes y titulares virales en tiempo real.
+          </p>
+        </div>
+
+        <div class="zocalo-editor-grid">
+          <div class="zocalo-form-card">
+            <div class="zfc-title">✏️ CONTROL DE GRAPH EN VIVO</div>
+            
+            <div class="form-group">
+              <label class="form-label">TAG / CATEGORÍA (SUPERIOR):</label>
+              <input type="text" id="inputCustomTag" class="form-input" value="🔥 FACTOS DE HOLDER">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">TITULAR PRINCIPAL (EN MAYÚSCULAS):</label>
+              <input type="text" id="inputCustomHeadline" class="form-input" value="HOLDER: 'A LAS FEAS NO LAS QUIERE NADIE'">
+            </div>
+
+            <button class="btn-push-air" id="btnPushZocalo">
+              🚀 MANDAR AL AIRE (PUSH TO AIR) [P]
+            </button>
+          </div>
+
+          <div class="zocalo-presets-card">
+            <div class="zfc-title">⚡ PRESETS RÁPIDOS DE VIRALIDAD (1-CLICK)</div>
+            <div class="presets-list">
+              <button class="btn-preset-item" onclick="setPresetZocalo('🔥 ESCÁNDALO', 'LULI SE SINCERÓ: LO ESPERÉ 2 AÑOS Y SE FUE CON OTRA')">
+                1. Luli: Lo esperé 2 años y se fue con otra
+              </button>
+              <button class="btn-preset-item" onclick="setPresetZocalo('💣 DEBATE EN MESA', 'HOLDER: EL HOMBRE ES SEXUAL POR NATURALEZA Y DIANE EXPLOTÓ')">
+                2. Holder: El hombre es sexual por naturaleza
+              </button>
+              <button class="btn-preset-item" onclick="setPresetZocalo('💍 TRIBUNAL SCALONETA', 'DIANE PUSO LOS PUNTOS: MAC ALLISTER FUE UN CINCO CÓDIGOS')">
+                3. Diane: Mac Allister fue un cinco códigos
+              </button>
+              <button class="btn-preset-item" onclick="setPresetZocalo('🔥 PRENDIDO FUEGO', 'WANDA NARA MANDÓ A LA HOGUERA A MAURICIO MACRI')">
+                4. Wanda: Mandó a la hoguera a Macri
+              </button>
+              <button class="btn-preset-item" onclick="setPresetZocalo('🚨 FUNA EN VIVO', 'HOLDER FUE AL BANCO POR 30 SEGUNDOS Y FUE CANCELADO')">
+                5. Funa: Holder fue al banco y quedó cancelado
+              </button>
+              <button class="btn-preset-item" onclick="setPresetZocalo('🏆 EL RANKING CRUEL', 'MAURO ICARDI FUE ELEGIDO EL MAYOR TRAIDOR DEL PAÍS')">
+                6. Ranking: Icardi elegido mayor traidor
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 7: PRODUCTOR DE TENDENCIAS & RUNDOWN DEL DÍA -->
+    <!-- ========================================================= -->
+    <main class="game-view" id="section-planner">
+      <div class="planner-broadcast-stage">
+        
+        <div class="stage-nav-strip">
+          <div class="stage-nav-left">
+            <span class="tribunal-category-pill">🧠 SHOW PLANNER & TENDENCIAS</span>
+            <span class="case-counter-badge">INGESTA DE TWITTER / LAM / TIKTOK</span>
+          </div>
+          <div class="stage-nav-right">
+            <button class="btn-stage-nav" id="btnClearPlanner">🧹 Limpiar</button>
+          </div>
+        </div>
+
+        <div class="planner-hero-banner">
+          <div class="phb-icon">💡</div>
+          <div class="phb-content">
+            <h3>¿CÓMO FUNCIONA EL PRODUCTOR DE TENDENCIAS?</h3>
+            <p>
+              Pegá acá abajo de qué se está hablando hoy en Twitter/X, chimentos de LAM, infidelidades o audios virales de la audiencia. El sistema analiza el escándalo, te recomienda <strong>qué juego hacer hoy</strong>, te justifica por qué va a explotar el rating con Tomás, Diane y Luli, y te genera los contenidos listos para inyectar en vivo.
+            </p>
+          </div>
+        </div>
+
+        <!-- ENTRADA DE TENDENCIAS & PRESETS -->
+        <div class="planner-input-card">
+          <div class="pic-header">
+            <span class="pic-title">📝 TENDENCIA O CHIMENTO DEL DÍA:</span>
+            <span class="pic-sub">Escribí o pegá el texto crudo:</span>
+          </div>
+
+          <textarea id="inputDailyTrend" class="planner-textarea" rows="3" placeholder="Ejemplo: 'Luck Ra se separó de La Joaqui porque ella compró una casa al lado para armar familia y él sintió asfixia a sus 25 años. Ahora él volvió a hablar con su ex Guille Giles, que era re amiga de La Joaqui...'"></textarea>
+
+          <div class="planner-presets-row">
+            <span class="ppr-label">PRESETS RÁPIDOS DEL DÍA:</span>
+            <div class="ppr-chips">
+              <button class="btn-trend-preset" data-preset="joaqui">1. La Joaqui & Luck Ra (La Casa)</button>
+              <button class="btn-trend-preset" data-preset="chino">2. El Chino Ku & Gisela Gordillo en el Telo</button>
+              <button class="btn-trend-preset" data-preset="enzo">3. Enzo Fernández & Valentina (Soltería)</button>
+              <button class="btn-trend-preset" data-preset="siciliani">4. Flor Vigna vs. Griselda Siciliani</button>
+              <button class="btn-trend-preset" data-preset="spreen">5. Spreen 59s en Deportivo Riestra</button>
+            </div>
+          </div>
+
+          <button class="btn-analyze-trend" id="btnAnalyzeTrend">
+            ⚡ ANALIZAR TENDENCIA Y PREPARAR SHOW [ESPACIO]
+          </button>
+        </div>
+
+        <!-- RESULTADOS DEL ANÁLISIS EDITORIAL & RECOMENDACIÓN -->
+        <div class="planner-results-wrapper" id="plannerResultsWrapper" style="display: none;">
+          
+          <!-- TARJETA DEL JUEGO RECOMENDADO -->
+          <div class="recommended-game-card" id="recGameCard">
+            <div class="rgc-badge">🎯 JUEGO RECOMENDADO PARA EL SHOW DE HOY</div>
+            <h2 class="rgc-game-name" id="recGameName">⚔️ GUERRA DE BANDOS: ¿A QUIÉN BANCÁS?</h2>
+            
+            <div class="rgc-why-box">
+              <span class="rwb-title">💡 JUSTIFICACIÓN EDITORIAL (POR QUÉ EXPLOTA HOY):</span>
+              <p class="rwb-text" id="recGameWhy">
+                Este tema divide al país en dos posturas irreconciliables. Es perfecto para que Holder defienda la soltería y el ego masculino, Diane liquide la traición de la amiga, y Luli exponga el apego ansioso.
+              </p>
+            </div>
+
+            <div class="rgc-hosts-battle-plan">
+              <span class="hbp-title">🎭 GUION & ROLES DE LA MESA:</span>
+              <div class="hbp-grid">
+                <div class="hbp-col col-holder">
+                  <div class="hbp-host-name">Tomás Holder</div>
+                  <p class="hbp-host-angle" id="recRoleHolder">Factos y defensa de la libertad masculina sin ataduras.</p>
+                </div>
+                <div class="hbp-col col-diane">
+                  <div class="hbp-host-name">Diane Caracchi</div>
+                  <p class="hbp-host-angle" id="recRoleDiane">Límites claros, lealtad entre amigas y cero histeria.</p>
+                </div>
+                <div class="hbp-col col-luli">
+                  <div class="hbp-host-name">Luli Casé</div>
+                  <p class="hbp-host-angle" id="recRoleLuli">Empatía migajera, dolor astral y perdón por apego.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GENERADORES DE CONTENIDO EN VIVO LISTOS PARA INYECTAR -->
+          <div class="generated-content-grid">
+            
+            <!-- CAJA 1: DUELO DE GUERRA DE BANDOS -->
+            <div class="gen-box">
+              <div class="gb-header">
+                <span class="gb-icon">⚔️</span>
+                <h4>DUELO GENERADO: GUERRA DE BANDOS</h4>
+              </div>
+              <div class="gb-preview-card" id="genBandoPreview">
+                <strong id="genBandoTitle">La Joaqui vs. Luck Ra</strong>
+                <p id="genBandoSummary">Bando A (La que proyectó familia) vs. Bando B (El soltero de 25 años)</p>
+              </div>
+              <button class="btn-inject-action" id="btnInjectBando">
+                ➕ CARGAR A GUERRA DE BANDOS E IR A JUGAR ▶
+              </button>
+            </div>
+
+            <!-- CAJA 2: CASO DEL TRIBUNAL DE FARÁNDULA -->
+            <div class="gen-box">
+              <div class="gb-header">
+                <span class="gb-icon">⚖️</span>
+                <h4>CASO GENERADO: TRIBUNAL DE FARÁNDULA</h4>
+              </div>
+              <div class="gb-preview-card" id="genTribunalPreview">
+                <strong id="genTribunalTitle">El Triángulo del Cuarteto</strong>
+                <p id="genTribunalSummary">¿Qué harías si tu novio te deja por la casa y vuelve con tu amiga?</p>
+              </div>
+              <button class="btn-inject-action" id="btnInjectTribunal">
+                ➕ CARGAR AL TRIBUNAL E IR A JUGAR ▶
+              </button>
+            </div>
+
+            <!-- CAJA 3: SITUACIÓN DE SEMÁFORO -->
+            <div class="gen-box">
+              <div class="gb-header">
+                <span class="gb-icon">🚦</span>
+                <h4>SITUACIÓN GENERADA: SEMÁFORO</h4>
+              </div>
+              <div class="gb-preview-card" id="genSemaforoPreview">
+                <strong id="genSemaforoTitle">Volver con la ex amiga</strong>
+                <p id="genSemaforoSummary">Tu pareja te corta y al mes se habla con su ex que era amiga tuya...</p>
+              </div>
+              <button class="btn-inject-action" id="btnInjectSemaforo">
+                ➕ CARGAR AL SEMÁFORO E IR A JUGAR ▶
+              </button>
+            </div>
+
+            <!-- CAJA 4: ZÓCALO DE TRANSMISIÓN -->
+            <div class="gen-box">
+              <div class="gb-header">
+                <span class="gb-icon">📰</span>
+                <h4>ZÓCALO / GRAPH RECOMENDADO</h4>
+              </div>
+              <div class="gb-preview-card" id="genZocaloPreview">
+                <strong id="genZocaloTag">🔥 BOMBA DEL DÍA</strong>
+                <p id="genZocaloHeadline">LUCK RA VOLVIÓ A HABLAR CON SU EX Y LA JOAQUI EXPLOTÓ EN REDES</p>
+              </div>
+              <button class="btn-inject-action btn-push-now" id="btnPushGenZocalo">
+                🚀 MANDAR ESTE ZÓCALO AL AIRE DIRECTO
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div> <!-- /app-stage-wrapper -->
+
+  <!-- ========================================================= -->
+  <!-- MODAL DE FUNA / MANDAR AL BANCO (30s DERECHO A RÉPLICA) -->
+  <!-- ========================================================= -->
+  <div class="veto-overlay-modal" id="vetoModal">
+    <div class="veto-modal-box">
+      <div class="veto-siren-icon">🚨</div>
+      <h2 class="veto-modal-title">¡ALERTA DE FUNA EN VIVO!</h2>
+      <div class="veto-modal-sub">MANDADO AL BANCO • DERECHO A RÉPLICA</div>
+
+      <!-- SELECTOR DE CONDUCTOR ACUSADO -->
+      <div class="funa-accused-selector">
+        <span class="fas-label">¿A QUIÉN MANDARON AL BANCO?</span>
+        <div class="fas-buttons">
+          <button class="btn-accused-chip active" data-accused="holder">Tomás Holder</button>
+          <button class="btn-accused-chip" data-accused="diane">Diane Caracchi</button>
+          <button class="btn-accused-chip" data-accused="luli">Luli Casé</button>
+        </div>
+      </div>
+
+      <div class="veto-countdown-display" id="vetoCountdown">30</div>
+      <p class="veto-modal-rule">
+        30 segundos cronometrados para justificarse y convencer a la mesa antes de la sentencia.
+      </p>
+
+      <!-- BOTONES DE SENTENCIA DE LA MESA -->
+      <div class="funa-verdict-actions">
+        <button class="btn-funa-verdict zafo" id="btnFunaZafo">
+          🟢 SE JUSTIFICÓ BIEN (ZAFÓ DE LA FUNA) [Z]
+        </button>
+        <button class="btn-funa-verdict funado" id="btnFunaCancelado">
+          🔴 ¡CANCELADO / FUNADO TOTAL! [C]
+        </button>
+      </div>
+
+      <button class="btn-close-veto" id="btnCloseVeto">✕ CERRAR [ESC]</button>
+    </div>
+  </div>
+
+  <!-- Data Scripts -->
+  <script src="data_celebrities.js"></script>
+  <script src="data_tribunal.js"></script>
+  <script src="data_semaforo.js"></script>
+  <script src="data_bandos.js"></script>
+  <script src="data_ranking.js"></script>
+  <!-- Engine Scripts -->
+  <script src="audio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

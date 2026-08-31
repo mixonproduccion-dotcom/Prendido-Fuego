@@ -1951,10 +1951,10 @@ function startShowDia(mode = "today") {
         text: "En la primera cita te confiesa que le gusta dar chirlos en la cama y el truco del ojo mientras Gastón Edul te mira con cara cómplice..."
       },
       {
-        id: "sem-lore-messi-2016",
-        title: "La Carta de Renuncia a las 3 AM",
-        category: "Impulsividad / Momento Messi 2016",
-        text: "Perdés una final o tenés una mala semana en el trabajo y redactás una carta formal diciendo 'lo pensé mucho y la Selección no es para mí'..."
+        id: "sem-lore-messi-retiro",
+        title: "El Llanto Desconsolado por el Retiro de Messi",
+        category: "Urgente / Conmoción Nacional",
+        text: "Tu pareja se tira a llorar en el piso y cancela todos los planes de la semana porque Messi acaba de publicar su carta de despedida definitiva de la Selección Argentina..."
       },
       {
         id: "sem-lore-jefe-harinas",

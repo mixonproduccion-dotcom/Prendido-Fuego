@@ -26,22 +26,22 @@ const GUERRA_BANDOS_DATA = [
     }
   },
   {
-    "id": "duelo-messi-renuncia-gloria",
-    "title": "La Carta de Renuncia 2016 vs. La Gloria Eterna de Qatar: Messi",
+    "id": "duelo-messi-retiro-definitivo",
+    "title": "El Retiro del Capitán: Lionel Messi se Despidió de la Selección",
     "sideA": {
-      "id": "messi-carta-2016",
-      "name": "El Messi de la Carta 2016 ('Ya Está, se Terminó')",
-      "badge": "El Dolor de la Frustración",
-      "quote": "Lo pensé mucho en el vestuario y ya está, la Selección no es para mí.",
-      "argument": "Sufrió el destrato de todo el periodismo argentino que lo tildaba de 'pecho frío'; dar un paso al costado en 2016 fue un grito de auxilio humano tras perder 3 finales seguidas.",
+      "id": "messi-retiro-cima",
+      "name": "Retirarse en la Cima (Gloria Eterna)",
+      "badge": "El Fin de una Era",
+      "quote": "Di todo lo que tenía, me vacié y me voy con la tranquilidad del deber cumplido.",
+      "argument": "Ganó todo: Copa América, Finalissima y la Copa del Mundo en Qatar. Retirarse en el pico absoluto de su carrera sin desgastarse físicamente es la decisión más digna del rey del fútbol.",
       "image": "assets/logo-pf.jpg"
     },
     "sideB": {
-      "id": "messi-qatar-eterno",
-      "name": "El Messi de Qatar 2022 ('Qué Mirás Bobo')",
-      "badge": "El Rey Intocable de la Historia",
-      "quote": "Mirá que te como, andá pa' allá bobo.",
-      "argument": "Volvió para cerrarles la boca a todos, ganó la Copa América en el Maracaná, el Mundial en Qatar y se convirtió en la persona con más aura de la historia argentina.",
+      "id": "messi-un-baile-mas",
+      "name": "El Clamor Popular ('Un Baile Más')",
+      "badge": "El Vacío Nacional",
+      "quote": "Leo, por favor jugá un Mundial más.",
+      "argument": "El país entero se niega a soltarlo; con 39 años y caminando en la cancha sigue siendo el mejor del planeta y el pueblo argentino necesita verlo una última vez con la 10.",
       "image": "assets/logo-pf.jpg"
     }
   },

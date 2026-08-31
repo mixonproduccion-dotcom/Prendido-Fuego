@@ -45,11 +45,11 @@ const SEMAFORO_CASES = [
   },
   {
     id: "sem-hoy-006",
-    title: "La Carta de Renuncia a las 3 AM (Momento Messi 2016)",
-    text: "Tenés una discusión o una mala semana en el trabajo y a las 3:30 AM mandás una carta formal diciendo 'lo pensé mucho y ya está, esto no es para mí'...",
-    expectedLevel: "rojo",
-    category: "Impulsividad & Emociones",
-    tags: ["Messi 2016", "Renuncia", "Drama"]
+    title: "El Llanto Desconsolado por el Retiro de Messi",
+    text: "Tu pareja se tira a llorar en el piso y cancela todos los planes del fin de semana porque Messi publicó su carta de retiro definitivo de la Selección...",
+    expectedLevel: "verde",
+    category: "Fútbol & Emociones",
+    tags: ["Messi", "Retiro", "Selección Argentina"]
   },
   {
     id: "sem-hoy-007",

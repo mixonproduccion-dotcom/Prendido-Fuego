@@ -64,30 +64,30 @@ const TRIBUNAL_CASES = [
     ]
   },
   {
-    "id": "caso-messi-renuncia-2016",
-    "title": "El Momento Messi 2016: Renunciar a Todo vs. Pelear Hasta la Gloria",
-    "protagonist": "Lionel Messi (o el Emprendedor Frustrado)",
-    "category": "Fútbol / Resiliencia & Éxito",
-    "context": "Te rompés el lomo dando el 100%, perdés tu tercera final seguida y todo un país te insulta diciendo que 'no sentís la camiseta'. En caliente escribís una carta diciendo 'no va más, la Selección no es para mí'.",
+    "id": "caso-messi-retiro-definitivo",
+    "title": "El Retiro del Capitán: Messi se Despidió de la Selección",
+    "protagonist": "Lionel Messi",
+    "category": "Fútbol / Conmoción Nacional",
+    "context": "Acabás de ganar la Copa del Mundo, la Copa América y todo lo que un ser humano puede ganar. A tus 39 años publicás una carta emotiva anunciando tu retiro definitivo de la Selección Argentina ('me vacié y me voy en paz') desatando el llanto de 47 millones de personas.",
     "image": "assets/logo-pf.jpg",
-    "quote": "Lo pensé mucho en el vestuario y ya está, se terminó para mí.",
+    "quote": "Di todo lo que tenía, ya no tengo más para dar. Me voy con la tranquilidad y el orgullo del deber cumplido.",
     "options": [
       {
         "id": "A",
-        "title": "1. Volver con Sed de Venganza y Cerrarles la Boca a Todos (Factos)",
-        "text": "Te tomás dos meses de descanso, volvés con la 10, ganás en el Maracaná, salís Campeón del Mundo en Qatar y les tirás 'Andá pa' allá bobo' en la cara.",
+        "title": "1. Retiro en la Cima Absoluta: Facto de Grandeza (Factos / Holder)",
+        "text": "Bancar la decisión al 100%: el macho alfa de la historia se va campeón del mundo, con la gloria intacta, sin que nadie lo jubile en la cancha y disfrutando de sus millones.",
         "style": "holder"
       },
       {
         "id": "B",
-        "title": "2. Cierre Digno, Enfoque en tu Familia y Cero Rencor (Dignidad)",
-        "text": "Mantenés tu decisión de renuncia con altura, cuidás tu salud mental y te dedicás a brillar en tu club sin desgastarte por las críticas de los periodistas.",
+        "title": "2. Homenaje de Estado y Despedida Monumental (Dignidad / Diane)",
+        "text": "Respetar la decisión con gratitud infinita, organizar un partido homenaje en el Monumental con las 3 copas y despedir al máximo ídolo del país con el respeto que se ganó.",
         "style": "diane"
       },
       {
         "id": "C",
-        "title": "3. Llorar en el Vestuario y Pedir que Vuelva el Kun Agüero (Emocional)",
-        "text": "Hacés un vivo de Instagram con tus amigos del fútbol llorando, pedís disculpas públicas y le prendés velas a San Cayetano para que se te dé un título.",
+        "title": "3. Llorar en el Piso y Pedirle un Mundial Más de Rodillas (Migajera / Luli)",
+        "text": "Entrar en depresión nacional, hacer guardia en Funes con una bandera pidiéndole que juegue el Mundial 2026 aunque sea parado y prenderle velas a su foto en Qatar.",
         "style": "luli"
       }
     ]

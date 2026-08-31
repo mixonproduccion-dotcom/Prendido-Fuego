@@ -1,23 +1,40 @@
-// Sound Synthesizer & Audio FX Engine using Web Audio API
-// No external audio assets required - 100% reliable in any browser, tablet, or OBS setup.
+// =========================================================
+// PRENDIDO FUEGO 🔥 - HIGH PERFORMANCE WEB AUDIO SYNTHESIZER
+// 100% Client-Side Web Audio API (Zero external assets / Zero latency)
+// Optimized for Streaming & Low CPU Overhead
+// =========================================================
 
 class SoundFX {
   constructor() {
     this.ctx = null;
     this.muted = false;
     this.masterGain = null;
+    this.cachedNoiseBuffer = null;
   }
 
   init() {
     if (!this.ctx) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
       this.ctx = new AudioCtx();
       this.masterGain = this.ctx.createGain();
       this.masterGain.gain.setValueAtTime(0.8, this.ctx.currentTime);
       this.masterGain.connect(this.ctx.destination);
+
+      // Pre-allocate and cache 0.9s white noise buffer once to prevent UI freezes on clicks
+      try {
+        const bufferSize = Math.floor(this.ctx.sampleRate * 0.9);
+        this.cachedNoiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const output = this.cachedNoiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+      } catch (e) {
+        console.warn("Could not pre-allocate noise buffer:", e);
+      }
     }
     if (this.ctx.state === "suspended") {
-      this.ctx.resume();
+      this.ctx.resume().catch(() => {});
     }
   }
 
@@ -32,10 +49,11 @@ class SoundFX {
   playTick(frequency = 600, gainLevel = 0.3) {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
+      const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
-      const now = this.ctx.currentTime;
 
       osc.type = "triangle";
       osc.frequency.setValueAtTime(frequency, now);
@@ -46,6 +64,13 @@ class SoundFX {
 
       osc.connect(gain);
       gain.connect(this.masterGain);
+
+      osc.onended = () => {
+        try {
+          osc.disconnect();
+          gain.disconnect();
+        } catch (e) {}
+      };
 
       osc.start(now);
       osc.stop(now + 0.045);
@@ -58,27 +83,41 @@ class SoundFX {
   playFireIgnite() {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
-      const bufferSize = this.ctx.sampleRate * 0.9;
-      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-      const output = buffer.getChannelData(0);
 
-      // Noise generation
-      for (let i = 0; i < bufferSize; i++) {
-        output[i] = Math.random() * 2 - 1;
+      // Use pre-allocated cached noise buffer
+      if (this.cachedNoiseBuffer) {
+        const whiteNoise = this.ctx.createBufferSource();
+        whiteNoise.buffer = this.cachedNoiseBuffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = "bandpass";
+        filter.frequency.setValueAtTime(150, now);
+        filter.frequency.exponentialRampToValueAtTime(1400, now + 0.25);
+        filter.frequency.exponentialRampToValueAtTime(120, now + 0.8);
+        filter.Q.setValueAtTime(3.2, now);
+
+        const noiseGain = this.ctx.createGain();
+        noiseGain.gain.setValueAtTime(1.0, now);
+        noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.85);
+
+        whiteNoise.connect(filter);
+        filter.connect(noiseGain);
+        noiseGain.connect(this.masterGain);
+
+        whiteNoise.onended = () => {
+          try {
+            whiteNoise.disconnect();
+            filter.disconnect();
+            noiseGain.disconnect();
+          } catch (e) {}
+        };
+
+        whiteNoise.start(now);
+        whiteNoise.stop(now + 0.9);
       }
-
-      const whiteNoise = this.ctx.createBufferSource();
-      whiteNoise.buffer = buffer;
-
-      // Filter for flame roar
-      const filter = this.ctx.createBiquadFilter();
-      filter.type = "bandpass";
-      filter.frequency.setValueAtTime(150, now);
-      filter.frequency.exponentialRampToValueAtTime(1400, now + 0.25);
-      filter.frequency.exponentialRampToValueAtTime(120, now + 0.8);
-      filter.Q.setValueAtTime(3.2, now);
 
       // Sub-bass thump
       const subOsc = this.ctx.createOscillator();
@@ -92,16 +131,13 @@ class SoundFX {
       subOsc.connect(subGain);
       subGain.connect(this.masterGain);
 
-      const noiseGain = this.ctx.createGain();
-      noiseGain.gain.setValueAtTime(1.0, now);
-      noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.85);
+      subOsc.onended = () => {
+        try {
+          subOsc.disconnect();
+          subGain.disconnect();
+        } catch (e) {}
+      };
 
-      whiteNoise.connect(filter);
-      filter.connect(noiseGain);
-      noiseGain.connect(this.masterGain);
-
-      whiteNoise.start(now);
-      whiteNoise.stop(now + 0.9);
       subOsc.start(now);
       subOsc.stop(now + 0.6);
     } catch (e) {
@@ -113,6 +149,7 @@ class SoundFX {
   playReveal() {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
@@ -130,6 +167,13 @@ class SoundFX {
       osc.connect(gain);
       gain.connect(this.masterGain);
 
+      osc.onended = () => {
+        try {
+          osc.disconnect();
+          gain.disconnect();
+        } catch (e) {}
+      };
+
       osc.start(now);
       osc.stop(now + 0.6);
     } catch (e) {
@@ -141,6 +185,7 @@ class SoundFX {
   playBuzzer() {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
       const osc1 = this.ctx.createOscillator();
@@ -151,7 +196,7 @@ class SoundFX {
       osc2.type = "sawtooth";
 
       osc1.frequency.setValueAtTime(140, now);
-      osc2.frequency.setValueAtTime(146, now); // Detune for nasty buzz
+      osc2.frequency.setValueAtTime(146, now);
 
       gain.gain.setValueAtTime(0.6, now);
       gain.gain.setValueAtTime(0.6, now + 0.45);
@@ -160,6 +205,16 @@ class SoundFX {
       osc1.connect(gain);
       osc2.connect(gain);
       gain.connect(this.masterGain);
+
+      const cleanup = () => {
+        try {
+          osc1.disconnect();
+          osc2.disconnect();
+          gain.disconnect();
+        } catch (e) {}
+      };
+
+      osc1.onended = cleanup;
 
       osc1.start(now);
       osc2.start(now);
@@ -174,12 +229,13 @@ class SoundFX {
   playFactosHorn() {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
       const notes = [
-        { freq: 466.16, start: 0, dur: 0.12 },    // Bb4
-        { freq: 466.16, start: 0.14, dur: 0.12 }, // Bb4
-        { freq: 466.16, start: 0.28, dur: 0.12 }, // Bb4
-        { freq: 466.16, start: 0.42, dur: 0.35 }  // Bb4 long
+        { freq: 466.16, start: 0, dur: 0.12 },
+        { freq: 466.16, start: 0.14, dur: 0.12 },
+        { freq: 466.16, start: 0.28, dur: 0.12 },
+        { freq: 466.16, start: 0.42, dur: 0.35 }
       ];
       const now = this.ctx.currentTime;
 
@@ -191,7 +247,7 @@ class SoundFX {
         osc1.type = "sawtooth";
         osc2.type = "sawtooth";
         osc1.frequency.setValueAtTime(n.freq, now + n.start);
-        osc2.frequency.setValueAtTime(n.freq * 1.01, now + n.start); // unison detune
+        osc2.frequency.setValueAtTime(n.freq * 1.01, now + n.start);
 
         g.gain.setValueAtTime(0.5, now + n.start);
         g.gain.setValueAtTime(0.45, now + n.start + n.dur - 0.02);
@@ -200,6 +256,14 @@ class SoundFX {
         osc1.connect(g);
         osc2.connect(g);
         g.connect(this.masterGain);
+
+        osc1.onended = () => {
+          try {
+            osc1.disconnect();
+            osc2.disconnect();
+            g.disconnect();
+          } catch (e) {}
+        };
 
         osc1.start(now + n.start);
         osc2.start(now + n.start);
@@ -215,9 +279,10 @@ class SoundFX {
   playMatchChime() {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
-      const freqs = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+      const freqs = [523.25, 659.25, 783.99, 1046.5];
       freqs.forEach((freq, idx) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
@@ -232,6 +297,13 @@ class SoundFX {
         osc.connect(gain);
         gain.connect(this.masterGain);
 
+        osc.onended = () => {
+          try {
+            osc.disconnect();
+            gain.disconnect();
+          } catch (e) {}
+        };
+
         osc.start(startTime);
         osc.stop(startTime + 0.65);
       });
@@ -244,6 +316,7 @@ class SoundFX {
   playCringe() {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
@@ -263,6 +336,13 @@ class SoundFX {
       osc.connect(gain);
       gain.connect(this.masterGain);
 
+      osc.onended = () => {
+        try {
+          osc.disconnect();
+          gain.disconnect();
+        } catch (e) {}
+      };
+
       osc.start(now);
       osc.stop(now + 1.55);
     } catch (e) {
@@ -274,6 +354,7 @@ class SoundFX {
   playSiren() {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
@@ -292,6 +373,13 @@ class SoundFX {
       osc.connect(gain);
       gain.connect(this.masterGain);
 
+      osc.onended = () => {
+        try {
+          osc.disconnect();
+          gain.disconnect();
+        } catch (e) {}
+      };
+
       osc.start(now);
       osc.stop(now + 1.15);
     } catch (e) {
@@ -299,10 +387,19 @@ class SoundFX {
     }
   }
 
+  // --- AIR HORN + SIREN COMBO ---
+  playAirHornSiren() {
+    this.playFactosHorn();
+    setTimeout(() => {
+      this.playSiren();
+    }, 150);
+  }
+
   // --- TIMER BEEP (Tick de cuenta regresiva) ---
   playTimerBeep(isFinal = false) {
     if (this.muted) return;
     this.init();
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
@@ -317,6 +414,13 @@ class SoundFX {
       osc.connect(gain);
       gain.connect(this.masterGain);
 
+      osc.onended = () => {
+        try {
+          osc.disconnect();
+          gain.disconnect();
+        } catch (e) {}
+      };
+
       osc.start(now);
       osc.stop(now + (isFinal ? 0.4 : 0.12));
     } catch (e) {
@@ -326,3 +430,4 @@ class SoundFX {
 }
 
 const audioFX = new SoundFX();
+

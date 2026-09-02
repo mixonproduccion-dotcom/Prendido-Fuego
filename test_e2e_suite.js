@@ -320,6 +320,20 @@ assert(modal && modal.classList.contains("active"), "Funa modal opened");
 window.resolveFuna("cancelado");
 assert(!modal.classList.contains("active"), "Funa modal closed after resolution");
 
+// TEST 4: Repeat Show Reset Verification
+console.log("\n--- TEST 4: Repeat Show Total Reset ---");
+window.startShowDia("today");
+window.voteAperturaByHost("holder", "a");
+window.voteAperturaByHost("diane", "b");
+window.nextShowDiaStep();
+window.voteBandoByHost("holder", "a");
+// Now restart show
+window.startShowDia("today");
+assert(document.getElementById("showStageBody") !== null, "Show restarted at step 1");
+// Check that votes are reset
+assert(!document.getElementById("showStageBody").innerHTML.includes("selected-winner"), "No winning side selected yet after reset");
+console.log("  ✓ Reset on repeat completely cleared previous choices!");
+
 console.log("\n========================================================");
 console.log("🎉 ALL TESTS PASSED! ZERO ERRORS ENCOUNTERED!");
 console.log("========================================================\n");

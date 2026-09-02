@@ -2161,15 +2161,32 @@ function setupShowDiaEvents() {
 
 function startShowDia(mode = "today") {
   audioFX.playFireIgnite();
-  showUserChoices.mode = mode;
+  
+  // RESET TOTAL DE TODAS LAS ELECCIONES AL INICIAR / REPETIR
+  showUserChoices = {
+    mode: mode,
+    aperturaVote: null,
+    aperturaVotes: { holder: null, diane: null, luli: null },
+    bandos: [],
+    tribunal: [],
+    semaforo: [],
+    podio: null,
+    ruleta: [],
+    funa: { accused: "holder", result: null },
+    metrics: { venom: 80, aura: 85, migajera: 70, careta: 40 }
+  };
+  showPodioState = [];
+  showFunaTimer = 30;
+  showFunaRunning = false;
+  if (showFunaInterval) {
+    clearInterval(showFunaInterval);
+    showFunaInterval = null;
+  }
   showBandosSubIndex = 0;
   showTribunalSubIndex = 0;
   showSemaforoSubIndex = 0;
   showRuletaSubIndex = 0;
-  showUserChoices.bandos = [];
-  showUserChoices.tribunal = [];
-  showUserChoices.semaforo = [];
-  showUserChoices.ruleta = [];
+  currentShowStep = 1;
 
   if (mode === "today") {
     // 1. APERTURA: GRAN PORTADA DEL DÍA (SASHA VS LIONEL / SALWE)
@@ -2649,15 +2666,6 @@ function renderShowStep1_Apertura(container) {
         <div class="tug-bar-track">
           <div class="tug-fill-a" style="width: ${pctA}%;"></div>
           <div class="tug-fill-b" style="width: ${pctB}%;"></div>
-        </div>
-      </div>
-
-      <!-- CHAT TRIGGER BAR -->
-      <div class="apertura-chat-trigger-bar">
-        <span class="act-icon">💬</span>
-        <div class="act-text">
-          <strong>DISPARADOR PARA EL CHAT DE LA TRANSMISIÓN:</strong>
-          <span>${apDuel.chatTrigger}</span>
         </div>
       </div>
 

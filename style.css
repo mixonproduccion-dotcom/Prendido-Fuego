@@ -5672,7 +5672,8 @@ body::before {
 
 /* =========================================================
    PROGRESS PIPELINE TRACKER & TIMELINE SYSTEM
-   ===============.progress-pipeline-strip {
+   ========================================================= */
+.progress-pipeline-strip {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -5723,38 +5724,51 @@ body::before {
 }
 
 .pipeline-node-btn {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
-  font-family: var(--font-heading);
-  font-size: 0.76rem;
-  font-weight: 800;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
   padding: 8px 6px;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 3px;
-  transition: all 0.25s var(--ease-cinematic);
+  transition: all 0.2s ease;
   position: relative;
   text-align: center;
-  transform: translateZ(0);
+  outline: none;
+}
+
+.pipeline-node-btn span {
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.pipeline-node-btn small {
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
 }
 
 .pipeline-node-btn:hover {
-  border-color: rgba(255, 122, 0, 0.5);
-  color: white;
-  background: rgba(255, 122, 0, 0.12);
+  border-color: rgba(255, 69, 0, 0.6);
+  color: #ffffff;
+  background: rgba(255, 69, 0, 0.15);
+  transform: translateY(-1px);
 }
 
 .pipeline-node-btn.active {
-  background: linear-gradient(135deg, #ff4500 0%, #ff7a00 100%);
-  border-color: var(--fire-yellow);
-  color: #050609;
-  font-weight: 900;
-  box-shadow: 0 0 20px rgba(255, 100, 0, 0.6);
-  transform: translateY(-2px) scale(1.03) translateZ(0);
+  background: linear-gradient(135deg, #ff4500 0%, #ff7a00 100%) !important;
+  border-color: #ffd700 !important;
+  color: #000000 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 0 16px rgba(255, 69, 0, 0.7);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .pipeline-node-btn.completed {

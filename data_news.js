@@ -3,6 +3,36 @@
 
 const BREAKING_NEWS_DATA = [
   {
+    tag: "🔥 ESCÁNDALO DE STREAM",
+    headline: "SASHA FERRO DESTROZÓ A SU HERMANO TRAS CHISTE MACHISTA EN VIVO EN SOLO POR HOY",
+    sub: "Tomás Holder: 'A tu hermana se la defiende con la vida, Lio Ferro fue un tibio'."
+  },
+  {
+    tag: "💄 ¿INSPIRACIÓN O COPIA?",
+    headline: "ACUSAN A LOLA LATORRE DE PLAGIAR LA MARCA DE HAILEY BIEBER CON SU LÍNEA 'SORBO'",
+    sub: "Lola se defendió en TikTok: 'Lo mío es inspiración, no copia'."
+  },
+  {
+    tag: "💉 POLÉMICA FITNESS",
+    headline: "TOMÁS MAZZA CONFESÓ SU ADICCIÓN A LOS ANABÓLICOS Y CRECE LA MODA DE LOS 'PINCHAZOS'",
+    sub: "Holder: 'Pincharte sin entrenar es de vago y cagón; la salud no se negocia'."
+  },
+  {
+    tag: "🤖 TENDENCIA FUTURO",
+    headline: "FABRICAN ROBOTS SEXUALES EN CHINA Y TESLA ANUNCIA OPTIMUS: ¿ES INFIDELIDAD?",
+    sub: "Diane Caracchi: 'Si tu pareja tiene intimidad con un robot, el pacto de pareja está roto'."
+  },
+  {
+    tag: "🎙️ LUZU SOLD OUT",
+    headline: "SANTI TALLEDO PRESENTÓ A SU NOVIO EL TIKTOKER CARLI EN EL MOVISTAR ARENA",
+    sub: "Luli Casé: '¡El amor más hermoso y auténtico del streaming argentino!'."
+  },
+  {
+    tag: "🚨 ALERTA DE FUNA",
+    headline: "TOMÁS HOLDER AL BANCO POR DEFENDER LOS CÓDIGOS DE SANGRE EN LA MESA",
+    sub: "Votá en vivo en el chat si Holder zafa o queda cancelado."
+  },
+  {
     tag: "🔥 URGENTE / PRENDIDO FUEGO",
     headline: "HOLDER LIQUIDÓ A LA NOCHE DE IBIZA: 'PREFIERO LA ARGENTINA TODA LA VIDA'",
     sub: "WhatsApp: 341 749-0173 • ¿Bancás a Holder o es un resentido?"

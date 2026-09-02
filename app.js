@@ -403,11 +403,11 @@ function switchTab(tabId) {
 function loadInitialRoulette() {
   if (!celebrities.length) return;
 
-  const defaultVictim = celebrities.find(c => c.id === "wanda-nara") || celebrities[0];
+  const defaultVictim = celebrities.find(c => c.id === "sasha-ferro") || celebrities.find(c => c.id === "wanda-nara") || celebrities[0];
   const defaultCandidates = [
-    celebrities.find(c => c.id === "mauro-icardi") || celebrities[1],
-    celebrities.find(c => c.id === "l-gante") || celebrities[2],
-    celebrities.find(c => c.id === "china-suarez") || celebrities[3]
+    celebrities.find(c => c.id === "lionel-ferro") || celebrities[1],
+    celebrities.find(c => c.id === "martin-salwe") || celebrities[2],
+    celebrities.find(c => c.id === "facu-guarino") || celebrities[3]
   ];
 
   setRouletteSetup(defaultVictim, defaultCandidates);
@@ -724,6 +724,15 @@ function assignRole(candidateId, roleKey) {
   }
 }
 
+function clearRole(roleKey) {
+  if (assignedRoles && assignedRoles[roleKey]) {
+    assignedRoles[roleKey] = null;
+    audioFX.playTick(400, 0.1);
+    renderRouletteStep5();
+    updateLowerThirdRoulette();
+  }
+}
+
 function updateLowerThirdRoulette() {
   if (!currentVictim) return;
   const victimName = currentVictim.name.toUpperCase();
@@ -986,13 +995,15 @@ function selectSemaforoLevel(level) {
     `${item.title.toUpperCase()}: LA MESA VOTÓ ${level.toUpperCase()}`
   );
 
-  // If completed 10 questions, transition to Results Card!
-  if (semaforoRoundVotes.filter(v => v).length === 10) {
-    setTimeout(() => {
-      renderSemaforoResults();
-    }, 600);
+  // If on last question (or all 10 voted), render Results Card!
+  if (semaforoRoundVotes.filter(v => v).length === 10 || semaforoRoundIndex >= 9) {
+    renderSemaforoResults();
+  } else if (semaforoRoundIndex < 9) {
+    semaforoRoundIndex++;
+    renderSemaforoRoundCurrent();
   }
 }
+
 
 
 function renderSemaforoResults() {
@@ -2160,111 +2171,112 @@ function startShowDia(mode = "today") {
   showUserChoices.semaforo = [];
   showUserChoices.ruleta = [];
 
-    // 1. APERTURA: GRAN PORTADA DEL DÍA (WANDA VS MAXI)
+  if (mode === "today") {
+    // 1. APERTURA: GRAN PORTADA DEL DÍA (SASHA VS LIONEL / SALWE)
     const aperturaDuel = GUERRA_BANDOS_DATA[0] || {
-      id: "duelo-wanda-maxi",
-      title: "EL ESCÁNDALO DE RUSIA: WANDA NARA VS. MAXI LÓPEZ",
+      id: "duelo-sasha-lio-salwe",
+      title: "ESCÁNDALO EN EL STREAM: SASHA FERRO VS. LIONEL FERRO & MARTÍN SALWE",
       guide: "La gran polémica del día: ¿A quién banca cada conductor de la mesa?",
-      sideA: { name: "Wanda Nara ('Solange')", badge: "La que Consulta a ChatGPT", argument: "Bancó sola 3 hijos en Rusia mientras Maxi andaba de joda; tiene derecho a cobrarle todo.", image: "assets/celebrities/wanda-nara.jpg" },
-      sideB: { name: "Maxi López", badge: "El que Elige Seguir Adelante", argument: "Fueron anécdotas de soltero antes del matrimonio; Wanda no supera el pasado.", image: "assets/celebrities/maxi-lopez.jpg" },
-      chatTrigger: "¿De qué lado está el chat? Escribí [1] WANDA o [2] MAXI en vivo."
+      sideA: { name: "Sasha Ferro", badge: "La que Puso Límites Familiares", argument: "Bancó años de ninguneo; no puede tolerar que su propio hermano se ría en vivo mientras dos tipos la degradan sexualmente ante miles de personas.", image: "assets/logo-pf.jpg" },
+      sideB: { name: "Lionel Ferro & Salwe", badge: "El Humor de Stream en Jaque", argument: "Fue un chiste espontáneo sin intención de lastimar; en el streaming se cruzan límites y los problemas familiares se resuelven en privado.", image: "assets/logo-pf.jpg" },
+      chatTrigger: "¿De qué lado está el chat? Escribí [1] SASHA o [2] LIONEL en vivo."
     };
 
     // 2. GUERRA DE BANDOS (3 DUELOS SIGUIENTES AL HILO)
     const bandosList = [
       GUERRA_BANDOS_DATA[1] || {
-        id: "duelo-messi-retiro",
-        title: "El Retiro del Capitán: Messi se Despidió de la Selección",
-        guide: "¿Retirarse en la cima como el Rey Indiscutido o el clamor del pueblo por 'Un Baile Más'?",
-        sideA: { name: "Retiro en la Cima (Gloria Eterna)", badge: "El Fin de una Era", argument: "Ganó todo: Copa América, Finalissima y el Mundial. Irse como Campeón del Mundo es grandeza pura.", image: "assets/logo-pf.jpg" },
-        sideB: { name: "El Clamor Popular ('Un Baile Más')", badge: "El Vacío Nacional", argument: "El país se niega a soltarlo; con 39 años sigue siendo el mejor del planeta y lo necesitamos.", image: "assets/logo-pf.jpg" }
+        id: "duelo-lola-hailey-sorbo",
+        title: "El 'Sorbo Gate': Lola Latorre vs. Hailey Bieber ('Rhode')",
+        guide: "¿Inspiración legítima para emprender en Argentina o copia y plagio descarado?",
+        sideA: { name: "Lola Latorre ('Sorbo')", badge: "Inspiración Nacional", argument: "Traer y adaptar una tendencia estética global para que el público argentino acceda a productos cancheros es visión de negocio.", image: "assets/logo-pf.jpg" },
+        sideB: { name: "Críticas & Hailey Bieber", badge: "Plagio Descarado", argument: "Copió al 100% el packaging, la tipografía y el concepto exacto de Rhode; una falta total de originalidad.", image: "assets/logo-pf.jpg" }
       },
       GUERRA_BANDOS_DATA[2] || {
-        id: "duelo-tinigate",
-        title: "El #TiniGate (US$ 70.000.000): Tini vs. Alejandro Stoessel",
-        guide: "¿Auditoría implacable con Messi y Antonela o perdón familiar por respeto a los padres?",
-        sideA: { name: "Tini Stoessel (Con Messi y Anto)", badge: "La que Reclama su Trabajo", argument: "Trabajó desde niña sin parar; su dinero le pertenece y debe recuperar hasta el último dólar.", image: "assets/celebrities/tini-stoessel.jpg" },
-        sideB: { name: "Alejandro Stoessel", badge: "El Padre & Mánager", argument: "La convirtió en estrella mundial desde Disney; la familia está por encima de los negocios.", image: "assets/logo-pf.jpg" }
+        id: "duelo-mazza-pinchazos-gym",
+        title: "La Polémica de los 'Pinchazos': Tomás Mazza vs. Fitness Natural",
+        guide: "¿El atajo farmacológico para estar marcado o la cultura del esfuerzo y salud?",
+        sideA: { name: "Tomás Mazza & 'Pinchazos'", badge: "El Atajo Estético", argument: "Si los fármacos te dan el físico deseado sin pasar 10 años sufriendo en un gimnasio, la gente elige el resultado.", image: "assets/logo-pf.jpg" },
+        sideB: { name: "Fitness Natural & Salud", badge: "Disciplina & Respeto al Cuerpo", argument: "Pincharse sin entrenar ni comer adecuadamente es una bomba de tiempo para los órganos; el físico se construye con esfuerzo.", image: "assets/celebrities/tomas-holder.jpg" }
       },
       GUERRA_BANDOS_DATA[3] || {
-        id: "duelo-joaqui-luckra",
-        title: "El Amor Cuartetero & La Ruptura: La Joaqui vs. Luck Ra",
-        guide: "¿Apostar a la familia ensamblada o frenar a tiempo por la carrera?",
-        sideA: { name: "La Joaqui", badge: "La que Proyectó Familia", argument: "Se la jugó con el corazón abierto, compró una casa al lado y fue leal hasta el final.", image: "assets/celebrities/joaqui.jpg" },
-        sideB: { name: "Luck Ra", badge: "El Soltero del Cuarteto", argument: "Está en el pico de su carrera con 25 años; es más sano frenar a tiempo que convivir por presión.", image: "assets/celebrities/luckra.jpg" }
+        id: "duelo-talledo-blanqueo",
+        title: "El Blanqueo en el Movistar: Santi Talledo vs. El Perfil Bajo",
+        guide: "¿Mostrar tu amor ante 15.000 personas en vivo o cuidar la intimidad de la pareja?",
+        sideA: { name: "Santi Talledo & Carli", badge: "Amor Auténtico al Aire", argument: "Vivir el amor con libertad total y compartir tu felicidad con la comunidad de streaming que te acompaña todos los días.", image: "assets/celebrities/santi-talledo.jpg" },
+        sideB: { name: "El Perfil Bajo", badge: "Intimidad Blindada", argument: "Cuando metés a miles de fanáticos adentro de tu intimidad, ante la primera crisis los rumores se vuelven insoportables.", image: "assets/logo-pf.jpg" }
       }
     ];
 
     // 3. TRIBUNAL DE FARÁNDULA (3 CASOS)
     const tribunalList = [
-      TRIBUNAL_CASES[1] || TRIBUNAL_CASES[0],
-      TRIBUNAL_CASES[2] || TRIBUNAL_CASES[0],
-      TRIBUNAL_CASES[3] || TRIBUNAL_CASES[0]
+      TRIBUNAL_CASES[0],
+      TRIBUNAL_CASES[1],
+      TRIBUNAL_CASES[2]
     ];
 
     // 4. SEMÁFORO DE TOXICIDAD (7 RED FLAGS)
     const semaforoList = [
       {
         id: "sem-1",
-        title: "El Historial de Infidelidades con ChatGPT",
-        category: "Farándula / Wanda & Maxi",
-        guide: "¿Normal o Despecho Tóxico?",
-        text: "Le pedís a ChatGPT que liste las 7 infidelidades de tu ex (el barco, la empleada y Barcelona) y subís la captura a Instagram firmando como 'Solange'..."
+        title: "El Chiste Misógino y la Risa del Hermano",
+        category: "Streaming / Sasha & Lio",
+        guide: "¿Humor de stream o traición familiar?",
+        text: "Tu hermano se ríe a carcajadas en un stream en vivo cuando un compañero te denigra y te dice 'parrilla vieja' ante miles de personas..."
       },
       {
         id: "sem-2",
-        title: "La Icardeada Histórica & El Tatuaje con los Hijos",
-        category: "Códigos de Amistad",
-        guide: "¿Se perdona o se rompen códigos para siempre?",
-        text: "Tu mejor amigo de club te recibe en su casa de Italia y a los 6 meses se casa con tu ex mujer y se tatúa los nombres de tus 3 hijos en el brazo..."
+        title: "El 'Sorbo Gate': Inspiración vs. Plagio",
+        category: "Farándula / Lola Latorre",
+        guide: "¿Emprendedora viva o choreo total?",
+        text: "Lanzás tu marca de cosméticos con el packaging y la estética calcada de Hailey Bieber y salís en TikTok diciendo 'lo mío es inspiración, no copia'..."
       },
       {
         id: "sem-3",
-        title: "El Fetiche de PH & El Ojo de Leuco",
-        category: "Intimidad / Juli Poggio & Edul",
-        guide: "¿Te copa en la primera cita o salís corriendo?",
-        text: "En la primera cita te confiesa que le gusta dar chirlos en la cama y el truco del ojo mientras Gastón Edul te mira con cara cómplice..."
+        title: "La Moda de los 'Pinchazos'",
+        category: "Salud & Fitness / Tomás Mazza",
+        guide: "¿Atajo estético o peligro mortal?",
+        text: "Tu pareja se pincha anabólicos y esteroides para estar trabado y marcado sin pisar el gimnasio ni hacer dieta..."
       },
       {
         id: "sem-4",
-        title: "El Llanto Desconsolado por el Retiro de Messi",
-        category: "Urgente / Conmoción Nacional",
-        guide: "¿Empatía total o exageración?",
-        text: "Tu pareja se tira a llorar en el piso y cancela todos los planes de la semana porque Messi acaba de publicar su carta de despedida definitiva de la Selección Argentina..."
+        title: "La Novia que Tenía 75 en Lugar de 40",
+        category: "Virales / Mentiras & Cirugía",
+        guide: "¿Perdonás la mentira o salís corriendo?",
+        text: "Descubrís por el Instagram de un cirujano plástico que la persona con la que salís hace 6 meses no tiene 40 años sino 75..."
       },
       {
         id: "sem-5",
-        title: "Prohibido Azúcar y Medialunas en la Oficina",
-        category: "Trabajo / El Jefe Sigma Fit",
-        guide: "¿Disciplina laboral o explotación tóxica?",
-        text: "Tu jefe fit te descuenta el sueldo si te encuentra comiendo facturas con grasa de 9 a 18 hs porque 'te da pico de insulina y baja la productividad'..."
+        title: "El Robot Humanoide en la Cama",
+        category: "Tecnología / Tesla Optimus",
+        guide: "¿Infidelidad o juguete sexual?",
+        text: "Tu pareja tiene intimidad con un robot humanoide Optimus de Tesla a solas y te jura que 'no cuenta como infidelidad porque es un artefacto'..."
       },
       {
         id: "sem-6",
-        title: "Tener 22 Años, Ganar Millones y que tu Mamá te Administre Todo",
-        category: "Familia & Dinero / Juli Poggio",
-        guide: "¿Ahorro inteligente o falta de madurez?",
-        text: "Sos mayor de edad, facturás millones por mes pero tu mamá maneja tus cuentas y te pasa plata por semana porque no confía en que sepas ahorrar..."
+        title: "El Blanqueo en el Movistar Arena",
+        category: "Amor & Streaming / Santi Talledo",
+        guide: "¿Gesto romántico o sobreexposición?",
+        text: "Tu pareja te pide blanquear la relación arriba del escenario frente a 15.000 fanáticos en un show de streaming..."
       },
       {
         id: "sem-7",
-        title: "El Casting Bizarro para Hacer Reír a Tinelli",
-        category: "Streaming & Cringe / Luzu TV",
-        guide: "¿Banco las ganas de figurar o vergüenza ajena?",
-        text: "Tu pareja va a un casting de '30 Segundos de Fama' disfrazado de dinosaurio a pasar vergüenza nacional para que Tinelli se tiente en vivo..."
+        title: "La Carta Abierta de Despecho al Hermano",
+        category: "Dignidad & Vínculos",
+        guide: "¿Dignidad de hierro o lavar trapitos al sol?",
+        text: "Publicás una carta abierta en Instagram destruyendo a tu propio hermano con nombre y apellido y recordándole su rol de padre..."
       }
     ];
 
     // 5. PODIO TOP RANKING
     const podioItem = {
-      title: "TOP 5: LAS PEORES TRAICIONES DEL MULTIVERSO WANDAGATE",
-      guide: "La mesa debe ordenar del #1 (El más traidor y sin códigos) al #5 (El traidor con más glamour o justificación).",
+      title: "TOP 5: RANKING DE TRAICIONES FAMILIARES & DE SANGRE",
+      guide: "La mesa debe ordenar del #1 (La traición más imperdonable) al #5 (El error que se puede perdonar).",
       candidates: [
-        { id: "icardi", name: "Mauro Icardi", crime: "La Icardeada a Maxi López (Amigo de club)", image: "assets/celebrities/mauro-icardi.jpg" },
-        { id: "china", name: "La China Suárez", crime: "El Motorhome y el Hotel de París", image: "assets/celebrities/china-suarez.jpg" },
-        { id: "maxi", name: "Maxi López", crime: "Las 7 Infidelidades y Sótanos de Rusia", image: "assets/celebrities/maxi-lopez.jpg" },
-        { id: "lgante", name: "L-Gante", crime: "El Romance de Cumbia y el Chateau", image: "assets/celebrities/l-gante.jpg" },
-        { id: "wanda", name: "Wanda Nara", crime: "Exponer a todos con ChatGPT en LAM", image: "assets/celebrities/wanda-nara.jpg" }
+        { id: "lionel-ferro", name: "Lionel Ferro", crime: "La Risa del Chiste a su Hermana", image: "assets/logo-pf.jpg" },
+        { id: "alejandro-stoessel", name: "Alejandro Stoessel", crime: "El Manejo de los US$ 70M de Tini", image: "assets/logo-pf.jpg" },
+        { id: "mauro-icardi", name: "Mauro Icardi", crime: "La Icardeada a Maxi López", image: "assets/celebrities/mauro-icardi.jpg" },
+        { id: "gisela-holder", name: "Gisela Gordillo", crime: "El Telo con el Compañero de Tomás", image: "assets/celebrities/gisela-holder.jpg" },
+        { id: "lola-latorre", name: "Lola Latorre", crime: "El 'Sorbo Gate' a Hailey Bieber", image: "assets/logo-pf.jpg" }
       ]
     };
     showPodioState = [...podioItem.candidates];
@@ -2272,27 +2284,27 @@ function startShowDia(mode = "today") {
     // 6. RULETA & 3 TRONOS (2 RONDAS)
     const ruletaList = [
       {
-        victim: celebrities.find(c => c.id === "wanda-nara") || { name: "Wanda Nara", image: "assets/celebrities/wanda-nara.jpg", tag: "La Empresaria del Despecho", lore: "En el ojo de la tormenta tras exponer a Maxi López con ChatGPT y firmar 'Solange'." },
+        victim: celebrities.find(c => c.id === "sasha-ferro") || { name: "Sasha Ferro", image: "assets/logo-pf.jpg", tag: "La Víctima del Stream", lore: "En el ojo de la tormenta tras el chiste machista en Solo por Hoy y la carta a su hermano." },
         candidates: [
-          celebrities.find(c => c.id === "maxi-lopez") || { name: "Maxi López", image: "assets/celebrities/maxi-lopez.jpg", lore: "El primer marido, padre de 3 hijos y bardo de Rusia." },
-          celebrities.find(c => c.id === "mauro-icardi") || { name: "Mauro Icardi", image: "assets/celebrities/mauro-icardi.jpg", lore: "10 años de matrimonio, 2 hijas y la Icardeada histórica." },
-          celebrities.find(c => c.id === "l-gante") || { name: "L-Gante", image: "assets/celebrities/l-gante.jpg", lore: "Cumbia 420, amor en Río de Janeiro y guerra en el Chateau." }
+          celebrities.find(c => c.id === "lionel-ferro") || { name: "Lionel Ferro", image: "assets/logo-pf.jpg", lore: "El hermano sentado al lado que se rio en vivo." },
+          celebrities.find(c => c.id === "martin-salwe") || { name: "Martín Salwe", image: "assets/logo-pf.jpg", lore: "El autor de la frase denigrante al aire." },
+          celebrities.find(c => c.id === "facu-guarino") || { name: "Facu Guarino", image: "assets/logo-pf.jpg", lore: "El amigo streamer que salió a defenderla en redes." }
         ]
       },
       {
-        victim: celebrities.find(c => c.id === "juli-poggio") || { name: "Juli Poggio", image: "assets/celebrities/juli-poggio.jpg", tag: "La Soltera de PH", lore: "Confesó sus fetiches sexuales en la tele y cruzó miradas cómplices con Gastón Edul." },
+        victim: celebrities.find(c => c.id === "lola-latorre") || { name: "Lola Latorre", image: "assets/logo-pf.jpg", tag: "Sorbo by Lola", lore: "Viral por el supuesto plagio de su marca a Hailey Bieber." },
         candidates: [
-          celebrities.find(c => c.id === "gaston-edul") || { name: "Gastón Edul", image: "assets/celebrities/gaston-edul.jpg", lore: "El cronista de la Selección con el que hubo miradas y tensión en PH." },
-          celebrities.find(c => c.id === "marcos-ginocchio") || { name: "Marcos Ginocchio", image: "assets/celebrities/marcos-ginocchio.jpg", lore: "El shippeo eterno de Marculi desde Gran Hermano." },
-          celebrities.find(c => c.id === "marcelo-tinelli") || { name: "Marcelo Tinelli", image: "assets/celebrities/marcelo-tinelli.jpg", lore: "Reviviendo los 30 segundos de fama tentado de risa en Luzu TV." }
+          celebrities.find(c => c.id === "tomas-mazza") || { name: "Tomás Mazza", image: "assets/logo-pf.jpg", lore: "El fitness bro adicto a los anabólicos y pinchazos." },
+          celebrities.find(c => c.id === "santi-talledo") || { name: "Santi Talledo", image: "assets/celebrities/santi-talledo.jpg", lore: "El conductor estrella de Luzu TV y novio de Carli." },
+          celebrities.find(c => c.id === "lauty-gram") || { name: "Lauty Gram", image: "assets/logo-pf.jpg", lore: "El trapero que tiró leña al fuego en el stream." }
         ]
       }
     ];
 
     currentShowEpisode = {
-      title: "PROGRAMA DE HOY • LUNES 31/08",
-      badge: "🔥 GUION OFICIAL • MEGA SHOW TRANSMISIÓN COMPLETA",
-      apertura,
+      title: "PROGRAMA DE HOY • MIÉRCOLES 02/09",
+      badge: "🔥 GUION OFICIAL • MIÉRCOLES 02/09 • MIX ON STUDIO",
+      aperturaDuel,
       bandosList,
       tribunalList,
       semaforoList,
@@ -2307,20 +2319,13 @@ function startShowDia(mode = "today") {
     const shuffledSemaforo = [...SEMAFORO_CASES].sort(() => 0.5 - Math.random());
     const shuffledCelebs = [...celebrities].sort(() => 0.5 - Math.random());
 
+    const aperturaDuel = shuffledBandos[0] || GUERRA_BANDOS_DATA[0];
+
     currentShowEpisode = {
       title: "MEGA SHOW ALEATORIO (MODO RNG)",
       badge: "🎲 TRANSMISIÓN ALEATORIA INFINITA",
-      apertura: {
-        question: "¿CUÁL ES EL LÍMITE DE LA CARETEADA EN LA TELE Y EL STREAMING?",
-        context: "La mesa debate las mayores polémicas de la farándula argentina con posturas enfrentadas.",
-        stances: {
-          holder: { name: "Tomás Holder", title: "Factos", text: "La verdad sin filtro siempre, caiga quien caiga." },
-          diane: { name: "Diane Caracchi", title: "Límites", text: "Respeto a los códigos y coherencia personal." },
-          luli: { name: "Luli Casé", title: "Empatía", text: "Entender el dolor del otro y perdonar." }
-        },
-        chatTrigger: "¿Con qué conductor te identificás hoy? Votá en el chat."
-      },
-      bandosList: shuffledBandos.slice(0, 3),
+      aperturaDuel,
+      bandosList: shuffledBandos.slice(1, 4),
       tribunalList: shuffledTribunal.slice(0, 3),
       semaforoList: shuffledSemaforo.slice(0, 7),
       podioItem: {
@@ -2329,8 +2334,8 @@ function startShowDia(mode = "today") {
         candidates: shuffledCelebs.slice(0, 5).map(c => ({ id: c.id, name: c.name, crime: c.tag || c.lore, image: c.image }))
       },
       ruletaList: [
-        { victim: shuffledCelebs[5], candidates: shuffledCelebs.slice(6, 9) },
-        { victim: shuffledCelebs[9], candidates: shuffledCelebs.slice(10, 13) }
+        { victim: shuffledCelebs[5] || shuffledCelebs[0], candidates: shuffledCelebs.slice(6, 9) },
+        { victim: shuffledCelebs[9] || shuffledCelebs[1], candidates: shuffledCelebs.slice(10, 13) }
       ],
       funaAccused: "holder"
     };
@@ -2339,6 +2344,7 @@ function startShowDia(mode = "today") {
 
   switchTab("show-dia");
   setShowDiaStep(1);
+}
 function setShowDiaStep(step, resetSubIndex = false) {
   currentShowStep = Math.max(1, Math.min(8, step));
   audioFX.playReveal();
@@ -3270,6 +3276,15 @@ function assignShowThroneMulti(throne, candName) {
   if (body) renderShowStep6_Ruleta(body);
 }
 
+function clearShowThroneMulti(throne) {
+  if (showUserChoices.ruleta[showRuletaSubIndex] && showUserChoices.ruleta[showRuletaSubIndex].assignments) {
+    showUserChoices.ruleta[showRuletaSubIndex].assignments[throne] = null;
+    audioFX.playTick(400, 0.1);
+    const body = document.getElementById("showStageBody");
+    if (body) renderShowStep6_Ruleta(body);
+  }
+}
+
 // ---------------------------------------------------------
 // BLOQUE 7: LA ZONA DE FUNA & DERECHO A RÉPLICA (30s)
 // ---------------------------------------------------------
@@ -3666,7 +3681,8 @@ function applyDashboardFuna(host) {
 
 function updateLowerThirdShowDia() {
   if (currentShowStep === 1) {
-    setPresetZocalo("🎙️ SHOW DEL DÍA • BLOQUE 1", "APERTURA & PREGUNTA EDITORIAL: ¿HASTA DÓNDE VALE QUEMAR A UN EX?");
+    const apTitle = currentShowEpisode?.aperturaDuel?.title || "ESCÁNDALO DE STREAM: SASHA VS LIONEL FERRO";
+    setPresetZocalo("🎙️ SHOW DEL DÍA • BLOQUE 1", `APERTURA & DEBATE: ${apTitle.toUpperCase()}`);
   } else if (currentShowStep === 2) {
     const duel = currentShowEpisode?.bandosList[showBandosSubIndex];
     setPresetZocalo("⚔️ SHOW DEL DÍA • BLOQUE 2", `GUERRA DE BANDOS (${showBandosSubIndex + 1}/3): ${duel?.title?.toUpperCase() || "DUELOS CALIENTES"}`);
@@ -3674,9 +3690,11 @@ function updateLowerThirdShowDia() {
     const c = currentShowEpisode?.tribunalList[showTribunalSubIndex];
     setPresetZocalo("⚖️ SHOW DEL DÍA • BLOQUE 3", `TRIBUNAL DE FARÁNDULA (${showTribunalSubIndex + 1}/3): ${c?.title?.toUpperCase() || "JUICIOS MORALES"}`);
   } else if (currentShowStep === 4) {
-    setPresetZocalo("🚦 SHOW DEL DÍA • BLOQUE 4", `LA RÁFAGA DEL SEMÁFORO (${showSemaforoSubIndex + 1}/7): RED FLAGS DE HOY AL AIRE`);
+    const sem = currentShowEpisode?.semaforoList[showSemaforoSubIndex];
+    setPresetZocalo("🚦 SHOW DEL DÍA • BLOQUE 4", `LA RÁFAGA DEL SEMÁFORO (${showSemaforoSubIndex + 1}/7): ${sem?.title?.toUpperCase() || "RED FLAGS DE HOY"}`);
   } else if (currentShowStep === 5) {
-    setPresetZocalo("🏆 SHOW DEL DÍA • BLOQUE 5", "EL PODIO DEL BIZARREO: TOP 5 TRAICIONES DEL MULTIVERSO WANDAGATE");
+    const podioTitle = currentShowEpisode?.podioItem?.title || "TOP 5: RANKING DE TRAICIONES FAMILIARES";
+    setPresetZocalo("🏆 SHOW DEL DÍA • BLOQUE 5", `EL PODIO EN VIVO: ${podioTitle.toUpperCase()}`);
   } else if (currentShowStep === 6) {
     const r = currentShowEpisode?.ruletaList[showRuletaSubIndex];
     setPresetZocalo("🎡 SHOW DEL DÍA • BLOQUE 6", `LA RULETA DE 3 TRONOS (${showRuletaSubIndex + 1}/2): ${r?.victim?.name?.toUpperCase()} EN EL BANQUILLO`);
@@ -3686,3 +3704,55 @@ function updateLowerThirdShowDia() {
     setPresetZocalo("📊 SHOW DEL DÍA • FINAL", "MASTER DASHBOARD & ANÁLISIS PSICOLÓGICO TOTAL DE LA MESA");
   }
 }
+
+// Global browser window bindings for bulletproof event handling
+if (typeof window !== "undefined") {
+  window.switchTab = switchTab;
+  window.startShowDia = startShowDia;
+  window.setShowDiaStep = setShowDiaStep;
+  window.nextShowDiaStep = nextShowDiaStep;
+  window.prevShowDiaStep = prevShowDiaStep;
+  window.voteAperturaByHost = voteAperturaByHost;
+  window.voteAperturaAll = voteAperturaAll;
+  window.voteBandoByHost = voteBandoByHost;
+  window.voteShowBandoAll = voteShowBandoAll;
+  window.voteBandoAll = voteShowBandoAll;
+  window.voteTribunalByHost = voteTribunalByHost;
+  window.voteTribunalAll = voteTribunalAll;
+  window.voteShowSemaforoMulti = voteShowSemaforoMulti;
+  window.swapPodio = swapPodio;
+  window.assignShowThroneMulti = assignShowThroneMulti;
+  window.clearShowThroneMulti = clearShowThroneMulti;
+  window.selectFunaHost = selectFunaHost;
+  window.resolveShowFuna = resolveShowFuna;
+  window.toggleShowFunaTimer = toggleShowFunaTimer;
+  window.resetShowFunaTimer = resetShowFunaTimer;
+  window.setRouletteStep = setRouletteStep;
+  window.setRouletteSetup = setRouletteSetup;
+  window.assignRole = assignRole;
+  window.clearRole = clearRole;
+  window.spinRoulette = spinRoulette;
+  window.startSemaforoRound = startSemaforoRound;
+  window.selectSemaforoLevel = selectSemaforoLevel;
+  window.renderSemaforoResults = renderSemaforoResults;
+  window.loadRankingSet = loadRankingSet;
+  window.swapRankingItems = swapRankingItems;
+  window.confirmRankingVerdict = confirmRankingVerdict;
+  window.loadBandoDuel = loadBandoDuel;
+  window.voteBando = voteBando;
+  window.loadTribunalCase = loadTribunalCase;
+  window.setTribunalPhase = setTribunalPhase;
+  window.voteConductor = voteConductor;
+  window.triggerFunaModal = triggerFunaModal;
+  window.resolveFuna = resolveFuna;
+  window.adjustFuna = adjustFuna;
+  window.setPresetZocalo = setPresetZocalo;
+  window.updateLowerThirdShowDia = updateLowerThirdShowDia;
+  window.updateLowerThirdRoulette = updateLowerThirdRoulette;
+  window.updateLowerThirdSemaforo = updateLowerThirdSemaforo;
+  window.updateLowerThirdRanking = updateLowerThirdRanking;
+  window.updateLowerThirdBandos = updateLowerThirdBandos;
+  window.updateLowerThirdTribunal = updateLowerThirdTribunal;
+}
+
+

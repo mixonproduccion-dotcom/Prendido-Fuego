@@ -6,6 +6,151 @@
 
 const TRIBUNAL_CASES = [
   {
+    "id": "caso-sasha-lio-parrillavieja",
+    "title": "El Bardo de los Hermanos Ferro: El Chiste Machista en Stream",
+    "protagonist": "Sasha Ferro",
+    "category": "Streaming / Vínculos Familiares",
+    "context": "Tu hermano está como conductor en un stream masivo, un compañero te degrada sexualmente con un chiste ('parrilla vieja') y tu propio hermano se tienta de risa frente a miles de personas sin frenarlo ni defenderte.",
+    "image": "assets/logo-pf.jpg",
+    "quote": "Sos padre de una nena: ¿te gustaría que hagan ese chiste sobre tu hija mientras su hermano se ríe al lado?",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Carta Pública Demoledora y Corte Total de Vínculo (Factos / Holder)",
+        "text": "Publicás una carta abierta en Instagram repudiándolo con nombre y apellido, le recordás su responsabilidad de padre y cortás todo lazo familiar. La lealtad no se negocia.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Charla Fría en Privado y Bozal Legal al Stream (Dignidad / Diane)",
+        "text": "No le das rating ni prensa al programa, le mandás una carta documento a la productora y a los conductores y cerrás el tema en el ámbito privado con total frialdad.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Perdonarlo por Culpa Familiar y Llorar en Terapia (Migajera / Luli)",
+        "text": "Pensás que la culpa es del entorno de la televisión, le perdonás la risa porque 'es tu hermano de sangre' y le pedís al tarot que limpie las energías de la familia.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-cuarentona-75-cirujano",
+    "title": "La Pareja Oculta: Decía Tener 40 y Tenía 75 Años",
+    "protagonist": "El Novio Engañado",
+    "category": "Virales / Relaciones & Estética",
+    "context": "Llevás 6 meses saliendo con una mujer hermosa que te juró tener 40 años. Un día ves en Instagram la publicidad de un cirujano plástico mostrando su antes y después y descubrís que tiene 75 años.",
+    "image": "assets/logo-pf.jpg",
+    "quote": "La vi espléndida y me enteré de su verdadera edad por el feed de un cirujano.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Admirar al Cirujano, Disfrutar los Viajes y Seguir Adelante (Factos)",
+        "text": "Bancar los factos: si la mujer parece de 40 y la pasa bomba, la edad en el documento es solo un número. Disfrutás los viajes y le agradecés la buena vida.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Corte Inmediato por Mentira Compulsiva (Dignidad)",
+        "text": "La edad no importa, pero la mentira sostenida durante medio año demuestra psicopatía y manipulación. Hacés las valijas y cortás todo contacto.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Pedirle el Contacto del Cirujano y Operarse Juntos (Migajera)",
+        "text": "Te impresiona tanto el resultado que le pedís turno con el mismo cirujano plástico para hacerte retoques faciales y envejecer congelados en el tiempo.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-robots-sexuales-infidelidad",
+    "title": "El Humanoide en Casa: ¿Es Infidelidad el Sexo con Robots?",
+    "protagonist": "La Pareja Intrigada",
+    "category": "Tecnología / Futuro & Parejas",
+    "context": "Tu pareja se compra un robot humanoide Optimus con inteligencia artificial para la casa y descubrís que tiene intimidad física con él a solas, argumentando que 'es lo mismo que un juguete'.",
+    "image": "assets/logo-pf.jpg",
+    "quote": "No tiene sentimientos, no me habla de amor, es solo una máquina.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Desenchufar el Robot, Venderlo y Echar a tu Pareja (Factos)",
+        "text": "El hombre o mujer de valor no compite contra una chapa con cables. Le desconectás la batería, lo publicás en Marketplace y le pedís que se busque un depto.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Considerarlo Infidelidad Emocional y Separación Formal (Dignidad)",
+        "text": "El deseo y la intimidad sexual pertenecen al pacto de la pareja. Si prefiere a una máquina antes que la conexión humana, el vínculo está roto.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Hacer un Trío con el Robot y Analizar la Carta Natal (Migajera)",
+        "text": "Aceptás incorporar al robot en la cama para no quedarte sola, le pedís la fecha de fabricación para tirarle el tarot y le comprás ropa canchera.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-lola-sorbo-plagio",
+    "title": "El Plagio de 'Sorbo': Lola Latorre vs. Rhode",
+    "protagonist": "Lola Latorre",
+    "category": "Farándula / Emprendimientos",
+    "context": "Lanzás tu marca de cosméticos con mucha ilusión y en redes te destrozan comparándote foto por foto con la marca de Hailey Bieber. Te acusan de copiar packaging, fuente y colores.",
+    "image": "assets/logo-pf.jpg",
+    "quote": "Lo mío es inspiración, no copia.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Duplicar el Precio, Facturar con la Funa y Agradecer el Marketing (Factos)",
+        "text": "Bancar la parada: que hablen bien o mal pero que compren. Aprovechás la viralidad de los memes para agotar stock en 24 horas y le mandás un labial a Yanina.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Rediseñar la Marca y Apostar a la Identidad Propia (Dignidad)",
+        "text": "Reconocer que el parecido fue excesivo, pedir disculpas por la falta de originalidad del equipo de diseño y relanzar la línea con identidad 100% argentina.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Llorar en TikTok y Mandarle un Mensaje por Instagram a Hailey (Migajera)",
+        "text": "Hacés un video llorando diciendo que sos fan de Justin Bieber desde los 12 años y le mandás un DM a Hailey Bieber pidiéndole que sea tu socia.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-mazza-adiccion-anabolicos",
+    "title": "La Confesión de Tomás Mazza: Adicción a los Fármacos",
+    "protagonist": "El Amigo del Gimnasio",
+    "category": "Salud / Fitness & Presión Social",
+    "context": "Tu mejor amigo streamer confiesa en vivo que no puede dejar los anabólicos porque si baja un kilo de masa muscular entra en pánico y depresión por la mirada ajena en redes.",
+    "image": "assets/logo-pf.jpg",
+    "quote": "Estoy adicto a los anabólicos y la presión de las redes me destruye.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Cortar la Química de Raíz, Terapia y Dieta Estricta (Factos / Holder)",
+        "text": "Intervención de amigos: tirarle todos los frascos a la basura, meterlo en terapia psicológica y enseñarle que el verdadero físico se mantiene con comida y cabeza.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Acompañamiento Médico Profesional y Cierre de Redes (Dignidad)",
+        "text": "Llevarlo a un médico endocrinólogo especialista, desconectarlo de TikTok e Instagram por 6 meses y priorizar su salud cardiovascular y mental.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Justificarlo porque 'las redes son crueles' y Alentarlo (Inseguridad)",
+        "text": "Decirle que con tal de que se vea gigante en fotos no pasa nada, regalarle suplementos y prenderle velas para que no le suba la presión arterial.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
     "id": "caso-wanda-maxi-chatgpt",
     "title": "El Escándalo de Rusia & ChatGPT: Wanda Nara vs. Maxi López",
     "protagonist": "Wanda Nara ('Solange')",
@@ -529,6 +674,9 @@ const TRIBUNAL_CASES = [
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.TRIBUNAL_CASES = TRIBUNAL_CASES;
+}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { TRIBUNAL_CASES };
 }

@@ -6,8 +6,112 @@
 
 const RANKING_DATA = [
   {
+    "id": "ranking-traicion-familiar-0209",
+    "title": "1. El Ranking de Traición Familiar & de Sangre",
+    "description": "Ordenalos del #1 (La traición más imperdonable hacia un familiar de sangre) al #5 (El que cometió un error pero zafa por rating o confusión).",
+    "candidates": [
+      {
+        "id": "lionel-ferro",
+        "name": "Lionel Ferro",
+        "crime": "La Risa del Chiste a su Hermana",
+        "lore": "Se rio en vivo en 'Solo por Hoy' mientras Salwe y Lauty Gram denigraban a Sasha Ferro con el chiste de 'parrilla vieja' sin frenarlo.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 3.5,
+        "traicionScore": 9.9
+      },
+      {
+        "id": "alejandro-stoessel",
+        "name": "Alejandro Stoessel",
+        "crime": "El Manejo de los US$ 70M de Tini",
+        "lore": "Administró los contratos millonarios de Tini desde que era una niña y desató una auditoría legal impulsada por los abogados de Messi.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 5.0,
+        "traicionScore": 9.7
+      },
+      {
+        "id": "mauro-icardi",
+        "name": "Mauro Icardi",
+        "crime": "La Icardeada a Maxi López",
+        "lore": "Vivía en la casa de Maxi López como un hermano de fútbol y se quedó con su esposa, hijas y representación comercial.",
+        "image": "assets/celebrities/mauro-icardi.jpg",
+        "auraScore": 6.5,
+        "traicionScore": 9.8
+      },
+      {
+        "id": "gisela-holder",
+        "name": "Gisela Gordillo",
+        "crime": "El Telo con el Compañero de Tomás",
+        "lore": "Fue a un hotel alojamiento con Martín 'El Chino' Ku, compañero de Gran Hermano de su propio hijo Tomás Holder.",
+        "image": "assets/celebrities/gisela-holder.jpg",
+        "auraScore": 8.0,
+        "traicionScore": 8.9
+      },
+      {
+        "id": "lola-latorre",
+        "name": "Lola Latorre",
+        "crime": "El 'Sorbo Gate' a Hailey Bieber",
+        "lore": "Copió al 100% la línea de labiales de Hailey Bieber y salió en TikTok a defenderse diciendo 'es inspiración, no copia'.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 7.5,
+        "traicionScore": 7.2
+      }
+    ]
+  },
+  {
+    "id": "ranking-caretas-stream-0209",
+    "title": "2. El Caretómetro del Streaming & Chistes Pesados",
+    "description": "Ordenalos del #1 (El conductor más careta y cancelable) al #5 (El que mantiene la altura y los códigos).",
+    "candidates": [
+      {
+        "id": "martin-salwe",
+        "name": "Martín Salwe",
+        "crime": "Provocación Machista en Stream",
+        "lore": "Tiró el chiste de 'parrilla vieja' al aire amparándose en la impunidad del streaming.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 3.8,
+        "traicionScore": 9.8
+      },
+      {
+        "id": "lauty-gram",
+        "name": "Lauty Gram",
+        "crime": "Festejar el Bardo Ajeno",
+        "lore": "Se sumó a la humorada denigrante y luego se desentendió en redes.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 5.9,
+        "traicionScore": 8.5
+      },
+      {
+        "id": "luchi-patrone",
+        "name": "Luchi Patrone",
+        "crime": "Silencio Cómodo en Vivo",
+        "lore": "No intervino siendo la única mujer en la mesa y salió a justificarse horas después.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 5.5,
+        "traicionScore": 7.8
+      },
+      {
+        "id": "tomas-mazza",
+        "name": "Tomás Mazza",
+        "crime": "Promoción Involuntaria de Químicos",
+        "lore": "Confesó su adicción a anabólicos pero sigue marcando agenda de pinchazos a pibes jóvenes.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 6.8,
+        "traicionScore": 6.0
+      },
+      {
+        "id": "facu-guarino",
+        "name": "Facu Guarino ('Guari')",
+        "crime": "Factos y Defensa Leal",
+        "lore": "El único que salió en redes a defender a Sasha y destrozar a Salwe con nombre y apellido.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 9.5,
+        "traicionScore": 1.2
+      }
+    ]
+  },
+  {
     "id": "ranking-traicion-farandula",
-    "title": "1. El Ranking de Traición en la Farándula",
+    "title": "3. El Ranking de Traición en la Farándula",
     "description": "Ordenalos del #1 (La traición más fría y descarada) al #5 (El traidor que al menos tuvo códigos o facturó con estilo).",
     "candidates": [
       {
@@ -267,6 +371,9 @@ const RANKING_DATA = [
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.RANKING_DATA = RANKING_DATA;
+}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { RANKING_DATA };
 }

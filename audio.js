@@ -431,3 +431,12 @@ class SoundFX {
 
 const audioFX = new SoundFX();
 
+if (typeof window !== "undefined") {
+  window.SoundFX = SoundFX;
+  window.audioFX = audioFX;
+}
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { SoundFX, audioFX };
+}
+
+

@@ -2,7 +2,64 @@
 // Prendido Fuego 🔥 (Mix On Studio)
 
 const SEMAFORO_CASES = [
-  // SITUACIONES VIRALES DEL DÍA (GUION 31/08)
+  // SITUACIONES VIRALES DEL DÍA (GUION 02/09)
+  {
+    id: "sem-0209-001",
+    title: "El Chiste Misógino y la Risa del Hermano",
+    text: "Tu hermano se ríe a carcajadas en un stream en vivo cuando un compañero te denigra y te dice 'parrilla vieja' ante miles de personas...",
+    expectedLevel: "fuego",
+    category: "Streaming & Traición Familiar",
+    tags: ["Sasha Ferro", "Lionel Ferro", "Salwe", "Funa"]
+  },
+  {
+    id: "sem-0209-002",
+    title: "El 'Sorbo Gate': Inspiración vs. Plagio",
+    text: "Lanzás tu marca de cosméticos con el packaging y la estética calcada de Hailey Bieber y salís en TikTok diciendo 'lo mío es inspiración, no copia'...",
+    expectedLevel: "amarillo",
+    category: "Farándula & Redes",
+    tags: ["Lola Latorre", "Rhode", "Sorbo", "TikTok"]
+  },
+  {
+    id: "sem-0209-003",
+    title: "La Moda de los 'Pinchazos'",
+    text: "Tu pareja se pincha anabólicos y esteroides para estar trabado y marcado sin pisar el gimnasio ni hacer dieta...",
+    expectedLevel: "rojo",
+    category: "Salud & Fitness",
+    tags: ["Tomás Mazza", "Pinchazos", "Gym", "Química"]
+  },
+  {
+    id: "sem-0209-004",
+    title: "La Novia que Tenía 75 en Lugar de 40",
+    text: "Descubrís por el Instagram de un cirujano plástico que la persona con la que salís hace 6 meses no tiene 40 años sino 75...",
+    expectedLevel: "rojo",
+    category: "Virales & Parejas",
+    tags: ["Cirujano", "Mentira", "Edad", "Viral"]
+  },
+  {
+    id: "sem-0209-005",
+    title: "El Robot Humanoide en la Cama",
+    text: "Tu pareja tiene intimidad con un robot humanoide Optimus de Tesla a solas y te jura que 'no cuenta como infidelidad porque es un artefacto'...",
+    expectedLevel: "fuego",
+    category: "Tecnología & Infidelidad",
+    tags: ["Tesla", "Optimus", "Robots", "Infidelidad"]
+  },
+  {
+    id: "sem-0209-006",
+    title: "El Blanqueo en el Movistar Arena",
+    text: "Tu pareja te pide blanquear la relación arriba del escenario frente a 15.000 fanáticos en un show de streaming...",
+    expectedLevel: "verde",
+    category: "Amor & Streaming",
+    tags: ["Santi Talledo", "Luzu TV", "Carli", "Movistar"]
+  },
+  {
+    id: "sem-0209-007",
+    title: "La Carta Abierta de Despecho al Hermano",
+    text: "Publicás una carta abierta en Instagram destruyendo a tu propio hermano con nombre y apellido y recordándole su rol de padre...",
+    expectedLevel: "verde",
+    category: "Dignidad & Vínculos",
+    tags: ["Sasha Ferro", "Carta", "Límites"]
+  },
+  // SITUACIONES VIRALES ANTERIORES
   {
     id: "sem-hoy-001",
     title: "La Consulta a ChatGPT sobre Infidelidades",
@@ -881,6 +938,9 @@ const SEMAFORO_CASES = [
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.SEMAFORO_CASES = SEMAFORO_CASES;
+}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { SEMAFORO_CASES };
 }

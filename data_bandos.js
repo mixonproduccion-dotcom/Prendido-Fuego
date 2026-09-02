@@ -6,6 +6,111 @@
 
 const GUERRA_BANDOS_DATA = [
   {
+    "id": "duelo-sasha-lio-salwe",
+    "title": "Escándalo en el Stream: Sasha Ferro vs. Lionel Ferro & Martín Salwe",
+    "guide": "¿A quién bancás en la mesa? ¿Límites familiares inquebrantables o humor desmedido de stream?",
+    "sideA": {
+      "id": "sasha-ferro",
+      "name": "Sasha Ferro",
+      "badge": "La que Puso Límites Familiares",
+      "quote": "Pensaban que no podían existir peores programas de stream... acá tienen a estos pelotudos.",
+      "argument": "Bancó años de ninguneo; no puede tolerar que su propio hermano se ría en vivo mientras dos tipos la degradan sexualmente ante miles de personas. La sangre no justifica la falta de respeto.",
+      "image": "assets/logo-pf.jpg"
+    },
+    "sideB": {
+      "id": "lio-salwe",
+      "name": "Lionel Ferro & Salwe",
+      "badge": "El Humor de Stream en Jaque",
+      "quote": "Fue un chiste de stream espontáneo, me tomó por sorpresa y hablé tras el vivo.",
+      "argument": "Sostienen que fue una humorada al aire sin maldad premeditada, que en el streaming se cruzan límites todo el tiempo y que los problemas familiares se resuelven puertas adentro.",
+      "image": "assets/logo-pf.jpg"
+    }
+  },
+  {
+    "id": "duelo-lola-hailey-sorbo",
+    "title": "El 'Sorbo Gate': Lola Latorre vs. Hailey Bieber ('Rhode')",
+    "guide": "¿Inspiración legítima para emprender en Argentina o copia y plagio descarado?",
+    "sideA": {
+      "id": "lola-latorre",
+      "name": "Lola Latorre ('Sorbo')",
+      "badge": "Inspiración Nacional",
+      "quote": "Lo mío es inspiración, no copia.",
+      "argument": "En la industria de la cosmética mundial casi todo está inventado; traer y adaptar una tendencia estética global para que el público argentino acceda a productos cancheros es visión de negocio.",
+      "image": "assets/logo-pf.jpg"
+    },
+    "sideB": {
+      "id": "hailey-bieber",
+      "name": "Críticas & Hailey Bieber",
+      "badge": "Plagio Descarado",
+      "quote": "Lo que pedís por internet vs lo que te llega.",
+      "argument": "Copió al 100% el packaging, la tipografía minimalista, los tonos grises y el concepto exacto de Rhode; una falta total de creatividad aprovechando el apellido para vender caro.",
+      "image": "assets/logo-pf.jpg"
+    }
+  },
+  {
+    "id": "duelo-mazza-pinchazos-gym",
+    "title": "La Polémica de los 'Pinchazos': Tomás Mazza vs. Fitness Natural",
+    "guide": "¿El atajo farmacológico para estar marcado o la cultura del esfuerzo y salud?",
+    "sideA": {
+      "id": "tomas-mazza",
+      "name": "Tomás Mazza & 'Pinchazos'",
+      "badge": "El Atajo Estético",
+      "quote": "Estoy adicto a los anabólicos y los pibes buscan resultados rápidos.",
+      "argument": "La sociedad premia el físico hegemónico inmediato en redes; si la ciencia y los fármacos te dan el físico deseado sin pasar 10 años sufriendo en un gimnasio, la gente elige el resultado.",
+      "image": "assets/logo-pf.jpg"
+    },
+    "sideB": {
+      "id": "fitness-natural",
+      "name": "Fitness Natural & Salud",
+      "badge": "Disciplina & Respeto al Cuerpo",
+      "quote": "Sin esfuerzo no hay mérito y con la salud no se jode.",
+      "argument": "Pincharse sin entrenar ni comer adecuadamente es una bomba de tiempo para los órganos; el verdadero físico y la disciplina mental se construyen levantando peso y con constancia.",
+      "image": "assets/celebrities/tomas-holder.jpg"
+    }
+  },
+  {
+    "id": "duelo-talledo-blanqueo",
+    "title": "El Blanqueo en el Movistar: Santi Talledo vs. El Perfil Bajo",
+    "guide": "¿Mostrar tu amor ante 15.000 personas en vivo o cuidar la intimidad de la pareja?",
+    "sideA": {
+      "id": "santi-talledo",
+      "name": "Santi Talledo & Carli",
+      "badge": "Amor Auténtico al Aire",
+      "quote": "Presenté a mi novio porque el amor se celebra con la gente que nos banca.",
+      "argument": "Vivir el amor con libertad total y compartir tu felicidad con la comunidad de streaming que te acompaña todos los días es el mayor acto de honestidad con el público.",
+      "image": "assets/celebrities/santi-talledo.jpg"
+    },
+    "sideB": {
+      "id": "perfil-bajo",
+      "name": "El Perfil Bajo",
+      "badge": "Intimidad Blindada",
+      "quote": "La sobreexposición mediática destruye cualquier relación.",
+      "argument": "Cuando metés a miles de fanáticos y a las redes adentro de tu cama y de tu intimidad, ante la primera crisis de pareja la condena pública y los rumores se vuelven insoportables.",
+      "image": "assets/logo-pf.jpg"
+    }
+  },
+  {
+    "id": "duelo-robots-sexuales-pareja",
+    "title": "El Futuro del Amor: Robots Sexuales (Tesla / China) vs. Pareja Tradicional",
+    "guide": "¿La compañía artificial perfecta sin toxicidad o la imperfección de las relaciones humanas?",
+    "sideA": {
+      "id": "robots-ia",
+      "name": "Robots Humanoides (Tesla/China)",
+      "badge": "Cero Toxicidad & Placer",
+      "quote": "No te celan, no te mienten y siempre están para vos.",
+      "argument": "La tecnología soluciona la soledad humana sin histerias, sin infidelidades de WhatsApp ni reclamos económicos; es una evolución natural de las relaciones en el siglo XXI.",
+      "image": "assets/logo-pf.jpg"
+    },
+    "sideB": {
+      "id": "pareja-humana",
+      "name": "Relaciones Humanas Reales",
+      "badge": "Emociones & Conexión Real",
+      "quote": "El amor real no se enchufa a 220v.",
+      "argument": "Un robot nunca podrá sentir empatía, mirarte a los ojos con amor genuino ni acompañarte en momentos difíciles; reemplazar a los humanos por máquinas es la decadencia emocional absoluta.",
+      "image": "assets/celebrities/diane-caracchi.jpg"
+    }
+  },
+  {
     "id": "duelo-wanda-maxilopez-rusia",
     "title": "El Escándalo de Rusia: Wanda Nara vs. Maxi López",
     "sideA": {
@@ -227,6 +332,9 @@ const GUERRA_BANDOS_DATA = [
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.GUERRA_BANDOS_DATA = GUERRA_BANDOS_DATA;
+}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { GUERRA_BANDOS_DATA };
 }

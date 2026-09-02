@@ -6,6 +6,110 @@
 
 const CELEBRITIES_DATABASE = [
   {
+    "id": "sasha-ferro",
+    "name": "Sasha Ferro",
+    "category": "streaming",
+    "categoryLabel": "Streaming / Influencer",
+    "tag": "La que Puso los Límites",
+    "quote": "Pensaban que no podían existir peores programas de stream... acá tienen a estos pelotudos.",
+    "bio": "Influencer, modelo y creadora de contenido. En el ojo del bardo tras cruzar a su hermano Lionel Ferro y a Martín Salwe.",
+    "lore": "Protagonista del mayor escándalo del streaming. Tras sufrir un chiste machista denigrante en vivo en 'Solo por Hoy', le publicó una carta demoledora a su hermano Lionel por reírse en cámara siendo padre de una nena, cortando todo vínculo familiar.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 9.6,
+    "caretaScore": 1.2
+  },
+  {
+    "id": "lionel-ferro",
+    "name": "Lionel Ferro",
+    "category": "streaming",
+    "categoryLabel": "Streaming / Actor",
+    "tag": "El Hermano en Jaque",
+    "quote": "Yo no sabía que iban a hacer ese chiste, me agarró de sorpresa.",
+    "bio": "Actor, cantante e influencer. Conductor en Solo por Hoy, duramente cancelado en redes por no defender a su hermana.",
+    "lore": "En el centro de las críticas tras reírse en vivo de un chiste misógino hacia su hermana Sasha Ferro en el stream. Salió a emitir un descargo aclarando que habló tras el vivo, pero en redes lo condenaron unánimemente por falta de lealtad familiar.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 4.1,
+    "caretaScore": 9.4
+  },
+  {
+    "id": "martin-salwe",
+    "name": "Martín Salwe",
+    "category": "streaming",
+    "categoryLabel": "Streaming / TV",
+    "tag": "El Provocador Serial",
+    "quote": "Le dicen 'Parrilla vieja' porque conoce todos los chorizos.",
+    "bio": "Locutor, conductor y mediático. Conocido por sus polémicas en El Hotel de los Famosos, Bailando y stream.",
+    "lore": "Autor del chiste de mal gusto hacia Sasha Ferro que encendió la furia de las redes. Acusado por colegas de tener un prontuario de machismo, bullying y agresiones verbales en stream y televisión.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 3.8,
+    "caretaScore": 9.8
+  },
+  {
+    "id": "lola-latorre",
+    "name": "Lola Latorre",
+    "category": "farandula",
+    "categoryLabel": "Farándula / Influencer",
+    "tag": "Sorbo by Lola",
+    "quote": "Lo mío es inspiración, no copia.",
+    "bio": "Hija de Diego y Yanina Latorre, influencer y abogada. Viral por su marca de cosméticos Sorbo.",
+    "lore": "Lanzó su línea de cosmética 'Sorbo' y fue acusada de plagiar al 100% la estética, tipografía y envases de 'Rhode' de Hailey Bieber. Su defensa en TikTok se convirtió en tendencia y meme nacional.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 7.5,
+    "caretaScore": 8.0
+  },
+  {
+    "id": "tomas-mazza",
+    "name": "Tomás Mazza",
+    "category": "streaming",
+    "categoryLabel": "Fitness / Streaming",
+    "tag": "El Rey de los Pinchazos",
+    "quote": "Estoy adicto a los anabólicos y no lo puedo ocultar.",
+    "bio": "Influencer fitness y streamer. Generó alarma nacional tras confesar abiertamente su adicción a las sustancias químicas.",
+    "lore": "Revolucionó el debate del fitness argentino al admitir públicamente su dependencia de los anabólicos. En paralelo, es el ícono involuntario de la moda de pibes jóvenes que se pinchan para estar trabados sin pisar un gimnasio.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 6.8,
+    "caretaScore": 5.0
+  },
+  {
+    "id": "lauty-gram",
+    "name": "Lauty Gram",
+    "category": "musica",
+    "categoryLabel": "Música / RKT",
+    "tag": "El Trapero del Bardo",
+    "quote": "Tiramos chistes al aire y se enojan por todo.",
+    "bio": "Cantante urbano y tiktoker. Ex pareja de La China Suárez e involucrado en el chiste a Sasha Ferro.",
+    "lore": "Participó activamente del chiste de 'parrilla vieja' en el stream que provocó la reacción de Sasha Ferro. Famoso por sus idas y vueltas amorosas con la China Suárez y sus temas de RKT.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 6.0,
+    "caretaScore": 7.9
+  },
+  {
+    "id": "facu-guarino",
+    "name": "Facu Guarino ('Guari')",
+    "category": "streaming",
+    "categoryLabel": "Streaming / Creador",
+    "tag": "El Justiciero de Redes",
+    "quote": "Salwe tiene un prontuario de machismo, homofobia y bullying bastante marcado.",
+    "bio": "Streamer y amigo íntimo de Sasha Ferro. Saltó a defenderla públicamente tras el ataque en vivo.",
+    "lore": "Publicó una historia demoledora destapando los antecedentes de Martín Salwe y defendiendo la decisión de Sasha Ferro de cortar distancia con su hermano.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 9.2,
+    "caretaScore": 1.5
+  },
+  {
+    "id": "luchi-patrone",
+    "name": "Luchi Patrone",
+    "category": "streaming",
+    "categoryLabel": "Streaming / Conductora",
+    "tag": "La Conductora Cuestionada",
+    "quote": "Si hubiese pensado que estaban bardeando a una mina, actuaba en dos minutos.",
+    "bio": "Conductora de Solo por Hoy. Criticada por Flor Regidor y las redes por no intervenir durante el chiste en vivo.",
+    "lore": "Rompió el silencio tras la catarata de críticas en redes sociales por quedarse callada durante el chiste misógino hacia Sasha Ferro.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 5.5,
+    "caretaScore": 7.2
+  },
+  {
     "id": "tomas-holder",
     "name": "Tomás Holder",
     "category": "gh",
@@ -2711,6 +2815,9 @@ const CELEBRITIES_DATABASE = [
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.CELEBRITIES_DATABASE = CELEBRITIES_DATABASE;
+}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { CELEBRITIES_DATABASE };
 }

@@ -500,4 +500,3 @@ const categories = [
 ];
 
 console.log("Adding all items...");
-`);

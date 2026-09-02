@@ -118,7 +118,7 @@ const CELEBRITIES_DATABASE = [
     "quote": "Mi mujer no es un hotel, es un hogar.",
     "bio": "Primer expulsado y más icónico de GH. Amante de la noche, anabólicos, mewing y soltar factos cancelables.",
     "lore": "El rey del contenido divisivo. Saltó a la fama en TikTok mostrando su físico y un personaje de rugbier clasista. Tras GH protagonizó romances escandalosos, internaciones por excesos, videos íntimos filtrados y una transformación espiritual que convive con su ego de gimnasio.",
-    "image": "assets/celebrities/tomas-holder.jpg",
+    "image": "assets/logo-pf.jpg",
     "auraScore": 7.8,
     "caretaScore": 8.5
   },

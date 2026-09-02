@@ -65,7 +65,7 @@ const GUERRA_BANDOS_DATA = [
       "badge": "Disciplina & Respeto al Cuerpo",
       "quote": "Sin esfuerzo no hay mérito y con la salud no se jode.",
       "argument": "Pincharse sin entrenar ni comer adecuadamente es una bomba de tiempo para los órganos; el verdadero físico y la disciplina mental se construyen levantando peso y con constancia.",
-      "image": "assets/celebrities/tomas-holder.jpg"
+      "image": "assets/logo-pf.jpg"
     }
   },
   {

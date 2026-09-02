@@ -2196,7 +2196,7 @@ function startShowDia(mode = "today") {
         title: "La Polémica de los 'Pinchazos': Tomás Mazza vs. Fitness Natural",
         guide: "¿El atajo farmacológico para estar marcado o la cultura del esfuerzo y salud?",
         sideA: { name: "Tomás Mazza & 'Pinchazos'", badge: "El Atajo Estético", argument: "Si los fármacos te dan el físico deseado sin pasar 10 años sufriendo en un gimnasio, la gente elige el resultado.", image: "assets/logo-pf.jpg" },
-        sideB: { name: "Fitness Natural & Salud", badge: "Disciplina & Respeto al Cuerpo", argument: "Pincharse sin entrenar ni comer adecuadamente es una bomba de tiempo para los órganos; el físico se construye con esfuerzo.", image: "assets/celebrities/tomas-holder.jpg" }
+        sideB: { name: "Fitness Natural & Salud", badge: "Disciplina & Respeto al Cuerpo", argument: "Pincharse sin entrenar ni comer adecuadamente es una bomba de tiempo para los órganos; el físico se construye con esfuerzo.", image: "assets/logo-pf.jpg" }
       },
       GUERRA_BANDOS_DATA[3] || {
         id: "duelo-talledo-blanqueo",

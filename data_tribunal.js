@@ -243,7 +243,7 @@ const TRIBUNAL_CASES = [
     "protagonist": "El Empleado de Oficina",
     "category": "Vida Cotidiana / Trabajo",
     "context": "Tu jefe fit de 24 años prohíbe terminantemente que los empleados coman medialunas, azúcar o galletitas en la oficina de 9 a 18 hs porque 'baja la productividad y da picos de insulina'. Si te ven con un alfajor te descuentan el presentismo.",
-    "image": "assets/celebrities/tomas-holder.jpg",
+    "image": "assets/logo-pf.jpg",
     "quote": "En esta empresa se rinde al 100% y el azúcar es veneno.",
     "options": [
       {

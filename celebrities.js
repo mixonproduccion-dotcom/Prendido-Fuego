@@ -88,7 +88,7 @@ const CELEBRITIES_DATA = [
     "category": "gh",
     "categoryLabel": "Prendido Fuego / Gym Bro",
     "tag": "Macho Alfa de Rosario",
-    "image": "assets/celebrities/tomas-holder.jpg",
+    "image": "assets/logo-pf.jpg",
     "quote": "Mi mujer no es un hotel, es un hogar",
     "bio": "El primer expulsado más famoso de la historia, fan de la noche y el anabólico."
   },

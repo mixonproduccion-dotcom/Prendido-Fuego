@@ -2189,8 +2189,11 @@ function startShowDia(mode = "today") {
   currentShowStep = 1;
 
   if (mode === "today") {
-    // 1. APERTURA: GRAN PORTADA DEL DÍA (SASHA VS LIONEL / SALWE)
-    const aperturaDuel = GUERRA_BANDOS_DATA[0] || {
+    if (typeof CURRENT_SHOW_EPISODE !== "undefined" && CURRENT_SHOW_EPISODE) {
+      currentShowEpisode = CURRENT_SHOW_EPISODE;
+    } else {
+      // 1. APERTURA: GRAN PORTADA DEL DÍA (SASHA VS LIONEL / SALWE)
+      const aperturaDuel = GUERRA_BANDOS_DATA[0] || {
       id: "duelo-sasha-lio-salwe",
       title: "ESCÁNDALO EN EL STREAM: SASHA FERRO VS. LIONEL FERRO & MARTÍN SALWE",
       guide: "La gran polémica del día: ¿A quién banca cada conductor de la mesa?",
@@ -2318,17 +2321,18 @@ function startShowDia(mode = "today") {
       }
     ];
 
-    currentShowEpisode = {
-      title: "PROGRAMA DE HOY • MIÉRCOLES 02/09",
-      badge: "🔥 GUION OFICIAL • MIÉRCOLES 02/09 • MIX ON STUDIO",
-      aperturaDuel,
-      bandosList,
-      tribunalList,
-      semaforoList,
-      podioItem,
-      ruletaList,
-      funaAccused: "holder"
-    };
+      currentShowEpisode = {
+        title: "PROGRAMA DE HOY • MIÉRCOLES 02/09",
+        badge: "🔥 GUION OFICIAL • MIÉRCOLES 02/09 • MIX ON STUDIO",
+        aperturaDuel,
+        bandosList,
+        tribunalList,
+        semaforoList,
+        podioItem,
+        ruletaList,
+        funaAccused: "holder"
+      };
+    }
   } else {
     // Modo RNG aleatorio de 8 bloques
     const shuffledBandos = [...GUERRA_BANDOS_DATA].sort(() => 0.5 - Math.random());

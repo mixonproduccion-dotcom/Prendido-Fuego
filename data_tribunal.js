@@ -6,6 +6,93 @@
 
 const TRIBUNAL_CASES = [
   {
+    "id": "caso-amigo-con-tu-ex",
+    "title": "El Amigo que se Queda con tu Ex: ¿Amor o Icardiada Traidora?",
+    "protagonist": "El Amigo en la Mira",
+    "category": "Música Urbana / Códigos de Barrio",
+    "context": "Cortás una relación intensa de meses de forma fría. A las pocas semanas, tu propio amigo de juntadas y colaboraciones musicales empieza a salir con tu ex en público, van juntos a eventos y encima te tira indirectas en redes ('te gustan villeros').",
+    "image": "assets/celebrities/luck-ra.jpg",
+    "quote": "De la muerte y de los cuernos nadie se salvó, yo pensé que sí pero mi día llegó.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Trompada de Frente y Desconocimiento Total (Códigos / Holder)",
+        "text": "Con la ex de un amigo jamás se mete nadie. Si te cruza en un boliche o evento, le dejás en claro físicamente y verbalmente que rompió los códigos de hombre para siempre.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Cero Drama Público y Exponer la Verdad en Frío (Límites / Diane)",
+        "text": "Ni una lágrima en TikTok. Mostrás que la relación ya estaba rota, que te fue infiel en Brasil y que sigan su camino sin darles entidad ni prensa de despecho.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Desahogo Musical y Facturación Millonaria (Resiliencia / Luli)",
+        "text": "Canalizás el dolor en tres cuartetos de despecho número 1 en Spotify. Que la gira y el éxito curen lo que la traición rompió.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-gorda-pesada-intensa",
+    "title": "El Manifiesto de Fati Pazelli: 'Gorda Pesada e Intensa con Orgullo'",
+    "protagonist": "La Intensa sin Filtro",
+    "category": "Redes Sociales / Dinámicas de Pareja",
+    "context": "En tus relaciones te dicen que sos insoportable, asfixiante y pesada. En vez de replantearte nada, lo subís a tus redes orgullosa diciendo: 'No hay título que me guste más que me digan gorda pesada, porque SÍ'.",
+    "image": "assets/logo-pf.jpg",
+    "quote": "No hay título que me guste más que me digan gorda pesada, porque SÍ.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. Bandera Roja de Toxicidad Inmediata (Macho Alfa / Holder)",
+        "text": "El hombre busca paz mental y contención al llegar a casa. Si tu carta de presentación es ser un dolor de cabeza diario, no calificás para mujer de alto valor.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Autenticidad Pura Frente a los Tibios (Carácter / Diane)",
+        "text": "A los hombres inmaduros les molesta que una mujer marque la cancha y se haga sentir. Si ser pesada significa no dejarte boludear, es una virtud.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Herida de Abandono y Apego Ansioso (Tarot / Luli)",
+        "text": "Gritar que te gusta ser pesada es un mecanismo de defensa para que no te lastimen primero. Necesita abrazar su niña interior y bajar la guardia.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
+    "id": "caso-mirtha-99-record",
+    "title": "Mirtha Legrand a los 99 Años: La Carrera al Centenario Legendario",
+    "protagonist": "La Chiqui",
+    "category": "Farándula Histórica / Cultura Pop",
+    "context": "Internaron a Mirtha Legrand por un cuadro de bronquitis faltando solo 6 meses para su cumpleaños de 100. En Twitter el público pide vigilia nacional para que consiga el récord histórico argentino.",
+    "image": "assets/celebrities/mirtha-legrand.jpg",
+    "quote": "Dale vieja que faltan 6 meses para los 100 años, no te podés ir sin el récord.",
+    "options": [
+      {
+        "id": "A",
+        "title": "1. El Domingo en la Mesaza Clavando Rating (Disciplina / Holder)",
+        "text": "Tiene más disciplina de trabajo que cualquier influencer de 20 años. Sale de la clínica, se clava el traje y conduce el fin de semana como una campeona.",
+        "style": "holder"
+      },
+      {
+        "id": "B",
+        "title": "2. Retiro con Honores y Cero Morbo Mediático (Dignidad / Diane)",
+        "text": "Ya dio todo por la televisión argentina. Dejen de medir el pulso de una señora de 99 años por dos puntos de rating y denle descanso familiar.",
+        "style": "diane"
+      },
+      {
+        "id": "C",
+        "title": "3. Récord Cósmico y Fiesta Nacional en el Obelisco (Mística / Luli)",
+        "text": "Mirtha trasciende la medicina tradicional; tiene una energía planetaria inagotable y va a soplar las 100 velas con el país entero festejando.",
+        "style": "luli"
+      }
+    ]
+  },
+  {
     "id": "caso-sasha-lio-parrillavieja",
     "title": "El Bardo de los Hermanos Ferro: El Chiste Machista en Stream",
     "protagonist": "Sasha Ferro",

@@ -6,6 +6,58 @@
 
 const RANKING_DATA = [
   {
+    "id": "ranking-circulo-traicion-0709",
+    "title": "1. El Círculo de la Traición: El Cogedero de la Música",
+    "description": "Ordenalos del #1 (La falta de códigos más sucia en la música argentina) al #5 (El que quedó atrapado en el medio por casualidad).",
+    "candidates": [
+      {
+        "id": "tiago-pzk",
+        "name": "Tiago PZK",
+        "crime": "La Icardiada Musical y la Agarrada a la Ex",
+        "lore": "Se puso de novio con La Joaqui (ex de su amigo Luck Ra), le tiró 'te gustan villeros' y en la misma noche le tocó el orto a su ex novia.",
+        "image": "assets/celebrities/tiago-pzk.jpg",
+        "auraScore": 4.0,
+        "traicionScore": 9.9
+      },
+      {
+        "id": "luck-ra",
+        "name": "Luck Ra",
+        "crime": "La Pernoctada Clandestina en Brasil",
+        "lore": "Lloró cuernos en TikTok pero Yanina Latorre destapó que metía chicas a dormir en su casa en Brasil mientras Joaqui confiaba en él.",
+        "image": "assets/celebrities/luck-ra.jpg",
+        "auraScore": 5.2,
+        "traicionScore": 8.8
+      },
+      {
+        "id": "la-joaqui",
+        "name": "La Joaqui",
+        "crime": "El Venganza Tour con el Mejor Amigo",
+        "lore": "Disparó contra el ex diciendo 'la gira no se confunde' y blanqueó al instante con el íntimo amigo de Luck Ra para cobrarse revancha.",
+        "image": "assets/celebrities/la-joaqui.jpg",
+        "auraScore": 8.5,
+        "traicionScore": 7.5
+      },
+      {
+        "id": "mauro-icardi",
+        "name": "Mauro Icardi",
+        "crime": "El Santo Patrono de Robar Novias",
+        "lore": "El prócer de la falta de códigos entre amigos. El espejo donde hoy se miran los traperos de la nueva generación.",
+        "image": "assets/celebrities/mauro-icardi.jpg",
+        "auraScore": 7.0,
+        "traicionScore": 9.8
+      },
+      {
+        "id": "tuli-acosta",
+        "name": "Tuli Acosta",
+        "crime": "La Amiga en el Fuego Cruzado",
+        "lore": "Amiga de Taichu, amiga de Luck Ra, amiga de Joaqui. Tiene que saludar a todos en las Bresh fingiendo demencia diplomática.",
+        "image": "assets/logo-pf.jpg",
+        "auraScore": 8.2,
+        "traicionScore": 3.0
+      }
+    ]
+  },
+  {
     "id": "ranking-traicion-familiar-0209",
     "title": "1. El Ranking de Traición Familiar & de Sangre",
     "description": "Ordenalos del #1 (La traición más imperdonable hacia un familiar de sangre) al #5 (El que cometió un error pero zafa por rating o confusión).",

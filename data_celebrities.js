@@ -6,6 +6,45 @@
 
 const CELEBRITIES_DATABASE = [
   {
+    "id": "tuli-acosta",
+    "name": "Tuli Acosta",
+    "category": "musica",
+    "categoryLabel": "Música / Streaming",
+    "tag": "La Amiga en el Medio del Fuego",
+    "quote": "Bailando y surfeando las amistades más complicadas de la escena.",
+    "bio": "Bailarina, streamer y cantante. En el epicentro de las amistades cruzadas de Taichu, Joaqui, Luck Ra y Tiago PZK.",
+    "lore": "Amiga íntima de Taichu y Luck Ra. Campeona del Bailando, ahora obligada a navegar la tensión entre los músicos más sonados del país.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 8.8,
+    "caretaScore": 2.5
+  },
+  {
+    "id": "taichu",
+    "name": "Taichu",
+    "category": "musica",
+    "categoryLabel": "Trap / Música Urbana",
+    "tag": "La Pionera del Círculo",
+    "quote": "En este ambiente todos compartimos todo y nadie se hace cargo.",
+    "bio": "Trapera y cantante referente. Ex de Tiago PZK y amiga de La Joaqui y Tuli Acosta.",
+    "lore": "El punto cero del mapa de vínculos. Su pasado con Tiago y su amistad con Joaqui completan el triángulo más explosivo de la música.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 9.2,
+    "caretaScore": 1.5
+  },
+  {
+    "id": "fati-pazelli",
+    "name": "Fati Pazelli",
+    "category": "streaming",
+    "categoryLabel": "Viral / Redes Sociales",
+    "tag": "Gorda Pesada con Orgullo",
+    "quote": "No hay título que me guste más que me digan gorda pesada, porque SÍ.",
+    "bio": "Creadora de contenido viral. Reivindica la intensidad y el ser pesada sin pedir disculpas.",
+    "lore": "Viralizó la bandera de no caretearla: si ser intensa molesta a los tibios, ella lo convierte en su marca personal.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 8.0,
+    "caretaScore": 1.0
+  },
+  {
     "id": "sasha-ferro",
     "name": "Sasha Ferro",
     "category": "streaming",

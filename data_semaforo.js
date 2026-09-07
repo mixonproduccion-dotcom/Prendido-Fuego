@@ -2,6 +2,63 @@
 // Prendido Fuego 🔥 (Mix On Studio)
 
 const SEMAFORO_CASES = [
+  // SITUACIONES VIRALES DEL DÍA (GUION 07/09)
+  {
+    id: "sem-0709-001",
+    title: "El Video de los Cuernos en TikTok",
+    text: "Tu ex sube un video cantando 'de la muerte y de los cuernos nadie se salvó' para victimizarse en redes después de haberte metido los cuernos en Brasil...",
+    expectedLevel: "fuego",
+    category: "Música & Despecho",
+    tags: ["Luck Ra", "La Joaqui", "Cuernos", "TikTok"]
+  },
+  {
+    id: "sem-0709-002",
+    title: "La Indirecta de 'Te Gustan Villeros'",
+    text: "Tu amigo empieza a salir con tu ex novia y te tira una indirecta en redes diciendo 'te gustan villeros' para picarte...",
+    expectedLevel: "rojo",
+    category: "Códigos de Amigos",
+    tags: ["Tiago PZK", "Luck Ra", "La Joaqui", "Traición"]
+  },
+  {
+    id: "sem-0709-003",
+    title: "Toquetear a la Ex en Pleno Boliche",
+    text: "Estás en un boliche chapando con alguien nuevo pero en la misma noche le andás agarrando el orto a tu ex pareja...",
+    expectedLevel: "fuego",
+    category: "Noche & Toxicidad",
+    tags: ["Tiago PZK", "La Joaqui", "Boliche", "Infidelidad"]
+  },
+  {
+    id: "sem-0709-004",
+    title: "La Chica que Pernoctaba en Brasil",
+    text: "Tu pareja se va de vacaciones con amigos y te enterás por terceros que metió a una mina a dormir a la casa mientras vos trabajabas...",
+    expectedLevel: "fuego",
+    category: "Infidelidad Encubierta",
+    tags: ["Luck Ra", "Yanina Latorre", "Brasil", "Red Flag"]
+  },
+  {
+    id: "sem-0709-005",
+    title: "La Gira No Se Confunde",
+    text: "Cortás una relación y salís de gira todos los fines de semana repitiendo: 'Váyanse de gira, que la gira no se levanta un día diciendo que está confundida'...",
+    expectedLevel: "amarillo",
+    category: "Despecho & Salidas",
+    tags: ["La Joaqui", "Soltería", "Gira", "Farra"]
+  },
+  {
+    id: "sem-0709-006",
+    title: "Gorda Pesada e Intensa con Orgullo",
+    text: "En una discusión te marcan que sos una persona pesada e insoportable y respondés: 'No hay título que me guste más que me digan gorda pesada, porque SÍ'...",
+    expectedLevel: "rojo",
+    category: "Personalidad & Redes",
+    tags: ["Fati Pazelli", "Intensidad", "Parejas"]
+  },
+  {
+    id: "sem-0709-007",
+    title: "Comentar la Altura de Famosas en un Evento",
+    text: "Ves una foto de tres cantantes famosas en una alfombra roja y tuiteás: 'Me muero, son re enanas las tres'...",
+    expectedLevel: "verde",
+    category: "Farándula & Redes",
+    tags: ["Tini", "La Joaqui", "Viral", "Humor"]
+  },
   // SITUACIONES VIRALES DEL DÍA (GUION 02/09)
   {
     id: "sem-0209-001",

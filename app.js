@@ -403,11 +403,11 @@ function switchTab(tabId) {
 function loadInitialRoulette() {
   if (!celebrities.length) return;
 
-  const defaultVictim = celebrities.find(c => c.id === "sasha-ferro") || celebrities.find(c => c.id === "wanda-nara") || celebrities[0];
+  const defaultVictim = celebrities.find(c => c.id === "la-joaqui") || celebrities.find(c => c.id === "sasha-ferro") || celebrities[0];
   const defaultCandidates = [
-    celebrities.find(c => c.id === "lionel-ferro") || celebrities[1],
-    celebrities.find(c => c.id === "martin-salwe") || celebrities[2],
-    celebrities.find(c => c.id === "facu-guarino") || celebrities[3]
+    celebrities.find(c => c.id === "luck-ra") || celebrities[1],
+    celebrities.find(c => c.id === "tiago-pzk") || celebrities[2],
+    celebrities.find(c => c.id === "rusherking") || celebrities[3]
   ];
 
   setRouletteSetup(defaultVictim, defaultCandidates);
@@ -2189,39 +2189,20 @@ function startShowDia(mode = "today") {
   currentShowStep = 1;
 
   if (mode === "today") {
-    // 1. APERTURA: GRAN PORTADA DEL DÍA (SASHA VS LIONEL / SALWE)
+    // 1. APERTURA: GRAN PORTADA DEL DÍA (LA JOAQUI VS LUCK RA & TIAGO PZK)
     const aperturaDuel = GUERRA_BANDOS_DATA[0] || {
-      id: "duelo-sasha-lio-salwe",
-      title: "ESCÁNDALO EN EL STREAM: SASHA FERRO VS. LIONEL FERRO & MARTÍN SALWE",
+      id: "duelo-joaqui-luckra-amigos",
+      title: "EL COGEDERO DE LA MÚSICA: LA JOAQUI VS. LUCK RA",
       guide: "La gran polémica del día: ¿A quién banca cada conductor de la mesa?",
-      sideA: { name: "Sasha Ferro", badge: "La que Puso Límites Familiares", argument: "Bancó años de ninguneo; no puede tolerar que su propio hermano se ría en vivo mientras dos tipos la degradan sexualmente ante miles de personas.", image: "assets/logo-pf.jpg" },
-      sideB: { name: "Lionel Ferro & Salwe", badge: "El Humor de Stream en Jaque", argument: "Fue un chiste espontáneo sin intención de lastimar; en el streaming se cruzan límites y los problemas familiares se resuelven en privado.", image: "assets/logo-pf.jpg" },
-      chatTrigger: "¿De qué lado está el chat? Escribí [1] SASHA o [2] LIONEL en vivo."
+      sideA: { name: "La Joaqui", badge: "La que no se Queda Callada", argument: "Sufrió infidelidades en silencio (como la chica que pernoctaba en Brasil), la dejaron de forma fría y ahora es libre de salir con quien le pinte sin pedirle permiso al ex.", image: "assets/celebrities/la-joaqui.jpg" },
+      sideB: { name: "Luck Ra", badge: "De los Cuernos Nadie se Salva", argument: "Siente la traición más baja de todas: que tu ex pareja elija precisamente a tu propio íntimo amigo para ventilarlo en público y enrostrártelo en la cara.", image: "assets/celebrities/luck-ra.jpg" }
     };
 
     // 2. GUERRA DE BANDOS (3 DUELOS SIGUIENTES AL HILO)
     const bandosList = [
-      GUERRA_BANDOS_DATA[1] || {
-        id: "duelo-lola-hailey-sorbo",
-        title: "El 'Sorbo Gate': Lola Latorre vs. Hailey Bieber ('Rhode')",
-        guide: "¿Inspiración legítima para emprender en Argentina o copia y plagio descarado?",
-        sideA: { name: "Lola Latorre ('Sorbo')", badge: "Inspiración Nacional", argument: "Traer y adaptar una tendencia estética global para que el público argentino acceda a productos cancheros es visión de negocio.", image: "assets/logo-pf.jpg" },
-        sideB: { name: "Críticas & Hailey Bieber", badge: "Plagio Descarado", argument: "Copió al 100% el packaging, la tipografía y el concepto exacto de Rhode; una falta total de originalidad.", image: "assets/logo-pf.jpg" }
-      },
-      GUERRA_BANDOS_DATA[2] || {
-        id: "duelo-mazza-pinchazos-gym",
-        title: "La Polémica de los 'Pinchazos': Tomás Mazza vs. Fitness Natural",
-        guide: "¿El atajo farmacológico para estar marcado o la cultura del esfuerzo y salud?",
-        sideA: { name: "Tomás Mazza & 'Pinchazos'", badge: "El Atajo Estético", argument: "Si los fármacos te dan el físico deseado sin pasar 10 años sufriendo en un gimnasio, la gente elige el resultado.", image: "assets/logo-pf.jpg" },
-        sideB: { name: "Fitness Natural & Salud", badge: "Disciplina & Respeto al Cuerpo", argument: "Pincharse sin entrenar ni comer adecuadamente es una bomba de tiempo para los órganos; el físico se construye con esfuerzo.", image: "assets/logo-pf.jpg" }
-      },
-      GUERRA_BANDOS_DATA[3] || {
-        id: "duelo-talledo-blanqueo",
-        title: "El Blanqueo en el Movistar: Santi Talledo vs. El Perfil Bajo",
-        guide: "¿Mostrar tu amor ante 15.000 personas en vivo o cuidar la intimidad de la pareja?",
-        sideA: { name: "Santi Talledo & Carli", badge: "Amor Auténtico al Aire", argument: "Vivir el amor con libertad total y compartir tu felicidad con la comunidad de streaming que te acompaña todos los días.", image: "assets/celebrities/santi-talledo.jpg" },
-        sideB: { name: "El Perfil Bajo", badge: "Intimidad Blindada", argument: "Cuando metés a miles de fanáticos adentro de tu intimidad, ante la primera crisis los rumores se vuelven insoportables.", image: "assets/logo-pf.jpg" }
-      }
+      GUERRA_BANDOS_DATA[0],
+      GUERRA_BANDOS_DATA[1],
+      GUERRA_BANDOS_DATA[2]
     ];
 
     // 3. TRIBUNAL DE FARÁNDULA (3 CASOS)
@@ -2231,69 +2212,69 @@ function startShowDia(mode = "today") {
       TRIBUNAL_CASES[2]
     ];
 
-    // 4. SEMÁFORO DE TOXICIDAD (7 RED FLAGS)
+    // 4. SEMÁFORO DE TOXICIDAD (7 RED FLAGS DEL 07/09)
     const semaforoList = [
       {
         id: "sem-1",
-        title: "El Chiste Misógino y la Risa del Hermano",
-        category: "Streaming / Sasha & Lio",
-        guide: "¿Humor de stream o traición familiar?",
-        text: "Tu hermano se ríe a carcajadas en un stream en vivo cuando un compañero te denigra y te dice 'parrilla vieja' ante miles de personas..."
+        title: "El Video de los Cuernos en TikTok",
+        category: "Música / Luck Ra",
+        guide: "¿Víctima herida o despecho manipulador?",
+        text: "Tu ex sube un video cantando 'de la muerte y de los cuernos nadie se salvó' para victimizarse en redes después de haberte metido los cuernos en Brasil..."
       },
       {
         id: "sem-2",
-        title: "El 'Sorbo Gate': Inspiración vs. Plagio",
-        category: "Farándula / Lola Latorre",
-        guide: "¿Emprendedora viva o choreo total?",
-        text: "Lanzás tu marca de cosméticos con el packaging y la estética calcada de Hailey Bieber y salís en TikTok diciendo 'lo mío es inspiración, no copia'..."
+        title: "La Indirecta de 'Te Gustan Villeros'",
+        category: "Códigos de Amigos / Tiago PZK",
+        guide: "¿Chicana de barrio o burla desmedida?",
+        text: "Tu amigo empieza a salir con tu ex novia y te tira una indirecta en redes diciendo 'te gustan villeros' para picarte..."
       },
       {
         id: "sem-3",
-        title: "La Moda de los 'Pinchazos'",
-        category: "Salud & Fitness / Tomás Mazza",
-        guide: "¿Atajo estético o peligro mortal?",
-        text: "Tu pareja se pincha anabólicos y esteroides para estar trabado y marcado sin pisar el gimnasio ni hacer dieta..."
+        title: "Toquetear a la Ex en Pleno Boliche",
+        category: "Noche / Tiago PZK",
+        guide: "¿Costumbre de ex o falta de respeto total?",
+        text: "Estás en un boliche chapando con alguien nuevo pero en la misma noche le andás agarrando el orto a tu ex pareja..."
       },
       {
         id: "sem-4",
-        title: "La Novia que Tenía 75 en Lugar de 40",
-        category: "Virales / Mentiras & Cirugía",
-        guide: "¿Perdonás la mentira o salís corriendo?",
-        text: "Descubrís por el Instagram de un cirujano plástico que la persona con la que salís hace 6 meses no tiene 40 años sino 75..."
+        title: "La Chica que Pernoctaba en Brasil",
+        category: "Infidelidad / Luck Ra",
+        guide: "¿Cero códigos o relación abierta de facto?",
+        text: "Tu pareja se va de vacaciones con amigos y te enterás por terceros que metió a una mina a dormir a la casa mientras vos trabajabas..."
       },
       {
         id: "sem-5",
-        title: "El Robot Humanoide en la Cama",
-        category: "Tecnología / Tesla Optimus",
-        guide: "¿Infidelidad o juguete sexual?",
-        text: "Tu pareja tiene intimidad con un robot humanoide Optimus de Tesla a solas y te jura que 'no cuenta como infidelidad porque es un artefacto'..."
+        title: "La Gira No Se Confunde",
+        category: "Despecho & Soltería / La Joaqui",
+        guide: "¿Filosofía liberadora o autodestrucción?",
+        text: "Cortás una relación y salís de gira todos los fines de semana repitiendo: 'Váyanse de gira, que la gira no se levanta un día diciendo que está confundida'..."
       },
       {
         id: "sem-6",
-        title: "El Blanqueo en el Movistar Arena",
-        category: "Amor & Streaming / Santi Talledo",
-        guide: "¿Gesto romántico o sobreexposición?",
-        text: "Tu pareja te pide blanquear la relación arriba del escenario frente a 15.000 fanáticos en un show de streaming..."
+        title: "Gorda Pesada e Intensa con Orgullo",
+        category: "Personalidad / Fati Pazelli",
+        guide: "¿Mujer con carácter o insoportable?",
+        text: "En una discusión te marcan que sos una persona pesada e insoportable y respondés: 'No hay título que me guste más que me digan gorda pesada, porque SÍ'..."
       },
       {
         id: "sem-7",
-        title: "La Carta Abierta de Despecho al Hermano",
-        category: "Dignidad & Vínculos",
-        guide: "¿Dignidad de hierro o lavar trapitos al sol?",
-        text: "Publicás una carta abierta en Instagram destruyendo a tu propio hermano con nombre y apellido y recordándole su rol de padre..."
+        title: "Comentar la Altura de Famosas en un Evento",
+        category: "Viral / Redes Sociales",
+        guide: "¿Humor inofensivo o ninguneo físico?",
+        text: "Ves una foto de tres cantantes famosas en una alfombra roja y tuiteás: 'Me muero, son re enanas las tres'..."
       }
     ];
 
-    // 5. PODIO TOP RANKING
+    // 5. PODIO TOP RANKING (CÍRCULO DE LA TRAICIÓN)
     const podioItem = {
-      title: "TOP 5: RANKING DE TRAICIONES FAMILIARES & DE SANGRE",
-      guide: "La mesa debe ordenar del #1 (La traición más imperdonable) al #5 (El error que se puede perdonar).",
+      title: "TOP 5: RANKING DE TRAICIONES EN LA MÚSICA",
+      guide: "La mesa debe ordenar del #1 (La peor falta de códigos) al #5 (El que quedó en el medio por casualidad).",
       candidates: [
-        { id: "lionel-ferro", name: "Lionel Ferro", crime: "La Risa del Chiste a su Hermana", image: "assets/logo-pf.jpg" },
-        { id: "alejandro-stoessel", name: "Alejandro Stoessel", crime: "El Manejo de los US$ 70M de Tini", image: "assets/logo-pf.jpg" },
-        { id: "mauro-icardi", name: "Mauro Icardi", crime: "La Icardeada a Maxi López", image: "assets/celebrities/mauro-icardi.jpg" },
-        { id: "gisela-holder", name: "Gisela Gordillo", crime: "El Telo con el Compañero de Tomás", image: "assets/celebrities/gisela-holder.jpg" },
-        { id: "lola-latorre", name: "Lola Latorre", crime: "El 'Sorbo Gate' a Hailey Bieber", image: "assets/logo-pf.jpg" }
+        { id: "tiago-pzk", name: "Tiago PZK", crime: "La Icardiada Musical y la Agarrada a la Ex", image: "assets/celebrities/tiago-pzk.jpg" },
+        { id: "luck-ra", name: "Luck Ra", crime: "La Pernoctada Clandestina en Brasil", image: "assets/celebrities/luck-ra.jpg" },
+        { id: "la-joaqui", name: "La Joaqui", crime: "El Venganza Tour con el Mejor Amigo", image: "assets/celebrities/la-joaqui.jpg" },
+        { id: "mauro-icardi", name: "Mauro Icardi", crime: "El Santo Patrono de Robar Novias", image: "assets/celebrities/mauro-icardi.jpg" },
+        { id: "tuli-acosta", name: "Tuli Acosta", crime: "La Amiga en el Fuego Cruzado", image: "assets/logo-pf.jpg" }
       ]
     };
     showPodioState = [...podioItem.candidates];
@@ -2301,26 +2282,26 @@ function startShowDia(mode = "today") {
     // 6. RULETA & 3 TRONOS (2 RONDAS)
     const ruletaList = [
       {
-        victim: celebrities.find(c => c.id === "sasha-ferro") || { name: "Sasha Ferro", image: "assets/logo-pf.jpg", tag: "La Víctima del Stream", lore: "En el ojo de la tormenta tras el chiste machista en Solo por Hoy y la carta a su hermano." },
+        victim: celebrities.find(c => c.id === "la-joaqui") || { name: "La Joaqui", image: "assets/celebrities/la-joaqui.jpg", tag: "La Protagonista del Escándalo", lore: "En el medio de la ruptura con Luck Ra y el romance con Tiago PZK." },
         candidates: [
-          celebrities.find(c => c.id === "lionel-ferro") || { name: "Lionel Ferro", image: "assets/logo-pf.jpg", lore: "El hermano sentado al lado que se rio en vivo." },
-          celebrities.find(c => c.id === "martin-salwe") || { name: "Martín Salwe", image: "assets/logo-pf.jpg", lore: "El autor de la frase denigrante al aire." },
-          celebrities.find(c => c.id === "facu-guarino") || { name: "Facu Guarino", image: "assets/logo-pf.jpg", lore: "El amigo streamer que salió a defenderla en redes." }
+          celebrities.find(c => c.id === "luck-ra") || { name: "Luck Ra", image: "assets/celebrities/luck-ra.jpg", lore: "El ex que llora cuernos en TikTok." },
+          celebrities.find(c => c.id === "tiago-pzk") || { name: "Tiago PZK", image: "assets/celebrities/tiago-pzk.jpg", lore: "El amigo de Luck Ra y actual chongo." },
+          celebrities.find(c => c.id === "rusherking") || { name: "Rusherking", image: "assets/logo-pf.jpg", lore: "El galán urbano amigo de todo el grupo." }
         ]
       },
       {
-        victim: celebrities.find(c => c.id === "lola-latorre") || { name: "Lola Latorre", image: "assets/logo-pf.jpg", tag: "Sorbo by Lola", lore: "Viral por el supuesto plagio de su marca a Hailey Bieber." },
+        victim: celebrities.find(c => c.id === "tomas-holder") || { name: "Tomás Holder", image: "assets/logo-pf.jpg", tag: "Macho Alfa de Rosario", lore: "Experto en la noche porteña y sus boliches preferidos." },
         candidates: [
-          celebrities.find(c => c.id === "tomas-mazza") || { name: "Tomás Mazza", image: "assets/logo-pf.jpg", lore: "El fitness bro adicto a los anabólicos y pinchazos." },
-          celebrities.find(c => c.id === "santi-talledo") || { name: "Santi Talledo", image: "assets/celebrities/santi-talledo.jpg", lore: "El conductor estrella de Luzu TV y novio de Carli." },
-          celebrities.find(c => c.id === "lauty-gram") || { name: "Lauty Gram", image: "assets/logo-pf.jpg", lore: "El trapero que tiró leña al fuego en el stream." }
+          celebrities.find(c => c.id === "fati-pazelli") || { name: "Fati Pazelli", image: "assets/logo-pf.jpg", lore: "Gorda pesada e intensa con orgullo." },
+          celebrities.find(c => c.id === "yanina-latorre") || { name: "Yanina Latorre", image: "assets/celebrities/yanina-latorre.jpg", lore: "La que destapa todas las infidelidades en LAM." },
+          celebrities.find(c => c.id === "tuli-acosta") || { name: "Tuli Acosta", image: "assets/logo-pf.jpg", lore: "La amiga que esquiva las balas del grupo." }
         ]
       }
     ];
 
     currentShowEpisode = {
-      title: "PROGRAMA DE HOY • MIÉRCOLES 02/09",
-      badge: "🔥 GUION OFICIAL • MIÉRCOLES 02/09 • MIX ON STUDIO",
+      title: "PROGRAMA DE HOY • LUNES 07/09",
+      badge: "🔥 GUION OFICIAL • LUNES 07/09 • MIX ON STUDIO",
       aperturaDuel,
       bandosList,
       tribunalList,

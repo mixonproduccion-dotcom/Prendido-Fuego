@@ -3,6 +3,31 @@
 
 const BREAKING_NEWS_DATA = [
   {
+    tag: "🔥 EL COGEDERO DE LA MÚSICA",
+    headline: "LA JOAQUI BLANQUEÓ CON TIAGO PZK Y LUCK RA EXPLOTÓ EN REDES: 'DE LOS CUERNOS NADIE SE SALVA'",
+    sub: "Tomás Holder: 'Con la ex de un amigo jamás se jode, pero Luck Ra perdió códigos en Brasil'."
+  },
+  {
+    tag: "💣 BOMBA LAM",
+    headline: "YANINA LATORRE DESTAPÓ A LUCK RA: 'UNA CHICA PERNOCTABA EN SU CASA DE BRASIL'",
+    sub: "Diane Caracchi: 'Se hace la víctima en TikTok pero le metía los cuernos a Joaqui'."
+  },
+  {
+    tag: "⚔️ GUERRA DE TRAP",
+    headline: "TIAGO PZK LE RESPONDIÓ A LUCK RA TRAS QUEDARSE CON SU EX: 'TE GUSTAN VILLEROS'",
+    sub: "Luli Casé: 'Mucho ego herido, energía baja y amistades rotas por despecho'."
+  },
+  {
+    tag: "🥂 DESPECHO NACIONAL",
+    headline: "LA JOAQUI DIO CONSEJO DE VIDA: 'LA GIRA NO SE LEVANTA UN DÍA DICIENDO QUE ESTÁ CONFUNDIDA'",
+    sub: "El video viral que encendió la polémica entre las solteras del país."
+  },
+  {
+    tag: "🏥 SALUD & FARÁNDULA",
+    headline: "INTERNARON A MIRTHA LEGRAND POR BRONQUITIS A 6 MESES DE CUMPLIR 100 AÑOS",
+    sub: "Holder: 'La Chiqui tiene más disciplina que todo el streaming junto, el domingo vuelve'."
+  },
+  {
     tag: "🔥 ESCÁNDALO DE STREAM",
     headline: "SASHA FERRO DESTROZÓ A SU HERMANO TRAS CHISTE MACHISTA EN VIVO EN SOLO POR HOY",
     sub: "Tomás Holder: 'A tu hermana se la defiende con la vida, Lio Ferro fue un tibio'."

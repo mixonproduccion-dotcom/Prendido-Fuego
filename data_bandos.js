@@ -6,6 +6,69 @@
 
 const GUERRA_BANDOS_DATA = [
   {
+    "id": "duelo-joaqui-luckra-amigos",
+    "title": "El Cogedero de la Música: La Joaqui vs. Luck Ra",
+    "guide": "¿A quién bancás en la mesa? ¿Venganza y libertad con el amigo o dolor por la puñalada trapera?",
+    "sideA": {
+      "id": "la-joaqui",
+      "name": "La Joaqui",
+      "badge": "La que no se Queda Callada",
+      "quote": "Váyanse de gira, que la gira no se levanta un día diciendo que está confundida.",
+      "argument": "Sufrió infidelidades en silencio (como la chica que pernoctaba en Brasil), la dejaron de forma fría y ahora es libre de salir con quien le pinte sin pedirle permiso al ex.",
+      "image": "assets/celebrities/la-joaqui.jpg"
+    },
+    "sideB": {
+      "id": "luck-ra",
+      "name": "Luck Ra",
+      "badge": "De los Cuernos Nadie se Salva",
+      "quote": "De la muerte y de los cuernos nadie se salvó, yo pensé que sí pero mi día llegó.",
+      "argument": "Siente la traición más baja de todas: que tu ex pareja elija precisamente a tu propio íntimo amigo para ventilarlo en público y enrostrártelo en la cara.",
+      "image": "assets/celebrities/luck-ra.jpg"
+    }
+  },
+  {
+    "id": "duelo-tiago-codigos",
+    "title": "Tiago PZK vs. Los Códigos de Amigos ('Te Gustan Villeros')",
+    "guide": "¿Química y libertad total en la escena o la ex de un amigo jamás se toca?",
+    "sideA": {
+      "id": "tiago-pzk",
+      "name": "Tiago PZK",
+      "badge": "Te Gustan Villeros",
+      "quote": "Si ya cortaron hace meses, la atracción no pide permiso a nadie.",
+      "argument": "El amor y la pasión no tienen dueño; si dos personas adultas se gustan y están solteras, las amistades del pasado no pueden ser una celda moral.",
+      "image": "assets/celebrities/tiago-pzk.jpg"
+    },
+    "sideB": {
+      "id": "codigos-barrio",
+      "name": "Los Códigos de Barrio",
+      "badge": "La Ex del Amigo es Sagrada",
+      "quote": "La ex de un amigo tiene barba; los códigos se mueren en la lealtad.",
+      "argument": "En la música y en la vida hay millones de personas; meterte justo con la mujer con la que compartió cama tu hermano de la escena es una falta de respeto total.",
+      "image": "assets/logo-pf.jpg"
+    }
+  },
+  {
+    "id": "duelo-holder-boliches",
+    "title": "La Noche Porteña: El Top Boliches de Holder vs. La Noche Careta",
+    "guide": "¿A dónde sale el macho alfa de Buenos Aires? ¿Estatus y levante real o pura careteada de outfit?",
+    "sideA": {
+      "id": "holder-top-boliches",
+      "name": "Tomás Holder (Top Boliches)",
+      "badge": "Presencia, Estatus & Factos",
+      "quote": "Yo salgo a ganar; el lugar donde vas define con quién terminás la noche.",
+      "argument": "Elegir bien el club nocturno por calidad de gente, privacidad y levante sin histeriqueo. El hombre de alto valor sabe a dónde pisar.",
+      "image": "assets/logo-pf.jpg"
+    },
+    "sideB": {
+      "id": "noche-careta",
+      "name": "La Noche Careta",
+      "badge": "Mucho Outfit, Cero Diversión",
+      "quote": "Todos se miran la ropa en el VIP pero nadie la pasa bien de verdad.",
+      "argument": "Boliches inflados donde la gente gasta fortunas en mesas para aparentar en historias de Instagram mientras la vibra de fiesta es inexistente.",
+      "image": "assets/logo-pf.jpg"
+    }
+  },
+  {
     "id": "duelo-sasha-lio-salwe",
     "title": "Escándalo en el Stream: Sasha Ferro vs. Lionel Ferro & Martín Salwe",
     "guide": "¿A quién bancás en la mesa? ¿Límites familiares inquebrantables o humor desmedido de stream?",

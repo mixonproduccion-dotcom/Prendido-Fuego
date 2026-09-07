@@ -3,44 +3,44 @@
 
 const BREAKING_NEWS_DATA = [
   {
-    "tag": "💔 CAZADO POR TINDER",
-    "headline": "ALQUILÓ UN AIRBNB PARA PESCAR A SU MARIDO INFIEL Y LO ESPERÓ CON SUS HIJOS",
-    "sub": "¿Venganza épica o crueldad infantil? El video viral que divide las redes."
+    "tag": "🚨 URGENTE HOLDER",
+    "headline": "TOMÁS HOLDER SUFRIÓ UN FUERTE ACCIDENTE DE AUTO: 'CASI NOS MATA ESTE ASESINO'",
+    "sub": "El conductor cuenta en vivo los detalles del choque que conmocionó a sus seguidores."
   },
   {
-    "tag": "🎙️ KINGS LEAGUE EN CRISIS",
-    "headline": "AURONPLAY LIQUIDÓ A LA KINGS LEAGUE: 'NO LA VE NADIE, ES TENEBROSO PARA UN PROYECTO MILLONARIO'",
-    "sub": "Asegura que el formato de Piqué perdió toda la magia frente al streaming tradicional."
+    "tag": "🔥 BOMBAZO TRAP",
+    "headline": "LUCK RA AL ROJO VIVO: 'DE LA MUERTE Y DE LOS CUERNOS NADIE SE SALVÓ, MI DÍA LLEGÓ'",
+    "sub": "Confirmó la traición de su ex gran amigo Tiago PZK con La Joaqui."
   },
   {
-    "tag": "🇦🇷 RÉCORD HISTÓRICO",
-    "headline": "SPREEN BATIÓ EL RÉCORD GUINNESS DEL ALFAJOR MÁS GRANDE DEL MUNDO CON 3.112 KILOS",
-    "sub": "Más de 200 mil personas siguieron la hazaña en vivo por streaming."
+    "tag": "⚡ INDIRECTA LETAL",
+    "headline": "TIAGO PZK DISPARÓ TRAS EL ESCÁNDALO CON LUCK RA: 'TE GUSTAN VILLEROS'",
+    "sub": "El trapero rompió el silencio tras ser tildado de buitre por las redes."
   },
   {
-    "tag": "💣 BOMBA MEDIÁTICA",
-    "headline": "EL COFLA CONFESÓ QUE UN JUGADOR ARGENTINO DE EUROPA PARTICIPÓ EN UN TRÍO ÍNTIMO",
-    "sub": "¿Quién es la figura de la Selección señalada por el actor en redes?"
+    "tag": "💥 HABLA LA JOAQUI",
+    "headline": "LA JOAQUI FULMINÓ A LUCK RA: 'UNA SABE DE QUIÉN SE CASA PERO NO DE QUIÉN SE DIVORCIA'",
+    "sub": "Yanina Latorre reveló que el cordobés metía minas a pernoctar en la casa en Brasil."
   },
   {
-    "tag": "💋 FACTOS EN LUZU",
-    "headline": "LA JOAQUI DESCOLOCÓ A LAS CONDUCTORAS DE LUZU TV CON CONFESIONES ÍNTIMAS",
-    "sub": "Diane Caracchi: 'Dice lo que muchas piensan y no se animan a admitir'."
+    "tag": "🍾 CONSEJO DE SOLTERA",
+    "headline": "LA JOAQUI: 'VÁYANSE DE GIRA, QUE LA GIRA NO SE LEVANTA UN DÍA CONFUNDIDA'",
+    "sub": "La frase viral que hizo estallar a la mesa de Prendido Fuego."
   },
   {
-    "tag": "🚨 ALERTA RED FLAG",
-    "headline": "HOLDER AL BANCO POR DECIR QUE 'A LOS 22 AÑOS SIN AUTO NO PODÉS ENCARAR NI A LA VECINA'",
-    "sub": "WhatsApp: 341 749-0173 • ¿Holder zafa o va directo a la hoguera?"
+    "tag": "🏎️ LLANTO EN MONZA",
+    "headline": "COLAPINTO QUEBRADO TRAS EL GP DE ITALIA: 'TENÍA UNA GRAN OPORTUNIDAD Y NO LA APROVECHÉ'",
+    "sub": "Lionel Scaloni estuvo en el paddock bancando al piloto argentino."
   },
   {
-    "tag": "🥊 DESCONTROL EN VIVO",
-    "headline": "KICK BANNEÓ A UN STREAMER ARGENTINO TRAS AGARRARSE A TROMPADAS EN UN BOLICHE",
-    "sub": "El IRL streaming cruzó todos los límites de seguridad en la noche porteña."
+    "tag": "🏥 PREOCUPACIÓN DIVA",
+    "headline": "MIRTHA LEGRAND INTERNADA EN EL MATER DEI POR BRONQUITIS: JUANA VIALE AL FRENTE",
+    "sub": "La diva de 99 años permanece en observación preventiva."
   },
   {
-    "tag": "💉 TRAGEDIA ESTÉTICA",
-    "headline": "MURIÓ UN INFLUENCER EN BANGKOK TRAS PROCEDIMIENTO ESTÉTICO CLANDESTINO",
-    "sub": "Holder: 'La obsesión con las redes y la dismorfia corporal está matando pibes'."
+    "tag": "⚽ CLÁSICO ROSARINO",
+    "headline": "NEWELL'S SE LO EMPATÓ SOBRE LA HORA A ROSARIO CENTRAL Y ARROYITO FUE UNA CALDERA",
+    "sub": "Tomás Holder festeja en vivo el empate leproso en el living."
   }
 ];
 

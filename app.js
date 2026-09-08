@@ -2148,6 +2148,18 @@ function setupShowDiaEvents() {
   document.getElementById("btnPrevShowStep")?.addEventListener("click", prevShowDiaStep);
   document.getElementById("btnNextShowStep")?.addEventListener("click", nextShowDiaStep);
 
+  // Sincronizar automáticamente el botón de la home y badge con el guion inyectado del día
+  if (typeof CURRENT_SHOW_EPISODE !== "undefined" && CURRENT_SHOW_EPISODE) {
+    const heroSubCta = document.querySelector(".play-sub-cta");
+    if (heroSubCta) {
+      heroSubCta.textContent = `PROGRAMA COMPLETO • ${CURRENT_SHOW_EPISODE.title || "GUION DE HOY"}`;
+    }
+    const modeBadge = document.getElementById("showModeBadge");
+    if (modeBadge) {
+      modeBadge.textContent = CURRENT_SHOW_EPISODE.badge || `🔥 ${CURRENT_SHOW_EPISODE.title || "PROGRAMA DE HOY"}`;
+    }
+  }
+
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-show-step]");
     if (btn) {
@@ -2322,8 +2334,8 @@ function startShowDia(mode = "today") {
     ];
 
       currentShowEpisode = {
-        title: "PROGRAMA DE HOY • MIÉRCOLES 02/09",
-        badge: "🔥 GUION OFICIAL • MIÉRCOLES 02/09 • MIX ON STUDIO",
+        title: "PROGRAMA DE HOY • LUNES 07/09",
+        badge: "🔥 GUION OFICIAL • LUNES 07/09 • MIX ON STUDIO",
         aperturaDuel,
         bandosList,
         tribunalList,

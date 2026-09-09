@@ -31,6 +31,11 @@ Esta skill automatiza de punta a punta la preparación del programa diario de **
        - *Tomás Holder*: Códigos nocturnos, entrenamiento, suplementación, noche porteña vs rosarina, seducción, autos y lealtad de vestuario.
        - *Diane Caracchi*: Dignidad vincular, acuerdos claros, límites frente al gaslighting, psicología de relaciones y amor propio.
        - *Luli Casé*: Astrología del día (temporada astral, luna, signos), patrones de apego ansioso, tarot y redención de ex migajeras.
+6. **PROHIBIDO GUIONAR O PREDEFINIR LO QUE TIENEN QUE DECIR O DEBATIR LOS CONDUCTORES**:
+   - Tomás Holder, Diane Caracchi y Luli Casé conducen un stream en vivo espontáneo; son personas reales, **NO son actores teatrales**.
+   - **TERMINANTEMENTE PROHIBIDO**: inventar frases, declaraciones ficticias o posturas prefabricadas atribuidas a los conductores como si fueran noticias o parlamentos de teatro.
+   - **En los guiones**: Se detallan las noticias reales, los hechos comprobados, los enlaces directos, las citas textuales de los verdaderos protagonistas (famosos, involucrados) y disparadores o preguntas abiertas para que la mesa debata libremente.
+   - **En los juegos interactivos (`data_show_dia.js`)**: Las opciones de votación son miradas y dilemas objetivos sobre el tema para que la mesa vote en vivo, NUNCA etiquetadas con "(Holder / Factos)" ni forzando el voto u opinión de nadie.
 
 ---
 

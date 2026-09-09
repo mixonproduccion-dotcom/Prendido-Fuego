@@ -5,8 +5,38 @@
 
 const LORE_MEMORY_DATABASE = {
   "version": "1.0",
-  "last_updated": "2026-09-08 21:31",
+  "last_updated": "2026-09-09 13:20",
   "celebrity_lores": {
+    "flor-vigna": {
+      "tag": "La Cantante Sin Filtro & Guerrera de Redes",
+      "quote": "Ángel de Brito es un machista retrógrado que vive de hacerme bullying.",
+      "lore": "En guerra total contra el conductor de LAM tras acusarlo de persecución sistemática y de montar campañas de odio en televisión. Se plantó desde el streaming defendiendo su carrera musical independiente.",
+      "loreHistory": [
+        {
+          "date": "2026-09-09",
+          "program": "09-09",
+          "headline": "Guerra abierta contra Ángel de Brito",
+          "detail": "Descargo demoledor acusando a Ángel de Brito de misoginia y violencia mediática sistemática.",
+          "quote": "Ángel de Brito es un machista retrógrado que vive de hacerme bullying.",
+          "link": "https://x.com/search?q=Flor%20Vigna%20Angel%20de%20Brito&f=live"
+        }
+      ]
+    },
+    "juli-rocyo": {
+      "tag": "La Influencer de los Vínculos & El Contacto Cero",
+      "quote": "El amor libre dura hasta que el otro se enamora en serio de la amante.",
+      "lore": "Viral absoluta en TikTok tras exponer la implosión de su relación abierta y cómo el pacto de poliamor terminó en traición, lágrimas y contacto cero definitivo.",
+      "loreHistory": [
+        {
+          "date": "2026-09-09",
+          "program": "09-09",
+          "headline": "Fin del poliamor y contacto cero",
+          "detail": "Relató cómo una pareja abierta terminó en llanto y bloqueo total al romperse los acuerdos de lealtad.",
+          "quote": "El amor libre dura hasta que el otro se enamora en serio de la amante.",
+          "link": "https://x.com/search?q=Juli%20Rocyo%20pareja%20abierta&f=live"
+        }
+      ]
+    },
     "la-joaqui": {
       "tag": "La Dueña de la Gira & Reina del RKT",
       "quote": "Váyanse de gira, que la gira no se levanta un día diciendo que está confundida.",
@@ -119,6 +149,29 @@ const LORE_MEMORY_DATABASE = {
           "detail": "Confesó en un video que controla el GPS de su novio las 24 horas y abrió la polémica por la toxicidad en relaciones jóvenes.",
           "quote": "Es por tranquilidad mental de los dos.",
           "link": "https://x.com/search?q=Lola%20Latorre%20novio&f=live"
+        },
+        {
+          "date": "2026-09-09",
+          "program": "09-09",
+          "headline": "Funa Nepobaby y debate de privilegios",
+          "detail": "Debate ardiente sobre si los hijos de famosos triunfan por talento propio o por la billetera y contactos de sus padres.",
+          "quote": "La plata te abre puertas, pero el carisma no se hereda.",
+          "link": "https://x.com/search?q=Lola%20Latorre%20nepobaby&f=live"
+        }
+      ]
+    },
+    "sol-aguilera": {
+      "tag": "La Justiciera de los Mensajes Directos",
+      "quote": "El que se hace el aliade en cámara te pide fotos por privado a las 4 AM.",
+      "lore": "Expuso en streaming capturas de pantalla de streamers y conductores que fingen ser aliados del feminismo pero acosan a creadoras por mensajes privados de Instagram.",
+      "loreHistory": [
+        {
+          "date": "2026-09-09",
+          "program": "09-09",
+          "headline": "Exposición de MDs de streamers",
+          "detail": "Filtró mensajes de streamers reconocidos pidiendo fotos íntimas de madrugada.",
+          "quote": "El que se hace el aliade en cámara te pide fotos por privado a las 4 AM.",
+          "link": "https://x.com/search?q=Sol%20Aguilera%20streamer%20MD&f=live"
         }
       ]
     },
@@ -239,7 +292,8 @@ const LORE_MEMORY_DATABASE = {
     {
       "week": "Semana 07/09 - 11/09",
       "episodes": [
-        "07-09"
+        "07-09",
+        "09-09"
       ],
       "highlights": [
         "Choque vial casi fatal de Tomás Holder en Libertador ('Casi nos mata este asesino').",
@@ -251,7 +305,13 @@ const LORE_MEMORY_DATABASE = {
         "Yanina Latorre revela que Luck Ra metía chicas a dormir en su casa alquilada en Brasil.",
         "Franco Colapinto termina 9° en Monza y rompe en llanto de bronca; Scaloni lo visita en boxes.",
         "Mirtha Legrand internada preventivamente en el Mater Dei por bronquitis; Juana Viale al frente.",
-        "Thiago Medina revela que ser influencer ya no da plata y vuelve a laburar en la calle."
+        "Thiago Medina revela que ser influencer ya no da plata y vuelve a laburar en la calle.",
+        "La Tarifa de los 8 Millones: El debate de la billetera, el estatus y las citas porteñas.",
+        "Flor Vigna le declara la guerra a Ángel de Brito: 'Es un machista retrógrado que me hace bullying'.",
+        "Juli Rocyo y la implosión del poliamor: 'El amor libre dura hasta que se enamoran de la amante'.",
+        "Lola Latorre en el centro del debate Nepobaby: El privilegio vs el carisma en streaming.",
+        "Sol Aguilera expone mensajes desubicados de streamers top de Kick haciéndose los aliades.",
+        "Connie Ansaldi en Blender: Batalla de egos sobre la invención de la televisión moderna."
       ]
     }
   ]

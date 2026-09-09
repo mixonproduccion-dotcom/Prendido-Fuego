@@ -7,6 +7,32 @@
 
 const CELEBRITIES_DATABASE = [
   {
+    "id": "flor-vigna",
+    "name": "Flor Vigna",
+    "category": "musica",
+    "categoryLabel": "Música / Farándula",
+    "tag": "La Cantante Sin Filtro",
+    "quote": "Ángel de Brito es un machista retrógrado que vive de hacerme bullying.",
+    "bio": "Bailarina, cantante y creadora de contenido. En guerra frontal con LAM y Ángel de Brito.",
+    "lore": "Cruzó a Ángel de Brito por hostigamiento en vivo y bullying sistemático. Se plantó desde el streaming defendiendo su carrera.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 7.9,
+    "caretaScore": 2.1
+  },
+  {
+    "id": "juli-rocyo",
+    "name": "Juli Rocyo",
+    "category": "streaming",
+    "categoryLabel": "Streaming / Vínculos",
+    "tag": "La Influencer del Contacto Cero",
+    "quote": "El amor libre dura hasta que el otro se enamora en serio de la amante.",
+    "bio": "Influencer de relaciones en TikTok. Viral por exponer el final catastrófico de su pareja abierta.",
+    "lore": "Definió el debate de la semana sobre poliamor, cuernos y por qué el contacto cero es la única salvación tras una traición.",
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 8.4,
+    "caretaScore": 1.8
+  },
+  {
     "id": "tuli-acosta",
     "name": "Tuli Acosta",
     "category": "musica",

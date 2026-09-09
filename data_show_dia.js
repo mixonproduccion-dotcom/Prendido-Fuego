@@ -1,168 +1,168 @@
 // =========================================================
 // BASE DE DATOS: EL SHOW DEL DÍA (COMPLETO) - CIRCUITO EN VIVO
 // Prendido Fuego 🔥 (Mix On Studio)
-// Generado automáticamente por la skill guion-pf el 2026-09-07 14:20
+// Generado automáticamente por la skill guion-pf el 2026-09-09 13:00
 // =========================================================
 
 const CURRENT_SHOW_EPISODE = {
-  "title": "PROGRAMA DE HOY • LUNES 07/09",
-  "badge": "🔥 GUION OFICIAL • LUNES 07/09 • MIX ON STUDIO",
-  "date_str": "07-09",
+  "title": "PROGRAMA DE HOY • MIÉRCOLES 09/09",
+  "badge": "🔥 GUION OFICIAL • MIÉRCOLES 09/09 • MIX ON STUDIO",
+  "date_str": "09-09",
   "aperturaDuel": {
-    "id": "duelo-luckra-tiago-joaqui",
-    "title": "EL ESCÁNDALO DEL TRAP Y CUARTETO: ¿TRAICIÓN ENTRE AMIGOS O LIBERTAD DE ELEGIR?",
-    "guide": "Luck Ra expuso que Tiago PZK está con La Joaqui. ¿Bancás el dolor del cuartetero o a la Joaqui libre de hacer su vida?",
+    "id": "duelo-tarifa-amor-billetera",
+    "title": "LA TARIFA DEL AMOR: ¿UN HOMBRE TIENE QUE GANAR 8 PALOS PARA TENER UNA CITA?",
+    "guide": "Viral de afterapps.ok: mujeres exigen sueldos de $3M a $8M. ¿Bancás a las pibas o al laburante independiente?",
     "sideA": {
-      "name": "Luck Ra ('Los Códigos')",
-      "badge": "El Amigo Traicionado",
-      "argument": "La ex de un hermano de la vida es intocable por código moral; meterte con la ex de tu amigo a los dos meses es una puñalada por la espalda.",
+      "name": "Las Pibas de los 8 Millones",
+      "badge": "Estilo de Vida VIP",
+      "argument": "Tienen derecho a elegir con quién salir; si manejan un estándar alto de vida, no van a aceptar un pibe que no esté a la altura económica.",
       "image": "assets/logo-pf.jpg"
     },
     "sideB": {
-      "name": "La Joaqui & Tiago PZK",
-      "badge": "Libres & Sin Dueño",
-      "argument": "Nadie es propiedad de nadie. La relación ya había terminado, Luck Ra metía pibas en Brasil y la vida sigue sin pedirle permiso al ego de nadie.",
-      "image": "assets/logo-pf.jpg"
+      "name": "Tomás Holder & El Laburante",
+      "badge": "Cero Vividoras",
+      "argument": "El hombre no es un cajero automático; el amor no se tasa en millones y a las interesadas de cotillón se les corta el rostro de una.",
+      "image": "assets/celebrities/tomas-holder.jpg"
     },
-    "chatTrigger": "¿De qué lado está la gente? Escribí [1] LUCK RA o [2] JOAQUI en el chat en vivo."
+    "chatTrigger": "¿De qué lado está el chat? Escribí [1] 8 PALOS o [2] HOLDER en vivo."
   },
   "bandosList": [
     {
-      "id": "duelo-tiago-buitre",
-      "title": "Tiago PZK vs. Los Códigos de Amistad: ¿Buitre de Vestuario o Amor Genuino?",
-      "guide": "¿Tiago PZK fue un buitre que esperaba en el banco o simplemente surgió el amor?",
+      "id": "duelo-juli-rocyo-contacto-cero",
+      "title": "Relación Abierta vs. Contacto Cero: ¿Sinceridad o Falta de Respeto?",
+      "guide": "Juli Rocyo pidió abrir la pareja y su novio le clavó 9 días de visto. ¿A quién bancás?",
       "sideA": {
-        "name": "Tiago PZK ('Te gustan villeros')",
-        "badge": "Sin Careteo",
-        "argument": "Ellos estaban separados hace meses. Si hay química real entre dos personas adultas, los amigos no son los dueños del destino ajeno.",
+        "name": "Juli Rocyo (La Sincera)",
+        "badge": "Cero Careteo",
+        "argument": "Fue honesta con su deseo de frente; el silencio por 9 días y la ley del hielo es un castigo inmaduro y cobarde.",
         "image": "assets/logo-pf.jpg"
       },
       "sideB": {
-        "name": "Códigos Sagrados",
-        "badge": "Lealtad Ante Todo",
-        "argument": "Entre amigos de toda la vida hay límites que no se cruzan. Si mirás con ganas a la ex de tu hermano, nunca fuiste su amigo.",
+        "name": "El Novio (Dignidad y Visto)",
+        "badge": "Límites Claros",
+        "argument": "Pedir relación abierta es la antesala de la infidelidad; clavarle el visto y sacarla de tu vida es amor propio puro.",
         "image": "assets/logo-pf.jpg"
       }
     },
     {
-      "id": "duelo-joaqui-gira-duelo",
-      "title": "La Joaqui: 'Váyanse de Gira' vs. El Duelo Tradicional",
-      "guide": "¿Te vas de gira apenas cortás o te quedás llorando y cerrando ciclos en casa?",
+      "id": "duelo-flor-vigna-angel-brito",
+      "title": "Flor Vigna vs. Ángel de Brito: 'Me dice pioja pero vive pendiente de mí'",
+      "guide": "Cruce caliente entre la cantante y el rey de LAM. ¿Quién tiene más ego?",
       "sideA": {
-        "name": "Modo Gira & Fiesta (Holder / Joaqui)",
-        "badge": "Cero Lágrimas",
-        "argument": "La gira no se levanta confundida. La mejor forma de sanar una traición es salir con amigos, levantar el aura y pasarla bien sin mirar atrás.",
-        "image": "assets/logo-pf.jpg"
+        "name": "Flor Vigna (La que no se Achica)",
+        "badge": "Autogestión & Música",
+        "argument": "Siente que en LAM le hacen bullying sistemático porque no se arrodilla ante los conductores tradicionales.",
+        "image": "assets/celebrities/florvigna.jpg"
       },
       "sideB": {
-        "name": "Duelo & Cierre (Diane / Sensatez)",
-        "badge": "Sanar con Cabeza",
-        "argument": "Tapar el dolor con boliche y alcohol dura 48 horas. Hay que procesar la ruptura con dignidad, terapia y respeto por uno mismo.",
-        "image": "assets/logo-pf.jpg"
+        "name": "Ángel de Brito (El Rey de LAM)",
+        "badge": "Factos de Farándula",
+        "argument": "Flor Vigna se victimiza cada vez que saca un tema musical; en el espectáculo la falta de talento no se tapa con lágrimas.",
+        "image": "assets/celebrities/angel-de-brito.jpg"
       }
     },
     {
-      "id": "duelo-holder-boliches-choque",
-      "title": "Boliches Porteños vs. La Noche de Rosario & El Choque de Holder",
-      "guide": "¿La noche porteña es careta frente a Rosario? Además, el descontrol vial que casi mata a Tomás.",
+      "id": "duelo-lola-latorre-nepobaby",
+      "title": "Lola Latorre y su Marca 'Nepobaby': ¿Humor Inteligente o Careteada?",
+      "guide": "Tras el bardo de Sorbo, Lola lanzó 'Nepobaby'. ¿Genialidad o privilegio puro?",
       "sideA": {
-        "name": "Rosario & Calle (Tomás Holder)",
-        "badge": "Sin Filtro",
-        "argument": "En Buenos Aires hay mucho careta y en la calle manejan como asesinos. En Rosario la noche es más auténtica y con códigos de verdad.",
+        "name": "Lola Latorre (Nepobaby)",
+        "badge": "Facturar con el Hate",
+        "argument": "Aprovecha que la bardean en redes para reírse de los haters y vender ropa; ser hija de famosos no es un pecado.",
         "image": "assets/logo-pf.jpg"
       },
       "sideB": {
-        "name": "La Noche Porteña (Luli & Diane)",
-        "badge": "Glamour & Opciones",
-        "argument": "Buenos Aires tiene los mejores boliches de Sudamérica, movida 24/7 y la mejor gastronomía para terminar la noche arriba.",
-        "image": "assets/logo-pf.jpg"
+        "name": "El Público de la Calle",
+        "badge": "Meritocracia Real",
+        "argument": "Tener contactos VIP, abogados y marcas servidas no es ser emprendedora; venderte como ejemplo de esfuerzo da cringe.",
+        "image": "assets/celebrities/yanina-latorre.jpg"
       }
     }
   ],
   "tribunalList": [
     {
-      "id": "caso-amigo-sale-con-tu-ex",
-      "title": "Tu Mejor Amigo se Puso de Novio con tu Ex a los Dos Meses de Cortar",
-      "protagonist": "El Amigo Apuñalado",
-      "category": "Amistad / Códigos & Lealtad",
-      "context": "Te separaste de tu pareja tras dos años de noviazgo. A los dos meses, tu mejor amigo te manda un mensaje diciéndote: 'Pegamos muy buena onda, estamos saliendo y queríamos decírtelo de frente'.",
+      "id": "caso-md-sol-aguilera",
+      "title": "El Acoso por MD: Foto Íntima sin Consentimiento a Sol Aguilera",
+      "protagonist": "Sol Aguilera",
+      "category": "Redes / Acoso & Privacidad",
+      "context": "Un pibe le mandó fotos de sus partes íntimas por mensaje directo de Instagram. Sol lo expuso públicamente en sus historias con captura y perfil. ¿Qué hacés en su lugar?",
       "image": "assets/logo-pf.jpg",
-      "quote": "Pensé que eras mi hermano y me estabas midiendo a la novia desde el banco de suplentes.",
+      "quote": "Le mandó una foto explícita por privado creyendo que había impunidad.",
       "options": [
         {
           "id": "A",
-          "title": "1. Bloqueo de Por Vida y Desconocimiento (Holder / Factos)",
-          "text": "Le cortás el rostro para siempre a los dos. Código de hombre roto no tiene segunda oportunidad. Para vos pasaron a estar muertos.",
+          "title": "1. Escrache Salvaje en Redes (Holder / Fuego)",
+          "text": "Le publicás la cara, el nombre y el Instagram a la vista de todos. A los pajeros se los frena con vergüenza pública.",
           "style": "holder"
         },
         {
           "id": "B",
-          "title": "2. Charla de Cierre y Soltar con Elegancia (Diane / Sensatez)",
-          "text": "Aceptás que duele, le decís que no contás con su amistad porque te lastima, pero no hacés escándalos públicos ni conventillo en redes.",
+          "title": "2. Denuncia Penal en la Fiscalía (Diane / Límites)",
+          "text": "Captura certificada y denuncia judicial por acoso cibernético. Cero conventillo en historias para no ensuciarte.",
           "style": "diane"
         },
         {
           "id": "C",
-          "title": "3. Irte de Gira con la Amiga de Ella (Luli / Venganza)",
-          "text": "Aplicás la ley del talión: te vas de gira con el grupo de amigas de tu ex y te mostrás en historias festejando a morir.",
+          "title": "3. Bloqueo y Baño de Ruda (Luli / Karma)",
+          "text": "Bloqueo inmediato, limpieza energética para sacar la vibra densa y soltar el rencor para que el karma actúe.",
           "style": "luli"
         }
       ]
     },
     {
-      "id": "caso-pernocte-brasil-infiel",
-      "title": "El Viaje de Amigos: Tu Pareja Metió a una Piba a Dormir a la Casa 'Porque no Tenía Hotel'",
-      "protagonist": "La Novia Confiada",
-      "category": "Pareja / Fidelidad & Excusas",
-      "context": "Tu novio se fue de vacaciones con amigos a Río de Janeiro. Te enterás por una amiga que una chica durmió en la casa alquilada. Su excusa: 'No tenía dónde parar, durmió en el sillón, te juro por mi vieja que no pasó nada'.",
-      "image": "assets/logo-pf.jpg",
-      "quote": "La chica pernoctaba en la casa y me decías que eras la persona más fiel del mundo.",
+      "id": "caso-leona-messi-hermana",
+      "title": "La Leona que Ninguneó a Messi y la Traición de su Hermana en Redes",
+      "protagonist": "Sofía & Majo Granatto",
+      "category": "Deporte / Lealtad Familiar & Cancelación",
+      "context": "Sofía Granatto criticó a Messi y el país la canceló hasta cerrar su cuenta. Al instante, su hermana Majo publicó: 'Yo a Messi lo amo, nada que ver conmigo'. ¿Se le suelta la mano a una hermana por likes?",
+      "image": "assets/celebrities/lionel-messi.jpg",
+      "quote": "Tu hermana comete un error nacional y vos salís a despegarte en historias.",
       "options": [
         {
           "id": "A",
-          "title": "1. Patada en el Orto y Valijas a la Vereda (Holder)",
-          "text": "No le creés ni el saludo. Meter a una mina a tu casa en Brasil es infidelidad consumada acá y en la China. Se terminó.",
+          "title": "1. Comerte las Balas con tu Sangre (Holder / Lealtad)",
+          "text": "A tu hermana se la defiende a muerte. Si se equivoca, la corregís en casa, pero en la calle salís a pelear con ella.",
           "style": "holder"
         },
         {
           "id": "B",
-          "title": "2. Exigir Pruebas y Exponerlo con sus Amigos (Diane)",
-          "text": "Le pedís que los amigos te digan la verdad cara a cara. Si hubo mentira sistemática, corte definitivo y reclamo de dignidad.",
+          "title": "2. Despegarte con Altura (Diane / Responsabilidad)",
+          "text": "Cada adulto responde por sus actos. Majo tiene derecho a cuidar su carrera y no cargar con la lengua suelta ajena.",
           "style": "diane"
         },
         {
           "id": "C",
-          "title": "3. Creerle por Miedo a Perderlo (Luli / Migajera)",
-          "text": "Te convencés a vos misma de que fue una gauchada de amigos para no romper la pareja, aunque por dentro te estés muriendo.",
+          "title": "3. Sanar la Lealtad Tóxica (Luli / Evolución)",
+          "text": "Cortar con el mandato familiar es un paso de sanación. No tenés que quemarte en la hoguera de otro.",
           "style": "luli"
         }
       ]
     },
     {
-      "id": "caso-colapinto-autoexigencia",
-      "title": "Fracaso en Vivo: Salís Noveno en la F1 y Rompés en Llanto Frente al Mundo",
-      "protagonist": "El Deportista de Élite",
-      "category": "Presión / Éxito & Autoexigencia",
-      "context": "Largás entre los mejores, cometés un error en una curva y terminás noveno sumando puntos. Las cámaras de todo el planeta te enfocan y te largás a llorar de bronca diciendo: 'Tenía una gran oportunidad y no la aproveché'.",
+      "id": "caso-ego-connie-ansaldi",
+      "title": "El Ego Galáctico en Stream: 'La Persona Más Inteligente del Mundo Soy Yo'",
+      "protagonist": "Connie Ansaldi",
+      "category": "Streaming / Narcisismo & Familia",
+      "context": "Connie Ansaldi le hizo un ping pong a su hijo en stream y aseguró que la persona más brillante del planeta es ella misma, afirmando que el pensamiento humano desaparecerá en 5 años.",
       "image": "assets/logo-pf.jpg",
-      "quote": "La frustración te come por dentro aunque todo el país te aplauda.",
+      "quote": "Decirle a tu propio hijo que nadie en el planeta te supera en inteligencia.",
       "options": [
         {
           "id": "A",
-          "title": "1. Tragar Veneno y Cara de Piedra (Holder / Silencio)",
-          "text": "Nunca te mostrás quebrado ante los rivales. Levantás la cabeza, mordés la bronca y en el gimnasio te matás hasta la próxima revancha.",
+          "title": "1. Bajada de Humo Inmediata (Holder / Factos)",
+          "text": "El ego sin fierros ni calle es puro chamuyo. En el vestuario al agrandado se lo ubica de un solo bife de realidad.",
           "style": "holder"
         },
         {
           "id": "B",
-          "title": "2. Valorar los Puntos y la Visita de Scaloni (Diane)",
-          "text": "Mirás el vaso medio lleno: estás entre los 10 mejores del planeta, te vino a bancar el DT campeón del mundo y recién arrancás.",
+          "title": "2. Papelón Maternal en Vivo (Diane / Vergüenza)",
+          "text": "Poner a tu propio hijo de espectador de tu narcisismo televisivo es una falta de empatía y contención maternal.",
           "style": "diane"
         },
         {
           "id": "C",
-          "title": "3. Descargar la Emoción y que la Gente te Abrace (Luli)",
-          "text": "Llorar es de valientes. La vulnerabilidad genera empatía pura y hace que todo el país te ame el doble por humano.",
+          "title": "3. Ley de Asunción y Abundancia (Luli / Mística)",
+          "text": "Reconocer tu propio poder sin falsas modestias es manifestar grandeza. Connie vibra en la frecuencia del éxito.",
           "style": "luli"
         }
       ]
@@ -170,104 +170,163 @@ const CURRENT_SHOW_EPISODE = {
   ],
   "semaforoList": [
     {
-      "id": "redflag-amigo-ex",
-      "title": "Tu amigo te dice 'es como una hermana' y a los dos meses se va de viaje romántico con ella",
+      "id": "sem-1",
+      "title": "Exigir que un pibe gane más de 8 millones para aceptar una cita",
+      "category": "Citas / Billetera",
+      "guide": "¿Pretensión válida o interés económico?",
+      "text": "Decir abiertamente en TikTok que si un hombre gana menos de 8 palos mensuales ni te gastás en responderle un mensaje...",
       "danger": "fire",
       "defaultColor": "red"
     },
     {
-      "id": "redflag-brasil-pernocte",
-      "title": "Se va de viaje con amigos y una piba se queda a dormir en la casa 'en el sillón'",
+      "id": "sem-2",
+      "title": "Pedir relación abierta y quejarte de que te clavan el visto",
+      "category": "Pareja / Juli Rocyo",
+      "guide": "¿Sinceridad o manipulación?",
+      "text": "Plantearle abrir la pareja a tu novio y salir a indignarte porque hace 9 días no te contesta el WhatsApp...",
       "danger": "red",
       "defaultColor": "red"
     },
     {
-      "id": "redflag-video-despecho",
-      "title": "Sube un video cantando 'de la muerte y de los cuernos nadie se salvó' para tirar indirectas",
+      "id": "sem-3",
+      "title": "Despegarte de tu hermana en redes cuando la están cancelando",
+      "category": "Familia / Granatto",
+      "guide": "¿Cuidado personal o traición de sangre?",
+      "text": "Tu hermana se manda una cagada en una entrevista y subís una historia diciendo que vos no pensás como ella para salvar tu imagen...",
+      "danger": "red",
+      "defaultColor": "red"
+    },
+    {
+      "id": "sem-4",
+      "title": "Mandar fotos íntimas no solicitadas por mensaje privado",
+      "category": "Redes / Sol Aguilera",
+      "guide": "¿Acoso directo o chamuyo moderno?",
+      "text": "Escribirle a una chica por Instagram y mandarle directamente una foto de tus partes íntimas en la primera interacción...",
+      "danger": "fire",
+      "defaultColor": "red"
+    },
+    {
+      "id": "sem-5",
+      "title": "Decir que la persona más inteligente del mundo sos vos frente a tu hijo",
+      "category": "Streaming / Connie Ansaldi",
+      "guide": "¿Autoestima o narcisismo tóxico?",
+      "text": "Hacer un stream con tu hijo adolescente y decirle en la cara que nunca conoció a nadie más inteligente que vos...",
       "danger": "yellow",
       "defaultColor": "yellow"
     },
     {
-      "id": "redflag-te-gustan-villeros",
-      "title": "Te tira una indirecta en streaming con la frase 'te gustan villeros' haciéndose el superado",
+      "id": "sem-6",
+      "title": "Crear una marca llamada 'Nepobaby' para facturar con las críticas",
+      "category": "Marcas / Lola Latorre",
+      "guide": "¿Ironía brillante o provocación careta?",
+      "text": "Aprovechar que te bardean por ser hija de famosos para ponerle 'Nepobaby' a tu línea de ropa y venderla a precios de shopping...",
+      "danger": "yellow",
+      "defaultColor": "yellow"
+    },
+    {
+      "id": "sem-7",
+      "title": "Decir que el silencio de tu ex es 'violencia' tras pedir abrir la pareja",
+      "category": "Vínculos & Discurso",
+      "guide": "¿Herida real o victimización?",
+      "text": "Acusar a tu novio de ser un monstruo porque no te habla, después de haberle dicho que querías acostarte con otras personas...",
       "danger": "red",
       "defaultColor": "red"
-    },
-    {
-      "id": "redflag-gira-soltera",
-      "title": "Cortás una relación tóxica y te vas de gira todo el fin de semana con tus amigas",
-      "danger": "green",
-      "defaultColor": "green"
-    },
-    {
-      "id": "redflag-auto-asesino",
-      "title": "Se cruza de carril a 130 km/h en la avenida y casi choca a Tomás Holder",
-      "danger": "fire",
-      "defaultColor": "red"
-    },
-    {
-      "id": "redflag-llorar-puntos",
-      "title": "Terminás en el top 10 mundial de tu disciplina y llorás desconsolado por no haber ganado",
-      "danger": "green",
-      "defaultColor": "green"
     }
   ],
-  "podioList": [
-    {
-      "pos": 1,
-      "name": "Tiago PZK",
-      "subtitle": "La 'Icardiada' del trap a su ex gran amigo Luck Ra",
-      "score": 98
-    },
-    {
-      "pos": 2,
-      "name": "Luck Ra",
-      "subtitle": "Hacerse la víctima en redes tras las denuncias de Brasil",
-      "score": 85
-    },
-    {
-      "pos": 3,
-      "name": "El Conductor que Chocó a Holder",
-      "subtitle": "Imprudencia total en la calle: 'Casi nos mata este asesino'",
-      "score": 92
-    },
-    {
-      "pos": 4,
-      "name": "El Árbol Genealógico del Trap",
-      "subtitle": "'Taichu, Tuli, Joaqui, Tiago, Luck Ra: Un cogedero total'",
-      "score": 79
-    },
-    {
-      "pos": 5,
-      "name": "Los Amigos Buitres",
-      "subtitle": "Esperar en el banco de suplentes a que tu amigo corte",
-      "score": 95
-    }
-  ],
-  "ruletaConfig": {
-    "victima1": {
-      "name": "La Joaqui",
-      "candidatos": [
-        "Luck Ra",
-        "Tiago PZK",
-        "L-Gante"
-      ]
-    },
-    "victima2": {
-      "name": "Tomás Holder",
-      "candidatos": [
-        "Taichu",
-        "Tuli Acosta",
-        "Flor Regidor"
-      ]
-    }
+  "podioItem": {
+    "title": "TOP 5: LOS MAYORES PAPELONES & FALTAS DE CÓDIGO DE LA SEMANA",
+    "guide": "La mesa debe ordenar del #1 (El papelón más imperdonable) al #5 (El error menor).",
+    "candidates": [
+      {
+        "id": "sofia-granatto",
+        "name": "Sofía Granatto",
+        "crime": "La Leona que criticó a Messi y tuvo que cerrar su cuenta de Instagram del cagazo.",
+        "image": "assets/celebrities/lionel-messi.jpg"
+      },
+      {
+        "id": "pibas-8-millones",
+        "name": "Las Pibas de los 8 Palos",
+        "crime": "Exigir billetera de jeque árabe para aceptar un fernet en Palermo.",
+        "image": "assets/celebrities/tomas-holder.jpg"
+      },
+      {
+        "id": "juli-rocyo",
+        "name": "Juli Rocyo",
+        "crime": "Pedir relación abierta y quejarse en cámara de los 9 días de silencio.",
+        "image": "assets/logo-pf.jpg"
+      },
+      {
+        "id": "flor-vigna",
+        "name": "Flor Vigna",
+        "crime": "Acusar a Ángel de Brito de estar obsesionado con ella para tener prensa.",
+        "image": "assets/celebrities/florvigna.jpg"
+      },
+      {
+        "id": "acosador-md",
+        "name": "El Acosador de Instagram",
+        "crime": "Mandar una foto indecente por privado y quedar escrachado ante todo el país.",
+        "image": "assets/logo-pf.jpg"
+      }
+    ]
   },
-  "banquilloData": {
-    "target": "Tiago PZK",
-    "reason": "Veto de Producción de 30 segundos por la icardiada a su ex amigo Luck Ra.",
-    "question": "¿Se le perdona o queda cancelado para siempre en el banco de suplentes?"
-  }
+  "ruletaList": [
+    {
+      "victim": {
+        "name": "Flor Vigna",
+        "image": "assets/celebrities/florvigna.jpg",
+        "tag": "La Cantante del Bardo",
+        "lore": "En guerra abierta contra Ángel de Brito tras acusarlo de vivir pendiente de su vida."
+      },
+      "candidates": [
+        {
+          "name": "Ángel de Brito",
+          "image": "assets/celebrities/angel-de-brito.jpg",
+          "lore": "El conductor de LAM que la tildó de dar vergüenza ajena."
+        },
+        {
+          "name": "Tomás Holder",
+          "image": "assets/celebrities/tomas-holder.jpg",
+          "lore": "El macho alfa de Prendido Fuego con cero tolerancia a las tibiezas."
+        },
+        {
+          "name": "Tiago PZK",
+          "image": "assets/celebrities/tiago-pzk.jpg",
+          "lore": "El trapero del momento involucrado en el escándalo con La Joaqui y Luck Ra."
+        }
+      ]
+    },
+    {
+      "victim": {
+        "name": "Juli Rocyo",
+        "image": "assets/logo-pf.jpg",
+        "tag": "La Reina de la Relación Abierta",
+        "lore": "Viral tras pedir abrir la pareja y recibir 9 días de contacto cero por WhatsApp."
+      },
+      "candidates": [
+        {
+          "name": "Tomás Holder",
+          "image": "assets/celebrities/tomas-holder.jpg",
+          "lore": "Defensor del contacto cero y de cortar el rostro ante las interesadas."
+        },
+        {
+          "name": "Lola Latorre",
+          "image": "assets/celebrities/yanina-latorre.jpg",
+          "lore": "La creadora de 'Nepobaby' y experta en controlar el GPS de su novio."
+        },
+        {
+          "name": "Mauro Icardi",
+          "image": "assets/celebrities/mauro-icardi.jpg",
+          "lore": "El padre fundador de romper códigos y relaciones ajenas."
+        }
+      ]
+    }
+  ],
+  "funaAccused": "holder"
 };
+
+if (typeof window !== "undefined") {
+  window.CURRENT_SHOW_EPISODE = CURRENT_SHOW_EPISODE;
+}
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { CURRENT_SHOW_EPISODE };

@@ -5953,4 +5953,123 @@ body.perf-mode-active .btn-perf-toggle {
   box-shadow: 0 0 15px rgba(0, 230, 118, 0.5) !important;
 }
 
+/* =========================================================
+   SISTEMA DE MEMORIA DE LORES HISTÓRICOS (PRENDIDO FUEGO)
+   ========================================================= */
+.lore-history-accordion {
+  margin-top: 10px;
+  background: rgba(18, 12, 28, 0.75);
+  border: 1px solid rgba(255, 69, 0, 0.35);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.82rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+}
+
+.lore-history-accordion[open] {
+  border-color: rgba(255, 69, 0, 0.7);
+  box-shadow: 0 0 16px rgba(255, 69, 0, 0.2);
+}
+
+.lore-history-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 69, 0, 0.12);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #ff9955;
+  list-style: none;
+}
+
+.lore-history-summary::-webkit-details-marker {
+  display: none;
+}
+
+.lore-history-summary::after {
+  content: "▼";
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: #ffaa55;
+  transition: transform 0.2s ease;
+}
+
+.lore-history-accordion[open] .lore-history-summary::after {
+  transform: rotate(180deg);
+}
+
+.lha-badge {
+  font-size: 0.65rem;
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.lore-history-list {
+  padding: 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.lore-history-item {
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid #ff4500;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.lhi-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.lhi-date {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ffd700;
+  white-space: nowrap;
+}
+
+.lhi-title {
+  color: #ffffff;
+  font-size: 0.82rem;
+}
+
+.lhi-summary {
+  color: #d1d5db;
+  font-size: 0.76rem;
+  line-height: 1.35;
+  margin: 0 0 4px 0;
+}
+
+.lhi-quote {
+  color: #ffcc80;
+  font-size: 0.74rem;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.lhi-source a {
+  color: #60a5fa;
+  text-decoration: underline;
+  font-size: 0.72rem;
+}
+
+.lhi-source a:hover {
+  color: #93c5fd;
+}
+
 

@@ -94,10 +94,21 @@ Presentar una tabla con los temas propuestos, sus **links directos a cada Tweet 
 
 ---
 
-### 🟢 FASE 3: Generación Editorial de Guion y Rundown (Solo post-aprobación)
-En `guiones_programas/YYYY-MM-DD_programa_XX/`:
-1. `guion_del_dia.md`: Redacción completa de los 8 bloques con las 3 personalidades del panel.
-2. `rundown_del_dia.md`: Tiempos técnicos (90 - 105 min), zócalos de TV y disparadores de audio.
+### 🟢 FASE 3: Generación Editorial en Todos los Formatos (Solo post-aprobación)
+> [!IMPORTANT]
+> Los guiones y dossiers del día deben generarse en **TODOS LOS FORMATOS ESTÁNDAR** dentro de la carpeta canónica `PF/Guiones/DD-MM/` (ej: `PF/Guiones/09-09/`) y quedar sincronizados tanto en el workspace local como en Google Drive (`Google Drive/Prendido Fuego/PF/Guiones/DD-MM/`):
+> 
+> 1. **`Guion DD-MM.docx`**: Documento Word oficial para la mesa de conducción. Formato tipográfico estricto:
+>    - Tipografía: Calibri.
+>    - Título: 18pt negrita (`GUIÓN - PRENDIDO FUEGO`, space_before=6pt, space_after=2pt).
+>    - Subtítulo: 18pt regular (`DÍA DD/MM`, space_after=14pt).
+>    - Encabezados de sección: 13pt negrita (`Apertura: ...`, `Escándalo Central: ...`, `Tendencias, Deportes y Actualidad`, space_before=6pt, space_after=6pt).
+>    - Párrafos: 13pt regular con nombres de conductores/personajes en **13pt negrita** y enlaces a fuentes directos y claros (space_after=4pt, y 10pt antes de nueva sección).
+> 2. **`guion_del_dia.md`**: Guion editorial completo de los 8 bloques con diálogos, remates y posturas de Tomás Holder, Diane Caracchi y Luli Casé.
+> 3. **`rundown_del_dia.md`**: Escaleta técnica con bloques temporales (90 - 105 min), zócalos de TV, disparadores de audio y dinámicas de interacción.
+> 4. **`noticias_detalladas.md`**: Dossier periodístico exhaustivo con fuentes directas, citas textuales destacadas y disparadores de debate específicos para cada conductor.
+> 5. **`noticias_detalladas.json`**: Estructura JSON completa y normalizada de las noticias investigadas con sus fuentes, personajes, citas y disparadores para consumo de agentes y aplicaciones.
+
 
 ---
 

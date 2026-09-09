@@ -63,12 +63,12 @@ const CURRENT_SHOW_EPISODE = {
     },
     {
       "id": "duelo-lola-latorre-nepobaby",
-      "title": "Lola Latorre y su Marca 'Nepobaby': ¿Humor Inteligente o Careteada?",
-      "guide": "Tras el bardo de Sorbo, Lola lanzó 'Nepobaby'. ¿Genialidad o privilegio puro?",
+      "title": "Lola Latorre y 'Nepobaby': en tendencias por Sorbo",
+      "guide": "La marca Nepobaby de Lola volvió a explotar en redes sumándose a la polémica de Sorbo. ¿Genialidad o privilegio puro?",
       "sideA": {
         "name": "Lola Latorre (Nepobaby)",
         "badge": "Facturar con el Hate",
-        "argument": "Aprovecha que la bardean en redes para reírse de los haters y vender ropa; ser hija de famosos no es un pecado.",
+        "argument": "Aprovecha el bardo de Sorbo para potenciar Nepobaby, reírse de los haters y monetizar el hate de Twitter.",
         "image": "assets/logo-pf.jpg"
       },
       "sideB": {
@@ -216,7 +216,7 @@ const CURRENT_SHOW_EPISODE = {
     },
     {
       "id": "sem-6",
-      "title": "Crear una marca llamada 'Nepobaby' para facturar con las críticas",
+      "title": "Subirte a la tendencia de 'Nepobaby' para facturar con el bardo de Sorbo",
       "category": "Marcas / Lola Latorre",
       "guide": "¿Ironía brillante o provocación careta?",
       "text": "Aprovechar que te bardean por ser hija de famosos para ponerle 'Nepobaby' a tu línea de ropa y venderla a precios de shopping...",

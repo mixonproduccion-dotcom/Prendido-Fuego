@@ -1,7 +1,8 @@
 // =========================================================
-// BASE DE DATOS 1: 200 CELEBRIDADES DE LA FARÁNDULA,
+// BASE DE DATOS 1: 200+ CELEBRIDADES DE LA FARÁNDULA,
 // STREAMING, GH, MÚSICA & POLÍTICA ARGENTINA
 // Prendido Fuego 🔥 (Mix On Studio)
+// Con Memoria de Lore Histórico Acumulativo (Actualizado 2026-09-08)
 // =========================================================
 
 const CELEBRITIES_DATABASE = [
@@ -10,52 +11,100 @@ const CELEBRITIES_DATABASE = [
     "name": "Sasha Ferro",
     "category": "streaming",
     "categoryLabel": "Streaming / Influencer",
-    "tag": "La que Puso los Límites",
+    "tag": "La que Puso los Límites de Sangre",
     "quote": "Pensaban que no podían existir peores programas de stream... acá tienen a estos pelotudos.",
     "bio": "Influencer, modelo y creadora de contenido. En el ojo del bardo tras cruzar a su hermano Lionel Ferro y a Martín Salwe.",
     "lore": "Protagonista del mayor escándalo del streaming. Tras sufrir un chiste machista denigrante en vivo en 'Solo por Hoy', le publicó una carta demoledora a su hermano Lionel por reírse en cámara siendo padre de una nena, cortando todo vínculo familiar.",
     "image": "assets/logo-pf.jpg",
     "auraScore": 9.6,
-    "caretaScore": 1.2
+    "caretaScore": 1.2,
+    "loreHistory": [
+      {
+        "date": "2026-09-02",
+        "program": "02-09",
+        "headline": "Ruptura pública con su hermano Lionel Ferro",
+        "detail": "Carta abierta demoledora tras el chiste misógino de Salwe. Confirmó que no tienen relación y marcó límites éticos.",
+        "quote": "¿Te gustaría que le hagan ese chiste a tu hija mientras su hermano se ríe al lado?",
+        "link": "https://x.com/search?q=Sasha%20Ferro%20Lionel&f=live"
+      }
+    ]
   },
   {
     "id": "lionel-ferro",
     "name": "Lionel Ferro",
     "category": "streaming",
     "categoryLabel": "Streaming / Actor",
-    "tag": "El Hermano en Jaque",
+    "tag": "El Hermano en el Banquillo",
     "quote": "Yo no sabía que iban a hacer ese chiste, me agarró de sorpresa.",
     "bio": "Actor, cantante e influencer. Conductor en Solo por Hoy, duramente cancelado en redes por no defender a su hermana.",
     "lore": "En el centro de las críticas tras reírse en vivo de un chiste misógino hacia su hermana Sasha Ferro en el stream. Salió a emitir un descargo aclarando que habló tras el vivo, pero en redes lo condenaron unánimemente por falta de lealtad familiar.",
     "image": "assets/logo-pf.jpg",
     "auraScore": 4.1,
-    "caretaScore": 9.4
+    "caretaScore": 9.4,
+    "loreHistory": [
+      {
+        "date": "2026-09-02",
+        "program": "02-09",
+        "headline": "La risa de la cancelación",
+        "detail": "Se rio del chiste de Salwe en Solo por Hoy y provocó la carta de repudio de su propia hermana.",
+        "quote": "Estar distanciados no significa que festeje que alguien la lastime.",
+        "link": "https://x.com/search?q=Lionel%20Ferro%20Sasha&f=live"
+      }
+    ]
   },
   {
     "id": "martin-salwe",
     "name": "Martín Salwe",
     "category": "streaming",
     "categoryLabel": "Streaming / TV",
-    "tag": "El Provocador Serial",
+    "tag": "El Provocador con Prontuario",
     "quote": "Le dicen 'Parrilla vieja' porque conoce todos los chorizos.",
     "bio": "Locutor, conductor y mediático. Conocido por sus polémicas en El Hotel de los Famosos, Bailando y stream.",
-    "lore": "Autor del chiste de mal gusto hacia Sasha Ferro que encendió la furia de las redes. Acusado por colegas de tener un prontuario de machismo, bullying y agresiones verbales en stream y televisión.",
+    "lore": "Autor del chiste de mal gusto hacia Sasha Ferro que encendió la furia de las redes. Acusado por Facu Guarino y la comunidad de tener un prontuario de machismo, bullying y agresiones verbales en stream y televisión.",
     "image": "assets/logo-pf.jpg",
     "auraScore": 3.8,
-    "caretaScore": 9.8
+    "caretaScore": 9.8,
+    "loreHistory": [
+      {
+        "date": "2026-09-02",
+        "program": "02-09",
+        "headline": "Chiste misógino y repudio generalizado",
+        "detail": "Dijo al aire la frase de 'parrilla vieja' sobre Sasha Ferro, generando la reacción furiosa de creadores de contenido.",
+        "quote": "Le dicen parrilla vieja porque conoce todos los chorizos.",
+        "link": "https://x.com/search?q=Martin%20Salwe%20Sasha&f=live"
+      }
+    ]
   },
   {
     "id": "lola-latorre",
     "name": "Lola Latorre",
     "category": "farandula",
     "categoryLabel": "Farándula / Influencer",
-    "tag": "Sorbo by Lola",
-    "quote": "Lo mío es inspiración, no copia.",
+    "tag": "Sorbo by Lola & El Panóptico GPS",
+    "quote": "Lo mío es inspiración, no copia... y el GPS a mi novio es por tranquilidad mental.",
     "bio": "Hija de Diego y Yanina Latorre, influencer y abogada. Viral por su marca de cosméticos Sorbo.",
-    "lore": "Lanzó su línea de cosmética 'Sorbo' y fue acusada de plagiar al 100% la estética, tipografía y envases de 'Rhode' de Hailey Bieber. Su defensa en TikTok se convirtió en tendencia y meme nacional.",
+    "lore": "Viral permanente en TikTok. Primero acusada de plagiar el packaging y estética de 'Rhode' de Hailey Bieber para su marca 'Sorbo', y luego encendió las redes al confesar que monitorea la ubicación satelital de su novio las 24 horas del día.",
     "image": "assets/logo-pf.jpg",
     "auraScore": 7.5,
-    "caretaScore": 8.0
+    "caretaScore": 8.0,
+    "loreHistory": [
+      {
+        "date": "2026-09-02",
+        "program": "02-09",
+        "headline": "El 'Sorbo Gate' vs. Hailey Bieber",
+        "detail": "Acusada de plagiar el packaging de Rhode para su marca Sorbo. Salió a responder: 'Lo mío es inspiración, no copia'.",
+        "quote": "Lo mío es inspiración, no copia.",
+        "link": "https://x.com/search?q=Lola%20Latorre%20Sorbo&f=live"
+      },
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "Monitoreo GPS 24/7 a su pareja",
+        "detail": "Confesó en un video que controla el GPS de su novio las 24 horas y abrió la polémica por la toxicidad en relaciones jóvenes.",
+        "quote": "Es por tranquilidad mental de los dos.",
+        "link": "https://x.com/search?q=Lola%20Latorre%20novio&f=live"
+      }
+    ]
   },
   {
     "id": "tomas-mazza",
@@ -114,13 +163,31 @@ const CELEBRITIES_DATABASE = [
     "name": "Tomás Holder",
     "category": "gh",
     "categoryLabel": "Prendido Fuego / Gym Bro",
-    "tag": "Macho Alfa de Rosario",
-    "quote": "Mi mujer no es un hotel, es un hogar.",
+    "tag": "Macho Alfa Rosarino & El Conductor Intocable",
+    "quote": "Casi nos mata este asesino en la calle; la noche porteña es puro careteo.",
     "bio": "Primer expulsado y más icónico de GH. Amante de la noche, anabólicos, mewing y soltar factos cancelables.",
-    "lore": "El rey del contenido divisivo. Saltó a la fama en TikTok mostrando su físico y un personaje de rugbier clasista. Tras GH protagonizó romances escandalosos, internaciones por excesos, videos íntimos filtrados y una transformación espiritual que convive con su ego de gimnasio.",
+    "lore": "Conductor estrella de Prendido Fuego. Sobrevivió a un grave accidente automovilístico en Buenos Aires donde un conductor imprudente casi lo mata. Viralizó su ranking de boliches porteños en MDZ Online y festejó en vivo el empate agónico de Newell's ante Rosario Central en Arroyito.",
     "image": "assets/logo-pf.jpg",
     "auraScore": 7.8,
-    "caretaScore": 8.5
+    "caretaScore": 8.5,
+    "loreHistory": [
+      {
+        "date": "2026-09-02",
+        "program": "02-09",
+        "headline": "Debate contra los pinchazos y la moral familiar",
+        "detail": "Condenó la moda de anabólicos sin gimnasio y defendió la postura de Sasha Ferro sobre los límites de hermanos.",
+        "quote": "El silencio es mi mejor amigo, pero a una hermana se la defiende siempre.",
+        "link": "https://x.com/search?q=Tomas%20Holder%20Prendido%20Fuego&f=live"
+      },
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "Choque casi fatal, boliches de Bs As y Clásico Rosarino",
+        "detail": "Contó en vivo su choque automovilístico ('Casi nos mata este asesino'), rankeó los mejores boliches de Capital y celebró el empate leproso en Arroyito.",
+        "quote": "En Buenos Aires manejan como dementes; en Rosario la noche tiene más código.",
+        "link": "https://x.com/mdzol/status/2096984336444870982"
+      }
+    ]
   },
   {
     "id": "diane-caracchi",
@@ -387,13 +454,23 @@ const CELEBRITIES_DATABASE = [
     "name": "Thiago Medina",
     "category": "gh",
     "categoryLabel": "Gran Hermano / Emprendedor",
-    "tag": "El Chico del Mercado Central",
-    "quote": "La vida me dio una oportunidad y la voy a aprovechar.",
+    "tag": "De GH a la Calle de Nuevo",
+    "quote": "La situación de ser influencer está para atrás, hay que salir a laburar.",
     "bio": "De juntar cartón y trabajar en el Mercado Central a ser una de las figuras más queridas de Argentina.",
-    "lore": "Emocionó al país con su historia de superación. Dentro de la casa fue un titán en las pruebas físicas. Afuera montó una verdulería propia, compró su casa y junto a Daniela Celis formó una de las parejas más estables del espectáculo.",
+    "lore": "Ex participante de Gran Hermano y padre de gemelas con Daniela Celis. Sorprendió al revelar que la burbuja publicitaria de las redes se pinchó y que volvió a trabajar en el comercio tradicional porque las marcas ya no pagan como antes.",
     "image": "assets/celebrities/thiago-medina.jpg",
     "auraScore": 9.4,
-    "caretaScore": 1.1
+    "caretaScore": 1.1,
+    "loreHistory": [
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "La crisis de los influencers",
+        "detail": "Mostró su trabajo en la calle y expuso la caída de contratos publicitarios en el streaming y redes.",
+        "quote": "La situación de ser influencer está para atrás.",
+        "link": "https://x.com/search?q=Thiago%20Medina%20influencer&f=live"
+      }
+    ]
   },
   {
     "id": "romina-uhrig",
@@ -557,12 +634,30 @@ const CELEBRITIES_DATABASE = [
     "category": "farandula",
     "categoryLabel": "Farándula / Botinera Queen",
     "tag": "Reina del Marketing & Chimento",
-    "quote": "Las mujeres ya no lloran, las mujeres facturan millones.",
+    "quote": "Por miedo a que se me filtren las fotos hot, borré todo.",
     "bio": "Empresaria, conductora y dueña del 90% de los escándalos mediáticos de Argentina e Italia.",
-    "lore": "Inventora de la profesión botinera moderna y maestra del timing mediático. De la supuesta virginidad con Maradona a negociar contratos en Inter y PSG, pasando por L-Gante y La China Suárez.",
+    "lore": "Inventora de la profesión botinera moderna y maestra del timing mediático. Tras su cruce con Maxi López en PH donde le preguntó a ChatGPT cuántas veces le fue infiel, confesó que eliminó todo su archivo íntimo con ex parejas por pánico a las filtraciones de hackers.",
     "image": "assets/celebrities/wanda-nara.jpg",
     "auraScore": 9.8,
-    "caretaScore": 9.5
+    "caretaScore": 9.5,
+    "loreHistory": [
+      {
+        "date": "2026-08-31",
+        "program": "31-08",
+        "headline": "Guerra con Maxi López en PH con ChatGPT",
+        "detail": "Le preguntó a ChatGPT por las infidelidades de Maxi López en vivo tras las declaraciones de él en televisión.",
+        "quote": "ChatGPT me dijo que fueron incontables.",
+        "link": "https://x.com/search?q=Wanda%20Nara%20Maxi%20Lopez%20ChatGPT&f=live"
+      },
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "Borrado masivo de fotos íntimas",
+        "detail": "Confesó en streaming haber eliminado todas las imágenes hot que le enviaba a sus ex novios por miedo a hackeos.",
+        "quote": "Por miedo a que se filtren borré todo de todos lados.",
+        "link": "https://x.com/search?q=Wanda%20Nara%20fotos&f=live"
+      }
+    ]
   },
   {
     "id": "mauro-icardi",
@@ -881,13 +976,23 @@ const CELEBRITIES_DATABASE = [
     "name": "Mirtha Legrand (La Chiqui)",
     "category": "farandula",
     "categoryLabel": "Farándula / Emperatriz Eterna",
-    "tag": "La Dueña de los Almuerzos",
-    "quote": "Como te ven te tratan, si te ven mal te maltratan.",
+    "tag": "La Diva Inmortal",
+    "quote": "Como te ven te tratan, y si te ven mal te maltratan.",
     "bio": "La reina absoluta de la televisión mundial con más de 55 años de almuerzos al aire.",
-    "lore": "Figura histórica e inmortal de la cultura argentina. Sus preguntas punzantes a presidentes y celebridades son sentencias de estado.",
+    "lore": "Internada preventivamente en el Sanatorio Mater Dei este 7 de septiembre por un cuadro de bronquitis. Su nieta Juana Viale tomó el mando de las mesazas con vestido rojo shocking mientras el país sigue su evolución médica.",
     "image": "assets/celebrities/mirtha-legrand.jpg",
     "auraScore": 10,
-    "caretaScore": 4
+    "caretaScore": 4,
+    "loreHistory": [
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "Internación preventiva en el Mater Dei",
+        "detail": "Cuadro bronquial tras un estado gripal. Reposo médico y conducción delegada en Juana Viale.",
+        "quote": "Se encuentra de buen ánimo y estable.",
+        "link": "https://x.com/search?q=Mirtha%20Legrand%20Mater%20Dei&f=live"
+      }
+    ]
   },
   {
     "id": "viviana-canosa",
@@ -1830,26 +1935,62 @@ const CELEBRITIES_DATABASE = [
     "name": "La Joaqui (Joaquinha Lerena)",
     "category": "musica",
     "categoryLabel": "Música / Reina del RKT & Butakera",
-    "tag": "La Butakera Mayor & Mamá Guerrera",
-    "quote": "Tu guachito me llama cuando vos no estás, papi.",
+    "tag": "La Dueña de la Gira & Reina del RKT",
+    "quote": "Váyanse de gira, que la gira no se levanta un día diciendo que está confundida.",
     "bio": "Pionera femenina del freestyle en Red Bull y reina indiscutida del RKT con 'Dos Besitos'.",
-    "lore": "Madre de dos hijas, superó situaciones de violencia de género extremas para convertirse en jurado de Got Talent y referente de la cultura de las motos y el RKT.",
+    "lore": "Protagonista del mayor escándalo del trap y cuarteto. Tras declarar en Luzu TV que nunca tuvo una pareja que no le fuera infiel, Luck Ra la acusó de estar en pareja con su ex gran amigo Tiago PZK. La Joaqui lo liquidó: 'Una sabe de quién se casa pero nunca de quién se divorcia', revelando que preservó cosas que lo hubieran dejado muy mal parado, mientras Yanina Latorre destapó que el cordobés metía minas a dormir en su casa en Brasil.",
     "image": "assets/celebrities/la-joaqui.jpg",
     "auraScore": 9.6,
-    "caretaScore": 2.5
+    "caretaScore": 2.5,
+    "loreHistory": [
+      {
+        "date": "2026-08-31",
+        "program": "31-08",
+        "headline": "Adelanto del hit del verano",
+        "detail": "Presentó en TikTok los primeros compases de su nuevo tema festivo.",
+        "quote": "Se viene el tema que sonará en todos lados el próximo verano.",
+        "link": "https://x.com/search?q=La%20Joaqui%20tema%20del%20verano&f=live"
+      },
+      {
+        "date": "2026-09-02",
+        "program": "02-09",
+        "headline": "Trend viral en TikTok",
+        "detail": "El baile de su nueva canción explotó en redes sociales como himno juvenil.",
+        "quote": "¿Del 1 al 10 cuánto suena este tema?",
+        "link": "https://x.com/search?q=La%20Joaqui%20trend&f=live"
+      },
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "Bomba en Luzu, ruptura con Luck Ra y romance con Tiago PZK",
+        "detail": "Declaró que nunca tuvo una pareja fiel. Luck Ra la acusó de traición con Tiago PZK y Joaqui le retrucó con su famosa frase de la gira y las infidelidades en Brasil.",
+        "quote": "Una sabe de quién se casa pero nunca de quién se divorcia. Váyanse de gira.",
+        "link": "https://x.com/mdzol/status/2096974575590388151"
+      }
+    ]
   },
   {
     "id": "tiago-pzk",
     "name": "Tiago PZK (Gotti)",
     "category": "musica",
     "categoryLabel": "Música / La Voz de Monte Grande",
-    "tag": "El Romántico del R&B y Trap",
-    "quote": "Sola, sola se queda sola llorando en la habitación.",
+    "tag": "El Gotti Sin Filtro & Amigo Buitre",
+    "quote": "Te gustan villeros.",
     "bio": "Cantante de Monte Grande, autor de hits globales como 'Entre Nosotros' y 'Sola'.",
-    "lore": "Su canción 'Sola' dedicada a su madre víctima de violencia de género emocionó al continente. Ex novio de Taichu y figura de exportación de la música urbana.",
+    "lore": "En el epicentro del escándalo del año tras confirmarse su romance con La Joaqui, ex novia de su ex gran amigo Luck Ra. Tildado en redes de 'icardiada' y buitre de vestuario, respondió al aire con una indirecta demoledora: 'Te gustan villeros', defendiendo que su historia con ella es anterior y profunda.",
     "image": "assets/celebrities/tiago-pzk.jpg",
     "auraScore": 9.2,
-    "caretaScore": 3.5
+    "caretaScore": 3.5,
+    "loreHistory": [
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "La Icardiada del Trap a Luck Ra",
+        "detail": "Acusado por Luck Ra de romper los códigos de hermandad. Se viralizó el árbol genealógico del trap (ex de Taichu) y lanzó su indirecta al aire.",
+        "quote": "Te gustan villeros.",
+        "link": "https://x.com/mdzol/status/2096957540592496671"
+      }
+    ]
   },
   {
     "id": "lit-killah",
@@ -1908,13 +2049,31 @@ const CELEBRITIES_DATABASE = [
     "name": "Luck Ra (Facundo Almenara)",
     "category": "musica",
     "categoryLabel": "Música / El Rey del Cuarteto Pop",
-    "tag": "La Morocha & El Fernet de Córdoba",
-    "quote": "¿A quién no le gusta una morocha que le guste el cuarteto?",
+    "tag": "El Cuartetero de los Cuernos",
+    "quote": "De la muerte y de los cuernos nadie se salvó, yo pensé que sí pero mi día llegó.",
     "bio": "De cantante de trap a revivir el cuarteto cordobés para todo el país con 'La Morocha' y 'Hola Perdida'.",
-    "lore": "El artista más festivo de la Argentina actual. En pareja con La Joaqui, llenó estadios y revolucionó la música tropical con colaboraciones históricas.",
+    "lore": "Tras la ruptura con La Joaqui, estalló en redes publicando un video cantando sobre los cuernos y acusando a su ex amigo Tiago PZK de una 'icardiada' imperdonable. Sin embargo, quedó en el ojo de la tormenta luego de que Yanina Latorre destapara su viaje a Brasil con amigos donde metía a una chica a dormir en la casa alquilada.",
     "image": "assets/celebrities/luck-ra.jpg",
     "auraScore": 9.3,
-    "caretaScore": 3
+    "caretaScore": 3,
+    "loreHistory": [
+      {
+        "date": "2026-09-02",
+        "program": "02-09",
+        "headline": "Primeros rumores de crisis con La Joaqui",
+        "detail": "Movimientos nocturnos en Costanera y distancia física tras meses de convivencia.",
+        "quote": "Fueron los meses más intensos de mi vida.",
+        "link": "https://x.com/search?q=Luck%20Ra%20Joaqui&f=live"
+      },
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "Video demoledor por los cuernos y acusación a Tiago PZK",
+        "detail": "Subió un video cantando 'De la muerte y de los cuernos nadie se salvó'. Confirmó que su ex amigo Tiago está con Joaqui pero Yanina Latorre reveló su affaire en Brasil.",
+        "quote": "De la muerte y de los cuernos nadie se salvó, mi día llegó.",
+        "link": "https://x.com/mdzol/status/2096643946810077318"
+      }
+    ]
   },
   {
     "id": "bm",
@@ -2812,12 +2971,78 @@ const CELEBRITIES_DATABASE = [
     "image": "assets/logo-pf.jpg",
     "auraScore": 6.8,
     "caretaScore": 8
+  },
+  {
+    "id": "tuli-acosta",
+    "name": "Tuli Acosta",
+    "category": "streaming",
+    "categoryLabel": "Streaming / Baile",
+    "tag": "La Reina del Flow & Bailando",
+    "quote": "Hicieron que mi palabra no tenga peso en todo este quilombo.",
+    "bio": "Bailarina, streamer cordobesa y campeona del Bailando. Amiga íntima de Taichu y Luck Ra.",
+    "lore": "Quedó envuelta involuntariamente en el escándalo tras haber sido señalada meses atrás como la supuesta tercera en discordia entre Luck Ra y La Joaqui. Rompió el silencio este 7 de septiembre indignada por quedar pegada en el conventillo.",
+    "loreHistory": [
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "Descargo por el escándalo Joaqui - Luck Ra",
+        "detail": "Salió al cruce de las acusaciones pasadas tras el blanqueo de Tiago PZK y La Joaqui: 'Hicieron que mi palabra no tenga peso'.",
+        "quote": "Hicieron que mi palabra no tenga peso.",
+        "link": "https://x.com/search?q=Tuli%20Acosta%20Luck%20Ra&f=live"
+      }
+    ],
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 9.4,
+    "caretaScore": 2.1
+  },
+  {
+    "id": "taichu",
+    "name": "Taichu",
+    "category": "musica",
+    "categoryLabel": "Trap / Música Urbana",
+    "tag": "La Jefa de la RIP Gang",
+    "quote": "El trap argentino es un pañuelo donde todos nos conocemos.",
+    "bio": "Pionera de la RIP Gang y referente femenina del sonido urbano argentino. Ex pareja de Tiago PZK y amiga de La Joaqui y Tuli Acosta.",
+    "lore": "Protagonista del viral 'El árbol genealógico del trap (Un cogedero)' que mapeó cómo Taichu salió con Tiago, es amiga de La Joaqui, y el círculo se cerró cuando Joaqui empezó a salir con su ex.",
+    "loreHistory": [
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "Viral del Árbol Genealógico del Trap",
+        "detail": "Protagonista del mapa de parejas cruzadas de la música urbana tras el romance de su ex Tiago PZK con La Joaqui.",
+        "quote": "Taichu ex de Tiago, Tuli amiga de Taichu, Joaqui con Tiago... un cogedero.",
+        "link": "https://x.com/nunditos/status/2096406724844392804"
+      }
+    ],
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 9.0,
+    "caretaScore": 1.5
+  },
+  {
+    "id": "franco-colapinto",
+    "name": "Franco Colapinto",
+    "category": "deportes",
+    "categoryLabel": "Deportes / Fórmula 1",
+    "tag": "El Fenómeno F1 & Orgullo Nacional",
+    "quote": "Tenía una gran oportunidad y no la aproveché; estoy triste pero hay que seguir.",
+    "bio": "Piloto argentino de Fórmula 1 en Williams / Alpine. Ídolo de masas y fenómeno viral global.",
+    "lore": "Hizo historia en el GP de Monza al largar 7° y pelear el podio. Tras un despiste finalizó 9° sumando puntos pero rompió en llanto de bronca en boxes. Recibió el apoyo de Lionel Scaloni en el paddock y el cariño de todo el país.",
+    "loreHistory": [
+      {
+        "date": "2026-09-07",
+        "program": "07-09",
+        "headline": "El llanto desgarrador de Monza",
+        "detail": "Finalizó 9° sumando puntos en Italia, pero lloró de bronca por un error que le costó el podio. Scaloni lo visitó en boxes.",
+        "quote": "Tenía una gran oportunidad y no la aproveché.",
+        "link": "https://x.com/elcancillercom/status/2096621283924394208"
+      }
+    ],
+    "image": "assets/logo-pf.jpg",
+    "auraScore": 9.9,
+    "caretaScore": 1.0
   }
 ];
 
-if (typeof window !== "undefined") {
-  window.CELEBRITIES_DATABASE = CELEBRITIES_DATABASE;
-}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { CELEBRITIES_DATABASE };
 }

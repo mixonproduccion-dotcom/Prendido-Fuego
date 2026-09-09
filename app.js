@@ -451,6 +451,56 @@ function setRouletteStep(stepNum) {
   updateLowerThirdRoulette();
 }
 
+// =========================================================
+// SISTEMA DE MEMORIA DE LORES HISTÓRICOS (ÚLTIMAS SEMANAS)
+// =========================================================
+function getCelebLoreHistory(celeb) {
+  if (!celeb) return [];
+  if (celeb.loreHistory && Array.isArray(celeb.loreHistory) && celeb.loreHistory.length > 0) {
+    return celeb.loreHistory;
+  }
+  const celebNameLower = (celeb.name || "").toLowerCase().trim();
+  const found = (typeof celebrities !== "undefined" ? celebrities : []).find(c => {
+    if (!c) return false;
+    if (celeb.id && c.id === celeb.id) return true;
+    const cNameLower = (c.name || "").toLowerCase().trim();
+    if (cNameLower === celebNameLower) return true;
+    if (celeb.alias && cNameLower.includes(celeb.alias.toLowerCase())) return true;
+    return false;
+  });
+  if (found && found.loreHistory && Array.isArray(found.loreHistory) && found.loreHistory.length > 0) {
+    return found.loreHistory;
+  }
+  return [];
+}
+
+function renderLoreHistoryHTML(loreHistoryOrCeleb) {
+  const history = Array.isArray(loreHistoryOrCeleb) ? loreHistoryOrCeleb : getCelebLoreHistory(loreHistoryOrCeleb);
+  if (!history || history.length === 0) return "";
+  return `
+    <details class="lore-history-accordion">
+      <summary class="lore-history-summary">
+        <span class="lha-icon">📜</span>
+        <span class="lha-title">LORE & ANTECEDENTES (${history.length})</span>
+        <span class="lha-badge">ÚLTIMAS SEMANAS</span>
+      </summary>
+      <div class="lore-history-list">
+        ${history.map(item => `
+          <div class="lore-history-item">
+            <div class="lhi-header">
+              <span class="lhi-date">📅 ${item.date || 'Reciente'}</span>
+              <strong class="lhi-title">${item.title || ''}</strong>
+            </div>
+            <p class="lhi-summary">${item.summary || ''}</p>
+            ${item.quote ? `<div class="lhi-quote"><em>"${item.quote}"</em></div>` : ''}
+            ${item.source ? `<div class="lhi-source">🔗 <a href="${item.source}" target="_blank" rel="noopener">Ver Fuente en X</a></div>` : ''}
+          </div>
+        `).join("")}
+      </div>
+    </details>
+  `;
+}
+
 // STEP 1: LA VÍCTIMA EN EL BANCO
 function renderRouletteStep1() {
   const container = document.getElementById("step1VictimCard");
@@ -465,6 +515,7 @@ function renderRouletteStep1() {
     <div class="reveal-hero-lore-box">
       <span class="lore-box-title">🔎 INVESTIGACIÓN & LORE:</span>
       <p class="lore-box-text">${currentVictim.lore || currentVictim.bio}</p>
+      ${renderLoreHistoryHTML(currentVictim)}
     </div>
 
     <div class="reveal-hero-action">
@@ -502,6 +553,7 @@ function renderRouletteStep2() {
     <div class="reveal-hero-lore-box">
       <span class="lore-box-title">🔎 ANTECEDENTES & LORE:</span>
       <p class="lore-box-text">${cand.lore || cand.bio}</p>
+      ${renderLoreHistoryHTML(cand)}
     </div>
 
     <div class="reveal-hero-action">
@@ -539,6 +591,7 @@ function renderRouletteStep3() {
     <div class="reveal-hero-lore-box">
       <span class="lore-box-title">🔎 ANTECEDENTES & LORE:</span>
       <p class="lore-box-text">${cand.lore || cand.bio}</p>
+      ${renderLoreHistoryHTML(cand)}
     </div>
 
     <div class="reveal-hero-action">
@@ -577,6 +630,7 @@ function renderRouletteStep4() {
     <div class="reveal-hero-lore-box">
       <span class="lore-box-title">🔎 ANTECEDENTES & LORE:</span>
       <p class="lore-box-text">${cand.lore || cand.bio}</p>
+      ${renderLoreHistoryHTML(cand)}
     </div>
 
     <div class="reveal-hero-action">
@@ -606,6 +660,7 @@ function renderRouletteStep5() {
     <div class="scc-lore-expand">
       <strong>LORE INVESTIGADO:</strong>
       <p>${currentVictim.lore || currentVictim.bio}</p>
+      ${renderLoreHistoryHTML(currentVictim)}
     </div>
     <div class="scc-victim-status">⚖️ DICTA SENTENCIA EN MESA</div>
   `;
@@ -629,6 +684,7 @@ function renderRouletteStep5() {
       <div class="scc-lore-expand">
         <strong>LORE INVESTIGADO:</strong>
         <p>${cand.lore || cand.bio}</p>
+        ${renderLoreHistoryHTML(cand)}
       </div>
 
       <div class="scc-assign-buttons">
@@ -3242,6 +3298,7 @@ function renderShowStep6_Ruleta(container) {
           <h3 class="rvs-name">${victim.name}</h3>
           <div class="rvs-tag">${victim.tag || victim.categoryLabel}</div>
           <p class="rvs-lore">${victim.lore || victim.bio}</p>
+          ${renderLoreHistoryHTML(victim)}
         </div>
       </div>
 
@@ -3260,6 +3317,7 @@ function renderShowStep6_Ruleta(container) {
               </div>
               <h4 class="ctc-name">${cand.name}</h4>
               <p class="ctc-lore">${cand.lore || cand.bio}</p>
+              ${renderLoreHistoryHTML(cand)}
               
               <div class="ctc-actions-row">
                 <button class="btn-throne-pick btn-tp-casorio ${assign.casorio === cand.name ? 'active' : ''}" onclick="assignShowThroneMulti('casorio', '${cand.name}')">

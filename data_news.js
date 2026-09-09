@@ -1,96 +1,61 @@
 // BASE DE DATOS 6: TITULARES Y NOTICIAS PARA EL TICKER & ZÓCALOS EN VIVO
-// Prendido Fuego (Mix On)
+// Prendido Fuego (Mix On) - Actualizado 07-09
 
 const BREAKING_NEWS_DATA = [
   {
-    tag: "🔥 EL COGEDERO DE LA MÚSICA",
-    headline: "LA JOAQUI BLANQUEÓ CON TIAGO PZK Y LUCK RA EXPLOTÓ EN REDES: 'DE LOS CUERNOS NADIE SE SALVA'",
-    sub: "Tomás Holder: 'Con la ex de un amigo jamás se jode, pero Luck Ra perdió códigos en Brasil'."
+    "tag": "🚨 URGENTE HOLDER",
+    "headline": "TOMÁS HOLDER SUFRIÓ UN FUERTE ACCIDENTE DE AUTO: 'CASI NOS MATA ESTE ASESINO'",
+    "sub": "El conductor cuenta en vivo los detalles del choque que conmocionó a sus seguidores."
   },
   {
-    tag: "💣 BOMBA LAM",
-    headline: "YANINA LATORRE DESTAPÓ A LUCK RA: 'UNA CHICA PERNOCTABA EN SU CASA DE BRASIL'",
-    sub: "Diane Caracchi: 'Se hace la víctima en TikTok pero le metía los cuernos a Joaqui'."
+    "tag": "🔥 EL COGEDERO DE LA MÚSICA",
+    "headline": "LA JOAQUI BLANQUEÓ CON TIAGO PZK Y LUCK RA EXPLOTÓ EN REDES: 'DE LOS CUERNOS NADIE SE SALVA'",
+    "sub": "Tomás Holder: 'Con la ex de un amigo jamás se jode, pero Luck Ra perdió códigos en Brasil'."
   },
   {
-    tag: "⚔️ GUERRA DE TRAP",
-    headline: "TIAGO PZK LE RESPONDIÓ A LUCK RA TRAS QUEDARSE CON SU EX: 'TE GUSTAN VILLEROS'",
-    sub: "Luli Casé: 'Mucho ego herido, energía baja y amistades rotas por despecho'."
+    "tag": "💣 BOMBA LAM",
+    "headline": "YANINA LATORRE DESTAPÓ A LUCK RA: 'UNA CHICA PERNOCTABA EN SU CASA DE BRASIL'",
+    "sub": "Diane Caracchi: 'Se hace la víctima en TikTok pero le metía los cuernos a Joaqui'."
   },
   {
-    tag: "🥂 DESPECHO NACIONAL",
-    headline: "LA JOAQUI DIO CONSEJO DE VIDA: 'LA GIRA NO SE LEVANTA UN DÍA DICIENDO QUE ESTÁ CONFUNDIDA'",
-    sub: "El video viral que encendió la polémica entre las solteras del país."
+    "tag": "⚔️ GUERRA DE TRAP",
+    "headline": "TIAGO PZK LE RESPONDIÓ A LUCK RA TRAS QUEDARSE CON SU EX: 'TE GUSTAN VILLEROS'",
+    "sub": "Luli Casé: 'Mucho ego herido, energía baja y amistades rotas por despecho'."
   },
   {
-    tag: "🏥 SALUD & FARÁNDULA",
-    headline: "INTERNARON A MIRTHA LEGRAND POR BRONQUITIS A 6 MESES DE CUMPLIR 100 AÑOS",
-    sub: "Holder: 'La Chiqui tiene más disciplina que todo el streaming junto, el domingo vuelve'."
+    "tag": "🔥 BOMBAZO TRAP",
+    "headline": "LUCK RA AL ROJO VIVO: 'DE LA MUERTE Y DE LOS CUERNOS NADIE SE SALVÓ, MI DÍA LLEGÓ'",
+    "sub": "Confirmó la traición de su ex gran amigo Tiago PZK con La Joaqui."
   },
   {
-    tag: "🔥 ESCÁNDALO DE STREAM",
-    headline: "SASHA FERRO DESTROZÓ A SU HERMANO TRAS CHISTE MACHISTA EN VIVO EN SOLO POR HOY",
-    sub: "Tomás Holder: 'A tu hermana se la defiende con la vida, Lio Ferro fue un tibio'."
+    "tag": "⚡ INDIRECTA LETAL",
+    "headline": "TIAGO PZK DISPARÓ TRAS EL ESCÁNDALO CON LUCK RA: 'TE GUSTAN VILLEROS'",
+    "sub": "El trapero rompió el silencio tras ser tildado de buitre por las redes."
   },
   {
-    tag: "💄 ¿INSPIRACIÓN O COPIA?",
-    headline: "ACUSAN A LOLA LATORRE DE PLAGIAR LA MARCA DE HAILEY BIEBER CON SU LÍNEA 'SORBO'",
-    sub: "Lola se defendió en TikTok: 'Lo mío es inspiración, no copia'."
+    "tag": "💥 HABLA LA JOAQUI",
+    "headline": "LA JOAQUI FULMINÓ A LUCK RA: 'UNA SABE DE QUIÉN SE CASA PERO NO DE QUIÉN SE DIVORCIA'",
+    "sub": "Yanina Latorre reveló que el cordobés metía minas a pernoctar en la casa en Brasil."
   },
   {
-    tag: "💉 POLÉMICA FITNESS",
-    headline: "TOMÁS MAZZA CONFESÓ SU ADICCIÓN A LOS ANABÓLICOS Y CRECE LA MODA DE LOS 'PINCHAZOS'",
-    sub: "Holder: 'Pincharte sin entrenar es de vago y cagón; la salud no se negocia'."
+    "tag": "🍾 CONSEJO DE SOLTERA",
+    "headline": "LA JOAQUI: 'VÁYANSE DE GIRA, QUE LA GIRA NO SE LEVANTA UN DÍA CONFUNDIDA'",
+    "sub": "La frase viral que hizo estallar a la mesa de Prendido Fuego."
   },
   {
-    tag: "🤖 TENDENCIA FUTURO",
-    headline: "FABRICAN ROBOTS SEXUALES EN CHINA Y TESLA ANUNCIA OPTIMUS: ¿ES INFIDELIDAD?",
-    sub: "Diane Caracchi: 'Si tu pareja tiene intimidad con un robot, el pacto de pareja está roto'."
+    "tag": "🏎️ LLANTO EN MONZA",
+    "headline": "COLAPINTO QUEBRADO TRAS EL GP DE ITALIA: 'TENÍA UNA GRAN OPORTUNIDAD Y NO LA APROVECHÉ'",
+    "sub": "Lionel Scaloni estuvo en el paddock bancando al piloto argentino."
   },
   {
-    tag: "🎙️ LUZU SOLD OUT",
-    headline: "SANTI TALLEDO PRESENTÓ A SU NOVIO EL TIKTOKER CARLI EN EL MOVISTAR ARENA",
-    sub: "Luli Casé: '¡El amor más hermoso y auténtico del streaming argentino!'."
+    "tag": "🏥 PREOCUPACIÓN DIVA",
+    "headline": "MIRTHA LEGRAND INTERNADA EN EL MATER DEI POR BRONQUITIS: JUANA VIALE AL FRENTE",
+    "sub": "La diva de 99 años permanece en observación preventiva."
   },
   {
-    tag: "🚨 ALERTA DE FUNA",
-    headline: "TOMÁS HOLDER AL BANCO POR DEFENDER LOS CÓDIGOS DE SANGRE EN LA MESA",
-    sub: "Votá en vivo en el chat si Holder zafa o queda cancelado."
-  },
-  {
-    tag: "🔥 URGENTE / PRENDIDO FUEGO",
-    headline: "HOLDER LIQUIDÓ A LA NOCHE DE IBIZA: 'PREFIERO LA ARGENTINA TODA LA VIDA'",
-    sub: "WhatsApp: 341 749-0173 • ¿Bancás a Holder o es un resentido?"
-  },
-  {
-    tag: "💣 BOMBA MEDIÁTICA",
-    headline: "WANDA NARA FUE VISTA EN NORDELTA CON L-GANTE TRAS SU VUELTA DE TURQUÍA",
-    sub: "Mauro Icardi subió 15 historias en 10 minutos y después las borró."
-  },
-  {
-    tag: "⚖️ TRIBUNAL DE FARÁNDULA",
-    headline: "CAMI MAYAN INICIÓ DEMANDA MILLONARIA A MAC ALLISTER POR COMPENSACIÓN",
-    sub: "Diane: 'Le corresponde hasta el último centavo por los años convividos'."
-  },
-  {
-    tag: "🚨 ALERTA RED FLAG",
-    headline: "LULI SE SINCERÓ AL AIRE: 'ESPERÉ 2 AÑOS A UN PIBE Y ME METIÓ LOS CUERNOS'",
-    sub: "Mandá tu peor anécdota de migajera al WhatsApp de Prendido Fuego."
-  },
-  {
-    tag: "🏎️ EXCLUSIVO F1",
-    headline: "COLAPINTO CAUSA FUROR EN REDES TRAS SUS SALIDAS CON FAMOSAS EN MADRID",
-    sub: "¿El nuevo soltero más codiciado del país tiene aura infinita?"
-  },
-  {
-    tag: "🥊 GUERRA DE BANDOS",
-    headline: "FURIA CONTRA LA TELEVISIÓN TRADICIONAL: 'A MÍ NO ME DOMESTICA NADIE'",
-    sub: "Los Furiosos copan el chat de Mix On pidiendo la cabeza de los panelistas."
-  },
-  {
-    tag: "👑 EL RANKING CRUEL",
-    headline: "HOLDER MANDÓ A LAS CENIZAS A LOS 'CARETAS DEL GYM': 'A LAS FEAS NO LAS QUIERE NADIE'",
-    sub: "El debate de género más cancelable del año dividió por completo a la mesa."
+    "tag": "⚽ CLÁSICO ROSARINO",
+    "headline": "NEWELL'S SE LO EMPATÓ SOBRE LA HORA A ROSARIO CENTRAL Y ARROYITO FUE UNA CALDERA",
+    "sub": "Tomás Holder festeja en vivo el empate leproso en el living."
   }
 ];
 

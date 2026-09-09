@@ -2189,10 +2189,13 @@ function startShowDia(mode = "today") {
   currentShowStep = 1;
 
   if (mode === "today") {
-    // 1. APERTURA: GRAN PORTADA DEL DÍA (LA JOAQUI VS LUCK RA & TIAGO PZK)
-    const aperturaDuel = GUERRA_BANDOS_DATA[0] || {
-      id: "duelo-joaqui-luckra-amigos",
-      title: "EL COGEDERO DE LA MÚSICA: LA JOAQUI VS. LUCK RA",
+    if (typeof CURRENT_SHOW_EPISODE !== "undefined" && CURRENT_SHOW_EPISODE) {
+      currentShowEpisode = CURRENT_SHOW_EPISODE;
+    } else {
+      // 1. APERTURA: GRAN PORTADA DEL DÍA (LA JOAQUI VS LUCK RA & TIAGO PZK)
+      const aperturaDuel = GUERRA_BANDOS_DATA[0] || {
+        id: "duelo-joaqui-luckra-amigos",
+        title: "EL COGEDERO DE LA MÚSICA: LA JOAQUI VS. LUCK RA",
       guide: "La gran polémica del día: ¿A quién banca cada conductor de la mesa?",
       sideA: { name: "La Joaqui", badge: "La que no se Queda Callada", argument: "Sufrió infidelidades en silencio (como la chica que pernoctaba en Brasil), la dejaron de forma fría y ahora es libre de salir con quien le pinte sin pedirle permiso al ex.", image: "assets/celebrities/la-joaqui.jpg" },
       sideB: { name: "Luck Ra", badge: "De los Cuernos Nadie se Salva", argument: "Siente la traición más baja de todas: que tu ex pareja elija precisamente a tu propio íntimo amigo para ventilarlo en público y enrostrártelo en la cara.", image: "assets/celebrities/luck-ra.jpg" }
@@ -2299,17 +2302,18 @@ function startShowDia(mode = "today") {
       }
     ];
 
-    currentShowEpisode = {
-      title: "PROGRAMA DE HOY • LUNES 07/09",
-      badge: "🔥 GUION OFICIAL • LUNES 07/09 • MIX ON STUDIO",
-      aperturaDuel,
-      bandosList,
-      tribunalList,
-      semaforoList,
-      podioItem,
-      ruletaList,
-      funaAccused: "holder"
-    };
+      currentShowEpisode = {
+        title: "PROGRAMA DE HOY • LUNES 07/09",
+        badge: "🔥 GUION OFICIAL • LUNES 07/09 • MIX ON STUDIO",
+        aperturaDuel,
+        bandosList,
+        tribunalList,
+        semaforoList,
+        podioItem,
+        ruletaList,
+        funaAccused: "holder"
+      };
+    }
   } else {
     // Modo RNG aleatorio de 8 bloques
     const shuffledBandos = [...GUERRA_BANDOS_DATA].sort(() => 0.5 - Math.random());

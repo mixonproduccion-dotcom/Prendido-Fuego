@@ -19,12 +19,12 @@ const CURRENT_SHOW_EPISODE = {
       "image": "assets/logo-pf.jpg"
     },
     "sideB": {
-      "name": "Tomás Holder & El Laburante",
-      "badge": "Cero Vividoras",
-      "argument": "El hombre no es un cajero automático; el amor no se tasa en millones y a las interesadas de cotillón se les corta el rostro de una.",
-      "image": "assets/celebrities/tomas-holder.jpg"
+      "name": "El Amor no se Tasa",
+      "badge": "Cero Interés",
+      "argument": "El amor no es una transacción económica; exigir 8 palos mensuales para una cita es transformar una relación en un negocio comercial.",
+      "image": "assets/logo-pf.jpg"
     },
-    "chatTrigger": "¿De qué lado está el chat? Escribí [1] 8 PALOS o [2] HOLDER en vivo."
+    "chatTrigger": "¿De qué lado está el chat? Escribí [1] 8 PALOS o [2] EL AMOR NO SE TASA en vivo."
   },
   "bandosList": [
     {
@@ -91,21 +91,21 @@ const CURRENT_SHOW_EPISODE = {
       "options": [
         {
           "id": "A",
-          "title": "1. Disciplina de Fierros (Holder / Factos)",
-          "text": "El lomo se construye transpirando en el gym con disciplina. Mandíbula con aguja y botox es de tibio y careta.",
-          "style": "holder"
+          "title": "1. Banco los Retoques",
+          "text": "Cada uno hace lo que quiere con su cuerpo y su plata. Si te gusta verte con mandíbula marcada o labios, hacete lo que quieras sin pedir permiso.",
+          "style": "neutral"
         },
         {
           "id": "B",
-          "title": "2. Presión Estética y Salud Mental (Diane / Límites)",
-          "text": "Las redes enferman la cabeza con ideales imposibles. Normalizar deformarse la cara a los 19 años es una alerta psicológica.",
-          "style": "diane"
+          "title": "2. Una Locura a los 20 Años",
+          "text": "Las redes enferman la cabeza con ideales imposibles. Deformarse la cara con ácido a los 19 o 20 años por un filtro de TikTok es una alerta.",
+          "style": "neutral"
         },
         {
           "id": "C",
-          "title": "3. Glow Up Cósmico (Luli / Empatía)",
-          "text": "Cada una hace con su cuerpo lo que vibre. Si un retoque te sana una herida del colegio y te empodera, ¡bienvenido el brillo!",
-          "style": "luli"
+          "title": "3. Belleza con Salud y Entrenamiento",
+          "text": "La estética real se construye con entrenamiento, disciplina y salud; meterse agujas para caretear en fotos es un atajo que te arruina.",
+          "style": "neutral"
         }
       ]
     },
@@ -120,21 +120,21 @@ const CURRENT_SHOW_EPISODE = {
       "options": [
         {
           "id": "A",
-          "title": "1. Comerte las Balas con tu Sangre (Holder / Lealtad)",
-          "text": "A tu hermana se la defiende a muerte. Si se equivoca, la corregís en casa, pero en la calle salís a pelear con ella.",
-          "style": "holder"
+          "title": "1. Traición entre Hermanas",
+          "text": "A tu hermana se la banca a muerte en las buenas y en las malas. Despegarte públicamente en historias de Instagram por miedo a que te cancelen es de cagona.",
+          "style": "neutral"
         },
         {
           "id": "B",
-          "title": "2. Despegarte con Altura (Diane / Responsabilidad)",
-          "text": "Cada adulto responde por sus actos. Majo tiene derecho a cuidar su carrera y no cargar con la lengua suelta ajena.",
-          "style": "diane"
+          "title": "2. Cada Adulto se Hace Cargo",
+          "text": "Cada persona responde por lo que dice frente a una cámara. Majo no tiene por qué inmolar su carrera deportiva por una burrada de su hermana.",
+          "style": "neutral"
         },
         {
           "id": "C",
-          "title": "3. Sanar la Lealtad Tóxica (Luli / Evolución)",
-          "text": "Cortar con el mandato familiar es un paso de sanación. No tenés que quemarte en la hoguera de otro.",
-          "style": "luli"
+          "title": "3. Papelón de las Dos",
+          "text": "Ningunear al máximo ídolo argentino en vivo es indefendible, y después salir a despegarte en redes para salvar tus canjes da vergüenza ajena.",
+          "style": "neutral"
         }
       ]
     },
@@ -149,21 +149,21 @@ const CURRENT_SHOW_EPISODE = {
       "options": [
         {
           "id": "A",
-          "title": "1. Bajada de Humo Inmediata (Holder / Factos)",
-          "text": "El ego sin fierros ni calle es puro chamuyo. En el vestuario al agrandado se lo ubica de un solo bife de realidad.",
-          "style": "holder"
+          "title": "1. Ego Desmedido y Papelón",
+          "text": "Ningunear la inteligencia de tu propio hijo frente a miles de personas en stream para agrandar tu figura pública da vergüenza ajena.",
+          "style": "neutral"
         },
         {
           "id": "B",
-          "title": "2. Papelón Maternal en Vivo (Diane / Vergüenza)",
-          "text": "Poner a tu propio hijo de espectador de tu narcisismo televisivo es una falta de empatía y contención maternal.",
-          "style": "diane"
+          "title": "2. Banco la Seguridad",
+          "text": "Es un show de streaming y hay que creerse mil. Mejor pecar de agrandada que ser una tibia acomplejada que no confía en sí misma.",
+          "style": "neutral"
         },
         {
           "id": "C",
-          "title": "3. Ley de Asunción y Abundancia (Luli / Mística)",
-          "text": "Reconocer tu propio poder sin falsas modestias es manifestar grandeza. Connie vibra en la frecuencia del éxito.",
-          "style": "luli"
+          "title": "3. Puro Humo de Panelista",
+          "text": "Tiró esa frase delirante pura y exclusivamente para que la levanten en TikTok y Twitter y tener 15 minutos de prensa.",
+          "style": "neutral"
         }
       ]
     }
@@ -286,7 +286,7 @@ const CURRENT_SHOW_EPISODE = {
         {
           "name": "Tomás Holder",
           "image": "assets/celebrities/tomas-holder.jpg",
-          "lore": "El macho alfa de Prendido Fuego con cero tolerancia a las tibiezas."
+          "lore": "Conductor de Prendido Fuego"
         },
         {
           "name": "Tiago PZK",
@@ -306,7 +306,7 @@ const CURRENT_SHOW_EPISODE = {
         {
           "name": "Tomás Holder",
           "image": "assets/celebrities/tomas-holder.jpg",
-          "lore": "Defensor del contacto cero y de cortar el rostro ante las interesadas."
+          "lore": "Conductor de Prendido Fuego"
         },
         {
           "name": "Lola Latorre",
@@ -321,7 +321,7 @@ const CURRENT_SHOW_EPISODE = {
       ]
     }
   ],
-  "funaAccused": "holder"
+  "funaAccused": "victoria-granatto"
 };
 
 if (typeof window !== "undefined") {

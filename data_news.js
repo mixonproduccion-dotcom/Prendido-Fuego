@@ -24,7 +24,7 @@ const BREAKING_NEWS_DATA = [
   },
   {
     "tag": "🏑 ESCÁNDALO LEONA",
-    "headline": "LA LEONA QUE CRITICÓ A MESSI CERRÓ SU CUENTA Y SU HERMANA MAJO SE DESPEGÓ EN REDES",
+    "headline": "VICTORIA GRANATTO NINGUNEÓ A MESSI EN ESPN Y SU HERMANA MAJO SE DESPEGÓ EN HISTORIAS",
     "sub": "Tomás Holder: 'A tu hermana se la defiende con la vida, Majo fue una traidora'."
   },
   {
@@ -33,9 +33,9 @@ const BREAKING_NEWS_DATA = [
     "sub": "Luli Casé: '¡Amo que facture con el hate de Twitter, es una reina!'."
   },
   {
-    "tag": "📱 FUNA INSTAGRAM",
-    "headline": "SOL AGUILERA EXPUSO A UN PIBE QUE LE MANDÓ FOTOS ÍNTIMAS POR MENSAJE DIRECTO",
-    "sub": "Diane Caracchi: 'Denuncia penal inmediata en la fiscalía, basta de impunidad'."
+    "tag": "✨ DÍA DE LA BELLEZA",
+    "headline": "BOOM DE RETOQUES ESTÉTICOS Y MANDÍBULA A LOS 20 AÑOS: ¿AMOR PROPIO O CARETEADA?",
+    "sub": "Tomás Holder: 'La facha se gana con fierros en el gimnasio, el ácido hialurónico es de tibio'."
   },
   {
     "tag": "🎙️ EGO EN STREAM",
@@ -43,6 +43,10 @@ const BREAKING_NEWS_DATA = [
     "sub": "Aseguró que el pensamiento humano desaparecerá en 5 años y desató una ola de memes."
   }
 ];
+
+if (typeof window !== "undefined") {
+  window.BREAKING_NEWS_DATA = BREAKING_NEWS_DATA;
+}
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { BREAKING_NEWS_DATA };

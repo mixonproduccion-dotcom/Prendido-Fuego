@@ -160,18 +160,18 @@ const LORE_MEMORY_DATABASE = {
         }
       ]
     },
-    "sol-aguilera": {
-      "tag": "La Justiciera de los Mensajes Directos",
-      "quote": "El que se hace el aliade en cámara te pide fotos por privado a las 4 AM.",
-      "lore": "Expuso en streaming capturas de pantalla de streamers y conductores que fingen ser aliados del feminismo pero acosan a creadoras por mensajes privados de Instagram.",
+    "victoria-granatto": {
+      "tag": "La Leona en el Ojo de la Tormenta",
+      "quote": "Todo bien con la selección de fútbol, pero como que todas querían que las salude Messi. Chicas, es Messi, no pasa nada... nuestra historia es mucho más grande.",
+      "lore": "Delantera de Las Leonas que desató un escándalo nacional al ningunear en ESPN el saludo de Lionel Messi y Los Leones tras salir campeonas mundiales. Tuvo que poner su cuenta de Instagram en privado ante la catarata de repudio, mientras su hermana Majo Granatto publicó una historia despegándose públicamente.",
       "loreHistory": [
         {
           "date": "2026-09-09",
           "program": "09-09",
-          "headline": "Exposición de MDs de streamers",
-          "detail": "Filtró mensajes de streamers reconocidos pidiendo fotos íntimas de madrugada.",
-          "quote": "El que se hace el aliade en cámara te pide fotos por privado a las 4 AM.",
-          "link": "https://x.com/search?q=Sol%20Aguilera%20streamer%20MD&f=live"
+          "headline": "Ninguneo a Messi en ESPN y traición familiar",
+          "detail": "Menospreció a Messi y a la Selección masculina de fútbol en vivo. Su hermana Majo salió a despegarse en historias para salvar su imagen.",
+          "quote": "Chicas, es Messi, o sea, no pasa nada... nuestra historia es mucho más grande.",
+          "link": "https://x.com/porqueTTarg/status/2097366313278521555"
         }
       ]
     },
@@ -310,12 +310,17 @@ const LORE_MEMORY_DATABASE = {
         "Flor Vigna le declara la guerra a Ángel de Brito: 'Es un machista retrógrado que me hace bullying'.",
         "Juli Rocyo y la implosión del poliamor: 'El amor libre dura hasta que se enamoran de la amante'.",
         "Lola Latorre en el centro del debate Nepobaby: El privilegio vs el carisma en streaming.",
-        "Sol Aguilera expone mensajes desubicados de streamers top de Kick haciéndose los aliades.",
+        "Victoria Granatto ninguneó a Messi en ESPN y su hermana Majo se despegó en historias de Instagram.",
+        "Día Internacional de la Belleza: El debate de los retoques estéticos y mandíbula con ácido a los 20 años vs fierros.",
         "Connie Ansaldi en Blender: Batalla de egos sobre la invención de la televisión moderna."
       ]
     }
   ]
 };
+
+if (typeof window !== "undefined") {
+  window.LORE_MEMORY_DATABASE = LORE_MEMORY_DATABASE;
+}
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { LORE_MEMORY_DATABASE };

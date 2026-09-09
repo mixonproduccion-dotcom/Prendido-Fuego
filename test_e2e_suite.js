@@ -203,14 +203,14 @@ assert(body.innerHTML.toLowerCase().includes("lola") || body.innerHTML.toLowerCa
 // Step 2 -> Step 3 (Tribunal)
 window.nextShowDiaStep();
 assert(stepCounter && stepCounter.textContent.includes("BLOQUE 3"), "Advanced to Step 3 (Tribunal)");
-assert(body.innerHTML.toLowerCase().includes("sol") || body.innerHTML.toLowerCase().includes("aguilera") || body.innerHTML.toLowerCase().includes("md"), "Juicio 1 rendered (Sol Aguilera MDs)");
+assert(body.innerHTML.toLowerCase().includes("belleza") || body.innerHTML.toLowerCase().includes("retoque") || body.innerHTML.toLowerCase().includes("gym"), "Juicio 1 rendered (Día de la Belleza / Retoques vs Gym)");
 window.voteTribunalByHost("holder", "A");
 window.voteTribunalByHost("diane", "A");
 window.voteTribunalByHost("luli", "C");
 
 // Step 3 Juicio 1 -> Juicio 2
 window.nextShowDiaStep();
-assert(body.innerHTML.toLowerCase().includes("messi") || body.innerHTML.toLowerCase().includes("sofia") || body.innerHTML.toLowerCase().includes("granatto"), "Advanced to Juicio 2 (Sofía Granatto / Messi)");
+assert(body.innerHTML.toLowerCase().includes("messi") || body.innerHTML.toLowerCase().includes("victoria") || body.innerHTML.toLowerCase().includes("granatto"), "Advanced to Juicio 2 (Victoria Granatto / Messi)");
 
 // Step 3 Juicio 2 -> Juicio 3
 window.nextShowDiaStep();

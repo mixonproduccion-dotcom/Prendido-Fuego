@@ -3108,6 +3108,10 @@ const CELEBRITIES_DATABASE = [
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.CELEBRITIES_DATABASE = CELEBRITIES_DATABASE;
+}
+
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { CELEBRITIES_DATABASE };
 }

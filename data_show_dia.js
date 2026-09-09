@@ -81,40 +81,40 @@ const CURRENT_SHOW_EPISODE = {
   ],
   "tribunalList": [
     {
-      "id": "caso-md-sol-aguilera",
-      "title": "El Acoso por MD: Foto Íntima sin Consentimiento a Sol Aguilera",
-      "protagonist": "Sol Aguilera",
-      "category": "Redes / Acoso & Privacidad",
-      "context": "Un pibe le mandó fotos de sus partes íntimas por mensaje directo de Instagram. Sol lo expuso públicamente en sus historias con captura y perfil. ¿Qué hacés en su lugar?",
+      "id": "caso-dia-belleza-retoques",
+      "title": "Día Internacional de la Belleza: ¿Retoques Estéticos o Fierros y Gym?",
+      "protagonist": "Team Ácido Hialurónico vs Team Fierros",
+      "category": "Efeméride 09/09 / Estética & Autoestima",
+      "context": "En pleno Día de la Belleza, explota el debate por el boom de retoques con ácido hialurónico, mandíbulas cuadradas y bótox a los 20 años en TikTok. ¿Es libertad y amor propio o una careteada extrema por inseguridad?",
       "image": "assets/logo-pf.jpg",
-      "quote": "Le mandó una foto explícita por privado creyendo que había impunidad.",
+      "quote": "Llenarse la cara de ácido a los 20 para encajar en el filtro de Instagram.",
       "options": [
         {
           "id": "A",
-          "title": "1. Escrache Salvaje en Redes (Holder / Fuego)",
-          "text": "Le publicás la cara, el nombre y el Instagram a la vista de todos. A los pajeros se los frena con vergüenza pública.",
+          "title": "1. Disciplina de Fierros (Holder / Factos)",
+          "text": "El lomo se construye transpirando en el gym con disciplina. Mandíbula con aguja y botox es de tibio y careta.",
           "style": "holder"
         },
         {
           "id": "B",
-          "title": "2. Denuncia Penal en la Fiscalía (Diane / Límites)",
-          "text": "Captura certificada y denuncia judicial por acoso cibernético. Cero conventillo en historias para no ensuciarte.",
+          "title": "2. Presión Estética y Salud Mental (Diane / Límites)",
+          "text": "Las redes enferman la cabeza con ideales imposibles. Normalizar deformarse la cara a los 19 años es una alerta psicológica.",
           "style": "diane"
         },
         {
           "id": "C",
-          "title": "3. Bloqueo y Baño de Ruda (Luli / Karma)",
-          "text": "Bloqueo inmediato, limpieza energética para sacar la vibra densa y soltar el rencor para que el karma actúe.",
+          "title": "3. Glow Up Cósmico (Luli / Empatía)",
+          "text": "Cada una hace con su cuerpo lo que vibre. Si un retoque te sana una herida del colegio y te empodera, ¡bienvenido el brillo!",
           "style": "luli"
         }
       ]
     },
     {
       "id": "caso-leona-messi-hermana",
-      "title": "La Leona que Ninguneó a Messi y la Traición de su Hermana en Redes",
-      "protagonist": "Sofía & Majo Granatto",
-      "category": "Deporte / Lealtad Familiar & Cancelación",
-      "context": "Sofía Granatto criticó a Messi y el país la canceló hasta cerrar su cuenta. Al instante, su hermana Majo publicó: 'Yo a Messi lo amo, nada que ver conmigo'. ¿Se le suelta la mano a una hermana por likes?",
+      "title": "Victoria Granatto ninguneó a Messi en ESPN y su hermana Majo se despegó en historias",
+      "protagonist": "Victoria & Majo Granatto",
+      "category": "Deporte / Lealtad Familiar & Códigos",
+      "context": "Victoria Granatto ninguneó el saludo de Messi en ESPN diciendo 'Chicas, es Messi, no pasa nada... nuestra historia es mucho más grande'. Tras el repudio en redes y tener que poner su cuenta privada, su hermana Majo publicó: 'Yo a Messi lo amo, ejemplo de todo'. ¿Se le suelta la mano a una hermana por seguidores?",
       "image": "assets/celebrities/lionel-messi.jpg",
       "quote": "Tu hermana comete un error nacional y vos salís a despegarte en historias.",
       "options": [
@@ -198,12 +198,12 @@ const CURRENT_SHOW_EPISODE = {
     },
     {
       "id": "sem-4",
-      "title": "Mandar fotos íntimas no solicitadas por mensaje privado",
-      "category": "Redes / Sol Aguilera",
-      "guide": "¿Acoso directo o chamuyo moderno?",
-      "text": "Escribirle a una chica por Instagram y mandarle directamente una foto de tus partes íntimas en la primera interacción...",
-      "danger": "fire",
-      "defaultColor": "red"
+      "title": "Hacerse 5 retoques estéticos con ácido hialurónico antes de los 21 años",
+      "category": "Estética / Redes Sociales",
+      "guide": "¿Amor propio o inseguridad extrema?",
+      "text": "Seguir las modas de TikTok y gastarse fortunas en ponerse mandíbula cuadrada y rellenarse los labios siendo adolescente...",
+      "danger": "red",
+      "defaultColor": "yellow"
     },
     {
       "id": "sem-5",
@@ -238,9 +238,9 @@ const CURRENT_SHOW_EPISODE = {
     "guide": "La mesa debe ordenar del #1 (El papelón más imperdonable) al #5 (El error menor).",
     "candidates": [
       {
-        "id": "sofia-granatto",
-        "name": "Sofía Granatto",
-        "crime": "La Leona que criticó a Messi y tuvo que cerrar su cuenta de Instagram del cagazo.",
+        "id": "victoria-granatto",
+        "name": "Victoria Granatto",
+        "crime": "La Leona que ninguneó a Messi en ESPN y tuvo que poner su cuenta privada por el repudio en redes.",
         "image": "assets/celebrities/lionel-messi.jpg"
       },
       {
@@ -262,9 +262,9 @@ const CURRENT_SHOW_EPISODE = {
         "image": "assets/celebrities/florvigna.jpg"
       },
       {
-        "id": "acosador-md",
-        "name": "El Acosador de Instagram",
-        "crime": "Mandar una foto indecente por privado y quedar escrachado ante todo el país.",
+        "id": "clones-mandibula",
+        "name": "Los Clones de la Mandíbula",
+        "crime": "Gastarse miles de dólares en ácido hialurónico para terminar con la misma cara de muñeco inflable.",
         "image": "assets/logo-pf.jpg"
       }
     ]

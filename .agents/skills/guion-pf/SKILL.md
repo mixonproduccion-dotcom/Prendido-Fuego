@@ -117,18 +117,18 @@ Tras la investigación, **Antigravity SE DETIENE COMPLETAMENTE** y presenta la p
 
 ## 📝 FASE 4: LOS 5 FORMATOS OFICIALES (`PF/Guiones/DD-MM/`)
 
-Tras la aprobación, se generan de forma sincronizada los 5 formatos:
+Tras la aprobación, se generan de forma sincronizada los formatos oficiales:
 1. **`Guion DD-MM.docx`**: Documento Word oficial para los conductores:
    - Tipografía: **Calibri**.
    - Título: 18pt Negrita (`GUIÓN - PRENDIDO FUEGO`).
    - Subtítulo: 18pt Regular (`EMISIÓN DD/MM`).
-   - Secciones: 13pt Negrita Cursiva.
    - Párrafos: 13pt Regular con nombres de protagonistas en **Negrita**, citas en *Cursiva* e **hipervínculos nativos clickeables en Word** hacia X/Twitter.
    - Márgenes: 1 pulgada en los 4 costados.
-2. **`guion_del_dia.md`**: Escaleta editorial completa de los 8 bloques con hechos y preguntas de debate con links markdown.
-3. **`rundown_del_dia.md`**: Escaleta técnica de tiempos (90 a 105 min), tiros de cámara, zócalos de TV y disparadores de audio SFX.
-4. **`noticias_detalladas.md`**: Dossier periodístico de investigación con citas textuales y links exactos a X.
-5. **`noticias_detalladas.json`**: JSON estructurado con campo `url` exacto para integraciones y scrapers.
+2. **`LINKS_Y_CONTENIDO_EN_VIVO.md`**: Hub de enlaces rápidos y material audiovisual para producción / switcher / OBS. Agrupa por cada bloque y tendencia todos los links directos (videos, clips, fotos, tweets) con un clic directo para mandar al aire al instante.
+3. **`guion_del_dia.md`**: Escaleta editorial completa de los 8 bloques con hechos y preguntas de debate con links markdown.
+4. **`rundown_del_dia.md`**: Escaleta técnica de tiempos (90 a 105 min), tiros de cámara, zócalos de TV y disparadores de audio SFX.
+5. **`noticias_detalladas.md`**: Dossier periodístico de investigación con citas textuales y links exactos a X.
+6. **`noticias_detalladas.json`**: JSON estructurado con campo `url` exacto para integraciones y scrapers.
 
 ---
 

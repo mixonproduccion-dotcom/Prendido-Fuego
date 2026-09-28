@@ -61,6 +61,10 @@ Esta skill automatiza la producción ejecutiva diaria del programa de streaming 
 * **Terminantemente prohibido inventar diálogos falsos** atribuidos a los conductores en el guion (ej: *"Holder cruzó a..."* si él no lo dijo).
 * En los guiones y dossiers solo van **hechos comprobados, citas textuales de los verdaderos protagonistas y disparadores neutrales** para que la mesa debata libremente.
 
+### 7. 🚫 CERO POLÍTICA (POLÍTICA NUNCA)
+* Prendido Fuego es pura y exclusivamente **espectáculos, farándula, noche, vínculos, códigos de pareja/amistad y cultura pop**.
+* **TERMINANTEMENTE PROHIBIDO**: incluir figuras políticas (presidentes, ministros, legisladores, candidatos), disputas partidarias, la grieta o medidas de gobierno. Ni para aperturas, ni para bandos, ni para tribunales, ni para rankings. Política nunca.
+
 ---
 
 ## 🛑 EL FLUJO DE TRABAJO EN 5 FASES

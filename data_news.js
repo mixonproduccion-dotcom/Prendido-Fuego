@@ -1,53 +1,52 @@
-// BASE DE DATOS 6: TITULARES Y NOTICIAS PARA EL TICKER & ZÓCALOS EN VIVO
-// Prendido Fuego (Mix On) - Actualizado 09-09
-
+// BASE DE DATOS DE NOTICIAS DE ÚLTIMO MOMENTO
 const BREAKING_NEWS_DATA = [
   {
-    "tag": "🚨 TARIFA DEL AMOR",
-    "headline": "PIBAS EXIGEN SUELDOS DE 3 A 8 MILLONES PARA TENER UNA CITA: 'SI NO LLEGA, NO CALIFICA'",
-    "sub": "Tomás Holder: 'Son vividoras de cotillón; el hombre no es el cajero automático de nadie'."
+    id: "news-01",
+    tag: "ROMANCE CONFIRMADO",
+    title: "Tiago PZK y La Joaqui blanquearon su noviazgo bajando de un avión privado tomados de la mano",
+    time: "HACE 1 HORA",
+    trending: true
   },
   {
-    "tag": "💔 RELACIÓN ABIERTA",
-    "headline": "JULI ROCYO PIDIÓ ABRIR LA PAREJA Y SU NOVIO LE CLAVÓ 9 DÍAS DE VISTO: 'ES PEOR QUE ME IGNORE A QUE SEA SINCERA'",
-    "sub": "Diane Caracchi: 'Pedir abrir la pareja es la excusa cobarde para meter cuernos'."
+    id: "news-02",
+    tag: "TRAICIÓN URBANA",
+    title: "Luck Ra expuso los mensajes de Tiago PZK: 'Me ponía gordito te quiero mientras andaba con mi ex'",
+    time: "HACE 2 HORAS",
+    trending: true
   },
   {
-    "tag": "💣 GUERRA LAM",
-    "headline": "FLOR VIGNA LE RESPONDIÓ A ÁNGEL DE BRITO: 'ME DICE PIOJA PERO VIVE PENDIENTE DE MÍ'",
-    "sub": "La cantante redobló la apuesta tras ser acusada de dar vergüenza ajena."
+    id: "news-03",
+    tag: "HISTÓRICO EN RIVER",
+    title: "Fin de la grieta pop: Tini Stoessel apareció por sorpresa y se abrazó con Lali ante 80.000 personas",
+    time: "HACE 3 HORAS",
+    trending: true
   },
   {
-    "tag": "⚡ RESPUESTA ÁNGEL",
-    "headline": "ÁNGEL DE BRITO DESTROZÓ A FLOR VIGNA EN X: 'REVISEN SU CONCEPTO DE PICANTE'",
-    "sub": "El rey de LAM liquidó el descargo de la artista en vivo."
+    id: "news-04",
+    tag: "AMOR EN REDES",
+    title: "Pedro Rosemblat le dedicó una emotiva carta a Lali tras sus shows en River: 'Te amo y te admiro'",
+    time: "HACE 4 HORAS",
+    trending: false
   },
   {
-    "tag": "🏑 ESCÁNDALO LEONA",
-    "headline": "VICTORIA GRANATTO NINGUNEÓ A MESSI EN ESPN Y SU HERMANA MAJO SE DESPEGÓ EN HISTORIAS",
-    "sub": "Tomás Holder: 'A tu hermana se la defiende con la vida, Majo fue una traidora'."
+    id: "news-05",
+    tag: "PRIME TIME TV",
+    title: "Telefe estrena hoy MasterChef Celebrity 2026 con Wanda Nara buscando retener el rating frente al streaming",
+    time: "HACE 5 HORAS",
+    trending: false
   },
   {
-    "tag": "👗 NEPOBABY EN ACCIÓN",
-    "headline": "LOLA LATORRE LANZÓ SU MARCA 'NEPOBABY' TRAS EL ESCÁNDALO DEL PLAGIO A HAILEY BIEBER",
-    "sub": "Luli Casé: '¡Amo que facture con el hate de Twitter, es una reina!'."
-  },
-  {
-    "tag": "✨ DÍA DE LA BELLEZA",
-    "headline": "BOOM DE RETOQUES ESTÉTICOS Y MANDÍBULA A LOS 20 AÑOS: ¿AMOR PROPIO O CARETEADA?",
-    "sub": "Tomás Holder: 'La facha se gana con fierros en el gimnasio, el ácido hialurónico es de tibio'."
-  },
-  {
-    "tag": "🎙️ EGO EN STREAM",
-    "headline": "CONNIE ANSALDI CON SU HIJO EN VIVO: '¿LA PERSONA MÁS INTELIGENTE QUE CONOCÍ? YO'",
-    "sub": "Aseguró que el pensamiento humano desaparecerá en 5 años y desató una ola de memes."
+    id: "news-06",
+    tag: "AURA COLAPINTO",
+    title: "Franco Colapinto es furor en redes por sus likes nocturnos a famosas en X tras el fin de semana de carrera",
+    time: "HACE 6 HORAS",
+    trending: false
   }
 ];
 
 if (typeof window !== "undefined") {
   window.BREAKING_NEWS_DATA = BREAKING_NEWS_DATA;
 }
-
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { BREAKING_NEWS_DATA };
 }

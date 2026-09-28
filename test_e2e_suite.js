@@ -171,7 +171,7 @@ tabs.forEach(t => {
 // ----------------------------------------------------------------
 // TEST 2: Start Today's Master Show (show-dia mode 'today')
 // ----------------------------------------------------------------
-console.log("\n--- TEST 2: Master Show Pipeline (Wednesday 09/09) ---");
+console.log("\n--- TEST 2: Master Show Pipeline (Monday 28/09) ---");
 window.startShowDia("today");
 const showDiaView = document.getElementById("section-show-dia");
 assert(showDiaView && showDiaView.classList.contains("active"), "startShowDia switches to 'show-dia'");
@@ -179,7 +179,7 @@ assert(showDiaView && showDiaView.classList.contains("active"), "startShowDia sw
 // Step 1: Apertura
 console.log("Testing Step 1: Apertura");
 const body = document.getElementById("showStageBody");
-assert(body && (body.innerHTML.toLowerCase().includes("tarifa") || body.innerHTML.toLowerCase().includes("8 millones") || body.innerHTML.toLowerCase().includes("billetera")), "Step 1 renders La Tarifa de los 8 Millones apertura");
+assert(body && (body.innerHTML.toLowerCase().includes("tiago") || body.innerHTML.toLowerCase().includes("luck ra") || body.innerHTML.toLowerCase().includes("joaqui")), "Step 1 renders Tiago & Luck Ra apertura");
 window.voteAperturaByHost("holder", "a");
 window.voteAperturaByHost("diane", "a");
 window.voteAperturaByHost("luli", "b");
@@ -188,33 +188,33 @@ window.voteAperturaByHost("luli", "b");
 window.nextShowDiaStep();
 const stepCounter = document.getElementById("showStepCounter");
 assert(stepCounter && stepCounter.textContent.includes("BLOQUE 2"), "Advanced to Step 2 (Bandos)");
-assert(body.innerHTML.toLowerCase().includes("juli") || body.innerHTML.toLowerCase().includes("contacto cero") || body.innerHTML.toLowerCase().includes("abierta"), "Duelo 1 in Step 2 rendered (Juli Rocyo)");
+assert(body.innerHTML.toLowerCase().includes("luck ra") || body.innerHTML.toLowerCase().includes("tiago") || body.innerHTML.toLowerCase().includes("icardiada"), "Duelo 1 in Step 2 rendered (La Icardiada del Trap)");
 window.voteBandoByHost("holder", "b");
 window.voteBandoByHost("diane", "b");
 
 // Step 2 Duelo 1 -> Duelo 2
 window.nextShowDiaStep();
-assert(body.innerHTML.toLowerCase().includes("flor vigna") || body.innerHTML.toLowerCase().includes("brito") || body.innerHTML.toLowerCase().includes("vigna"), "Advanced to Duelo 2 (Flor Vigna vs Ángel de Brito)");
+assert(body.innerHTML.toLowerCase().includes("lali") || body.innerHTML.toLowerCase().includes("tini") || body.innerHTML.toLowerCase().includes("fandom"), "Advanced to Duelo 2 (Lali & Tini en River)");
 
 // Step 2 Duelo 2 -> Duelo 3
 window.nextShowDiaStep();
-assert(body.innerHTML.toLowerCase().includes("lola") || body.innerHTML.toLowerCase().includes("nepobaby") || body.innerHTML.toLowerCase().includes("latorre"), "Advanced to Duelo 3 (Lola Latorre Nepobaby)");
+assert(body.innerHTML.toLowerCase().includes("wanda") || body.innerHTML.toLowerCase().includes("masterchef") || body.innerHTML.toLowerCase().includes("streaming"), "Advanced to Duelo 3 (Wanda Nara vs Streaming)");
 
 // Step 2 -> Step 3 (Tribunal)
 window.nextShowDiaStep();
 assert(stepCounter && stepCounter.textContent.includes("BLOQUE 3"), "Advanced to Step 3 (Tribunal)");
-assert(body.innerHTML.toLowerCase().includes("belleza") || body.innerHTML.toLowerCase().includes("retoque") || body.innerHTML.toLowerCase().includes("gym"), "Juicio 1 rendered (Día de la Belleza / Retoques vs Gym)");
+assert(body.innerHTML.toLowerCase().includes("gordito") || body.innerHTML.toLowerCase().includes("tiago") || body.innerHTML.toLowerCase().includes("luck ra"), "Juicio 1 rendered (El mensaje de Gordito te quiero)");
 window.voteTribunalByHost("holder", "A");
 window.voteTribunalByHost("diane", "A");
 window.voteTribunalByHost("luli", "C");
 
 // Step 3 Juicio 1 -> Juicio 2
 window.nextShowDiaStep();
-assert(body.innerHTML.toLowerCase().includes("messi") || body.innerHTML.toLowerCase().includes("victoria") || body.innerHTML.toLowerCase().includes("granatto"), "Advanced to Juicio 2 (Victoria Granatto / Messi)");
+assert(body.innerHTML.toLowerCase().includes("mama") || body.innerHTML.toLowerCase().includes("noba") || body.innerHTML.toLowerCase().includes("yerno"), "Advanced to Juicio 2 (La suegra viral)");
 
 // Step 3 Juicio 2 -> Juicio 3
 window.nextShowDiaStep();
-assert(body.innerHTML.toLowerCase().includes("connie") || body.innerHTML.toLowerCase().includes("ansaldi") || body.innerHTML.toLowerCase().includes("blender"), "Advanced to Juicio 3 (Connie Ansaldi Blender)");
+assert(body.innerHTML.toLowerCase().includes("pedro") || body.innerHTML.toLowerCase().includes("lali") || body.innerHTML.toLowerCase().includes("carta"), "Advanced to Juicio 3 (Pedro Rosemblat carta)");
 
 // Step 3 -> Step 4 (Semaforo)
 window.nextShowDiaStep();
@@ -232,13 +232,13 @@ assert(body.innerHTML.includes("PODIO") || body.innerHTML.includes("TOP 5"), "Po
 // Step 5 -> Step 6 (Ruleta)
 window.nextShowDiaStep();
 assert(stepCounter && stepCounter.textContent.includes("BLOQUE 6"), "Advanced to Step 6 (Ruleta)");
-window.assignShowThroneMulti("casorio", "Ángel de Brito");
+window.assignShowThroneMulti("casorio", "Tiago PZK");
 window.assignShowThroneMulti("chongo", "Tomás Holder");
 window.assignShowThroneMulti("funa", "Tiago PZK");
 
 // Step 6 Round 1 -> Round 2
 window.nextShowDiaStep();
-assert(body.innerHTML.toLowerCase().includes("juli") || body.innerHTML.toLowerCase().includes("rocyo"), "Ruleta at Round 2 (Juli Rocyo)");
+assert(body.innerHTML.toLowerCase().includes("lali") || body.innerHTML.toLowerCase().includes("esposito"), "Ruleta at Round 2 (Lali Espósito)");
 
 // Step 6 -> Step 7 (Funa)
 window.nextShowDiaStep();
